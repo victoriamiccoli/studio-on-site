@@ -1,0 +1,29 @@
+{
+  "heroLine1": "Le Pilates Reformer.",
+  "heroLine2": "Plus accessible.",
+  "heroLine3": "Mieux adapté.",
+  "heroKicker": "Le Pilates Reformer. Pensé pour vous.",
+  "heroBullets": [
+    "Du Pilates Reformer digitalisé en illimité",
+    "Ouvert de 6h00 à 22h30",
+    "Vos séances préférées en 3 clics",
+    "Des nouvelles vidéos en continu"
+  ],
+  "tarifsTitle": "Tarifs accessibles",
+  "tarifsSubtitle": "Le Pilates Reformer. En illimité.",
+  "conceptSubtitle": "3 étapes. Pas plus.",
+  "seancesTitle": "Plus de 100 séances, à ton rythme.",
+  "seancesSubtitle": "Filtre par niveau, focus, mood ou coach.",
+  "coachsTitle": "Sept coachs. Sept ADN.",
+  "coachsSubtitle": "Choisis selon ton humeur, ton objectif, tes envies.",
+  "studiosTitle": "Paris, et bientôt ailleurs…",
+  "studiosSubtitle": "Pousse la porte, le studio est à toi. Du lever au coucher du soleil.",
+  "faqTitle": "Les vraies questions.",
+  "faqSubtitle": "Si ta question n'y est pas, écris-nous, on y répond très vite !",
+  "ctaText": "Teste 3 séances avec le Pack Découverte. Sans engagement.",
+  "steps": [
+    { "num": "01", "label": "Réserve", "title": "Ton pass nominatif.", "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà." },
+    { "num": "02", "label": "Viens", "title": "Pousse la porte.", "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer." },
+    { "num": "03", "label": "Bouge", "title": "Lance ta séance.", "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme." }
+  ]
+}

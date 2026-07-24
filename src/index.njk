@@ -7,17 +7,14 @@ permalink: /
 <section class="intro-statement reveal" id="top" aria-label="Manifeste">
   <div class="intro-statement__screen">
     <h1 class="intro-statement__h" style="font-size: clamp(30px, 8vw, 75px)">
-      Le Pilates Reformer.<br>
-      <em style="color:#FFFFFF">Plus accessible.</em><br>
-      Mieux adapté.
+      {{ home.heroLine1 }}<br>
+      <em style="color:#FFFFFF">{{ home.heroLine2 }}</em><br>
+      {{ home.heroLine3 }}
     </h1>
-    <p class="intro-statement__lede-kicker">Le Pilates Reformer. <em>Pensé pour vous.</em></p>
+    <p class="intro-statement__lede-kicker">{{ home.heroKicker }}</p>
   </div>
   <ul class="intro-statement__list">
-    <li>Du Pilates Reformer digitalisé en illimité</li>
-    <li>Ouvert de 6h00 à 22h30</li>
-    <li>Vos séances préférées en 3 clics</li>
-    <li>Des nouvelles vidéos en continu</li>
+    {% for b in home.heroBullets %}<li>{{ b }}</li>{% endfor %}
   </ul>
 </section>
 
@@ -27,8 +24,8 @@ permalink: /
 <section id="tarifs" class="section--dark reveal">
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Tarifs<br>accessibles</h2>
-      <p class="section-head__p" style="color: var(--ecru)">Le Pilates Reformer. <span style="color: var(--vanille)">En illimité.</span></p>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | safe }}</h2>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitle | safe }}</p>
     </div>
   </div>
 
@@ -62,26 +59,18 @@ permalink: /
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
-      <p class="section-head__p" style="color: var(--ecru)">3 étapes. Pas plus.</p>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.conceptSubtitle | safe }}</p>
     </div>
   </div>
 
   <div class="principes" style="border-top: none;">
+    {% for s in home.steps %}
     <article class="principe">
-      <div class="principe__top"><span class="step-num">01</span><span class="step-label">Réserve</span></div>
-      <h3 class="principe__h">Ton pass nominatif.</h3>
-      <p class="principe__p">Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà.</p>
+      <div class="principe__top"><span class="step-num">{{ s.num }}</span><span class="step-label">{{ s.label }}</span></div>
+      <h3 class="principe__h">{{ s.title }}</h3>
+      <p class="principe__p">{{ s.text }}</p>
     </article>
-    <article class="principe">
-      <div class="principe__top"><span class="step-num">02</span><span class="step-label">Viens</span></div>
-      <h3 class="principe__h">Pousse la porte.</h3>
-      <p class="principe__p">Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer.</p>
-    </article>
-    <article class="principe">
-      <div class="principe__top"><span class="step-num">03</span><span class="step-label">Bouge</span></div>
-      <h3 class="principe__h">Lance ta séance.</h3>
-      <p class="principe__p">Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme.</p>
-    </article>
+    {% endfor %}
   </div>
 </section>
 
@@ -89,8 +78,8 @@ permalink: /
 <section id="seances" class="section--dark reveal" style="padding-top: 0;">
   <div class="section-meta section-head" style="padding-top: 40px;">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">Plus de 100 séances,<br>à ton rythme.</h2>
-      <p class="section-head__p" style="color: var(--ecru)">Filtre par niveau, focus, mood ou coach.</p>
+      <h2 class="h-xl section-head__h" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | safe }}</h2>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.seancesSubtitle | safe }}</p>
       <div class="filter-pills">
         {% for f in seances.filters %}<span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>{% endfor %}
       </div>
@@ -113,8 +102,8 @@ permalink: /
 <section id="coachs" class="section--dark reveal">
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Sept coachs.<br>Sept ADN.</h2>
-      <p class="section-head__p" style="color: var(--ecru); opacity: .8">Choisis selon ton humeur, ton objectif, tes envies.</p>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | safe }}</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity: .8">{{ home.coachsSubtitle | safe }}</p>
     </div>
   </div>
 
@@ -139,8 +128,8 @@ permalink: /
 <section id="studios" class="reveal">
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 18ch;">Paris, et bientôt<br>ailleurs…</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity: .65;">Pousse la porte, le studio est à toi. Du lever au coucher du soleil.</p>
+      <h2 class="h-xl section-head__h" style="max-width: 18ch;">{{ home.studiosTitle | safe }}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.studiosSubtitle | safe }}</p>
     </div>
   </div>
 
@@ -164,8 +153,8 @@ permalink: /
 <section id="faq" class="reveal">
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch;">Les vraies<br>questions.</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity: .65;">Si ta question n'y est pas, écris-nous, on y répond très vite&nbsp;!</p>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch;">{{ home.faqTitle | safe }}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.faqSubtitle | safe }}</p>
     </div>
   </div>
   <div class="faq">
@@ -185,7 +174,7 @@ permalink: /
     <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>
   </h2>
   <div class="cta-band__side">
-    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">Teste 3 séances avec le Pack Découverte.<br>Sans engagement.</p>
+    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ home.ctaText | safe }}</p>
     <div class="cta-band__actions">
       <a href="{{ site.reserverUrl }}" class="btn btn--ecru">Réserver ma première séance <span class="btn__toggle"></span></a>
     </div>
@@ -208,7 +197,12 @@ permalink: /
     nameEl.innerHTML = c.name; adrEl.innerHTML = c.adr; statusEl.textContent = c.status;
     statusEl.classList.toggle('is-soon', c.isSoon);
     metaEl.innerHTML = (c.meta||[]).map(m => `<span>${m}</span>`).join('');
-    ctaEl.innerHTML = `<a href="${c.ctaHref}" class="btn">${c.ctaLabel} <span style="display:inline-flex; width:22px; height:12px; border-radius:999px; background:var(--vanille); position:relative;"><span style="position:absolute; right:2px; top:2px; width:8px; height:8px; border-radius:50%; background:var(--noir);"></span></span></a>`;
+    var toggle = `<span style="display:inline-flex; width:22px; height:12px; border-radius:999px; background:var(--vanille); position:relative;"><span style="position:absolute; right:2px; top:2px; width:8px; height:8px; border-radius:50%; background:var(--noir);"></span></span>`;
+    if (c.waitlist) {
+      ctaEl.innerHTML = `<button type="button" class="btn" data-waitlist data-studio="${c.name}">${c.ctaLabel} ${toggle}</button>`;
+    } else {
+      ctaEl.innerHTML = `<a href="${c.ctaHref}" class="btn">${c.ctaLabel} ${toggle}</a>`;
+    }
     if(c.image){ imgEl.style.backgroundImage = `url('${c.image}')`; imgEl.classList.remove('is-placeholder'); }
     else { imgEl.style.backgroundImage=''; imgEl.classList.add('is-placeholder'); }
   }

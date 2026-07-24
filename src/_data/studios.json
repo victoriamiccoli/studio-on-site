@@ -1,10 +1,7 @@
 {
   "list": [
-    { "key": "saussure", "chip": "Paris 17e", "name": "Paris 17e", "adr": "16, rue de Saussure<br>75017 Paris", "image": "", "status": "Ouvert · 6h → 22h30", "isSoon": false, "meta": ["12 Reformers", "M° Villiers"], "ctaLabel": "Réserver une séance", "ctaHref": "/tarifs/" },
-    { "key": "paris2", "chip": "Paris 2e", "name": "Paris 2e", "adr": "Adresse dévoilée bientôt<br>Paris intra-muros", "image": "", "status": "Ouverture imminente", "isSoon": true, "meta": ["Été 2026"], "ctaLabel": "Rejoindre la liste d'attente", "ctaHref": "/franchises/" },
-    { "key": "lyon", "chip": "Lyon", "name": "Lyon", "adr": "Adresse à venir<br>Lyon centre", "image": "", "status": "En préparation", "isSoon": true, "meta": ["Automne 2026"], "ctaLabel": "Rejoindre la liste d'attente", "ctaHref": "/franchises/" },
-    { "key": "marseille", "chip": "Marseille", "name": "Marseille", "adr": "Adresse à venir<br>Marseille", "image": "", "status": "En préparation", "isSoon": true, "meta": ["Automne 2026"], "ctaLabel": "Rejoindre la liste d'attente", "ctaHref": "/franchises/" },
-    { "key": "nice", "chip": "Nice", "name": "Nice", "adr": "Adresse à venir<br>Nice", "image": "", "status": "En préparation", "isSoon": true, "meta": ["Hiver 2026"], "ctaLabel": "Rejoindre la liste d'attente", "ctaHref": "/franchises/" },
-    { "key": "bordeaux", "chip": "Bordeaux", "name": "Bordeaux", "adr": "Adresse à venir<br>Bordeaux", "image": "", "status": "En préparation", "isSoon": true, "meta": ["Automne 2026"], "ctaLabel": "Rejoindre la liste d'attente", "ctaHref": "/franchises/" }
+    { "key": "paris17", "chip": "Paris 17e", "name": "Paris 17e", "adr": "16, rue de Saussure<br>75017 Paris", "image": "", "status": "Ouvert · 6h → 22h30", "isSoon": false, "meta": ["12 Reformers", "M° Villiers"], "ctaLabel": "Réserver une séance", "ctaHref": "/reserver/", "waitlist": false },
+    { "key": "paris6", "chip": "Paris 6e", "name": "Paris 6e", "adr": "Adresse dévoilée bientôt<br>Paris 6e", "image": "", "status": "Ouverture septembre 2026", "isSoon": true, "meta": ["Septembre 2026"], "ctaLabel": "Rejoindre la liste d'attente", "ctaHref": "#", "waitlist": true },
+    { "key": "soon", "chip": "Bientôt ailleurs", "name": "Et bientôt ailleurs…", "adr": "D'autres villes arrivent très vite.", "image": "", "status": "Coming soon", "isSoon": true, "meta": ["Nouvelles villes bientôt"], "ctaLabel": "Nous écrire", "ctaHref": "mailto:contact@studioon.fr", "waitlist": false }
   ]
 }

@@ -1,0 +1,238 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/img"
+public_folder: "/assets/img"
+
+locale: "fr"
+
+collections:
+  # ---------------- RÉGLAGES DU SITE ----------------
+  - name: "reglages"
+    label: "Réglages du site"
+    files:
+      - name: "site"
+        label: "Général (menu, banderole, contact, pied de page)"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Nom du site", name: "name", widget: "string" }
+          - { label: "Slogan", name: "tagline", widget: "string" }
+          - { label: "Logo", name: "logoImage", widget: "image", required: false }
+          - { label: "Email de contact", name: "contactEmail", widget: "string" }
+          - { label: "Téléphone", name: "contactPhone", widget: "string" }
+          - { label: "Email des candidatures franchise", name: "franchiseEmail", widget: "string" }
+          - label: "Menu de navigation"
+            name: "nav"
+            widget: "list"
+            fields:
+              - { label: "Libellé", name: "label", widget: "string" }
+              - { label: "Lien", name: "url", widget: "string" }
+          - label: "Banderole défilante"
+            name: "marquee"
+            widget: "list"
+            summary: "{{fields.text}}"
+            field: { label: "Texte", name: "text", widget: "string" }
+          - label: "Pied de page"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Colonnes"
+                name: "columns"
+                widget: "list"
+                fields:
+                  - { label: "Titre", name: "title", widget: "string" }
+                  - label: "Liens"
+                    name: "links"
+                    widget: "list"
+                    fields:
+                      - { label: "Libellé", name: "label", widget: "string" }
+                      - { label: "Lien", name: "url", widget: "string" }
+              - label: "Liens légaux"
+                name: "legalLinks"
+                widget: "list"
+                fields:
+                  - { label: "Libellé", name: "label", widget: "string" }
+                  - { label: "Lien", name: "url", widget: "string" }
+              - { label: "Mention copyright", name: "legal", widget: "string" }
+              - { label: "Ville", name: "city", widget: "string" }
+          # Champs techniques préservés (ne pas afficher)
+          - { label: "Domaine", name: "domain", widget: "hidden" }
+          - { label: "Lien Réserver", name: "reserverUrl", widget: "hidden" }
+          - { label: "Webhook franchise", name: "franchiseWebhook", widget: "hidden", required: false }
+          - { label: "Webhook liste d'attente", name: "waitlistWebhook", widget: "hidden", required: false }
+          - { label: "Compte Sportigo", name: "sportigoAccount", widget: "hidden" }
+
+  # ---------------- TEXTES DE L'ACCUEIL ----------------
+  - name: "accueil"
+    label: "Textes de l'accueil"
+    files:
+      - name: "home"
+        label: "Page d'accueil"
+        file: "src/_data/home.json"
+        fields:
+          - { label: "Titre principal — ligne 1", name: "heroLine1", widget: "string" }
+          - { label: "Titre principal — ligne 2 (en jaune)", name: "heroLine2", widget: "string" }
+          - { label: "Titre principal — ligne 3", name: "heroLine3", widget: "string" }
+          - { label: "Accroche", name: "heroKicker", widget: "string" }
+          - label: "Points clés (sous l'accroche)"
+            name: "heroBullets"
+            widget: "list"
+            summary: "{{fields.text}}"
+            field: { label: "Texte", name: "text", widget: "string" }
+          - { label: "Tarifs — titre", name: "tarifsTitle", widget: "string" }
+          - { label: "Tarifs — sous-titre", name: "tarifsSubtitle", widget: "string" }
+          - { label: "Concept — sous-titre", name: "conceptSubtitle", widget: "string" }
+          - { label: "Séances — titre", name: "seancesTitle", widget: "string" }
+          - { label: "Séances — sous-titre", name: "seancesSubtitle", widget: "string" }
+          - { label: "Coachs — titre", name: "coachsTitle", widget: "string" }
+          - { label: "Coachs — sous-titre", name: "coachsSubtitle", widget: "string" }
+          - { label: "Studios — titre", name: "studiosTitle", widget: "string" }
+          - { label: "Studios — sous-titre", name: "studiosSubtitle", widget: "string" }
+          - { label: "FAQ — titre", name: "faqTitle", widget: "string" }
+          - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string" }
+          - { label: "Bloc final — texte", name: "ctaText", widget: "string" }
+          - label: "Concept — 3 étapes"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Numéro", name: "num", widget: "string" }
+              - { label: "Étiquette", name: "label", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "text", widget: "text" }
+
+  # ---------------- TARIFS ----------------
+  - name: "tarifs"
+    label: "Tarifs"
+    files:
+      - name: "tarifs"
+        label: "Offres & paiements"
+        file: "src/_data/tarifs.json"
+        fields:
+          - label: "Abonnements"
+            name: "abonnements"
+            widget: "list"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "string", required: false }
+              - { label: "Prix", name: "price", widget: "string" }
+              - { label: "Unité (ex. / mois)", name: "per", widget: "string" }
+              - { label: "Sous-titre", name: "sub", widget: "string", required: false }
+              - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
+              - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
+              - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
+              - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
+          - label: "Séances & packs"
+            name: "seances"
+            widget: "list"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "string", required: false }
+              - { label: "Prix", name: "price", widget: "string" }
+              - { label: "Unité", name: "per", widget: "string" }
+              - { label: "Sous-titre", name: "sub", widget: "string", required: false }
+              - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
+              - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
+              - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
+              - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
+
+  # ---------------- COACHS ----------------
+  - name: "coachs"
+    label: "Coachs"
+    files:
+      - name: "coachs"
+        label: "Liste des coachs"
+        file: "src/_data/coachs.json"
+        fields:
+          - label: "Coachs"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Spécialité", name: "tag", widget: "string" }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
+
+  # ---------------- SÉANCES ----------------
+  - name: "seances"
+    label: "Séances (galerie)"
+    files:
+      - name: "seances"
+        label: "Galerie des séances"
+        file: "src/_data/seances.json"
+        fields:
+          - { label: "Filtres", name: "filters", widget: "list", field: { label: "Filtre", name: "text", widget: "string" } }
+          - label: "Séances"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Infos (durée · coach)", name: "meta", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "string", required: false }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
+              - { label: "Grande hauteur", name: "tall", widget: "boolean", default: false }
+              - { label: "Grande largeur", name: "wide", widget: "boolean", default: false }
+              - { label: "Bouton lecture", name: "play", widget: "boolean", default: false }
+
+  # ---------------- STUDIOS (page vitrine) ----------------
+  - name: "studios"
+    label: "Studios (page vitrine)"
+    files:
+      - name: "studios"
+        label: "Villes affichées"
+        file: "src/_data/studios.json"
+        fields:
+          - label: "Studios"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Clé (identifiant)", name: "key", widget: "string" }
+              - { label: "Onglet", name: "chip", widget: "string" }
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Adresse", name: "adr", widget: "string" }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Statut", name: "status", widget: "string" }
+              - { label: "Bientôt", name: "isSoon", widget: "boolean", default: false }
+              - { label: "Infos", name: "meta", widget: "list", field: { label: "Info", name: "text", widget: "string" } }
+              - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
+              - { label: "Lien du bouton", name: "ctaHref", widget: "string" }
+
+  # ---------------- FAQ ----------------
+  - name: "faq"
+    label: "FAQ"
+    files:
+      - name: "faq"
+        label: "Questions / réponses"
+        file: "src/_data/faq.json"
+        fields:
+          - label: "Questions"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: "q", widget: "string" }
+              - { label: "Réponse", name: "a", widget: "text" }
+
+  # ---------------- RÉSERVATION ----------------
+  - name: "reservation"
+    label: "Réservation (studios)"
+    files:
+      - name: "reservation"
+        label: "Studios réservables"
+        file: "src/_data/reservation.json"
+        fields:
+          - label: "Studios"
+            name: "studios"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Clé (identifiant)", name: "key", widget: "string" }
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Adresse", name: "adr", widget: "string" }
+              - { label: "Infos", name: "meta", widget: "string" }
+              - { label: "ID planning Sportigo (vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
+              - { label: "Ouvert", name: "open", widget: "boolean", default: false }

@@ -174,5 +174,59 @@
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
 })();
 </script>
+
+<!-- Fenêtre liste d'attente -->
+<div class="pay-modal" id="waitModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="pay-modal__backdrop" data-wait-close></div>
+  <div class="pay-modal__panel" style="width:min(520px,94vw)">
+    <div class="pay-modal__head">
+      <span class="pay-modal__title" id="waitTitle">Liste d'attente</span>
+      <button class="pay-modal__close" type="button" data-wait-close aria-label="Fermer">×</button>
+    </div>
+    <div class="pay-modal__body">
+      <p style="opacity:.75; font-size:14px; margin:0 0 18px;">Laisse-nous tes coordonnées, on te prévient dès l'ouverture.</p>
+      <form id="waitForm" class="form" novalidate>
+        <div class="field full"><label for="waitPrenom">Prénom *</label><input type="text" id="waitPrenom" name="prenom" required autocomplete="given-name"></div>
+        <div class="field full"><label for="waitEmail">Email *</label><input type="email" id="waitEmail" name="email" required autocomplete="email"></div>
+        <input type="hidden" name="studio" id="waitStudio" value="">
+        <div class="form__submit"><button type="submit" class="btn btn--noir" id="waitSubmit">Rejoindre la liste <span>→</span></button></div>
+      </form>
+      <div class="form-success" id="waitSuccess"><h3 class="h-md" style="margin-bottom:8px;">Merci&nbsp;!</h3><p style="opacity:.75;margin:0;">On te prévient dès l'ouverture.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var WEBHOOK = "{{ site.waitlistWebhook }}";
+  var modal = document.getElementById('waitModal');
+  var form = document.getElementById('waitForm');
+  var success = document.getElementById('waitSuccess');
+  var studioField = document.getElementById('waitStudio');
+  var titleEl = document.getElementById('waitTitle');
+  function openWait(studio){
+    studioField.value = studio || '';
+    titleEl.textContent = studio ? ("Liste d'attente · " + studio) : "Liste d'attente";
+    form.style.display = ''; success.classList.remove('is-visible');
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open');
+  }
+  function closeWait(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-waitlist]');
+    if (t){ e.preventDefault(); openWait(t.getAttribute('data-studio')); return; }
+    if (e.target.closest('[data-wait-close]')) closeWait();
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('is-open')) closeWait(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+    var data = {}; new FormData(form).forEach(function(v,k){ data[k]=v; });
+    data.source = "Liste d'attente studio";
+    var btn = document.getElementById('waitSubmit'); btn.disabled = true; btn.textContent = 'Envoi…';
+    Promise.resolve(WEBHOOK ? fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }) : console.log('[Liste attente]', data))
+      .then(function(){ form.style.display='none'; success.classList.add('is-visible'); })
+      .catch(function(){ btn.disabled=false; btn.innerHTML='Réessayer <span>→</span>'; });
+  });
+})();
+</script>
 </body>
 </html>

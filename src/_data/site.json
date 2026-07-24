@@ -5,6 +5,7 @@
   "logoImage": "/assets/img/logo-studio-on.png",
   "reserverUrl": "/reserver/",
   "franchiseWebhook": "",
+  "waitlistWebhook": "",
   "franchiseEmail": "contact@studioon.fr",
   "contactEmail": "contact@studioon.fr",
   "contactPhone": "07 75 77 99 73",
