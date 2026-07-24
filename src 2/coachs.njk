@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: Coachs
+permalink: /coachs/
+description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Les coachs</span>
+  <h1 class="page-hero__h">Sept coachs.<br><em>Sept ADN.</em></h1>
+  <p class="page-hero__p">Choisis selon ton humeur, ton objectif, tes envies.</p>
+</section>
+
+<section class="section--dark reveal">
+  <div class="coachs">
+    {% for c in coachs.list %}
+    <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
+      {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
+      <div class="coach__body">
+        <div class="coach__h">{{ c.name }}</div>
+        <div class="coach__tag">{{ c.tag }}</div>
+      </div>
+    </article>
+    {% endfor %}
+    <article class="coach coach--dark" style="justify-content: flex-start; padding: 24px;">
+      <div class="coach__body" style="padding: 0;">
+        <div class="coach__tag" style="color: var(--vanille); opacity: 1; margin-bottom: 14px;">En continu</div>
+        <div style="font-family: var(--f-display); font-weight: 600; font-size: clamp(22px, 2.2vw, 28px); line-height: 1; letter-spacing: -0.025em; text-transform: uppercase;">De nouvelles séances, tout au long de l'année.</div>
+        <div style="font-family: var(--f-display); font-weight: 500; font-size: 14px; line-height: 1.3; letter-spacing: -0.01em; margin-top: 14px;">À vous de voter pour celles que vous voulez voir prochainement sur vos écrans.</div>
+      </div>
+    </article>
+  </div>
+</section>

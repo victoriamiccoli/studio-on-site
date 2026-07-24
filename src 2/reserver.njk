@@ -1,0 +1,147 @@
+---
+layout: base.njk
+title: Réserver
+permalink: /reserver/
+description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Réserver</span>
+  <h1 class="page-hero__h">Choisis ton<br>studio.</h1>
+  <p class="page-hero__p">Sélectionne ton studio, consulte le planning et réserve ta séance ou ton abonnement.</p>
+</section>
+
+<section class="reveal" style="padding-bottom: clamp(40px, 5vw, 64px);">
+  <div class="studio-pick" id="studioPick">
+    {% for s in reservation.studios %}
+    <button type="button" class="studio-pick__card{% if not s.open %} is-soon{% endif %}" data-studio="{{ s.key }}" data-planning="{{ s.planning }}" data-open="{{ s.open }}" data-name="{{ s.name }}"{% if loop.first %} aria-pressed="true"{% endif %}>
+      <span class="studio-pick__status">{% if s.open %}Ouvert{% else %}Bientôt{% endif %}</span>
+      <span class="studio-pick__name">{{ s.name }}</span>
+      <span class="studio-pick__adr">{{ s.adr }}</span>
+      <span class="studio-pick__meta">{{ s.meta }}</span>
+    </button>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Zone dynamique : planning + tarifs, ou message "bientôt" -->
+<section class="section--dark reveal" id="reserverPanel" style="display:none;">
+  <div class="section-meta section-head" style="padding-bottom: 40px;">
+    <div>
+      <h2 class="h-lg section-head__h" id="planningTitle" style="color: var(--ecru); max-width: 20ch;">Planning</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity:.8;" id="planningSub">Choisis ton créneau ci-dessous.</p>
+    </div>
+  </div>
+  <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
+</section>
+
+<section class="reveal" id="reserverTarifs" style="display:none;">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Abonnements<br>& séances</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Choisis la formule qui te correspond.</p>
+    </div>
+  </div>
+
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for p in tarifs.abonnements %}
+    <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for p in tarifs.seances %}
+    <article class="plan{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Message studio à venir -->
+<section class="section--dark reveal" id="reserverSoon" style="display:none;">
+  <div class="section-head" style="text-align:center;">
+    <h2 class="h-lg" style="color: var(--ecru);">Ouverture <span style="color:var(--vanille)">septembre 2026</span></h2>
+    <p style="margin: 18px auto 0; max-width: 40ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Ce studio ouvre bientôt&nbsp;! En attendant, tu peux réserver au studio Paris 17e, ou nous écrire pour être tenu·e informé·e.</p>
+    <div style="margin-top:28px;">
+      <a href="mailto:{{ site.contactEmail }}" class="btn btn--ecru">Être informé·e <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var ACCOUNT = "{{ site.sportigoAccount }}";
+  var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
+  var state = 0, cbs = [];
+  function loadScript(cb){
+    if (state === 2) { cb(); return; }
+    cbs.push(cb);
+    if (state === 1) return;
+    state = 1;
+    var s = document.createElement('script');
+    s.src = SRC;
+    s.onload = function(){ state = 2; cbs.forEach(function(f){ f(); }); cbs = []; };
+    s.onerror = function(){ state = 0; document.getElementById('sportigo-appointment-container').innerHTML = '<p style="padding:40px;text-align:center;opacity:.7">Impossible de charger le planning pour le moment. Réessaie dans un instant.</p>'; };
+    document.head.appendChild(s);
+  }
+
+  var pick = document.getElementById('studioPick');
+  var panel = document.getElementById('reserverPanel');
+  var tarifs = document.getElementById('reserverTarifs');
+  var soon = document.getElementById('reserverSoon');
+  var planningTitle = document.getElementById('planningTitle');
+  var container = document.getElementById('sportigo-appointment-container');
+
+  function isValidPlanning(p){ return p && /^[0-9]+$/.test(p); }
+  function selectStudio(btn){
+    pick.querySelectorAll('.studio-pick__card').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+    var planning = btn.getAttribute('data-planning');
+    var name = btn.getAttribute('data-name');
+    if (isValidPlanning(planning)){
+      soon.style.display = 'none';
+      panel.style.display = '';
+      tarifs.style.display = '';
+      planningTitle.textContent = 'Planning — ' + name;
+      container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Chargement du planning…</p>';
+      loadScript(function(){
+        container.innerHTML = '<div id="sportigo-appointment-full-container"></div>';
+        try {
+          window.initComponent("AppointmentFull", "sportigo-appointment-full-container", ACCOUNT, {
+            theme: { googleFont: { name: "Inter" } },
+            planning: parseInt(planning, 10)
+          });
+        } catch(e){
+          container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Une erreur est survenue. Réessaie ou contacte-nous.</p>';
+        }
+      });
+    } else {
+      panel.style.display = 'none';
+      tarifs.style.display = 'none';
+      soon.style.display = '';
+    }
+    panel.scrollIntoView ? null : null;
+  }
+
+  pick.addEventListener('click', function(e){
+    var btn = e.target.closest('.studio-pick__card');
+    if (!btn) return;
+    selectStudio(btn);
+  });
+  // Sélection auto du 1er studio réservable au chargement
+  var cards = pick.querySelectorAll('.studio-pick__card');
+  var first = null;
+  cards.forEach(function(b){ if (!first && isValidPlanning(b.getAttribute('data-planning'))) first = b; });
+  if (!first) first = cards[0];
+  if (first) selectStudio(first);
+})();
+</script>

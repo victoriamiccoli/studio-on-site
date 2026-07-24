@@ -1,0 +1,12 @@
+{
+  "filters": ["Par Niveau", "Par Focus", "Par Mood", "Par Coach"],
+  "list": [
+    { "title": "Abs on.", "meta": "Force · 45 min · Kévin", "badge": "Avancé", "dark": true, "tall": true, "wide": false, "play": false, "image": "" },
+    { "title": "Mobility on.", "meta": "40 min · Louise", "badge": "", "dark": false, "tall": false, "wide": false, "play": false, "image": "" },
+    { "title": "Start on.", "meta": "45 min · Rebecca", "badge": "Débutant", "dark": true, "tall": false, "wide": false, "play": false, "image": "" },
+    { "title": "Stretch on.", "meta": "45 min · Chloé", "badge": "", "dark": false, "tall": false, "wide": false, "play": false, "image": "" },
+    { "title": "Booty on.", "meta": "55 min · Sveva", "badge": "New", "dark": true, "tall": false, "wide": true, "play": true, "image": "" },
+    { "title": "Pulse on.", "meta": "55 min · Wassila", "badge": "", "dark": false, "tall": false, "wide": false, "play": false, "image": "" },
+    { "title": "Legs on.", "meta": "45 min · Cédric", "badge": "", "dark": true, "tall": false, "wide": false, "play": false, "image": "" }
+  ]
+}

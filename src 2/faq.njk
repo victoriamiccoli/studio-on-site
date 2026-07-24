@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: FAQ
+permalink: /faq/
+description: Les vraies questions sur Studio On et le Pilates Reformer.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">FAQ</span>
+  <h1 class="page-hero__h">Les vraies<br><em>questions.</em></h1>
+  <p class="page-hero__p">Si ta question n'y est pas, écris-nous, on y répond très vite&nbsp;!</p>
+</section>
+
+<section class="reveal">
+  <div class="faq">
+    {% for item in faq.list %}
+    <details{% if loop.first %} open{% endif %}>
+      <summary>{{ item.q | safe }}</summary>
+      <div class="faq__body">{{ item.a | safe }}</div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-band reveal">
+  <h2 class="cta-band__h">Une autre<br>question&nbsp;?</h2>
+  <div class="cta-band__side">
+    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">Écris-nous, on répond vite.</p>
+    <div class="cta-band__actions">
+      <a href="mailto:{{ site.contactEmail }}" class="btn btn--ecru">Nous écrire <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>

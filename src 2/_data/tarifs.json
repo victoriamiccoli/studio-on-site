@@ -1,0 +1,64 @@
+{
+  "abonnements": [
+    {
+      "name": "Abonnement illimité",
+      "badge": "Soft Hours",
+      "price": "60",
+      "per": "/ mois",
+      "sub": "Illimité en heures creuses",
+      "features": [
+        "Semaine : 6h–8h · 9h–12h30 · 14h–17h30 · 21h–22h30",
+        "Week-end : 6h–10h · 15h–22h30",
+        "Engagement 6 mois puis résiliable avec préavis d'un mois"
+      ],
+      "ctaLabel": "S'abonner",
+      "offerId": "36291",
+      "feature": false
+    },
+    {
+      "name": "Abonnement illimité",
+      "badge": "Full On",
+      "price": "89",
+      "per": "/ mois",
+      "sub": "Illimité 7j/7 de 6h à 22h30",
+      "features": [
+        "Engagement 6 mois puis résiliable avec préavis d'un mois"
+      ],
+      "ctaLabel": "S'abonner",
+      "offerId": "33687",
+      "feature": true
+    }
+  ],
+  "seances": [
+    {
+      "name": "Séance à la carte",
+      "badge": "",
+      "price": "20",
+      "per": "/ une séance",
+      "features": ["Idéal pour tester", "Ultra flexible — Valable 6 mois"],
+      "ctaLabel": "Acheter",
+      "offerId": "33689",
+      "feature": false
+    },
+    {
+      "name": "Pack Découverte",
+      "badge": "",
+      "price": "40",
+      "per": "/ 3 séances",
+      "features": ["Valable au premier achat", "Ultra flexible — Valable 6 mois"],
+      "ctaLabel": "Acheter",
+      "offerId": "33690",
+      "feature": false
+    },
+    {
+      "name": "Pack 10 séances",
+      "badge": "Populaire",
+      "price": "150",
+      "per": "/ 10 séances",
+      "features": ["Ultra flexible — Valable 6 mois"],
+      "ctaLabel": "Acheter",
+      "offerId": "32589",
+      "feature": true
+    }
+  ]
+}

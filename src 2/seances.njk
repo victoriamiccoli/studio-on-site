@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: Séances
+permalink: /seances/
+description: Plus de 100 séances de Pilates Reformer, à ton rythme.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Les séances</span>
+  <h1 class="page-hero__h">Plus de 100 séances,<br><em>à ton rythme.</em></h1>
+  <p class="page-hero__p">Filtre par niveau, focus, mood ou coach. De nouvelles vidéos en continu.</p>
+</section>
+
+<section class="section--dark reveal">
+  <div class="section-meta section-head" style="padding-top: 0;">
+    <div>
+      <div class="filter-pills">
+        {% for f in seances.filters %}
+          <span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery">
+    {% for s in seances.list %}
+    <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %}>
+      {% if not s.image %}<span class="ph-label">{{ s.title }}</span>{% endif %}
+      {% if s.badge %}<span class="gal-badge">{{ s.badge }}</span>{% endif %}
+      {% if s.play %}<div class="gal-play" aria-hidden="true"></div>{% endif %}
+      <div class="gal-switch">
+        <span class="gal-switch__text">{{ s.title }}</span>
+        <span class="gal-switch__meta">{{ s.meta }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-band reveal">
+  <h2 class="cta-band__h">Choisis<br>ta séance.</h2>
+  <div class="cta-band__side">
+    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">Accès illimité dès 60€/mois, ou à la carte dès 20€.</p>
+    <div class="cta-band__actions">
+      <a href="/tarifs/" class="btn btn--ecru">Voir les tarifs <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>

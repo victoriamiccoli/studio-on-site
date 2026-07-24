@@ -1,0 +1,55 @@
+---
+layout: base.njk
+title: Tarifs
+permalink: /tarifs/
+description: Le Pilates Reformer en illimité. Tarifs accessibles.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Les tarifs</span>
+  <h1 class="page-hero__h">Tarifs<br><em>accessibles.</em></h1>
+  <p class="page-hero__p">Le Pilates Reformer. En illimité.</p>
+</section>
+
+<section class="section--dark reveal" style="padding-top: clamp(40px, 6vw, 80px);">
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for p in tarifs.abonnements %}
+    <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">
+        {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
+      </ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for p in tarifs.seances %}
+    <article class="plan{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">
+        {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
+      </ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h">Une question<br>sur les tarifs&nbsp;?</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Tout est expliqué, sans frais cachés.</p>
+    </div>
+  </div>
+  <div class="cta-band__actions" style="align-items:center; flex-direction:row; justify-content:center; gap:12px; flex-wrap:wrap;">
+    <a href="/faq/" class="btn btn--noir">Lire la FAQ <span>→</span></a>
+    <a href="mailto:{{ site.contactEmail }}" class="btn" style="border:1px solid var(--line);">Nous écrire <span>→</span></a>
+  </div>
+</section>
