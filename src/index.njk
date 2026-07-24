@@ -87,14 +87,14 @@ permalink: /
   </div>
 
   <div class="gallery">
-    {% for s in seances.list %}
+    {% for s in seances.list %}{% if not s.hideOnHome %}
     <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %}>
       {% if not s.image %}<span class="ph-label">{{ s.title }}</span>{% endif %}
       {% if s.badge %}<span class="gal-badge">{{ s.badge }}</span>{% endif %}
       {% if s.play %}<div class="gal-play" aria-hidden="true"></div>{% endif %}
       <div class="gal-switch"><span class="gal-switch__text">{{ s.title }}</span><span class="gal-switch__meta">{{ s.meta }}</span></div>
     </div>
-    {% endfor %}
+    {% endif %}{% endfor %}
   </div>
 </section>
 

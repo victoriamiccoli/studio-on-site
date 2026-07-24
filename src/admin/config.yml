@@ -62,6 +62,7 @@ collections:
           - { label: "Lien Réserver", name: "reserverUrl", widget: "hidden" }
           - { label: "Webhook franchise", name: "franchiseWebhook", widget: "hidden", required: false }
           - { label: "Webhook liste d'attente", name: "waitlistWebhook", widget: "hidden", required: false }
+          - { label: "Webhook contact", name: "contactWebhook", widget: "hidden", required: false }
           - { label: "Compte Sportigo", name: "sportigoAccount", widget: "hidden" }
 
   # ---------------- TEXTES DE L'ACCUEIL ----------------
@@ -179,6 +180,7 @@ collections:
               - { label: "Grande hauteur", name: "tall", widget: "boolean", default: false }
               - { label: "Grande largeur", name: "wide", widget: "boolean", default: false }
               - { label: "Bouton lecture", name: "play", widget: "boolean", default: false }
+              - { label: "Masquer sur l'accueil", name: "hideOnHome", widget: "boolean", default: false, required: false }
 
   # ---------------- STUDIOS (page vitrine) ----------------
   - name: "studios"

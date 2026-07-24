@@ -1,0 +1,61 @@
+---
+layout: base.njk
+title: Contact
+permalink: /contact/
+description: Une question ? Écris-nous, on répond très vite.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Contact</span>
+  <h1 class="page-hero__h">Une question&nbsp;?<br><em>Écris-nous.</em></h1>
+  <p class="page-hero__p">On te répond très vite. Tu peux aussi nous joindre au {{ site.contactPhone }}.</p>
+</section>
+
+<section class="reveal">
+  <div class="form-wrap">
+    <form id="contactForm" class="form" data-webhook="{{ site.contactWebhook }}" novalidate>
+      <div class="field">
+        <label for="c-nom">Nom et prénom *</label>
+        <input type="text" id="c-nom" name="nom" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="c-email">Email *</label>
+        <input type="email" id="c-email" name="email" required autocomplete="email">
+      </div>
+      <div class="field full">
+        <label for="c-sujet">Sujet</label>
+        <input type="text" id="c-sujet" name="sujet">
+      </div>
+      <div class="field full">
+        <label for="c-message">Votre message *</label>
+        <textarea id="c-message" name="message" required placeholder="Comment peut-on t'aider ?"></textarea>
+      </div>
+      <p class="form__note full">* Champs obligatoires. Vos informations sont utilisées uniquement pour répondre à votre message.</p>
+      <div class="form__submit">
+        <button type="submit" class="btn btn--noir" id="contactSubmit">Envoyer mon message <span>→</span></button>
+      </div>
+    </form>
+
+    <div class="form-success" id="contactSuccess">
+      <h3 class="h-md" style="margin-bottom:12px;">Message envoyé&nbsp;!</h3>
+      <p style="opacity:.75; max-width: 40ch; margin: 0 auto;">Merci, on a bien reçu ton message. On te répond très vite par email.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  var cform = document.getElementById('contactForm');
+  var csuccess = document.getElementById('contactSuccess');
+  var csubmit = document.getElementById('contactSubmit');
+  cform.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!cform.checkValidity()) { cform.reportValidity(); return; }
+    var webhook = cform.dataset.webhook;
+    var data = {}; new FormData(cform).forEach(function(v,k){ data[k]=v; });
+    data.source = 'Site · page Contact';
+    csubmit.disabled = true; csubmit.textContent = 'Envoi…';
+    Promise.resolve(webhook ? fetch(webhook, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }) : console.log('[Contact]', data))
+      .then(function(){ cform.style.display='none'; csuccess.classList.add('is-visible'); })
+      .catch(function(){ csubmit.disabled=false; csubmit.innerHTML='Réessayer <span>→</span>'; });
+  });
+</script>
