@@ -1,0 +1,224 @@
+---
+layout: base.njk
+title: Accueil
+permalink: /
+---
+
+<section class="intro-statement reveal" id="top" aria-label="Manifeste">
+  <div class="intro-statement__screen">
+    <h1 class="intro-statement__h" style="font-size: clamp(30px, 8vw, 75px)">
+      Le Pilates Reformer.<br>
+      <em style="color:#FFFFFF">Plus accessible.</em><br>
+      Mieux adapté.
+    </h1>
+    <p class="intro-statement__lede-kicker">Le Pilates Reformer. <em>Pensé pour vous.</em></p>
+  </div>
+  <ul class="intro-statement__list">
+    <li>Du Pilates Reformer digitalisé en illimité</li>
+    <li>Ouvert de 6h00 à 22h30</li>
+    <li>Vos séances préférées en 3 clics</li>
+    <li>Des nouvelles vidéos en continu</li>
+  </ul>
+</section>
+
+{% include "marquee.njk" %}
+
+<!-- TARIFS -->
+<section id="tarifs" class="section--dark reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Tarifs<br>accessibles</h2>
+      <p class="section-head__p" style="color: var(--ecru)">Le Pilates Reformer. <span style="color: var(--vanille)">En illimité.</span></p>
+    </div>
+  </div>
+
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for p in tarifs.abonnements %}
+    <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for p in tarifs.seances %}
+    <article class="plan{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept" class="section--dark reveal" style="padding-bottom: clamp(40px, 5vw, 72px);">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
+      <p class="section-head__p" style="color: var(--ecru)">3 étapes. Pas plus.</p>
+    </div>
+  </div>
+
+  <div class="principes" style="border-top: none;">
+    <article class="principe">
+      <div class="principe__top"><span class="step-num">01</span><span class="step-label">Réserve</span></div>
+      <h3 class="principe__h">Ton pass nominatif.</h3>
+      <p class="principe__p">Tu reçois ton pass à l'inscription. Si tu es abonné(e), tu l'as déjà.</p>
+    </article>
+    <article class="principe">
+      <div class="principe__top"><span class="step-num">02</span><span class="step-label">Viens</span></div>
+      <h3 class="principe__h">Pousse la porte.</h3>
+      <p class="principe__p">Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer.</p>
+    </article>
+    <article class="principe">
+      <div class="principe__top"><span class="step-num">03</span><span class="step-label">Bouge</span></div>
+      <h3 class="principe__h">Lance ta séance.</h3>
+      <p class="principe__p">Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme.</p>
+    </article>
+  </div>
+</section>
+
+<!-- SEANCES -->
+<section id="seances" class="section--dark reveal" style="padding-top: 0;">
+  <div class="section-meta section-head" style="padding-top: 40px;">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">Plus de 100 séances,<br>à ton rythme.</h2>
+      <p class="section-head__p" style="color: var(--ecru)">Filtre par niveau, focus, mood ou coach.</p>
+      <div class="filter-pills">
+        {% for f in seances.filters %}<span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>{% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery">
+    {% for s in seances.list %}
+    <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %}>
+      {% if not s.image %}<span class="ph-label">{{ s.title }}</span>{% endif %}
+      {% if s.badge %}<span class="gal-badge">{{ s.badge }}</span>{% endif %}
+      {% if s.play %}<div class="gal-play" aria-hidden="true"></div>{% endif %}
+      <div class="gal-switch"><span class="gal-switch__text">{{ s.title }}</span><span class="gal-switch__meta">{{ s.meta }}</span></div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- COACHS -->
+<section id="coachs" class="section--dark reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Sept coachs.<br>Sept ADN.</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity: .8">Choisis selon ton humeur, ton objectif, tes envies.</p>
+    </div>
+  </div>
+
+  <div class="coachs">
+    {% for c in coachs.list %}
+    <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
+      {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
+      <div class="coach__body"><div class="coach__h">{{ c.name }}</div><div class="coach__tag">{{ c.tag }}</div></div>
+    </article>
+    {% endfor %}
+    <article class="coach coach--dark" style="justify-content: flex-start; padding: 24px;">
+      <div class="coach__body" style="padding: 0;">
+        <div class="coach__tag" style="color: var(--vanille); opacity: 1; margin-bottom: 14px;">En continu</div>
+        <div style="font-family: var(--f-display); font-weight: 600; font-size: clamp(22px, 2.2vw, 28px); line-height: 1; letter-spacing: -0.025em; text-transform: uppercase;">De nouvelles séances, tout au long de l'année.</div>
+        <div style="font-family: var(--f-display); font-weight: 500; font-size: 14px; line-height: 1.3; letter-spacing: -0.01em; margin-top: 14px;">À vous de voter pour celles que vous voulez voir prochainement sur vos écrans.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- STUDIOS -->
+<section id="studios" class="reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 18ch;">Paris, et bientôt<br>ailleurs…</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">Pousse la porte, le studio est à toi. Du lever au coucher du soleil.</p>
+    </div>
+  </div>
+
+  <div class="city-chips" id="cityChips" role="tablist">
+    {% for s in studios.list %}<button class="city-chip{% if loop.first %} is-active{% endif %}" data-city="{{ s.key }}" role="tab">{{ s.chip }}</button>{% endfor %}
+  </div>
+
+  <div class="studio-card" id="studioCard">
+    <div class="studio-card__img" id="studioImg"></div>
+    <div class="studio-card__body">
+      <div class="studio-card__status" id="studioStatus"></div>
+      <h3 class="studio-card__name" id="studioName"></h3>
+      <div class="studio-card__adr" id="studioAdr"></div>
+      <div class="studio-card__meta" id="studioMeta"></div>
+      <div class="studio-card__cta" id="studioCta"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch;">Les vraies<br>questions.</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">Si ta question n'y est pas, écris-nous, on y répond très vite&nbsp;!</p>
+    </div>
+  </div>
+  <div class="faq">
+    {% for item in faq.list %}
+    <details{% if loop.first %} open{% endif %}>
+      <summary>{{ item.q | safe }}</summary>
+      <div class="faq__body">{{ item.a | safe }}</div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CTA FRANCHISE -->
+<section class="cta-band reveal" id="cta">
+  <h2 class="cta-band__h" style="line-height: .92;">
+    Switch<br>your&nbsp;body<br>
+    <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>
+  </h2>
+  <div class="cta-band__side">
+    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">Teste 3 séances avec le Pack Découverte.<br>Sans engagement.</p>
+    <div class="cta-band__actions">
+      <a href="{{ site.reserverUrl }}" class="btn btn--ecru">Réserver ma première séance <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const CITIES = {{ studios.list | dump | safe }};
+  const byKey = {}; CITIES.forEach(c => byKey[c.key] = c);
+  const chipsEl = document.getElementById('cityChips');
+  const cardEl = document.getElementById('studioCard');
+  const imgEl = document.getElementById('studioImg');
+  const statusEl = document.getElementById('studioStatus');
+  const nameEl = document.getElementById('studioName');
+  const adrEl = document.getElementById('studioAdr');
+  const metaEl = document.getElementById('studioMeta');
+  const ctaEl = document.getElementById('studioCta');
+  function renderCity(key){
+    const c = byKey[key]; if(!c) return;
+    nameEl.innerHTML = c.name; adrEl.innerHTML = c.adr; statusEl.textContent = c.status;
+    statusEl.classList.toggle('is-soon', c.isSoon);
+    metaEl.innerHTML = (c.meta||[]).map(m => `<span>${m}</span>`).join('');
+    ctaEl.innerHTML = `<a href="${c.ctaHref}" class="btn">${c.ctaLabel} <span style="display:inline-flex; width:22px; height:12px; border-radius:999px; background:var(--vanille); position:relative;"><span style="position:absolute; right:2px; top:2px; width:8px; height:8px; border-radius:50%; background:var(--noir);"></span></span></a>`;
+    if(c.image){ imgEl.style.backgroundImage = `url('${c.image}')`; imgEl.classList.remove('is-placeholder'); }
+    else { imgEl.style.backgroundImage=''; imgEl.classList.add('is-placeholder'); }
+  }
+  if(chipsEl){
+    chipsEl.addEventListener('click', e => {
+      const btn = e.target.closest('.city-chip'); if(!btn) return;
+      chipsEl.querySelectorAll('.city-chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active'); cardEl.classList.add('is-fading');
+      setTimeout(() => { renderCity(btn.dataset.city); cardEl.classList.remove('is-fading'); }, 150);
+    });
+    renderCity(CITIES[0].key);
+  }
+</script>
