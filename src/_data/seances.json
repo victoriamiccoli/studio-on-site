@@ -56,7 +56,7 @@
       "play": false,
       "dark": false,
       "title": "Stretch on.",
-      "image": "",
+      "image": "/assets/img/stretch-studio-on.jpg",
       "cats": [
         "Par Focus",
         "Par Mood",
@@ -71,7 +71,7 @@
       "play": true,
       "dark": true,
       "title": "Booty on.",
-      "image": "",
+      "image": "/assets/img/booty-studio-on.jpg",
       "cats": [
         "Par Focus",
         "Par Coach"
@@ -99,7 +99,7 @@
       "play": false,
       "dark": true,
       "title": "Legs on.",
-      "image": "",
+      "image": "/assets/img/legs-studio-on.jpg",
       "cats": [
         "Par Focus",
         "Par Mood",
