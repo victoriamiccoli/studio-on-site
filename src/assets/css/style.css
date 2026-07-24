@@ -186,6 +186,12 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .gal-switch__text { font: 700 14px var(--f-display); letter-spacing: .08em; text-transform: uppercase; }
 .gal-switch__text em { color: var(--vanille); font-style: normal; }
 .gal-switch__meta { font: 500 10px var(--f-body); letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+/* Texte lisible sur les tuiles avec image (fond souvent sombre) */
+.gal-cell[style*="background-image"]::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,12,12,.72) 0%, rgba(12,12,12,.15) 45%, rgba(12,12,12,0) 72%); pointer-events: none; z-index: 1; }
+.gal-cell[style*="background-image"] .gal-switch { position: relative; z-index: 2; color: #FFFFFF; }
+.gal-cell[style*="background-image"] .gal-switch__text { color: #FFFFFF; }
+.gal-cell[style*="background-image"] .gal-switch__text em { color: var(--vanille); }
+.gal-cell[style*="background-image"] .gal-switch__meta { color: #FFFFFF; opacity: .85; }
 
 /* Coachs */
 .coachs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
