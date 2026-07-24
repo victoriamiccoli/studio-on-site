@@ -1,12 +1,110 @@
 {
-  "filters": ["Par Niveau", "Par Focus", "Par Mood", "Par Coach"],
+  "filters": [
+    "Par Niveau",
+    "Par Focus",
+    "Par Mood",
+    "Par Coach"
+  ],
   "list": [
-    { "title": "Abs on.", "meta": "Force · 45 min · Kévin", "badge": "Avancé", "dark": true, "tall": true, "wide": false, "play": false, "image": "", "cats": ["Par Niveau", "Par Coach"] },
-    { "title": "Mobility on.", "meta": "40 min · Louise", "badge": "", "dark": false, "tall": false, "wide": false, "play": false, "image": "", "cats": ["Par Focus", "Par Coach"] },
-    { "title": "Start on.", "meta": "45 min · Rebecca", "badge": "Débutant", "dark": true, "tall": false, "wide": false, "play": false, "image": "", "cats": ["Par Niveau", "Par Coach"] },
-    { "title": "Stretch on.", "meta": "45 min · Chloé", "badge": "", "dark": false, "tall": false, "wide": false, "play": false, "image": "", "cats": ["Par Focus", "Par Mood", "Par Coach"] },
-    { "title": "Booty on.", "meta": "55 min · Sveva", "badge": "New", "dark": true, "tall": false, "wide": true, "play": true, "image": "", "cats": ["Par Focus", "Par Coach"] },
-    { "title": "Pulse on.", "meta": "55 min · Wassila", "badge": "", "dark": false, "tall": false, "wide": false, "play": false, "image": "", "cats": ["Par Mood", "Par Coach"] },
-    { "title": "Legs on.", "meta": "45 min · Cédric", "badge": "", "dark": true, "tall": false, "wide": false, "play": false, "image": "", "cats": ["Par Focus", "Par Mood", "Par Coach"] }
+    {
+      "badge": "Avancé",
+      "meta": "Force · 45 min · Kévin",
+      "tall": true,
+      "wide": false,
+      "play": false,
+      "dark": true,
+      "title": "Abs on.",
+      "image": "/assets/img/abs-on.jpg",
+      "cats": [
+        "Par Niveau",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "",
+      "meta": "40 min · Louise",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": false,
+      "title": "Mobility on.",
+      "image": "",
+      "cats": [
+        "Par Focus",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "Débutant",
+      "meta": "45 min · Rebecca",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": true,
+      "title": "Start on.",
+      "image": "",
+      "cats": [
+        "Par Niveau",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "",
+      "meta": "45 min · Chloé",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": false,
+      "title": "Stretch on.",
+      "image": "",
+      "cats": [
+        "Par Focus",
+        "Par Mood",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "New",
+      "meta": "55 min · Sveva",
+      "tall": false,
+      "wide": true,
+      "play": true,
+      "dark": true,
+      "title": "Booty on.",
+      "image": "",
+      "cats": [
+        "Par Focus",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "",
+      "meta": "55 min · Wassila",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": false,
+      "title": "Pulse on.",
+      "image": "",
+      "cats": [
+        "Par Mood",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "",
+      "meta": "45 min · Cédric",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": true,
+      "title": "Legs on.",
+      "image": "",
+      "cats": [
+        "Par Focus",
+        "Par Mood",
+        "Par Coach"
+      ]
+    }
   ]
 }
