@@ -169,8 +169,8 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .filter-pill--active { background: var(--vanille); color: var(--noir); border-color: var(--vanille); }
 .gallery { display: grid; grid-template-columns: 2fr 1.3fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 14px; }
 @media (max-width: 900px) { .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 180px); gap: 10px; } }
-.gal-cell { position: relative; background: var(--ecru-2); border-radius: 14px; overflow: hidden; display: flex; align-items: flex-end; padding: 16px; background-size: cover; background-position: center; }
-.gal-cell--dark { background: var(--noir); color: var(--ecru); }
+.gal-cell { position: relative; background-color: var(--ecru-2); border-radius: 14px; overflow: hidden; display: flex; align-items: flex-end; padding: 16px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.gal-cell--dark { background-color: var(--noir); color: var(--ecru); }
 .gal-cell--tall { grid-row: span 2; }
 .gal-cell--wide { grid-column: span 2; }
 @media (max-width: 900px) { .gal-cell--tall, .gal-cell--wide { grid-row: auto; grid-column: auto; } }
@@ -197,9 +197,9 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .coachs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 @media (max-width: 1100px) { .coachs { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 700px) { .coachs { grid-template-columns: repeat(2, 1fr); } }
-.coach { position: relative; aspect-ratio: 4/5; background: var(--ecru-2); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; transition: transform .3s ease; background-size: cover; background-position: center; }
+.coach { position: relative; aspect-ratio: 4/5; background-color: var(--ecru-2); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; transition: transform .3s ease; background-size: cover; background-position: center; background-repeat: no-repeat; }
 .coach:hover { transform: translateY(-4px); }
-.coach--dark { background: #1E1E1E; color: var(--ecru); }
+.coach--dark { background-color: #1E1E1E; color: var(--ecru); }
 .coach::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(12,12,12,.04) 0 2px, transparent 2px 8px); pointer-events: none; }
 .coach--dark::before { background: repeating-linear-gradient(135deg, rgba(239,231,216,.04) 0 2px, transparent 2px 8px); }
 .coach__ph { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(12,12,12,.25); font: 500 11px var(--f-body); letter-spacing: .14em; text-transform: uppercase; pointer-events: none; }
