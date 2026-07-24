@@ -1,0 +1,95 @@
+---
+layout: base.njk
+title: Franchises
+permalink: /franchises/
+description: Ouvrir un studio Studio On en franchise. Déposez votre candidature.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Franchises</span>
+  <h1 class="page-hero__h">Ouvre ton<br>studio <em>On.</em></h1>
+  <p class="page-hero__p">Un concept clé en main, rentable et différenciant. Dis-nous qui tu es, on revient vers toi très vite.</p>
+</section>
+
+<section class="reveal">
+  <div class="form-wrap">
+    <form id="franchiseForm" class="form" data-webhook="{{ site.franchiseWebhook }}" novalidate>
+      <div class="field">
+        <label for="nom">Nom et prénom *</label>
+        <input type="text" id="nom" name="nom" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="tel">Téléphone *</label>
+        <input type="tel" id="tel" name="telephone" required autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="ville">Ville / zone souhaitée</label>
+        <input type="text" id="ville" name="ville">
+      </div>
+      <div class="field">
+        <label for="apport">Apport disponible</label>
+        <select id="apport" name="apport">
+          <option value="">— Sélectionner —</option>
+          <option>Moins de 50 000 €</option>
+          <option>50 000 € – 100 000 €</option>
+          <option>100 000 € – 200 000 €</option>
+          <option>Plus de 200 000 €</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="profil">Profil</label>
+        <select id="profil" name="profil">
+          <option value="">— Sélectionner —</option>
+          <option>Investisseur</option>
+          <option>Entrepreneur / exploitant</option>
+          <option>Les deux</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="message">Votre projet en quelques mots</label>
+        <textarea id="message" name="message" placeholder="Motivation, expérience, calendrier envisagé…"></textarea>
+      </div>
+      <p class="form__note full">* Champs obligatoires. Vos informations sont utilisées uniquement pour traiter votre candidature.</p>
+      <div class="form__submit">
+        <button type="submit" class="btn btn--vanille" id="franchiseSubmit">Envoyer ma candidature <span>→</span></button>
+      </div>
+    </form>
+
+    <div class="form-success" id="franchiseSuccess">
+      <h3 class="h-md" style="margin-bottom:12px;">Merci, c'est envoyé&nbsp;!</h3>
+      <p style="opacity:.75; max-width: 40ch; margin: 0 auto;">On a bien reçu ta candidature. On revient vers toi très vite par email.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('franchiseForm');
+  const success = document.getElementById('franchiseSuccess');
+  const submitBtn = document.getElementById('franchiseSubmit');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    const webhook = form.dataset.webhook;
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.source = 'Site — page Franchises';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi…';
+    try {
+      if (webhook) {
+        await fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      } else {
+        console.log('[Franchise] Aucun webhook configuré. Données :', data);
+      }
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Réessayer <span>→</span>';
+      alert("Une erreur est survenue. Merci de réessayer ou de nous écrire directement.");
+    }
+  });
+</script>

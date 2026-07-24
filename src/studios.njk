@@ -1,0 +1,76 @@
+---
+layout: base.njk
+title: Studios
+permalink: /studios/
+description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
+---
+
+<section class="page-hero">
+  <span class="page-hero__kicker">Les studios</span>
+  <h1 class="page-hero__h">Paris, et<br>bientôt <em>ailleurs…</em></h1>
+  <p class="page-hero__p">Pousse la porte, le studio est à toi. Du lever au coucher du soleil.</p>
+</section>
+
+<section class="reveal">
+  <div class="city-chips" id="cityChips" role="tablist">
+    {% for s in studios.list %}
+    <button class="city-chip{% if loop.first %} is-active{% endif %}" data-city="{{ s.key }}" role="tab">{{ s.chip }}</button>
+    {% endfor %}
+  </div>
+
+  <div class="studio-card" id="studioCard">
+    <div class="studio-card__img" id="studioImg"></div>
+    <div class="studio-card__body">
+      <div class="studio-card__status" id="studioStatus"></div>
+      <h3 class="studio-card__name" id="studioName"></h3>
+      <div class="studio-card__adr" id="studioAdr"></div>
+      <div class="studio-card__meta" id="studioMeta"></div>
+      <div class="studio-card__cta" id="studioCta"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const CITIES = {{ studios.list | dump | safe }};
+  const byKey = {};
+  CITIES.forEach(c => byKey[c.key] = c);
+
+  const chipsEl = document.getElementById('cityChips');
+  const cardEl = document.getElementById('studioCard');
+  const imgEl = document.getElementById('studioImg');
+  const statusEl = document.getElementById('studioStatus');
+  const nameEl = document.getElementById('studioName');
+  const adrEl = document.getElementById('studioAdr');
+  const metaEl = document.getElementById('studioMeta');
+  const ctaEl = document.getElementById('studioCta');
+
+  function renderCity(key) {
+    const c = byKey[key];
+    if (!c) return;
+    nameEl.innerHTML = c.name;
+    adrEl.innerHTML = c.adr;
+    statusEl.textContent = c.status;
+    statusEl.classList.toggle('is-soon', c.isSoon);
+    metaEl.innerHTML = (c.meta || []).map(m => `<span>${m}</span>`).join('');
+    ctaEl.innerHTML = `<a href="${c.ctaHref}" class="btn">${c.ctaLabel} <span style="display:inline-flex; width:22px; height:12px; border-radius:999px; background:var(--vanille); position:relative;"><span style="position:absolute; right:2px; top:2px; width:8px; height:8px; border-radius:50%; background:var(--noir);"></span></span></a>`;
+    if (c.image) {
+      imgEl.style.backgroundImage = `url('${c.image}')`;
+      imgEl.classList.remove('is-placeholder');
+    } else {
+      imgEl.style.backgroundImage = '';
+      imgEl.classList.add('is-placeholder');
+    }
+  }
+
+  if (chipsEl) {
+    chipsEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.city-chip');
+      if (!btn) return;
+      chipsEl.querySelectorAll('.city-chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      cardEl.classList.add('is-fading');
+      setTimeout(() => { renderCity(btn.dataset.city); cardEl.classList.remove('is-fading'); }, 150);
+    });
+    renderCity(CITIES[0].key);
+  }
+</script>

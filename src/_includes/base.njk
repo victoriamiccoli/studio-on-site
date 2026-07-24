@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} - Pilates Reformer en libre accès{% endif %}</title>
+<meta name="description" content="{{ description or site.tagline }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+{% set logoMarkup %}
+  {% if site.logoImage %}
+    <img class="logo-img" src="{{ site.logoImage }}" alt="{{ site.name }}">
+  {% else %}
+    <span class="logo__text">Studio</span><span class="logo__pill"></span><span class="logo__text">N</span>
+  {% endif %}
+{% endset %}
+
+<nav class="nav" id="nav">
+  <a href="/" class="logo nav__logo">{{ logoMarkup | safe }}</a>
+  <div class="nav__links">
+    {% for item in site.nav %}
+      <a href="{{ item.url }}"{% if page.url == item.url %} class="is-current"{% endif %}>{{ item.label }}</a>
+    {% endfor %}
+  </div>
+  <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
+  <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav__drawer-wrap">
+  <div class="nav__overlay" id="navOverlay"></div>
+  <aside class="nav__mobile" id="navMobile">
+    {% for item in site.nav %}
+      <a href="{{ item.url }}">{{ item.label }}</a>
+    {% endfor %}
+    <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
+  </aside>
+</div>
+
+{{ content | safe }}
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <a href="/" class="logo logo--light foot-logo">{{ logoMarkup | safe }}</a>
+      <p class="foot-tag">{{ site.tagline }}</p>
+    </div>
+    {% for col in site.footer.columns %}
+    <div class="foot-col">
+      <h5>{{ col.title }}</h5>
+      {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="foot-bottom">
+    <span>{{ site.footer.legal }}</span>
+    <span>{{ site.footer.city }}</span>
+  </div>
+</footer>
+
+<script>
+  // Révélation au scroll
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('in')),
+    { threshold: 0.05 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav qui s'adapte au fond sombre
+  const nav = document.getElementById('nav');
+  const darkSections = document.querySelectorAll('.section--dark, .cta-band, .marquee, .intro-statement, .page-hero');
+  const checkNav = () => {
+    const navY = nav.getBoundingClientRect().bottom;
+    let isDark = false;
+    darkSections.forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.top <= navY && r.bottom >= 0) isDark = true;
+    });
+    nav.classList.toggle('nav--dark', isDark);
+  };
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  // Menu mobile
+  const burger = document.getElementById('burger');
+  const navMobile = document.getElementById('navMobile');
+  const navOverlay = document.getElementById('navOverlay');
+  function closeMenu(){ navMobile.classList.remove('is-open'); navOverlay.classList.remove('is-open'); document.body.classList.remove('menu-open'); burger.setAttribute('aria-expanded','false'); }
+  function toggleMenu(){ const open = navMobile.classList.toggle('is-open'); navOverlay.classList.toggle('is-open', open); document.body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open ? 'true':'false'); }
+  if (burger){ burger.addEventListener('click', toggleMenu); navOverlay.addEventListener('click', closeMenu); navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu)); }
+</script>
+
+<!-- Fenêtre de paiement Sportigo -->
+<div class="pay-modal" id="payModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="pay-modal__backdrop" data-pay-close></div>
+  <div class="pay-modal__panel">
+    <div class="pay-modal__head">
+      <span class="pay-modal__title" id="payModalTitle">Réserver</span>
+      <button class="pay-modal__close" type="button" data-pay-close aria-label="Fermer">×</button>
+    </div>
+    <div class="pay-modal__body" id="payModalBody"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var ACCOUNT = "{{ site.sportigoAccount }}";
+  var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
+  var scriptState = 0; // 0=non chargé, 1=chargement, 2=prêt
+  var scriptCbs = [];
+  var modal = document.getElementById('payModal');
+  var body = document.getElementById('payModalBody');
+  var title = document.getElementById('payModalTitle');
+
+  function loadScript(cb){
+    if (scriptState === 2) { cb(); return; }
+    scriptCbs.push(cb);
+    if (scriptState === 1) return;
+    scriptState = 1;
+    var s = document.createElement('script');
+    s.src = SRC;
+    s.onload = function(){ scriptState = 2; scriptCbs.forEach(function(f){ f(); }); scriptCbs = []; };
+    s.onerror = function(){ scriptState = 0; body.innerHTML = '<div class="pay-modal__msg">Impossible de charger le paiement pour le moment. Réessaie dans un instant.</div>'; };
+    document.head.appendChild(s);
+  }
+
+  function openModal(){ modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); }
+  function closeModal(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); body.innerHTML=''; }
+
+  function openOffer(offerId, label){
+    title.textContent = label || 'Réserver';
+    openModal();
+    if (!offerId){
+      body.innerHTML = '<div class="pay-modal__msg">Ce moyen de paiement sera actif très bientôt.</div>';
+      return;
+    }
+    body.innerHTML = '<div class="pay-modal__msg">Chargement du paiement…</div>';
+    loadScript(function(){
+      body.innerHTML = '<div id="sportigo-buy-container"></div>';
+      try {
+        window.initComponent("BuyFromList", "sportigo-buy-container", ACCOUNT, {
+          theme: { googleFont: { name: "Inter" } },
+          inline: true,
+          hideFilters: true,
+          initOfferPayment: { cancelable: false },
+          onlyOffers: [ parseInt(offerId, 10) ]
+        });
+      } catch(e){
+        body.innerHTML = '<div class="pay-modal__msg">Une erreur est survenue. Réessaie ou contacte-nous.</div>';
+      }
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.plan__cta[data-offer]');
+    if (btn){
+      e.preventDefault();
+      var card = btn.closest('.plan');
+      var name = card ? (card.querySelector('.plan__name') || {}).textContent : '';
+      openOffer(btn.getAttribute('data-offer'), (name || 'Réserver').trim());
+      return;
+    }
+    if (e.target.closest('[data-pay-close]')) { closeModal(); }
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "list": [
+    { "name": "Chloé", "tag": "Fondamentaux · Mobilité", "dark": false, "image": "" },
+    { "name": "Sveva", "tag": "Core · Stretch on.", "dark": true, "image": "" },
+    { "name": "Cédric", "tag": "Méthodique · Mouvement", "dark": false, "image": "" },
+    { "name": "Kévin", "tag": "Force · Dynamisme", "dark": true, "image": "" },
+    { "name": "Louise", "tag": "Punchy · Fire on.", "dark": true, "image": "" },
+    { "name": "Wassila", "tag": "Pulse · Fire on.", "dark": false, "image": "" },
+    { "name": "Rebecca", "tag": "Pulse · Fire on.", "dark": false, "image": "" }
+  ]
+}
