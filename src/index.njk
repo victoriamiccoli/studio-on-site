@@ -11,7 +11,7 @@ permalink: /
       <em style="color:#FFFFFF">{{ home.heroLine2 }}</em><br>
       {{ home.heroLine3 }}
     </h1>
-    <p class="intro-statement__lede-kicker">{{ home.heroKicker }}</p>
+    <p class="intro-statement__lede-kicker">{{ home.heroKickerWhite }} <em>{{ home.heroKickerYellow }}</em></p>
   </div>
   <ul class="intro-statement__list">
     {% for b in home.heroBullets %}<li>{{ b }}</li>{% endfor %}
@@ -25,7 +25,7 @@ permalink: /
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | safe }}</h2>
-      <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitle | safe }}</p>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitleWhite }} <em>{{ home.tarifsSubtitleYellow }}</em></p>
     </div>
   </div>
 

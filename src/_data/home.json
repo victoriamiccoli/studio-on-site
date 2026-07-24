@@ -2,7 +2,8 @@
   "heroLine1": "Le Pilates Reformer.",
   "heroLine2": "Plus accessible.",
   "heroLine3": "Mieux adapté.",
-  "heroKicker": "Le Pilates Reformer. Pensé pour vous.",
+  "heroKickerWhite": "Le Pilates Reformer.",
+  "heroKickerYellow": "Pensé pour vous.",
   "heroBullets": [
     "Du Pilates Reformer digitalisé en illimité",
     "Ouvert de 6h00 à 22h30",
@@ -10,7 +11,8 @@
     "Des nouvelles vidéos en continu"
   ],
   "tarifsTitle": "Tarifs accessibles",
-  "tarifsSubtitle": "Le Pilates Reformer. En illimité.",
+  "tarifsSubtitleWhite": "Le Pilates Reformer.",
+  "tarifsSubtitleYellow": "En illimité.",
   "conceptSubtitle": "3 étapes. Pas plus.",
   "seancesTitle": "Plus de 100 séances, à ton rythme.",
   "seancesSubtitle": "Filtre par niveau, focus, mood ou coach.",

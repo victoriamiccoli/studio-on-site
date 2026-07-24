@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: victoriamiccoli/studio-on-site
   branch: main
 
 media_folder: "src/assets/img"
@@ -74,14 +75,16 @@ collections:
           - { label: "Titre principal — ligne 1", name: "heroLine1", widget: "string" }
           - { label: "Titre principal — ligne 2 (en jaune)", name: "heroLine2", widget: "string" }
           - { label: "Titre principal — ligne 3", name: "heroLine3", widget: "string" }
-          - { label: "Accroche", name: "heroKicker", widget: "string" }
+          - { label: "Accroche (blanc)", name: "heroKickerWhite", widget: "string" }
+          - { label: "Accroche (jaune)", name: "heroKickerYellow", widget: "string" }
           - label: "Points clés (sous l'accroche)"
             name: "heroBullets"
             widget: "list"
             summary: "{{fields.text}}"
             field: { label: "Texte", name: "text", widget: "string" }
           - { label: "Tarifs — titre", name: "tarifsTitle", widget: "string" }
-          - { label: "Tarifs — sous-titre", name: "tarifsSubtitle", widget: "string" }
+          - { label: "Tarifs — sous-titre (blanc)", name: "tarifsSubtitleWhite", widget: "string" }
+          - { label: "Tarifs — sous-titre (jaune)", name: "tarifsSubtitleYellow", widget: "string" }
           - { label: "Concept — sous-titre", name: "conceptSubtitle", widget: "string" }
           - { label: "Séances — titre", name: "seancesTitle", widget: "string" }
           - { label: "Séances — sous-titre", name: "seancesSubtitle", widget: "string" }
