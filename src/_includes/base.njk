@@ -59,6 +59,9 @@
     </div>
     {% endfor %}
   </div>
+  <nav class="foot-legal">
+    {% for l in site.footer.legalLinks %}<a href="{{ l.url }}">{{ l.label }}</a>{% endfor %}
+  </nav>
   <div class="foot-bottom">
     <span>{{ site.footer.legal }}</span>
     <span>{{ site.footer.city }}</span>

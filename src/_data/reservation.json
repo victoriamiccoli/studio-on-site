@@ -1,0 +1,20 @@
+{
+  "studios": [
+    {
+      "key": "paris17",
+      "name": "Paris 17e",
+      "adr": "16, rue de Saussure, 75017 Paris",
+      "meta": "12 Reformers · M° Villiers · 6h–22h30",
+      "planning": 4254,
+      "open": true
+    },
+    {
+      "key": "paris6",
+      "name": "Paris 6e",
+      "adr": "Adresse dévoilée bientôt",
+      "meta": "Ouverture septembre 2026",
+      "planning": null,
+      "open": false
+    }
+  ]
+}

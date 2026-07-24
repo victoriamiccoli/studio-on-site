@@ -1,11 +1,13 @@
 {
   "name": "Studio On",
-  "domain": "studio-on.fr",
+  "domain": "studioon.fr",
   "tagline": "Le Pilates Reformer. Plus accessible. Mieux adapté.",
   "logoImage": "/assets/img/logo-studio-on.png",
-  "reserverUrl": "/tarifs/",
+  "reserverUrl": "/reserver/",
   "franchiseWebhook": "",
-  "franchiseEmail": "hello@studio-on.fr",
+  "franchiseEmail": "contact@studioon.fr",
+  "contactEmail": "contact@studioon.fr",
+  "contactPhone": "07 75 77 99 73",
   "sportigoAccount": "91c18a21-087e-4d56-988f-eeb39836a650",
   "nav": [
     { "label": "Concept", "url": "/concept/" },
@@ -30,29 +32,34 @@
           { "label": "Concept", "url": "/concept/" },
           { "label": "Séances", "url": "/seances/" },
           { "label": "Coachs", "url": "/coachs/" },
-          { "label": "Tarifs", "url": "/tarifs/" }
+          { "label": "Tarifs", "url": "/tarifs/" },
+          { "label": "Réserver", "url": "/reserver/" }
         ]
       },
       {
         "title": "Nos studios",
         "links": [
           { "label": "Paris 17e", "url": "/studios/" },
-          { "label": "Paris 2e", "url": "/studios/" },
-          { "label": "Lyon", "url": "/studios/" },
-          { "label": "Marseille", "url": "/studios/" },
-          { "label": "Nice", "url": "/studios/" },
-          { "label": "Bordeaux", "url": "/studios/" }
+          { "label": "Paris 6e — sept. 2026", "url": "/studios/" }
         ]
       },
       {
         "title": "Contact",
         "links": [
-          { "label": "hello@studio-on.fr", "url": "mailto:hello@studio-on.fr" },
+          { "label": "contact@studioon.fr", "url": "mailto:contact@studioon.fr" },
+          { "label": "07 75 77 99 73", "url": "tel:+33775779973" },
           { "label": "Instagram", "url": "#" },
           { "label": "FAQ", "url": "/faq/" },
           { "label": "Franchises", "url": "/franchises/" }
         ]
       }
+    ],
+    "legalLinks": [
+      { "label": "CGV", "url": "/cgv/" },
+      { "label": "CGU", "url": "/cgu/" },
+      { "label": "Règlement intérieur", "url": "/reglement-interieur/" },
+      { "label": "Données personnelles", "url": "/donnees-personnelles/" },
+      { "label": "Mentions légales", "url": "/mentions-legales/" }
     ],
     "legal": "© 2026 Studio On",
     "city": "Paris"
