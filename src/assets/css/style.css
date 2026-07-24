@@ -278,7 +278,9 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 .studio-pick__name { font-family: var(--f-display); font-weight: 600; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.025em; text-transform: uppercase; line-height: 1; }
 .studio-pick__adr { font-size: 14px; opacity: .75; margin-top: 4px; }
 .studio-pick__meta { font: 500 11px var(--f-body); letter-spacing: .08em; text-transform: uppercase; opacity: .6; margin-top: 6px; }
-.planning-wrap { max-width: 1000px; margin: 0 auto; background: #FFFFFF; border-radius: 18px; overflow: hidden; min-height: 200px; }
+.studio-pick__hint { text-align: center; margin: 28px auto 0; max-width: 600px; font-size: 14px; opacity: .6; }
+.planning-wrap { max-width: 1400px; margin: 0 auto; background: #FFFFFF; border-radius: 18px; overflow: hidden; min-height: 200px; }
+#reserverPanel { padding-left: clamp(12px, 2.5vw, 32px); padding-right: clamp(12px, 2.5vw, 32px); }
 
 /* FAQ */
 .faq { max-width: 900px; border-top: 1px solid var(--line); margin: 0 auto; }

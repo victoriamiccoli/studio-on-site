@@ -33,17 +33,17 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
       <div class="field">
         <label for="apport">Apport disponible</label>
         <select id="apport" name="apport">
-          <option value="">— Sélectionner —</option>
+          <option value="">Sélectionner</option>
           <option>Moins de 50 000 €</option>
-          <option>50 000 € – 100 000 €</option>
-          <option>100 000 € – 200 000 €</option>
+          <option>50 000 € - 100 000 €</option>
+          <option>100 000 € - 200 000 €</option>
           <option>Plus de 200 000 €</option>
         </select>
       </div>
       <div class="field">
         <label for="profil">Profil</label>
         <select id="profil" name="profil">
-          <option value="">— Sélectionner —</option>
+          <option value="">Sélectionner</option>
           <option>Investisseur</option>
           <option>Entrepreneur / exploitant</option>
           <option>Les deux</option>
@@ -75,7 +75,7 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
     if (!form.checkValidity()) { form.reportValidity(); return; }
     const webhook = form.dataset.webhook;
     const data = Object.fromEntries(new FormData(form).entries());
-    data.source = 'Site — page Franchises';
+    data.source = 'Site · page Franchises';
     submitBtn.disabled = true;
     submitBtn.textContent = 'Envoi…';
     try {

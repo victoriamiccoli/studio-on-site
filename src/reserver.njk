@@ -14,7 +14,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
 <section class="reveal" style="padding-bottom: clamp(40px, 5vw, 64px);">
   <div class="studio-pick" id="studioPick">
     {% for s in reservation.studios %}
-    <button type="button" class="studio-pick__card{% if not s.open %} is-soon{% endif %}" data-studio="{{ s.key }}" data-planning="{{ s.planning }}" data-open="{{ s.open }}" data-name="{{ s.name }}"{% if loop.first %} aria-pressed="true"{% endif %}>
+    <button type="button" class="studio-pick__card{% if not s.open %} is-soon{% endif %}" data-studio="{{ s.key }}" data-planning="{{ s.planning }}" data-open="{{ s.open }}" data-name="{{ s.name }}">
       <span class="studio-pick__status">{% if s.open %}Ouvert{% else %}Bientôt{% endif %}</span>
       <span class="studio-pick__name">{{ s.name }}</span>
       <span class="studio-pick__adr">{{ s.adr }}</span>
@@ -22,6 +22,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
     </button>
     {% endfor %}
   </div>
+  <p class="studio-pick__hint" id="pickHint">Sélectionne ton studio ci-dessus pour afficher le planning et les tarifs.</p>
 </section>
 
 <!-- Zone dynamique : planning + tarifs, ou message "bientôt" -->
@@ -71,9 +72,9 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
 <section class="section--dark reveal" id="reserverSoon" style="display:none;">
   <div class="section-head" style="text-align:center;">
     <h2 class="h-lg" style="color: var(--ecru);">Ouverture <span style="color:var(--vanille)">septembre 2026</span></h2>
-    <p style="margin: 18px auto 0; max-width: 40ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Ce studio ouvre bientôt&nbsp;! En attendant, tu peux réserver au studio Paris 17e, ou nous écrire pour être tenu·e informé·e.</p>
+    <p style="margin: 18px auto 0; max-width: 40ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Ce studio ouvre bientôt&nbsp;! En attendant, tu peux réserver au studio Paris 17e, ou nous écrire pour être informé.</p>
     <div style="margin-top:28px;">
-      <a href="mailto:{{ site.contactEmail }}" class="btn btn--ecru">Être informé·e <span class="btn__toggle"></span></a>
+      <a href="mailto:{{ site.contactEmail }}" class="btn btn--ecru">Être informé <span class="btn__toggle"></span></a>
     </div>
   </div>
 </section>
@@ -102,8 +103,10 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
   var planningTitle = document.getElementById('planningTitle');
   var container = document.getElementById('sportigo-appointment-container');
 
+  var hint = document.getElementById('pickHint');
   function isValidPlanning(p){ return p && /^[0-9]+$/.test(p); }
   function selectStudio(btn){
+    if (hint) hint.style.display = 'none';
     pick.querySelectorAll('.studio-pick__card').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
     var planning = btn.getAttribute('data-planning');
     var name = btn.getAttribute('data-name');
@@ -111,7 +114,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
       soon.style.display = 'none';
       panel.style.display = '';
       tarifs.style.display = '';
-      planningTitle.textContent = 'Planning — ' + name;
+      planningTitle.textContent = 'Planning · ' + name;
       container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Chargement du planning…</p>';
       loadScript(function(){
         container.innerHTML = '<div id="sportigo-appointment-full-container"></div>';
@@ -137,11 +140,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
     if (!btn) return;
     selectStudio(btn);
   });
-  // Sélection auto du 1er studio réservable au chargement
-  var cards = pick.querySelectorAll('.studio-pick__card');
-  var first = null;
-  cards.forEach(function(b){ if (!first && isValidPlanning(b.getAttribute('data-planning'))) first = b; });
-  if (!first) first = cards[0];
-  if (first) selectStudio(first);
+  // Aucun studio sélectionné au départ : le planning et les tarifs
+  // n'apparaissent qu'après le choix d'un studio.
 })();
 </script>
