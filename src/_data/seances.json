@@ -92,6 +92,7 @@
       ]
     },
     {
+      "hideOnHome": true,
       "badge": "",
       "meta": "45 min · Cédric",
       "tall": false,
