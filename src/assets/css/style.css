@@ -232,7 +232,7 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .plan--light.plan--feature .plan__cta { background: var(--noir); color: #FFFFFF; }
 .plan--light.plan--feature .plan__badge { background: var(--noir); color: #FFFFFF; }
 .plan__name { font-family: var(--f-display); font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; opacity: .85; }
-.plan__badge { font: 700 9px var(--f-display); letter-spacing: .12em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; background: var(--vanille); color: var(--noir); }
+.plan__badge { display: inline-block; white-space: nowrap; vertical-align: middle; font: 700 9px var(--f-display); letter-spacing: .12em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; background: var(--vanille); color: var(--noir); }
 .plan__badge--pop { margin-left: 4px; }
 /* Tarif "le plus populaire" : carte blanche, accents jaunes */
 .plan--pop, .plan--light.plan--pop, .plan--light.plan--feature.plan--pop { background: #FFFFFF; color: var(--noir); border: 2px solid var(--vanille); }
