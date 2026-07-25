@@ -32,7 +32,7 @@ permalink: /
   <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
     {% for p in tarifs.abonnements %}
     <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
-      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">Populaire</span>{% endif %}</div>
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
@@ -44,7 +44,7 @@ permalink: /
   <div class="tarifs-grid" style="margin-top: 14px;">
     {% for p in tarifs.seances %}
     <article class="plan{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
-      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">Populaire</span>{% endif %}</div>
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
