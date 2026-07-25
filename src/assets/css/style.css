@@ -107,10 +107,10 @@ img { display: block; max-width: 100%; }
 /* Mobile : hero plein écran — titre centré, accroche en bas sur une ligne, la suite au scroll */
 @media (max-width: 900px) {
   .intro-statement { padding: 0; gap: 0; min-height: 100vh; min-height: 100svh; }
-  .intro-statement__screen { min-height: 100vh; min-height: 100svh; gap: 0; padding: 88px var(--pad) 22px; }
+  .intro-statement__screen { min-height: 100vh; min-height: 100svh; gap: 0; padding: 88px var(--pad) 14px; }
   .intro-statement__h { margin-top: auto; }
-  .intro-statement__lede-kicker { margin-top: auto; font-size: clamp(12px, 3.7vw, 22px); }
-  .intro-statement__list { padding: 18px var(--pad) 64px; }
+  .intro-statement__lede-kicker { margin-top: 18px; font-size: clamp(12px, 3.7vw, 22px); }
+  .intro-statement__list { padding: 10px var(--pad) 56px; }
 }
 
 /* Hero des pages intérieures (ajout multi-pages) */
