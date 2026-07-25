@@ -217,7 +217,7 @@ permalink: /
     const st = statusOf(c);
     if (st === 'waitlist') return `<button type="button" class="btn" data-waitlist data-studio="${c.name}">Rejoindre la liste d'attente ${TOGGLE}</button>`;
     if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Bientôt</span>`;
-    return `<a href="${c.ctaHref || '/reserver/'}" class="btn">Réserver une séance ${TOGGLE}</a>`;
+    return `<a href="/reserver/?studio=${encodeURIComponent(c.key)}" class="btn">Réserver une séance ${TOGGLE}</a>`;
   }
   function renderCity(key){
     const c = byKey[key]; if(!c) return;

@@ -130,7 +130,8 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
         try {
           window.initComponent("AppointmentFull", "sportigo-appointment-full-container", ACCOUNT, {
             theme: { googleFont: { name: "Inter" } },
-            planning: parseInt(planning, 10)
+            planning: parseInt(planning, 10),
+            displayMode: "slide"
           });
         } catch(e){
           container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Une erreur est survenue. Réessaie ou contacte-nous.</p>';
@@ -151,5 +152,20 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
     if (!btn) return;
     selectStudio(btn);
   });
+
+  // Pré-sélection depuis une carte studio : /reserver/?studio=paris17
+  try {
+    var preKey = new URLSearchParams(window.location.search).get('studio');
+    if (preKey){
+      var preBtn = pick.querySelector('.studio-pick__card[data-key="' + preKey.replace(/[^a-zA-Z0-9_-]/g,'') + '"]');
+      if (preBtn){
+        selectStudio(preBtn);
+        setTimeout(function(){
+          var target = (panel.style.display !== 'none') ? panel : (soon.style.display !== 'none' ? soon : pick);
+          if (target && target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      }
+    }
+  } catch(e){}
 })();
 </script>

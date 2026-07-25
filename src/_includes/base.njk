@@ -60,7 +60,7 @@
     <div class="foot-col">
       <h5>{{ col.title }}</h5>
       {% if col.title == "Nos studios" %}
-        {% for s in studios.list %}{% if s.visible != false %}<a href="{% if s.etat == 'open' and s.ctaHref %}{{ s.ctaHref }}{% else %}/#studios{% endif %}">{{ s.chip }}</a>{% endif %}{% endfor %}
+        {% for s in studios.list %}{% if s.visible != false %}<a href="{% if s.etat == 'open' %}/reserver/?studio={{ s.key }}{% else %}/#studios{% endif %}">{{ s.chip }}</a>{% endif %}{% endfor %}
       {% else %}
         {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
       {% endif %}
