@@ -57,12 +57,13 @@ collections:
                   - { label: "Lien", name: "url", widget: "string" }
               - { label: "Mention copyright", name: "legal", widget: "string" }
               - { label: "Ville", name: "city", widget: "string" }
+          # Connexion des formulaires (Make) - coller la meme URL dans les 3 champs
+          - { label: "Lien formulaire Franchise (webhook Make)", name: "franchiseWebhook", widget: "string", required: false, hint: "URL du webhook Make. Reçoit les candidatures franchise." }
+          - { label: "Lien formulaire Liste d'attente (webhook Make)", name: "waitlistWebhook", widget: "string", required: false, hint: "Meme URL que ci-dessus." }
+          - { label: "Lien formulaire Contact (webhook Make)", name: "contactWebhook", widget: "string", required: false, hint: "Meme URL que ci-dessus." }
           # Champs techniques préservés (ne pas afficher)
           - { label: "Domaine", name: "domain", widget: "hidden" }
           - { label: "Lien Réserver", name: "reserverUrl", widget: "hidden" }
-          - { label: "Webhook franchise", name: "franchiseWebhook", widget: "hidden", required: false }
-          - { label: "Webhook liste d'attente", name: "waitlistWebhook", widget: "hidden", required: false }
-          - { label: "Webhook contact", name: "contactWebhook", widget: "hidden", required: false }
           - { label: "Compte Sportigo", name: "sportigoAccount", widget: "hidden" }
 
   # ---------------- TEXTES DE L'ACCUEIL ----------------

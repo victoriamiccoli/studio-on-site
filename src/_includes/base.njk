@@ -186,9 +186,11 @@
     <div class="pay-modal__body">
       <p style="opacity:.75; font-size:14px; margin:0 0 18px;">Laisse-nous tes coordonnées, on te prévient dès l'ouverture.</p>
       <form id="waitForm" class="form" novalidate>
+        <input type="hidden" name="type" value="Liste d'attente">
         <div class="field full"><label for="waitPrenom">Prénom *</label><input type="text" id="waitPrenom" name="prenom" required autocomplete="given-name"></div>
+        <div class="field full"><label for="waitNom">Nom</label><input type="text" id="waitNom" name="nom" autocomplete="family-name"></div>
         <div class="field full"><label for="waitEmail">Email *</label><input type="email" id="waitEmail" name="email" required autocomplete="email"></div>
-        <input type="hidden" name="studio" id="waitStudio" value="">
+        <input type="hidden" name="ville" id="waitStudio" value="">
         <div class="form__submit"><button type="submit" class="btn btn--noir" id="waitSubmit">Rejoindre la liste <span>→</span></button></div>
       </form>
       <div class="form-success" id="waitSuccess"><h3 class="h-md" style="margin-bottom:8px;">Merci&nbsp;!</h3><p style="opacity:.75;margin:0;">On te prévient dès l'ouverture.</p></div>

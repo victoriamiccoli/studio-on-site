@@ -14,9 +14,14 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
 <section class="reveal">
   <div class="form-wrap">
     <form id="franchiseForm" class="form" data-webhook="{{ site.franchiseWebhook }}" novalidate>
+      <input type="hidden" name="type" value="Franchise">
       <div class="field">
-        <label for="nom">Nom et prénom *</label>
-        <input type="text" id="nom" name="nom" required autocomplete="name">
+        <label for="nom">Nom *</label>
+        <input type="text" id="nom" name="nom" required autocomplete="family-name">
+      </div>
+      <div class="field">
+        <label for="prenom">Prénom *</label>
+        <input type="text" id="prenom" name="prenom" required autocomplete="given-name">
       </div>
       <div class="field">
         <label for="email">Email *</label>
