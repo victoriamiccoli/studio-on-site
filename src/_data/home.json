@@ -1,5 +1,5 @@
 {
-  "hideMarquee": true,
+  "hideMarquee": false,
   "tarifsSubtitleWhite": "Le Pilates Reformer.",
   "conceptSubtitle": "3 étapes. Pas plus.",
   "heroKickerYellow": "Pensé pour vous.",
@@ -53,8 +53,10 @@
     "Des nouvelles vidéos en continu"
   ],
   "appIcon": "",
+  "hideCoachs": true,
   "studiosTitle": "Paris, et bientôt ailleurs…",
   "heroKickerWhite": "Le Pilates Reformer.",
+  "hideCoachsTitle": true,
   "tarifsSubtitleYellow": "En illimité.",
   "ctaText": "Teste 3 séances avec le Pack Découverte. Sans engagement.",
   "coachsTitle": "Sept coachs. Sept ADN."
