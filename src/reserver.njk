@@ -21,7 +21,7 @@ description: Choisis ton studio Studio On et accède à son planning et ses offr
       {% if not s.hidePhone and s.phone %}<a class="studio-pick__contact" href="tel:{{ s.phone | replace(' ','') }}">{{ s.phone }}</a>{% endif %}
       {% if s.etat == 'open' %}<a class="studio-pick__btn" href="/reserver/{{ s.key }}/">Voir le planning <span aria-hidden="true">→</span></a>
       {% elif s.etat == 'earlybird' %}<a class="studio-pick__btn" href="/reserver/{{ s.key }}/">Early birds <span aria-hidden="true">→</span></a>
-      {% elif s.etat == 'waitlist' %}<a class="studio-pick__btn" href="/reserver/{{ s.key }}/">{{ site.waitlistCta or "Rejoins la liste d’attente" }} <span aria-hidden="true">→</span></a>
+      {% elif s.etat == 'waitlist' %}<button type="button" class="studio-pick__btn" data-waitlist data-studio="{{ s.name }}">{{ site.waitlistCta or "Rejoins la liste d’attente" }} <span aria-hidden="true">→</span></button>
       {% endif %}
     </div>
     {% endif %}{% endfor %}

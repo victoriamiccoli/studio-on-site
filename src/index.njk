@@ -260,7 +260,7 @@ permalink: /
     nameEl.innerHTML = c.name;
     adrEl.innerHTML = (!c.hideAddress && c.adr) ? `<a class="studio-card__adr-link" href="${mapsHref(c)}" target="_blank" rel="noopener">${c.adr}</a>` : '';
     statusEl.textContent = c.status || '';
-    statusEl.classList.toggle('is-soon', statusOf(c) !== 'open');
+    statusEl.classList.toggle('is-soon', statusOf(c) === 'soon');
     metaEl.innerHTML = contactHtml(c);
     ctaEl.innerHTML = ctaHtml(c);
     if(c.image){ imgEl.style.backgroundImage = `url('${c.image}')`; imgEl.classList.remove('is-placeholder'); }
