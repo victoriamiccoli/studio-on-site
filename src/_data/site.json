@@ -1,23 +1,4 @@
 {
-  "name": "Studio On",
-  "domain": "studioon.fr",
-  "tagline": "Le Pilates Reformer. Plus accessible. Mieux adapté.",
-  "logoImage": "/assets/img/logo-studio-on.png",
-  "reserverUrl": "/reserver/",
-  "franchiseWebhook": "",
-  "waitlistWebhook": "",
-  "franchiseEmail": "contact@studioon.fr",
-  "contactEmail": "contact@studioon.fr",
-  "contactPhone": "07 75 77 99 73",
-  "sportigoAccount": "91c18a21-087e-4d56-988f-eeb39836a650",
-  "nav": [
-    { "label": "Concept", "url": "/concept/" },
-    { "label": "Séances", "url": "/seances/" },
-    { "label": "Coachs", "url": "/coachs/" },
-    { "label": "Tarifs", "url": "/tarifs/" },
-    { "label": "Studios", "url": "/studios/" },
-    { "label": "Franchise", "url": "/franchises/" }
-  ],
   "marquee": [
     "100+ vidéos",
     "Accès libre",
@@ -25,44 +6,133 @@
     "Pilates Reformer en illimité",
     "6h - 22h30"
   ],
+  "nav": [
+    {
+      "label": "Concept",
+      "url": "/concept/"
+    },
+    {
+      "label": "Séances",
+      "url": "/seances/"
+    },
+    {
+      "label": "Coachs",
+      "url": "/coachs/"
+    },
+    {
+      "label": "Tarifs",
+      "url": "/tarifs/"
+    },
+    {
+      "label": "Studios",
+      "url": "/studios/"
+    },
+    {
+      "label": "Franchise",
+      "url": "/franchises/"
+    }
+  ],
+  "domain": "studioon.fr",
+  "waitlistWebhook": "https://hook.eu2.make.com/f8lnami27il4e6a1jikzlm1mqxjlqlkf",
+  "name": "Studio On",
+  "contactPhone": "07 75 77 99 73",
+  "tagline": "Le Pilates Reformer. Plus accessible. Mieux adapté.",
+  "sportigoAccount": "91c18a21-087e-4d56-988f-eeb39836a650",
+  "logoImage": "/assets/img/logo-studio-on.png",
+  "contactWebhook": "https://hook.eu2.make.com/9f0ib04iet96e34pifbatd1drd5m7mvi",
+  "reserverUrl": "/reserver/",
+  "franchiseWebhook": "https://hook.eu2.make.com/ne3wl8ixh55327bqax203kl1c84lctwf",
   "footer": {
     "columns": [
       {
         "title": "Studio",
         "links": [
-          { "label": "Concept", "url": "/concept/" },
-          { "label": "Séances", "url": "/seances/" },
-          { "label": "Coachs", "url": "/coachs/" },
-          { "label": "Tarifs", "url": "/tarifs/" },
-          { "label": "Réserver", "url": "/reserver/" }
+          {
+            "label": "Concept",
+            "url": "/concept/"
+          },
+          {
+            "label": "Séances",
+            "url": "/seances/"
+          },
+          {
+            "label": "Coachs",
+            "url": "/coachs/"
+          },
+          {
+            "label": "Tarifs",
+            "url": "/tarifs/"
+          },
+          {
+            "label": "Réserver",
+            "url": "/reserver/"
+          }
         ]
       },
       {
         "title": "Nos studios",
         "links": [
-          { "label": "Paris 17e", "url": "/studios/" },
-          { "label": "Paris 6e · sept. 2026", "url": "/studios/" }
+          {
+            "label": "Paris 17e",
+            "url": "/studios/"
+          },
+          {
+            "label": "Paris 6e · sept. 2026",
+            "url": "/studios/"
+          }
         ]
       },
       {
         "title": "Contact",
         "links": [
-          { "label": "contact@studioon.fr", "url": "mailto:contact@studioon.fr" },
-          { "label": "07 75 77 99 73", "url": "tel:+33775779973" },
-          { "label": "Instagram", "url": "#" },
-          { "label": "FAQ", "url": "/faq/" },
-          { "label": "Franchises", "url": "/franchises/" }
+          {
+            "label": "contact@studioon.fr",
+            "url": "mailto:contact@studioon.fr"
+          },
+          {
+            "label": "07 75 77 99 73",
+            "url": "tel:+33775779973"
+          },
+          {
+            "label": "Instagram",
+            "url": "#"
+          },
+          {
+            "label": "FAQ",
+            "url": "/faq/"
+          },
+          {
+            "label": "Franchises",
+            "url": "/franchises/"
+          }
         ]
       }
     ],
     "legalLinks": [
-      { "label": "CGV", "url": "/cgv/" },
-      { "label": "CGU", "url": "/cgu/" },
-      { "label": "Règlement intérieur", "url": "/reglement-interieur/" },
-      { "label": "Données personnelles", "url": "/donnees-personnelles/" },
-      { "label": "Mentions légales", "url": "/mentions-legales/" }
+      {
+        "label": "CGV",
+        "url": "/cgv/"
+      },
+      {
+        "label": "CGU",
+        "url": "/cgu/"
+      },
+      {
+        "label": "Règlement intérieur",
+        "url": "/reglement-interieur/"
+      },
+      {
+        "label": "Données personnelles",
+        "url": "/donnees-personnelles/"
+      },
+      {
+        "label": "Mentions légales",
+        "url": "/mentions-legales/"
+      }
     ],
     "legal": "© 2026 Studio On",
     "city": "Paris"
-  }
+  },
+  "contactEmail": "contact@studioon.fr",
+  "franchiseEmail": "contact@studioon.fr"
 }
