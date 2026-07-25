@@ -26,12 +26,22 @@ eleventyComputed:
   </div>
   <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
 </section>
+{% elif studio.etat == 'earlybird' %}
+<section class="section--dark reveal" style="padding-top: 0;">
+  <div class="section-head" style="text-align:center; padding-top: 20px;">
+    <span class="page-hero__kicker" style="color:var(--vanille)">Coming soon</span>
+    <h2 class="h-lg" style="color: var(--ecru); margin-top:10px;">Ouverture <span style="color:var(--vanille)">{{ studio.status or 'bientôt' }}</span></h2>
+    <p style="margin: 16px auto 0; max-width: 46ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio.</p>
+  </div>
+</section>
+{% endif %}
 
+{% if (studio.etat == 'open' and studio.planning) or studio.etat == 'earlybird' %}
 <section class="reveal">
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Abonnements<br>& séances</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Ton studio de référence : {{ studio.name }}. Choisis ta formule.</p>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{% if studio.etat == 'earlybird' %}Offres<br>early bird{% else %}Abonnements<br>& séances{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;">{% if studio.etat == 'earlybird' %}Prévente early bird · {{ studio.name }}. Réserve ta place avant l'ouverture.{% else %}Ton studio de référence : {{ studio.name }}. Choisis ta formule.{% endif %}</p>
     </div>
   </div>
 

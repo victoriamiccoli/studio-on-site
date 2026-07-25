@@ -251,8 +251,9 @@ collections:
                 default: "soon"
                 options:
                   - { label: "Ouvert (bouton Réserver)", value: "open" }
+                  - { label: "Coming soon — Early birds (prévente avant ouverture)", value: "earlybird" }
                   - { label: "Liste d'attente (bouton Rejoindre la liste)", value: "waitlist" }
-                  - { label: "Bientôt (aucun bouton)", value: "soon" }
+                  - { label: "Coming soon (aucun bouton)", value: "soon" }
               - { label: "Onglet (nom court affiché)", name: "chip", widget: "string" }
               - { label: "Clé (identifiant technique, sans espace)", name: "key", widget: "string" }
               - { label: "Nom", name: "name", widget: "string" }

@@ -158,14 +158,13 @@
     return ctx.fallback;
   }
   function buyableStudios(){
-    var open = STUDIOS.filter(function(s){ return s.etat === 'open'; });
     var keys = ctx.payments ? Object.keys(ctx.payments) : [];
     if (keys.length){
-      // Studios explicitement rattachés à cette offre (attribution correcte)
-      return open.filter(function(s){ return ctx.payments[s.key] != null; });
+      // Studios rattachés à cette offre : ouverts OU en prévente early bird (attribution correcte)
+      return STUDIOS.filter(function(s){ return (s.etat === 'open' || s.etat === 'earlybird') && ctx.payments[s.key] != null; });
     }
-    // Repli : offre sans paiement par studio -> tous les studios ouverts (ID par défaut)
-    return ctx.fallback ? open : [];
+    // Repli : offre sans paiement par studio -> studios OUVERTS uniquement (jamais les early birds)
+    return ctx.fallback ? STUDIOS.filter(function(s){ return s.etat === 'open'; }) : [];
   }
 
   function loadScript(cb){
@@ -204,8 +203,9 @@
     }
     var html = '<p class="pay-flow__lead">Pour <strong>'+esc(ctx.title)+'</strong>, sélectionne le studio où tu viendras t\'entraîner.</p><div class="pay-flow__studios">';
     list.forEach(function(s){
-      html += '<button type="button" class="pay-flow__studio" data-pick-studio="'+esc(s.key)+'">'
-        + '<span class="pay-flow__studio-badge">Ouvert</span>'
+      var badge = s.etat === 'earlybird' ? 'Coming soon' : 'Ouvert';
+      html += '<button type="button" class="pay-flow__studio'+(s.etat==='earlybird'?' is-earlybird':'')+'" data-pick-studio="'+esc(s.key)+'">'
+        + '<span class="pay-flow__studio-badge">'+badge+'</span>'
         + '<span class="pay-flow__studio-name">'+esc(s.name)+'</span>'
         + '<span class="pay-flow__studio-adr">'+(s.adr||'')+'</span>'
         + '<span class="pay-flow__studio-go">Choisir <span aria-hidden="true">→</span></span>'
@@ -261,11 +261,24 @@
     else if (ctx.step === 'recap' && ctx.hasStudioStep){ renderStudioStep(); }
   }
 
+  function renderUnavailable(){
+    updateStepper('recap');
+    title.textContent = ctx.title || 'Offre';
+    backBtn.hidden = true;
+    body.innerHTML = '<div class="pay-modal__msg">Cette offre n\'est pas encore disponible dans ce studio.</div>';
+  }
+
   function startPurchase(opts){
     ctx = { payments: opts.payments || {}, fallback: opts.fallback, title: opts.title || 'Réserver', price: opts.price||'', per: opts.per||'', studioKey: null, hasStudioStep: false, step: 'studio' };
     openModal();
     var preset = document.body.getAttribute('data-studio-ref'); // studio déjà fixé (page dédiée / page Réserver)
-    if (preset && studioByKey(preset)){ ctx.studioKey = preset; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    if (preset && studioByKey(preset)){
+      var ps = studioByKey(preset);
+      var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null);
+      ctx.studioKey = preset; ctx.hasStudioStep = false;
+      if (sells){ renderRecapStep(); } else { renderUnavailable(); }
+      return;
+    }
     var list = buyableStudios();
     if (list.length === 0){ ctx.hasStudioStep = false; renderStudioStep(); return; } // affiche le message "aucun studio ouvert"
     if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }

@@ -13,12 +13,12 @@ description: Choisis ton studio Studio On et accède à son planning et ses offr
 <section class="reveal" style="padding-top: 0; padding-bottom: clamp(48px, 7vw, 90px);">
   <div class="studio-pick studio-pick--links">
     {% for s in studios.list %}{% if s.visible != false %}
-    <a class="studio-pick__card{% if s.etat != 'open' %} is-soon{% endif %}" href="/reserver/{{ s.key }}/">
-      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% elif s.etat == 'waitlist' %}Liste d'attente{% else %}Bientôt{% endif %}</span>
+    <a class="studio-pick__card{% if s.etat != 'open' and s.etat != 'earlybird' %} is-soon{% endif %}" href="/reserver/{{ s.key }}/">
+      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% elif s.etat == 'earlybird' %}Coming soon{% elif s.etat == 'waitlist' %}Liste d'attente{% else %}Coming soon{% endif %}</span>
       <span class="studio-pick__name">{{ s.name }}</span>
       <span class="studio-pick__adr">{{ s.adr | safe }}</span>
       <span class="studio-pick__meta">{{ s.meta | join(" · ") }}</span>
-      <span class="studio-pick__go">{% if s.etat == 'open' %}Voir le planning{% else %}En savoir plus{% endif %} <span aria-hidden="true">→</span></span>
+      <span class="studio-pick__go">{% if s.etat == 'open' %}Voir le planning{% elif s.etat == 'earlybird' %}Voir les early birds{% else %}En savoir plus{% endif %} <span aria-hidden="true">→</span></span>
     </a>
     {% endif %}{% endfor %}
   </div>

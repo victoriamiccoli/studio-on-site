@@ -216,7 +216,8 @@ permalink: /
   function ctaHtml(c){
     const st = statusOf(c);
     if (st === 'waitlist') return `<button type="button" class="btn" data-waitlist data-studio="${c.name}">Rejoindre la liste d'attente ${TOGGLE}</button>`;
-    if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Bientôt</span>`;
+    if (st === 'earlybird') return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Coming soon · early birds ${TOGGLE}</a>`;
+    if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Coming soon</span>`;
     return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Réserver une séance ${TOGGLE}</a>`;
   }
   function renderCity(key){
