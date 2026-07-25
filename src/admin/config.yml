@@ -127,6 +127,7 @@ collections:
               - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
               - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
               - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
+              - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
           - label: "Séances & packs"
             name: "seances"
             widget: "list"
@@ -140,6 +141,7 @@ collections:
               - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
               - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
               - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
+              - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
 
   # ---------------- COACHS ----------------
   - name: "coachs"

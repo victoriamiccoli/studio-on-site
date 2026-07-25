@@ -13,7 +13,7 @@ description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
 
 <section class="reveal">
   <div class="city-chips" id="cityChips" role="tablist">
-    {% for s in studios.list %}{% if s.visible %}
+    {% for s in studios.list %}{% if s.visible != false %}
     <button class="city-chip{% if loop.first %} is-active{% endif %}" data-city="{{ s.key }}" role="tab">{{ s.chip }}</button>
     {% endif %}{% endfor %}
   </div>
