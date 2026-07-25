@@ -60,7 +60,7 @@
     <div class="foot-col">
       <h5>{{ col.title }}</h5>
       {% if col.title == "Nos studios" %}
-        {% for s in studios.list %}{% if s.visible != false %}<a href="{% if s.etat == 'open' %}/reserver/?studio={{ s.key }}{% else %}/#studios{% endif %}">{{ s.chip }}</a>{% endif %}{% endfor %}
+        {% for s in studios.list %}{% if s.visible != false %}<a href="/reserver/{{ s.key }}/">{{ s.chip }}</a>{% endif %}{% endfor %}
       {% else %}
         {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
       {% endif %}
@@ -130,8 +130,6 @@
   var ACCOUNT = "{{ site.sportigoAccount }}";
   var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
   var STUDIOS = ({{ studios.list | dump | safe }}).filter(function(s){ return s.visible !== false; });
-  // Correspondance ID d'offre par défaut -> clé de l'offre (pour retrouver l'ID propre à chaque studio)
-  var OFFER_KEY_BY_ID = { "36291":"soft", "33687":"full", "33689":"carte", "33690":"decouverte", "32589":"pack10" };
 
   var scriptState = 0; // 0=non chargé, 1=chargement, 2=prêt
   var scriptCbs = [];
@@ -144,17 +142,24 @@
 
   function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function studioByKey(k){ for (var i=0;i<STUDIOS.length;i++){ if (STUDIOS[i].key===k) return STUDIOS[i]; } return null; }
-  function resolveOfferId(s, key, fallback){
-    if (key && s && s.offers && s.offers[key]) return s.offers[key];
-    return fallback;
+  // Une offre est identifiée par son ID "de référence" (celui de l'onglet Tarifs).
+  // Chaque studio peut avoir une liste offers = [{ref, id, label}] : ref = ID Tarifs, id = ID Sportigo propre au studio.
+  function studioOfferId(s, ref){
+    if (s && Array.isArray(s.offers)){
+      for (var i=0;i<s.offers.length;i++){ if (String(s.offers[i].ref) === String(ref)) return s.offers[i].id; }
+    }
+    return null;
   }
-  function buyableStudios(key, fallback){
+  function resolveOfferId(s, ref){
+    return studioOfferId(s, ref) || ref; // à défaut de mapping propre au studio, on utilise l'ID Tarifs
+  }
+  function buyableStudios(ref){
     var open = STUDIOS.filter(function(s){ return s.etat === 'open'; });
-    // Si au moins un studio a son propre ID pour cette offre -> mode "par studio" (attribution correcte)
-    var withOwn = open.filter(function(s){ return key && s.offers && s.offers[key]; });
-    if (withOwn.length) return withOwn;
-    // Sinon repli : les studios ouverts restent achetables avec l'ID par défaut (rien ne casse)
-    return fallback ? open : [];
+    // Studios qui ont explicitement cette offre dans leur liste (attribution correcte, scalable)
+    var withRow = open.filter(function(s){ return studioOfferId(s, ref) != null; });
+    if (withRow.length) return withRow;
+    // Repli : offre pas encore rattachée à un studio -> tous les studios ouverts (ID Tarifs par défaut)
+    return open;
   }
 
   function loadScript(cb){
@@ -186,7 +191,7 @@
     ctx.step='studio'; updateStepper('studio');
     title.textContent = 'Choisis ton studio de référence';
     backBtn.hidden = true;
-    var list = buyableStudios(ctx.offerKey, ctx.offerId);
+    var list = buyableStudios(ctx.ref);
     if (!list.length){
       body.innerHTML = '<div class="pay-modal__msg">Aucun studio n\'est ouvert à la vente pour le moment. Écris-nous, on t\'accompagne&nbsp;!</div>';
       return;
@@ -225,7 +230,7 @@
     title.textContent = ctx.title || 'Paiement';
     backBtn.hidden = false;
     var s = studioByKey(ctx.studioKey);
-    var offerId = resolveOfferId(s, ctx.offerKey, ctx.offerId);
+    var offerId = resolveOfferId(s, ctx.ref);
     var head = '<p class="pay-flow__paystudio">Studio de référence : <strong>'+esc(s?s.name:'')+'</strong></p>';
     if (!offerId){ body.innerHTML = head + '<div class="pay-modal__msg">Ce moyen de paiement sera actif très bientôt.</div>'; return; }
     body.innerHTML = head + '<div class="pay-modal__msg">Chargement du paiement…</div>';
@@ -251,11 +256,11 @@
   }
 
   function startPurchase(opts){
-    ctx = { offerId: opts.offerId, offerKey: OFFER_KEY_BY_ID[opts.offerId] || null, title: opts.title || 'Réserver', price: opts.price||'', per: opts.per||'', studioKey: null, hasStudioStep: false, step: 'studio' };
+    ctx = { ref: opts.offerId, title: opts.title || 'Réserver', price: opts.price||'', per: opts.per||'', studioKey: null, hasStudioStep: false, step: 'studio' };
     openModal();
-    var ref = document.body.getAttribute('data-studio-ref'); // studio déjà choisi sur la page Réserver
-    if (ref && studioByKey(ref)){ ctx.studioKey = ref; ctx.hasStudioStep = false; renderRecapStep(); return; }
-    var list = buyableStudios(ctx.offerKey, ctx.offerId);
+    var preset = document.body.getAttribute('data-studio-ref'); // studio déjà fixé (page dédiée / page Réserver)
+    if (preset && studioByKey(preset)){ ctx.studioKey = preset; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    var list = buyableStudios(ctx.ref);
     if (list.length === 0){ ctx.hasStudioStep = false; renderStudioStep(); return; } // affiche le message "aucun studio ouvert"
     if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }
     ctx.hasStudioStep = true; renderStudioStep();

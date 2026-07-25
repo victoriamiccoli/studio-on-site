@@ -1,0 +1,105 @@
+---
+pagination:
+  data: studios.list
+  size: 1
+  alias: studio
+layout: base.njk
+permalink: "/reserver/{{ studio.key }}/"
+eleventyComputed:
+  title: "Réserver · {{ studio.name }}"
+---
+
+<section class="page-hero page-hero--reserve">
+  <a href="/reserver/" class="reserve-back"><span aria-hidden="true">←</span> Choisir un autre studio</a>
+  <span class="page-hero__kicker">Réserver</span>
+  <h1 class="page-hero__h reserve-title">{{ studio.name }}</h1>
+  <p class="page-hero__p">{{ studio.adr | safe }}</p>
+</section>
+
+{% if studio.etat == 'open' and studio.planning %}
+<section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
+  <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
+    <div>
+      <h2 class="h-lg section-head__h" style="color: var(--ecru); max-width: 20ch;">Planning</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity:.8;">Choisis ton créneau ci-dessous.</p>
+    </div>
+  </div>
+  <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
+</section>
+
+<section class="reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Abonnements<br>& séances</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Ton studio de référence : {{ studio.name }}. Choisis ta formule.</p>
+    </div>
+  </div>
+
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for p in tarifs.abonnements %}
+    <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for p in tarifs.seances %}
+    <article class="plan{% if p.feature %} plan--feature{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% else %}
+<section class="section--dark reveal">
+  <div class="section-head" style="text-align:center;">
+    <h2 class="h-lg" style="color: var(--ecru);">Ouverture <span style="color:var(--vanille)">{{ studio.status or 'bientôt' }}</span></h2>
+    <p style="margin: 18px auto 0; max-width: 42ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Ce studio ouvre bientôt&nbsp;! En attendant, rejoins la liste d'attente pour être prévenu dès l'ouverture, ou choisis un autre studio.</p>
+    <div style="margin-top:28px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <button type="button" class="btn btn--ecru" data-waitlist data-studio="{{ studio.name }}">Rejoindre la liste d'attente <span class="btn__toggle"></span></button>
+      <a href="/reserver/" class="btn" style="border:1px solid rgba(240,236,225,.4); color: var(--ecru);">Choisir un autre studio <span>→</span></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<script>
+document.body.setAttribute('data-studio-ref', '{{ studio.key }}');
+{% if studio.etat == 'open' and studio.planning %}
+(function(){
+  var ACCOUNT = "{{ site.sportigoAccount }}";
+  var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
+  var container = document.getElementById('sportigo-appointment-container');
+  var st = 0, cbs = [];
+  function load(cb){
+    if (st === 2){ cb(); return; }
+    cbs.push(cb); if (st === 1) return; st = 1;
+    var s = document.createElement('script'); s.src = SRC;
+    s.onload = function(){ st = 2; cbs.forEach(function(f){ f(); }); cbs = []; };
+    s.onerror = function(){ st = 0; container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Impossible de charger le planning pour le moment. Réessaie dans un instant.</p>'; };
+    document.head.appendChild(s);
+  }
+  container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Chargement du planning…</p>';
+  load(function(){
+    container.innerHTML = '<div id="sportigo-appointment-full-container"></div>';
+    try {
+      window.initComponent("AppointmentFull", "sportigo-appointment-full-container", ACCOUNT, {
+        theme: { googleFont: { name: "Inter" } },
+        planning: {{ studio.planning }},
+        displayMode: "slide"
+      });
+    } catch(e){
+      container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Une erreur est survenue. Réessaie ou contacte-nous.</p>';
+    }
+  });
+})();
+{% endif %}
+</script>

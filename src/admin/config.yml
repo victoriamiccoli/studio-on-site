@@ -230,18 +230,16 @@ collections:
               - { label: "Infos", name: "meta", widget: "list", required: false, field: { label: "Info", name: "text", widget: "string" } }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
-              - label: "IDs des offres Sportigo pour CE studio (paiement)"
+              - label: "Offres Sportigo vendues dans CE studio (paiement)"
                 name: "offers"
-                widget: "object"
+                widget: "list"
                 required: false
-                collapsed: true
-                hint: "Chaque studio a ses propres offres Sportigo. Renseigne les IDs ici pour que le paiement soit rattaché à ce studio. Laisse vide tant que le studio n'est pas ouvert."
+                summary: "{{fields.label}}"
+                hint: "Ajoute autant d'offres que tu veux (y compris des offres spéciales). Pour chaque offre : recopie l'ID de l'onglet Tarifs (colonne « ID offre Sportigo ») dans « ID de l'offre (Tarifs) », puis mets l'ID Sportigo propre à CE studio dans « ID Sportigo pour ce studio ». Pour Paris 17, les deux IDs sont identiques."
                 fields:
-                  - { label: "ID offre — Abonnement Soft Hours", name: "soft", widget: "string", required: false }
-                  - { label: "ID offre — Abonnement illimité (Full)", name: "full", widget: "string", required: false }
-                  - { label: "ID offre — Séance à la carte", name: "carte", widget: "string", required: false }
-                  - { label: "ID offre — Pack Découverte", name: "decouverte", widget: "string", required: false }
-                  - { label: "ID offre — Pack 10 séances", name: "pack10", widget: "string", required: false }
+                  - { label: "Nom (pour t'y retrouver)", name: "label", widget: "string", required: false }
+                  - { label: "ID de l'offre (Tarifs)", name: "ref", widget: "string" }
+                  - { label: "ID Sportigo pour ce studio", name: "id", widget: "string" }
 
   # ---------------- FAQ ----------------
   - name: "faq"
