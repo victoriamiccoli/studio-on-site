@@ -55,8 +55,14 @@
       "ctaLabel": "Acheter",
       "price": "20",
       "name": "Séance à la carte",
+      "payments": [
+        {
+          "studio": "paris17",
+          "id": "33689"
+        }
+      ],
       "feature": false,
-      "offerId": "33689",
+      "offerId": "",
       "popular": false,
       "features": [
         "Idéal pour tester",
@@ -69,8 +75,14 @@
       "ctaLabel": "Acheter",
       "price": "40",
       "name": "Pack Découverte",
+      "payments": [
+        {
+          "studio": "paris17",
+          "id": "33690"
+        }
+      ],
       "feature": false,
-      "offerId": "33690",
+      "offerId": "",
       "popular": false,
       "features": [
         "Valable au premier achat",
@@ -83,8 +95,14 @@
       "ctaLabel": "Acheter",
       "price": "150",
       "name": "Pack 10 séances",
+      "payments": [
+        {
+          "studio": "paris17",
+          "id": "32589"
+        }
+      ],
       "feature": false,
-      "offerId": "32589",
+      "offerId": "",
       "popular": false,
       "features": [
         "Valable 6 mois"
