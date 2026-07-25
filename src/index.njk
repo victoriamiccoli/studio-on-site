@@ -128,7 +128,7 @@ permalink: /
 <section id="app" class="section--dark reveal app-dl">
   <span class="app-dl__kicker">{{ home.appKicker }}</span>
   <h2 class="app-dl__h">{{ home.appTitle }}</h2>
-  <p class="app-dl__p">{{ home.appText }}</p>
+  {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}
   <ul class="app-dl__list">
     {% for b in home.appBullets %}<li>{{ b }}</li>{% endfor %}
   </ul>
@@ -137,7 +137,7 @@ permalink: /
       <span>Télécharger sur</span><strong>App Store</strong>
     </a>
     <a href="{{ home.googlePlayUrl or '#' }}" class="store-btn"{% if home.googlePlayUrl and home.googlePlayUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
-      <span>Disponible sur</span><strong>Google Play</strong>
+      <span>Télécharger sur</span><strong>Google Play</strong>
     </a>
   </div>
 </section>
