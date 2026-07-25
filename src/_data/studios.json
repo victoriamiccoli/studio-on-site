@@ -1,10 +1,84 @@
 {
   "list": [
-    { "key": "paris17", "chip": "Paris 17e", "name": "Paris 17e", "adr": "16, rue de Saussure<br>75017 Paris", "image": "", "meta": ["12 Reformers", "M° Villiers"], "status": "Ouvert · 6h → 22h30", "etat": "open", "visible": true, "ctaHref": "/reserver/" },
-    { "key": "paris6", "chip": "Paris 6e", "name": "Paris 6e", "adr": "Adresse dévoilée bientôt<br>Paris 6e", "image": "", "meta": ["Septembre 2026"], "status": "Ouverture septembre 2026", "etat": "waitlist", "visible": true, "ctaHref": "#" },
-    { "key": "soon", "chip": "Bientôt ailleurs", "name": "Et bientôt ailleurs…", "adr": "D'autres villes arrivent très vite.", "image": "", "meta": ["Nouvelles villes bientôt"], "status": "Bientôt", "etat": "soon", "visible": true, "ctaHref": "#" },
-    { "key": "next1", "chip": "Prochaine ouverture 1", "name": "Prochaine ouverture", "adr": "Ville à venir", "image": "", "meta": [], "status": "Bientôt", "etat": "soon", "visible": false, "ctaHref": "#" },
-    { "key": "next2", "chip": "Prochaine ouverture 2", "name": "Prochaine ouverture", "adr": "Ville à venir", "image": "", "meta": [], "status": "Bientôt", "etat": "soon", "visible": false, "ctaHref": "#" },
-    { "key": "next3", "chip": "Prochaine ouverture 3", "name": "Prochaine ouverture", "adr": "Ville à venir", "image": "", "meta": [], "status": "Bientôt", "etat": "soon", "visible": false, "ctaHref": "#" }
+    {
+      "etat": "open",
+      "meta": [
+        "12 Reformers",
+        "M° Villiers"
+      ],
+      "name": "Paris 17e",
+      "chip": "Paris 17e",
+      "adr": "16, rue de Saussure<br>75017 Paris",
+      "visible": true,
+      "status": "Ouvert · 6h → 22h30",
+      "image": "",
+      "ctaHref": "/reserver/",
+      "planning": 4251,
+      "key": "paris17"
+    },
+    {
+      "etat": "waitlist",
+      "meta": [
+        "Septembre 2026"
+      ],
+      "name": "Paris 6e",
+      "chip": "Paris 6e",
+      "adr": "Adresse dévoilée bientôt<br>Paris 6e",
+      "visible": true,
+      "status": "Ouverture septembre 2026",
+      "image": "",
+      "ctaHref": "#",
+      "key": "paris6"
+    },
+    {
+      "etat": "soon",
+      "meta": [
+        "Nouvelles villes bientôt"
+      ],
+      "name": "Et bientôt ailleurs…",
+      "chip": "Bientôt ailleurs",
+      "adr": "D'autres villes arrivent très vite.",
+      "visible": true,
+      "status": "Bientôt",
+      "image": "",
+      "ctaHref": "#",
+      "key": "soon"
+    },
+    {
+      "etat": "soon",
+      "meta": [],
+      "name": "Prochaine ouverture",
+      "chip": "Prochaine ouverture 1",
+      "adr": "Ville à venir",
+      "visible": false,
+      "status": "Bientôt",
+      "image": "",
+      "ctaHref": "#",
+      "key": "next1"
+    },
+    {
+      "etat": "soon",
+      "meta": [],
+      "name": "Prochaine ouverture",
+      "chip": "Prochaine ouverture 2",
+      "adr": "Ville à venir",
+      "visible": false,
+      "status": "Bientôt",
+      "image": "",
+      "ctaHref": "#",
+      "key": "next2"
+    },
+    {
+      "etat": "soon",
+      "meta": [],
+      "name": "Prochaine ouverture",
+      "chip": "Prochaine ouverture 3",
+      "adr": "Ville à venir",
+      "visible": false,
+      "status": "Bientôt",
+      "image": "",
+      "ctaHref": "#",
+      "key": "next3"
+    }
   ]
 }
