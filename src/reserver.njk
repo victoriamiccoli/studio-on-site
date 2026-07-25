@@ -13,22 +13,17 @@ description: Choisis ton studio Studio On et accède à son planning et ses offr
 <section class="reveal" style="padding-top: clamp(28px, 5vw, 64px); padding-bottom: clamp(48px, 7vw, 90px);">
   <div class="studio-pick studio-pick--links">
     {% for s in studios.list %}{% if s.visible != false %}
-    {% if s.etat == 'soon' %}
-    <div class="studio-pick__card is-soon">
-      <span class="studio-pick__status">Coming soon</span>
+    <div class="studio-pick__card{% if s.etat != 'open' and s.etat != 'earlybird' %} is-soon{% endif %}">
+      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% elif s.etat == 'earlybird' %}Coming soon{% elif s.etat == 'waitlist' %}Liste d'attente{% else %}Coming soon{% endif %}</span>
       <span class="studio-pick__name">{{ s.name }}</span>
-      <span class="studio-pick__adr">{{ s.adr | safe }}</span>
-      <span class="studio-pick__meta">{{ s.meta | join(" · ") }}</span>
+      {% if s.showAddress != false and s.adr %}<a class="studio-pick__adr studio-pick__adr-link" href="{{ s.mapsUrl or ('https://www.google.com/maps/search/?api=1&query=' ~ (s.adr | replace('<br>',' ') | urlencode)) }}" target="_blank" rel="noopener">{{ s.adr | safe }}</a>{% endif %}
+      {% if s.showEmail != false and s.email %}<a class="studio-pick__contact" href="mailto:{{ s.email }}">{{ s.email }}</a>{% endif %}
+      {% if s.showPhone != false and s.phone %}<a class="studio-pick__contact" href="tel:{{ s.phone | replace(' ','') }}">{{ s.phone }}</a>{% endif %}
+      {% if s.etat == 'open' %}<a class="studio-pick__btn" href="/reserver/{{ s.key }}/">Voir le planning <span aria-hidden="true">→</span></a>
+      {% elif s.etat == 'earlybird' %}<a class="studio-pick__btn" href="/reserver/{{ s.key }}/">Early birds <span aria-hidden="true">→</span></a>
+      {% elif s.etat == 'waitlist' %}<a class="studio-pick__btn" href="/reserver/{{ s.key }}/">Liste d'attente <span aria-hidden="true">→</span></a>
+      {% endif %}
     </div>
-    {% else %}
-    <a class="studio-pick__card{% if s.etat == 'waitlist' %} is-soon{% endif %}" href="/reserver/{{ s.key }}/">
-      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% elif s.etat == 'earlybird' %}Coming soon{% else %}Liste d'attente{% endif %}</span>
-      <span class="studio-pick__name">{{ s.name }}</span>
-      <span class="studio-pick__adr">{{ s.adr | safe }}</span>
-      <span class="studio-pick__meta">{{ s.meta | join(" · ") }}</span>
-      <span class="studio-pick__go">{% if s.etat == 'open' %}Voir le planning{% elif s.etat == 'earlybird' %}Early birds{% else %}Liste d'attente{% endif %} <span aria-hidden="true">→</span></span>
-    </a>
-    {% endif %}
     {% endif %}{% endfor %}
   </div>
 </section>

@@ -378,10 +378,15 @@ collections:
               - { label: "Onglet (nom court affiché)", name: "chip", widget: "string" }
               - { label: "Clé (identifiant technique, sans espace)", name: "key", widget: "string" }
               - { label: "Nom", name: "name", widget: "string" }
-              - { label: "Adresse", name: "adr", widget: "string" }
+              - { label: "Afficher l'adresse", name: "showAddress", widget: "boolean", default: true, required: false }
+              - { label: "Adresse (cliquable, ouvre Google Maps)", name: "adr", widget: "string", required: false }
+              - { label: "Lien Google Maps (optionnel — vide = généré automatiquement depuis l'adresse)", name: "mapsUrl", widget: "string", required: false }
+              - { label: "Afficher l'email", name: "showEmail", widget: "boolean", default: true, required: false }
+              - { label: "Email du studio", name: "email", widget: "string", required: false }
+              - { label: "Afficher le téléphone", name: "showPhone", widget: "boolean", default: true, required: false }
+              - { label: "Téléphone du studio", name: "phone", widget: "string", required: false }
               - { label: "Photo", name: "image", widget: "image", required: false }
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
-              - { label: "Infos", name: "meta", widget: "list", required: false, field: { label: "Info", name: "text", widget: "string" } }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
 
