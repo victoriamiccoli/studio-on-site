@@ -194,18 +194,25 @@ collections:
           - label: "Studios"
             name: "list"
             widget: "list"
-            summary: "{{fields.name}}"
+            summary: "{{fields.chip}}"
             fields:
-              - { label: "Clé (identifiant)", name: "key", widget: "string" }
-              - { label: "Onglet", name: "chip", widget: "string" }
+              - { label: "Afficher sur le site", name: "visible", widget: "boolean", default: true }
+              - label: "État"
+                name: "etat"
+                widget: "select"
+                default: "soon"
+                options:
+                  - { label: "Ouvert (bouton Réserver)", value: "open" }
+                  - { label: "Liste d'attente (bouton Rejoindre la liste)", value: "waitlist" }
+                  - { label: "Bientôt (aucun bouton)", value: "soon" }
+              - { label: "Onglet (nom court affiché)", name: "chip", widget: "string" }
+              - { label: "Clé (identifiant technique, sans espace)", name: "key", widget: "string" }
               - { label: "Nom", name: "name", widget: "string" }
               - { label: "Adresse", name: "adr", widget: "string" }
               - { label: "Photo", name: "image", widget: "image", required: false }
-              - { label: "Statut", name: "status", widget: "string" }
-              - { label: "Bientôt", name: "isSoon", widget: "boolean", default: false }
-              - { label: "Infos", name: "meta", widget: "list", field: { label: "Info", name: "text", widget: "string" } }
-              - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
-              - { label: "Lien du bouton", name: "ctaHref", widget: "string" }
+              - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
+              - { label: "Infos", name: "meta", widget: "list", required: false, field: { label: "Info", name: "text", widget: "string" } }
+              - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
 
   # ---------------- FAQ ----------------
   - name: "faq"
