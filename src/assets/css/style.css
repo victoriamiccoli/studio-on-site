@@ -94,10 +94,11 @@ img { display: block; max-width: 100%; }
   .app-dl__list { flex-wrap: nowrap; gap: 10px; }
   .app-dl__list li { white-space: nowrap; font-size: 12px; padding: 10px 15px; }
 }
-/* App - pastilles : 2 colonnes (2 lignes max) sur mobile */
+/* App - pastilles : 2 colonnes (2 lignes max) sur mobile, plus compactes */
 @media (max-width: 640px) {
-  .app-dl__list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
-  .app-dl__list li { justify-content: center; text-align: center; padding: 10px 12px; font-size: 11px; }
+  .app-dl__list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; width: 100%; }
+  .app-dl__list li { justify-content: center; text-align: center; gap: 7px; padding: 8px 9px; font-size: 9.5px; letter-spacing: .02em; line-height: 1.15; }
+  .app-dl__list li::before { width: 5px; height: 5px; }
 }
 
 /* Menu mobile (ajout pour la navigation multi-pages) */
