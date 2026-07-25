@@ -1,34 +1,36 @@
 {
   "abonnements": [
     {
-      "sub": "Illimité en heures creuses",
-      "badge": "Soft Hours",
-      "ctaLabel": "S'abonner",
-      "price": "60",
       "name": "Abonnement illimité",
-      "feature": true,
-      "offerId": "36291",
+      "badge": "Soft Hours",
+      "price": "60",
+      "per": "/ mois",
+      "sub": "Illimité en heures creuses",
       "features": [
         "Semaine : 6h-8h · 9h-12h30 · 14h-17h30 · 21h-22h30",
         "Week-end : 6h-10h · 15h-22h30",
         "1 séance / jour",
         "Engagement 6 mois puis résiliable avec préavis d'un mois"
       ],
-      "per": "/ mois"
+      "ctaLabel": "S'abonner",
+      "offerId": "36291",
+      "feature": true,
+      "popular": true
     },
     {
-      "sub": "Illimité 7j/7 de 6h à 22h30",
-      "badge": "Full On",
-      "ctaLabel": "S'abonner",
-      "price": "89",
       "name": "Abonnement illimité",
-      "feature": true,
-      "offerId": "33687",
+      "badge": "Full On",
+      "price": "89",
+      "per": "/ mois",
+      "sub": "Illimité 7j/7 de 6h à 22h30",
       "features": [
         "1 séance / jour",
         "Engagement 6 mois puis résiliable avec préavis d'un mois"
       ],
-      "per": "/ mois"
+      "ctaLabel": "S'abonner",
+      "offerId": "33687",
+      "feature": true,
+      "popular": false
     }
   ],
   "seances": [
@@ -43,7 +45,8 @@
       ],
       "ctaLabel": "Acheter",
       "offerId": "33689",
-      "feature": false
+      "feature": false,
+      "popular": false
     },
     {
       "name": "Pack Découverte",
@@ -56,7 +59,8 @@
       ],
       "ctaLabel": "Acheter",
       "offerId": "33690",
-      "feature": false
+      "feature": false,
+      "popular": false
     },
     {
       "name": "Pack 10 séances",
@@ -68,7 +72,8 @@
       ],
       "ctaLabel": "Acheter",
       "offerId": "32589",
-      "feature": true
+      "feature": true,
+      "popular": false
     }
   ]
 }
