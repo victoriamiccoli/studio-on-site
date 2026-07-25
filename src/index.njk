@@ -126,6 +126,7 @@ permalink: /
 
 <!-- TELECHARGE L'APP -->
 <section id="app" class="section--dark reveal app-dl">
+  {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
   {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
   <h2 class="app-dl__h">{{ home.appTitle }}</h2>
   {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}

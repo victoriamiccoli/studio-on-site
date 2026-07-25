@@ -80,6 +80,7 @@ img { display: block; max-width: 100%; }
 /* Section Télécharge l'app */
 .app-dl { text-align: center; display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 2.6vw, 30px); }
 .app-dl--page { min-height: 86vh; justify-content: center; padding-top: clamp(110px, 15vh, 190px); }
+.app-dl__icon { width: clamp(76px, 8vw, 100px); height: clamp(76px, 8vw, 100px); border-radius: 18px; object-fit: cover; border: 1px solid rgba(240,236,225,0.18); box-shadow: 0 10px 34px rgba(0,0,0,.45); }
 .app-dl__kicker { font: 500 13px var(--f-body); letter-spacing: .16em; text-transform: uppercase; color: var(--vanille); }
 .app-dl__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(48px, 9vw, 120px); line-height: .95; letter-spacing: -.04em; margin: 0 0 clamp(16px, 2.4vw, 30px); }
 .app-dl__p { max-width: 46ch; margin: 0 auto; font-family: var(--f-display); font-weight: 600; font-size: clamp(18px, 1.6vw, 26px); line-height: 1.25; letter-spacing: -.01em; }

@@ -6,6 +6,7 @@ description: Télécharge l'application Studio On. Réserve, gère ton planning 
 ---
 
 <section class="section--dark reveal app-dl app-dl--page">
+  {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
   {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
   <h1 class="app-dl__h">{{ home.appTitle }}</h1>
   {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}

@@ -97,6 +97,7 @@ collections:
           - { label: "FAQ — titre", name: "faqTitle", widget: "string" }
           - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string" }
           - { label: "Bloc final — texte", name: "ctaText", widget: "string" }
+          - { label: "App - logo/icône (image carrée, idéal 512x512)", name: "appIcon", widget: "image", required: false }
           - { label: "App - accroche (kicker)", name: "appKicker", widget: "string", required: false }
           - { label: "App - titre", name: "appTitle", widget: "string", required: false }
           - { label: "App - texte", name: "appText", widget: "text", required: false }
