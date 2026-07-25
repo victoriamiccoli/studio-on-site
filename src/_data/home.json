@@ -6,7 +6,7 @@
   "googlePlayUrl": "https://track.sportigo-club.com/CL0/https:%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid=io.sportigo.studioon%26utm_source=emea_Med/1/0113019f664bb91c-0bc3a321-d9ad-4d14-b908-0c706c22cae3-000000/xHxWaeVe4EdSX-aTw9WG2wuORK0e4vvtYd2XkqkAGgU=258",
   "heroLine1": "Le Pilates Reformer.",
   "heroLine2": "Plus accessible.",
-  "showMarquee": true,
+  "showMarquee": false,
   "heroLine3": "Mieux adapté.",
   "seancesTitle": "Plus de 100 séances. À ton rythme.",
   "steps": [
