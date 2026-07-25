@@ -149,11 +149,12 @@
     return fallback;
   }
   function buyableStudios(key, fallback){
-    return STUDIOS.filter(function(s){
-      if (s.etat !== 'open') return false;
-      if (key) return !!(s.offers && s.offers[key]); // offre connue : chaque studio doit avoir son propre ID
-      return !!fallback;                             // offre non mappée : ID par défaut pour tous
-    });
+    var open = STUDIOS.filter(function(s){ return s.etat === 'open'; });
+    // Si au moins un studio a son propre ID pour cette offre -> mode "par studio" (attribution correcte)
+    var withOwn = open.filter(function(s){ return key && s.offers && s.offers[key]; });
+    if (withOwn.length) return withOwn;
+    // Sinon repli : les studios ouverts restent achetables avec l'ID par défaut (rien ne casse)
+    return fallback ? open : [];
   }
 
   function loadScript(cb){
