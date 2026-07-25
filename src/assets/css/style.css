@@ -234,13 +234,11 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .plan__name { font-family: var(--f-display); font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; opacity: .85; }
 .plan__badge { font: 700 9px var(--f-display); letter-spacing: .12em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; background: var(--vanille); color: var(--noir); }
 .plan__badge--pop { margin-left: 4px; }
-/* Tarif "le plus populaire" : carte jaune */
-.plan--pop, .plan--light.plan--pop, .plan--light.plan--feature.plan--pop { background: var(--vanille); color: var(--noir); border: none; }
-.plan--pop .plan__name, .plan--pop .plan__price, .plan--pop .per, .plan--pop .plan__sub, .plan--pop .plan__list li { color: var(--noir); opacity: 1; }
-.plan--pop .plan__list li::before { background: var(--noir); }
-.plan--pop .plan__badge { background: var(--noir); color: #FFFFFF; }
-.plan--pop .plan__badge--pop { background: var(--noir); color: var(--vanille); }
-.plan--pop .plan__cta { background: var(--noir); color: #FFFFFF; }
+/* Tarif "le plus populaire" : carte blanche, accents jaunes */
+.plan--pop, .plan--light.plan--pop, .plan--light.plan--feature.plan--pop { background: #FFFFFF; color: var(--noir); border: 2px solid var(--vanille); }
+.plan--pop .plan__list li::before, .plan--light.plan--feature.plan--pop .plan__list li::before { background: var(--vanille); }
+.plan--pop .plan__cta, .plan--light.plan--feature.plan--pop .plan__cta { background: var(--vanille); color: var(--noir); }
+.plan--pop .plan__badge--pop, .plan--light.plan--feature.plan--pop .plan__badge--pop { background: var(--vanille); color: var(--noir); }
 .plan__price { font-family: var(--f-display); font-weight: 600; font-size: clamp(48px, 5vw, 64px); line-height: .9; letter-spacing: -0.04em; display: flex; align-items: flex-start; gap: 4px; }
 .plan__price sup { font-size: 0.32em; font-weight: 500; margin-top: 0.25em; letter-spacing: 0; }
 .plan__price .per { font-size: 0.25em; font-weight: 400; letter-spacing: 0; opacity: .6; align-self: end; margin-left: 8px; margin-bottom: 16px; }
