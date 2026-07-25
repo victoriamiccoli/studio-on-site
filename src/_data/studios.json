@@ -8,11 +8,13 @@
       ],
       "name": "Paris 17e",
       "chip": "Paris 17e",
+      "phone": "0775779973",
       "adr": "16, rue de Saussure<br>75017 Paris",
       "visible": true,
       "status": "Ouvert · 6h → 22h30",
       "image": "",
       "ctaHref": "/reserver/",
+      "email": "contact@studioon.fr",
       "planning": 4254,
       "key": "paris17"
     },
