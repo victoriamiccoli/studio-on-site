@@ -97,6 +97,17 @@ collections:
           - { label: "FAQ — titre", name: "faqTitle", widget: "string" }
           - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string" }
           - { label: "Bloc final — texte", name: "ctaText", widget: "string" }
+          - { label: "App - accroche (kicker)", name: "appKicker", widget: "string", required: false }
+          - { label: "App - titre", name: "appTitle", widget: "string", required: false }
+          - { label: "App - texte", name: "appText", widget: "text", required: false }
+          - label: "App - points clés"
+            name: "appBullets"
+            widget: "list"
+            required: false
+            summary: "{{fields.text}}"
+            field: { label: "Texte", name: "text", widget: "string" }
+          - { label: "App - lien App Store", name: "appStoreUrl", widget: "string", required: false }
+          - { label: "App - lien Google Play", name: "googlePlayUrl", widget: "string", required: false }
           - label: "Concept — 3 étapes"
             name: "steps"
             widget: "list"

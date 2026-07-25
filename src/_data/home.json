@@ -1,46 +1,42 @@
 {
-  "tarifsSubtitleWhite": "Le Pilates Reformer.",
-  "conceptSubtitle": "3 étapes. Pas plus.",
-  "heroKickerYellow": "Pensé pour vous.",
-  "faqTitle": "Les vraies questions.",
   "heroLine1": "Le Pilates Reformer.",
   "heroLine2": "Plus accessible.",
   "heroLine3": "Mieux adapté.",
-  "seancesTitle": "Le Pilates Reformer. À ton rythme.",
-  "steps": [
-    {
-      "num": "01",
-      "label": "Réserve",
-      "title": "Ton pass nominatif.",
-      "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà."
-    },
-    {
-      "num": "02",
-      "label": "Viens",
-      "title": "Pousse la porte.",
-      "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer."
-    },
-    {
-      "num": "03",
-      "label": "Bouge",
-      "title": "Lance ta séance.",
-      "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
-    }
+  "heroKickerWhite": "Le Pilates Reformer.",
+  "heroKickerYellow": "Pensé pour vous.",
+  "heroBullets": [
+    "Du Pilates Reformer digitalisé en illimité",
+    "Ouvert de 6h00 à 22h30",
+    "Vos séances préférées en 3 clics",
+    "Des nouvelles vidéos en continu"
   ],
   "tarifsTitle": "Tarifs accessibles",
-  "seancesSubtitle": "Plus de 100 séances.",
-  "faqSubtitle": "Si ta question n'y est pas, écris-nous, on y répond très vite !",
-  "coachsSubtitle": "Choisis selon ton humeur, ton objectif, tes envies.",
-  "studiosSubtitle": "Pousse la porte, le studio est à toi. Du lever au coucher du soleil.",
-  "heroBullets": [
-    "1er studio de Pilates Reformer digitalisé",
-    "Le Pilates Reformer en illimité",
-    "Ouvert de 6h00 à 22h30",
-    "Vos séances préférées en 3 clics"
-  ],
-  "studiosTitle": "Paris, et bientôt ailleurs…",
-  "heroKickerWhite": "Le Pilates Reformer.",
+  "tarifsSubtitleWhite": "Le Pilates Reformer.",
   "tarifsSubtitleYellow": "En illimité.",
+  "conceptSubtitle": "3 étapes. Pas plus.",
+  "seancesTitle": "Plus de 100 séances, à ton rythme.",
+  "seancesSubtitle": "Filtre par niveau, focus, mood ou coach.",
+  "coachsTitle": "Sept coachs. Sept ADN.",
+  "coachsSubtitle": "Choisis selon ton humeur, ton objectif, tes envies.",
+  "studiosTitle": "Paris, et bientôt ailleurs…",
+  "studiosSubtitle": "Pousse la porte, le studio est à toi. Du lever au coucher du soleil.",
+  "faqTitle": "Les vraies questions.",
+  "faqSubtitle": "Si ta question n'y est pas, écris-nous, on y répond très vite !",
   "ctaText": "Teste 3 séances avec le Pack Découverte. Sans engagement.",
-  "coachsTitle": "Sept coachs. Sept ADN."
+  "appKicker": "L'application Studio On",
+  "appTitle": "Télécharge l'app",
+  "appText": "Tout se passe depuis ton téléphone : réserve ta séance jusqu'à 5 minutes avant, gère ton planning, ouvre la porte du studio avec ton pass.",
+  "appBullets": [
+    "Réservation en 3 clics",
+    "Ton planning et ton historique",
+    "Pass d'accès Apple / Google Wallet",
+    "Annulation jusqu'à 4h avant"
+  ],
+  "appStoreUrl": "#",
+  "googlePlayUrl": "#",
+  "steps": [
+    { "num": "01", "label": "Réserve", "title": "Ton pass nominatif.", "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà." },
+    { "num": "02", "label": "Viens", "title": "Pousse la porte.", "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer." },
+    { "num": "03", "label": "Bouge", "title": "Lance ta séance.", "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme." }
+  ]
 }
