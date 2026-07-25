@@ -53,10 +53,10 @@
     "Des nouvelles vidéos en continu"
   ],
   "appIcon": "",
-  "hideCoachs": true,
+  "hideCoachs": false,
   "studiosTitle": "Paris, et bientôt ailleurs…",
   "heroKickerWhite": "Le Pilates Reformer.",
-  "hideCoachsTitle": true,
+  "hideCoachsTitle": false,
   "tarifsSubtitleYellow": "En illimité.",
   "ctaText": "Teste 3 séances avec le Pack Découverte. Sans engagement.",
   "coachsTitle": "Sept coachs. Sept ADN."
