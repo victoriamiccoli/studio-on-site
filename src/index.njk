@@ -126,7 +126,7 @@ permalink: /
 
 <!-- TELECHARGE L'APP -->
 <section id="app" class="section--dark reveal app-dl">
-  <span class="app-dl__kicker">{{ home.appKicker }}</span>
+  {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
   <h2 class="app-dl__h">{{ home.appTitle }}</h2>
   {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}
   <ul class="app-dl__list">

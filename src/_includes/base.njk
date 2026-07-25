@@ -30,8 +30,10 @@
       <a href="{{ item.url }}"{% if page.url == item.url %} class="is-current"{% endif %}>{{ item.label }}</a>
     {% endfor %}
   </div>
-  <a href="/#app" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
-  <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
+  <div class="nav__actions">
+    <a href="/telecharger-app/" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
+    <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
+  </div>
   <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
@@ -41,7 +43,7 @@
     {% for item in site.nav %}
       <a href="{{ item.url }}">{{ item.label }}</a>
     {% endfor %}
-    <a href="/#app" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
+    <a href="/telecharger-app/" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
     <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
   </aside>
 </div>
