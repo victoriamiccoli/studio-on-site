@@ -324,6 +324,9 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 @media (max-width: 900px) { .studio-pick { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .studio-pick { grid-template-columns: 1fr; } }
 .studio-pick--links .studio-pick__card { text-decoration: none; color: var(--noir); }
+button.studio-pick__card { width: 100%; font-family: var(--f-body); cursor: pointer; }
+.studio-pick__info { display: block; font-size: 13px; opacity: .6; margin-top: 6px; line-height: 1.4; }
+.studio-card__info { display: block; font-size: 14px; opacity: .7; margin-top: 6px; line-height: 1.4; }
 .studio-pick__go { margin-top: 12px; font: 600 12px var(--f-display); letter-spacing: .04em; text-transform: uppercase; display: inline-flex; gap: 6px; align-items: center; }
 .studio-pick--links .studio-pick__card.is-soon .studio-pick__go { opacity: .8; }
 /* Page Réserver : titre sur une ligne, liste juste en dessous */

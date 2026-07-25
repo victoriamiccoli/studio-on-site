@@ -386,6 +386,7 @@ collections:
               - { label: "Email du studio", name: "email", widget: "string", required: false }
               - { label: "Masquer le téléphone", name: "hidePhone", widget: "boolean", default: false, required: false }
               - { label: "Téléphone du studio", name: "phone", widget: "string", required: false }
+              - { label: "Infos complémentaires (optionnel — s'affiche seulement si rempli, ex. accès, particularités)", name: "info", widget: "string", required: false }
               - { label: "Photo", name: "image", widget: "image", required: false }
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
