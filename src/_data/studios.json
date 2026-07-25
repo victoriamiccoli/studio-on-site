@@ -43,42 +43,6 @@
       "image": "",
       "ctaHref": "#",
       "key": "soon"
-    },
-    {
-      "etat": "soon",
-      "meta": [],
-      "name": "Prochaine ouverture",
-      "chip": "Prochaine ouverture 1",
-      "adr": "Ville à venir",
-      "visible": false,
-      "status": "Bientôt",
-      "image": "",
-      "ctaHref": "#",
-      "key": "next1"
-    },
-    {
-      "etat": "soon",
-      "meta": [],
-      "name": "Prochaine ouverture",
-      "chip": "Prochaine ouverture 2",
-      "adr": "Ville à venir",
-      "visible": false,
-      "status": "Bientôt",
-      "image": "",
-      "ctaHref": "#",
-      "key": "next2"
-    },
-    {
-      "etat": "soon",
-      "meta": [],
-      "name": "Prochaine ouverture",
-      "chip": "Prochaine ouverture 3",
-      "adr": "Ville à venir",
-      "visible": false,
-      "status": "Bientôt",
-      "image": "",
-      "ctaHref": "#",
-      "key": "next3"
     }
   ]
 }
