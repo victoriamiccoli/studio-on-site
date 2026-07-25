@@ -18,12 +18,12 @@ permalink: /
   </ul>
 </section>
 
-{% if home.showMarquee != false %}{% include "marquee.njk" %}{% endif %}
+{% if not home.hideMarquee %}{% include "marquee.njk" %}{% endif %}
 
 <!-- TARIFS -->
-{% if home.showTarifs != false %}
+{% if not home.hideTarifs %}
 <section id="tarifs" class="section--dark reveal">
-  {% if home.showTarifsTitle != false %}
+  {% if not home.hideTarifsTitle %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | safe }}</h2>
@@ -59,9 +59,9 @@ permalink: /
 {% endif %}
 
 <!-- CONCEPT -->
-{% if home.showConcept != false %}
+{% if not home.hideConcept %}
 <section id="concept" class="section--dark reveal" style="padding-bottom: clamp(40px, 5vw, 72px);">
-  {% if home.showConceptTitle != false %}
+  {% if not home.hideConceptTitle %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
@@ -83,9 +83,9 @@ permalink: /
 {% endif %}
 
 <!-- SEANCES -->
-{% if home.showSeances != false %}
+{% if not home.hideSeances %}
 <section id="seances" class="section--dark reveal" style="padding-top: 0;">
-  {% if home.showSeancesTitle != false %}
+  {% if not home.hideSeancesTitle %}
   <div class="section-meta section-head" style="padding-top: 40px;">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | safe }}</h2>
@@ -111,9 +111,9 @@ permalink: /
 {% endif %}
 
 <!-- COACHS -->
-{% if home.showCoachs != false %}
+{% if not home.hideCoachs %}
 <section id="coachs" class="section--dark reveal">
-  {% if home.showCoachsTitle != false %}
+  {% if not home.hideCoachsTitle %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | safe }}</h2>
@@ -141,11 +141,11 @@ permalink: /
 {% endif %}
 
 <!-- TELECHARGE L'APP -->
-{% if home.showApp != false %}
+{% if not home.hideApp %}
 <section id="app" class="section--dark reveal app-dl">
   {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
   {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
-  {% if home.showAppTitle != false %}<h2 class="app-dl__h">{{ home.appTitle }}</h2>{% endif %}
+  {% if not home.hideAppTitle %}<h2 class="app-dl__h">{{ home.appTitle }}</h2>{% endif %}
   {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}
   <ul class="app-dl__list">
     {% for b in home.appBullets %}<li>{{ b }}</li>{% endfor %}
@@ -162,9 +162,9 @@ permalink: /
 {% endif %}
 
 <!-- STUDIOS -->
-{% if home.showStudios != false %}
+{% if not home.hideStudios %}
 <section id="studios" class="reveal">
-  {% if home.showStudiosTitle != false %}
+  {% if not home.hideStudiosTitle %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 18ch;">{{ home.studiosTitle | safe }}</h2>
@@ -191,9 +191,9 @@ permalink: /
 {% endif %}
 
 <!-- FAQ -->
-{% if home.showFaq != false %}
+{% if not home.hideFaq %}
 <section id="faq" class="reveal">
-  {% if home.showFaqTitle != false %}
+  {% if not home.hideFaqTitle %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch;">{{ home.faqTitle | safe }}</h2>
@@ -213,7 +213,7 @@ permalink: /
 {% endif %}
 
 <!-- CTA FRANCHISE -->
-{% if home.showCta != false %}
+{% if not home.hideCta %}
 <section class="cta-band reveal" id="cta">
   <h2 class="cta-band__h" style="line-height: .92;">
     Switch<br>your&nbsp;body<br>
@@ -251,14 +251,14 @@ permalink: /
   function mapsHref(c){ return c.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((c.adr||'').replace(/<br\s*\/?>/gi,' '))); }
   function contactHtml(c){
     let h = '';
-    if (c.showEmail !== false && c.email) h += `<a class="studio-card__contact" href="mailto:${c.email}">${c.email}</a>`;
-    if (c.showPhone !== false && c.phone) h += `<a class="studio-card__contact" href="tel:${(c.phone||'').replace(/\s/g,'')}">${c.phone}</a>`;
+    if (!c.hideEmail && c.email) h += `<a class="studio-card__contact" href="mailto:${c.email}">${c.email}</a>`;
+    if (!c.hidePhone && c.phone) h += `<a class="studio-card__contact" href="tel:${(c.phone||'').replace(/\s/g,'')}">${c.phone}</a>`;
     return h;
   }
   function renderCity(key){
     const c = byKey[key]; if(!c) return;
     nameEl.innerHTML = c.name;
-    adrEl.innerHTML = (c.showAddress !== false && c.adr) ? `<a class="studio-card__adr-link" href="${mapsHref(c)}" target="_blank" rel="noopener">${c.adr}</a>` : '';
+    adrEl.innerHTML = (!c.hideAddress && c.adr) ? `<a class="studio-card__adr-link" href="${mapsHref(c)}" target="_blank" rel="noopener">${c.adr}</a>` : '';
     statusEl.textContent = c.status || '';
     statusEl.classList.toggle('is-soon', statusOf(c) !== 'open');
     metaEl.innerHTML = contactHtml(c);

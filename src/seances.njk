@@ -5,11 +5,11 @@ permalink: /seances/
 description: Plus de 100 séances de Pilates Reformer, à ton rythme.
 ---
 
-{% if pages.seances.showHero != false %}
+{% if not pages.seances.hideHero %}
 <section class="page-hero">
-  {% if pages.seances.showKicker != false %}<span class="page-hero__kicker">{{ pages.seances.kicker or "Les séances" }}</span>{% endif %}
-  {% if pages.seances.showTitle != false %}<h1 class="page-hero__h">{% if pages.seances.title %}{{ pages.seances.title | safe }}{% else %}Plus de 100 séances,<br><em>à ton rythme.</em>{% endif %}</h1>{% endif %}
-  {% if pages.seances.showSubtitle != false %}<p class="page-hero__p">{% if pages.seances.subtitle %}{{ pages.seances.subtitle | safe }}{% else %}Filtre par niveau, focus, mood ou coach. De nouvelles vidéos en continu.{% endif %}</p>{% endif %}
+  {% if not pages.seances.hideKicker %}<span class="page-hero__kicker">{{ pages.seances.kicker or "Les séances" }}</span>{% endif %}
+  {% if not pages.seances.hideTitle %}<h1 class="page-hero__h">{% if pages.seances.title %}{{ pages.seances.title | safe }}{% else %}Plus de 100 séances,<br><em>à ton rythme.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.seances.hideSubtitle %}<p class="page-hero__p">{% if pages.seances.subtitle %}{{ pages.seances.subtitle | safe }}{% else %}Filtre par niveau, focus, mood ou coach. De nouvelles vidéos en continu.{% endif %}</p>{% endif %}
 </section>
 {% endif %}
 

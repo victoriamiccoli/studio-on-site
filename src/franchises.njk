@@ -5,11 +5,11 @@ permalink: /franchises/
 description: Ouvrir un studio Studio On en franchise. Déposez votre candidature.
 ---
 
-{% if pages.franchises.showHero != false %}
+{% if not pages.franchises.hideHero %}
 <section class="page-hero">
-  {% if pages.franchises.showKicker != false %}<span class="page-hero__kicker">{{ pages.franchises.kicker or "Franchises" }}</span>{% endif %}
-  {% if pages.franchises.showTitle != false %}<h1 class="page-hero__h">{% if pages.franchises.title %}{{ pages.franchises.title | safe }}{% else %}Ouvre ton<br>studio <em>On.</em>{% endif %}</h1>{% endif %}
-  {% if pages.franchises.showSubtitle != false %}<p class="page-hero__p">{% if pages.franchises.subtitle %}{{ pages.franchises.subtitle | safe }}{% else %}Un concept clé en main, rentable et différenciant. Dis-nous qui tu es, on revient vers toi très vite.{% endif %}</p>{% endif %}
+  {% if not pages.franchises.hideKicker %}<span class="page-hero__kicker">{{ pages.franchises.kicker or "Franchises" }}</span>{% endif %}
+  {% if not pages.franchises.hideTitle %}<h1 class="page-hero__h">{% if pages.franchises.title %}{{ pages.franchises.title | safe }}{% else %}Ouvre ton<br>studio <em>On.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.franchises.hideSubtitle %}<p class="page-hero__p">{% if pages.franchises.subtitle %}{{ pages.franchises.subtitle | safe }}{% else %}Un concept clé en main, rentable et différenciant. Dis-nous qui tu es, on revient vers toi très vite.{% endif %}</p>{% endif %}
 </section>
 {% endif %}
 

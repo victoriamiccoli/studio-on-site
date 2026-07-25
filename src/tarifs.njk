@@ -5,11 +5,11 @@ permalink: /tarifs/
 description: Le Pilates Reformer en illimité. Tarifs accessibles.
 ---
 
-{% if pages.tarifs.showHero != false %}
+{% if not pages.tarifs.hideHero %}
 <section class="page-hero">
-  {% if pages.tarifs.showKicker != false %}<span class="page-hero__kicker">{{ pages.tarifs.kicker or "Les tarifs" }}</span>{% endif %}
-  {% if pages.tarifs.showTitle != false %}<h1 class="page-hero__h">{% if pages.tarifs.title %}{{ pages.tarifs.title | safe }}{% else %}Tarifs<br><em>accessibles.</em>{% endif %}</h1>{% endif %}
-  {% if pages.tarifs.showSubtitle != false %}<p class="page-hero__p">{% if pages.tarifs.subtitle %}{{ pages.tarifs.subtitle | safe }}{% else %}Le Pilates Reformer. En illimité.{% endif %}</p>{% endif %}
+  {% if not pages.tarifs.hideKicker %}<span class="page-hero__kicker">{{ pages.tarifs.kicker or "Les tarifs" }}</span>{% endif %}
+  {% if not pages.tarifs.hideTitle %}<h1 class="page-hero__h">{% if pages.tarifs.title %}{{ pages.tarifs.title | safe }}{% else %}Tarifs<br><em>accessibles.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.tarifs.hideSubtitle %}<p class="page-hero__p">{% if pages.tarifs.subtitle %}{{ pages.tarifs.subtitle | safe }}{% else %}Le Pilates Reformer. En illimité.{% endif %}</p>{% endif %}
 </section>
 {% endif %}
 

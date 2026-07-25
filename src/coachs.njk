@@ -5,11 +5,11 @@ permalink: /coachs/
 description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
 ---
 
-{% if pages.coachs.showHero != false %}
+{% if not pages.coachs.hideHero %}
 <section class="page-hero">
-  {% if pages.coachs.showKicker != false %}<span class="page-hero__kicker">{{ pages.coachs.kicker or "Les coachs" }}</span>{% endif %}
-  {% if pages.coachs.showTitle != false %}<h1 class="page-hero__h">{% if pages.coachs.title %}{{ pages.coachs.title | safe }}{% else %}Sept coachs.<br><em>Sept ADN.</em>{% endif %}</h1>{% endif %}
-  {% if pages.coachs.showSubtitle != false %}<p class="page-hero__p">{% if pages.coachs.subtitle %}{{ pages.coachs.subtitle | safe }}{% else %}Choisis selon ton humeur, ton objectif, tes envies.{% endif %}</p>{% endif %}
+  {% if not pages.coachs.hideKicker %}<span class="page-hero__kicker">{{ pages.coachs.kicker or "Les coachs" }}</span>{% endif %}
+  {% if not pages.coachs.hideTitle %}<h1 class="page-hero__h">{% if pages.coachs.title %}{{ pages.coachs.title | safe }}{% else %}Sept coachs.<br><em>Sept ADN.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.coachs.hideSubtitle %}<p class="page-hero__p">{% if pages.coachs.subtitle %}{{ pages.coachs.subtitle | safe }}{% else %}Choisis selon ton humeur, ton objectif, tes envies.{% endif %}</p>{% endif %}
 </section>
 {% endif %}
 
