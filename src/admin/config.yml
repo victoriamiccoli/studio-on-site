@@ -84,19 +84,35 @@ collections:
             widget: "list"
             summary: "{{fields.text}}"
             field: { label: "Texte", name: "text", widget: "string" }
+          - { label: "Afficher la banderole défilante", name: "showMarquee", widget: "boolean", default: true, required: false }
+          - { label: "Afficher la partie Tarifs", name: "showTarifs", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie Tarifs", name: "showTarifsTitle", widget: "boolean", default: true, required: false }
           - { label: "Tarifs — titre", name: "tarifsTitle", widget: "string" }
           - { label: "Tarifs — sous-titre (blanc)", name: "tarifsSubtitleWhite", widget: "string" }
           - { label: "Tarifs — sous-titre (jaune)", name: "tarifsSubtitleYellow", widget: "string" }
+          - { label: "Afficher la partie Concept", name: "showConcept", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie Concept", name: "showConceptTitle", widget: "boolean", default: true, required: false }
           - { label: "Concept — sous-titre", name: "conceptSubtitle", widget: "string" }
+          - { label: "Afficher la partie Séances", name: "showSeances", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie Séances", name: "showSeancesTitle", widget: "boolean", default: true, required: false }
           - { label: "Séances — titre", name: "seancesTitle", widget: "string" }
           - { label: "Séances — sous-titre", name: "seancesSubtitle", widget: "string" }
+          - { label: "Afficher la partie Coachs", name: "showCoachs", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie Coachs", name: "showCoachsTitle", widget: "boolean", default: true, required: false }
           - { label: "Coachs — titre", name: "coachsTitle", widget: "string" }
           - { label: "Coachs — sous-titre", name: "coachsSubtitle", widget: "string" }
+          - { label: "Afficher la partie Studios", name: "showStudios", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie Studios", name: "showStudiosTitle", widget: "boolean", default: true, required: false }
           - { label: "Studios — titre", name: "studiosTitle", widget: "string" }
           - { label: "Studios — sous-titre", name: "studiosSubtitle", widget: "string" }
+          - { label: "Afficher la partie FAQ", name: "showFaq", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie FAQ", name: "showFaqTitle", widget: "boolean", default: true, required: false }
           - { label: "FAQ — titre", name: "faqTitle", widget: "string" }
           - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string" }
+          - { label: "Afficher le bloc final (Switch your body)", name: "showCta", widget: "boolean", default: true, required: false }
           - { label: "Bloc final — texte", name: "ctaText", widget: "string", required: false }
+          - { label: "Afficher la partie Télécharge l'app", name: "showApp", widget: "boolean", default: true, required: false }
+          - { label: "Afficher le titre de la partie App", name: "showAppTitle", widget: "boolean", default: true, required: false }
           - { label: "App - logo/icône (image carrée, idéal 512x512)", name: "appIcon", widget: "image", required: false }
           - { label: "App - accroche (kicker)", name: "appKicker", widget: "string", required: false }
           - { label: "App - titre", name: "appTitle", widget: "string", required: false }
@@ -117,6 +133,111 @@ collections:
               - { label: "Étiquette", name: "label", widget: "string" }
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Texte", name: "text", widget: "text" }
+
+  # ---------------- TITRES DES PAGES ----------------
+  - name: "pages"
+    label: "Titres des pages"
+    files:
+      - name: "pages"
+        label: "En-têtes des pages (titres, sous-titres, affichage)"
+        file: "src/_data/pages.json"
+        fields:
+          - label: "Page Tarifs"
+            name: "tarifs"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label (petit texte au-dessus)", name: "kicker", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
+              - { label: "Titre", name: "title", widget: "string", required: false, hint: "Laisse vide pour garder le titre par défaut. Tu peux utiliser <br> et <em>…</em>" }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
+          - label: "Page Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+          - label: "Page Franchises"
+            name: "franchises"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+          - label: "Page FAQ"
+            name: "faq"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+          - label: "Page Concept"
+            name: "concept"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre (vide = titre par défaut avec le logo ON)", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+          - label: "Page Séances"
+            name: "seances"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+          - label: "Page Coachs"
+            name: "coachs"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+          - label: "Page Studios"
+            name: "studios"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Afficher l'en-tête complet", name: "showHero", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le label", name: "showKicker", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le titre", name: "showTitle", widget: "boolean", default: true, required: false }
+              - { label: "Afficher le sous-titre", name: "showSubtitle", widget: "boolean", default: true, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
 
   # ---------------- TARIFS ----------------
   - name: "tarifs"

@@ -18,16 +18,19 @@ permalink: /
   </ul>
 </section>
 
-{% include "marquee.njk" %}
+{% if home.showMarquee != false %}{% include "marquee.njk" %}{% endif %}
 
 <!-- TARIFS -->
+{% if home.showTarifs != false %}
 <section id="tarifs" class="section--dark reveal">
+  {% if home.showTarifsTitle != false %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | safe }}</h2>
       <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitleWhite }} <em>{{ home.tarifsSubtitleYellow }}</em></p>
     </div>
   </div>
+  {% endif %}
 
   <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
     {% for p in tarifs.abonnements %}
@@ -53,15 +56,19 @@ permalink: /
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <!-- CONCEPT -->
+{% if home.showConcept != false %}
 <section id="concept" class="section--dark reveal" style="padding-bottom: clamp(40px, 5vw, 72px);">
+  {% if home.showConceptTitle != false %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
       <p class="section-head__p" style="color: var(--ecru)">{{ home.conceptSubtitle | safe }}</p>
     </div>
   </div>
+  {% endif %}
 
   <div class="principes" style="border-top: none;">
     {% for s in home.steps %}
@@ -73,9 +80,12 @@ permalink: /
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <!-- SEANCES -->
+{% if home.showSeances != false %}
 <section id="seances" class="section--dark reveal" style="padding-top: 0;">
+  {% if home.showSeancesTitle != false %}
   <div class="section-meta section-head" style="padding-top: 40px;">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | safe }}</h2>
@@ -85,6 +95,7 @@ permalink: /
       </div>
     </div>
   </div>
+  {% endif %}
 
   <div class="gallery">
     {% for s in seances.list %}{% if not s.hideOnHome %}
@@ -97,15 +108,19 @@ permalink: /
     {% endif %}{% endfor %}
   </div>
 </section>
+{% endif %}
 
 <!-- COACHS -->
+{% if home.showCoachs != false %}
 <section id="coachs" class="section--dark reveal">
+  {% if home.showCoachsTitle != false %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | safe }}</h2>
       <p class="section-head__p" style="color: var(--ecru); opacity: .8">{{ home.coachsSubtitle | safe }}</p>
     </div>
   </div>
+  {% endif %}
 
   <div class="coachs">
     {% for c in coachs.list %}
@@ -123,12 +138,14 @@ permalink: /
     </article>
   </div>
 </section>
+{% endif %}
 
 <!-- TELECHARGE L'APP -->
+{% if home.showApp != false %}
 <section id="app" class="section--dark reveal app-dl">
   {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
   {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
-  <h2 class="app-dl__h">{{ home.appTitle }}</h2>
+  {% if home.showAppTitle != false %}<h2 class="app-dl__h">{{ home.appTitle }}</h2>{% endif %}
   {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}
   <ul class="app-dl__list">
     {% for b in home.appBullets %}<li>{{ b }}</li>{% endfor %}
@@ -142,15 +159,19 @@ permalink: /
     </a>
   </div>
 </section>
+{% endif %}
 
 <!-- STUDIOS -->
+{% if home.showStudios != false %}
 <section id="studios" class="reveal">
+  {% if home.showStudiosTitle != false %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 18ch;">{{ home.studiosTitle | safe }}</h2>
       <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.studiosSubtitle | safe }}</p>
     </div>
   </div>
+  {% endif %}
 
   <div class="city-chips" id="cityChips" role="tablist">
     {% for s in studios.list %}{% if s.visible != false %}<button class="city-chip{% if loop.first %} is-active{% endif %}" data-city="{{ s.key }}" role="tab">{{ s.chip }}</button>{% endif %}{% endfor %}
@@ -167,15 +188,19 @@ permalink: /
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- FAQ -->
+{% if home.showFaq != false %}
 <section id="faq" class="reveal">
+  {% if home.showFaqTitle != false %}
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch;">{{ home.faqTitle | safe }}</h2>
       <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.faqSubtitle | safe }}</p>
     </div>
   </div>
+  {% endif %}
   <div class="faq">
     {% for item in faq.list %}
     <details{% if loop.first %} open{% endif %}>
@@ -185,8 +210,10 @@ permalink: /
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <!-- CTA FRANCHISE -->
+{% if home.showCta != false %}
 <section class="cta-band reveal" id="cta">
   <h2 class="cta-band__h" style="line-height: .92;">
     Switch<br>your&nbsp;body<br>
@@ -199,6 +226,7 @@ permalink: /
     </div>
   </div>
 </section>
+{% endif %}
 
 <script>
   const CITIES = ({{ studios.list | dump | safe }}).filter(c => c.visible !== false);

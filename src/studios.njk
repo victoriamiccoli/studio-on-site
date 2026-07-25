@@ -5,11 +5,13 @@ permalink: /studios/
 description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
 ---
 
+{% if pages.studios.showHero != false %}
 <section class="page-hero">
-  <span class="page-hero__kicker">Les studios</span>
-  <h1 class="page-hero__h">Paris, et<br>bientôt <em>ailleurs…</em></h1>
-  <p class="page-hero__p">Pousse la porte, le studio est à toi. Du lever au coucher du soleil.</p>
+  {% if pages.studios.showKicker != false %}<span class="page-hero__kicker">{{ pages.studios.kicker or "Les studios" }}</span>{% endif %}
+  {% if pages.studios.showTitle != false %}<h1 class="page-hero__h">{% if pages.studios.title %}{{ pages.studios.title | safe }}{% else %}Paris, et<br>bientôt <em>ailleurs…</em>{% endif %}</h1>{% endif %}
+  {% if pages.studios.showSubtitle != false %}<p class="page-hero__p">{% if pages.studios.subtitle %}{{ pages.studios.subtitle | safe }}{% else %}Pousse la porte, le studio est à toi. Du lever au coucher du soleil.{% endif %}</p>{% endif %}
 </section>
+{% endif %}
 
 <section class="reveal">
   <div class="city-chips" id="cityChips" role="tablist">

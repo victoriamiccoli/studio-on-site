@@ -5,11 +5,13 @@ permalink: /seances/
 description: Plus de 100 séances de Pilates Reformer, à ton rythme.
 ---
 
+{% if pages.seances.showHero != false %}
 <section class="page-hero">
-  <span class="page-hero__kicker">Les séances</span>
-  <h1 class="page-hero__h">Plus de 100 séances,<br><em>à ton rythme.</em></h1>
-  <p class="page-hero__p">Filtre par niveau, focus, mood ou coach. De nouvelles vidéos en continu.</p>
+  {% if pages.seances.showKicker != false %}<span class="page-hero__kicker">{{ pages.seances.kicker or "Les séances" }}</span>{% endif %}
+  {% if pages.seances.showTitle != false %}<h1 class="page-hero__h">{% if pages.seances.title %}{{ pages.seances.title | safe }}{% else %}Plus de 100 séances,<br><em>à ton rythme.</em>{% endif %}</h1>{% endif %}
+  {% if pages.seances.showSubtitle != false %}<p class="page-hero__p">{% if pages.seances.subtitle %}{{ pages.seances.subtitle | safe }}{% else %}Filtre par niveau, focus, mood ou coach. De nouvelles vidéos en continu.{% endif %}</p>{% endif %}
 </section>
+{% endif %}
 
 <section class="section--dark reveal">
   <div class="section-meta section-head" style="padding-top: 0;">

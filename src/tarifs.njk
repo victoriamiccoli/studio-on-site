@@ -5,11 +5,13 @@ permalink: /tarifs/
 description: Le Pilates Reformer en illimité. Tarifs accessibles.
 ---
 
+{% if pages.tarifs.showHero != false %}
 <section class="page-hero">
-  <span class="page-hero__kicker">Les tarifs</span>
-  <h1 class="page-hero__h">Tarifs<br><em>accessibles.</em></h1>
-  <p class="page-hero__p">Le Pilates Reformer. En illimité.</p>
+  {% if pages.tarifs.showKicker != false %}<span class="page-hero__kicker">{{ pages.tarifs.kicker or "Les tarifs" }}</span>{% endif %}
+  {% if pages.tarifs.showTitle != false %}<h1 class="page-hero__h">{% if pages.tarifs.title %}{{ pages.tarifs.title | safe }}{% else %}Tarifs<br><em>accessibles.</em>{% endif %}</h1>{% endif %}
+  {% if pages.tarifs.showSubtitle != false %}<p class="page-hero__p">{% if pages.tarifs.subtitle %}{{ pages.tarifs.subtitle | safe }}{% else %}Le Pilates Reformer. En illimité.{% endif %}</p>{% endif %}
 </section>
+{% endif %}
 
 <section class="section--dark reveal" style="padding-top: clamp(40px, 6vw, 80px);">
   <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">

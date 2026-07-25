@@ -5,11 +5,13 @@ permalink: /faq/
 description: Les vraies questions sur Studio On et le Pilates Reformer.
 ---
 
+{% if pages.faq.showHero != false %}
 <section class="page-hero">
-  <span class="page-hero__kicker">FAQ</span>
-  <h1 class="page-hero__h">Les vraies<br><em>questions.</em></h1>
-  <p class="page-hero__p">Si ta question n'y est pas, écris-nous, on y répond très vite&nbsp;!</p>
+  {% if pages.faq.showKicker != false %}<span class="page-hero__kicker">{{ pages.faq.kicker or "FAQ" }}</span>{% endif %}
+  {% if pages.faq.showTitle != false %}<h1 class="page-hero__h">{% if pages.faq.title %}{{ pages.faq.title | safe }}{% else %}Les vraies<br><em>questions.</em>{% endif %}</h1>{% endif %}
+  {% if pages.faq.showSubtitle != false %}<p class="page-hero__p">{% if pages.faq.subtitle %}{{ pages.faq.subtitle | safe }}{% else %}Si ta question n'y est pas, écris-nous, on y répond très vite&nbsp;!{% endif %}</p>{% endif %}
 </section>
+{% endif %}
 
 <section class="reveal">
   <div class="faq">
