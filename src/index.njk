@@ -36,7 +36,7 @@ permalink: /
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -48,7 +48,7 @@ permalink: /
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>

@@ -137,8 +137,24 @@ collections:
               - { label: "Sous-titre", name: "sub", widget: "string", required: false }
               - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
               - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
-              - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
+              - { label: "ID Sportigo par défaut (utilisé si aucun paiement par studio n'est renseigné ci-dessous)", name: "offerId", widget: "string", required: false }
               - { label: "Titre sur la fenêtre de paiement (si vide, reprend le nom)", name: "payTitle", widget: "string", required: false }
+              - label: "Paiement par studio"
+                name: "payments"
+                widget: "list"
+                required: false
+                summary: "{{fields.studio}} — {{fields.id}}"
+                hint: "Pour chaque studio qui vend cette offre : choisis le studio et mets son ID Sportigo. La liste des studios se met à jour automatiquement quand tu en ajoutes un. Au clic sur Acheter/S'abonner, le client choisit son studio et le bon paiement se charge."
+                fields:
+                  - label: "Studio"
+                    name: "studio"
+                    widget: "relation"
+                    collection: "studios"
+                    file: "studios"
+                    search_fields: ["list.*.name"]
+                    value_field: "list.*.key"
+                    display_fields: ["list.*.name"]
+                  - { label: "ID Sportigo pour ce studio", name: "id", widget: "string" }
               - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
               - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
           - label: "Séances & packs"
@@ -152,8 +168,24 @@ collections:
               - { label: "Sous-titre", name: "sub", widget: "string", required: false }
               - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
               - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
-              - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
+              - { label: "ID Sportigo par défaut (utilisé si aucun paiement par studio n'est renseigné ci-dessous)", name: "offerId", widget: "string", required: false }
               - { label: "Titre sur la fenêtre de paiement (si vide, reprend le nom)", name: "payTitle", widget: "string", required: false }
+              - label: "Paiement par studio"
+                name: "payments"
+                widget: "list"
+                required: false
+                summary: "{{fields.studio}} — {{fields.id}}"
+                hint: "Pour chaque studio qui vend cette offre : choisis le studio et mets son ID Sportigo. La liste des studios se met à jour automatiquement quand tu en ajoutes un. Au clic sur Acheter/S'abonner, le client choisit son studio et le bon paiement se charge."
+                fields:
+                  - label: "Studio"
+                    name: "studio"
+                    widget: "relation"
+                    collection: "studios"
+                    file: "studios"
+                    search_fields: ["list.*.name"]
+                    value_field: "list.*.key"
+                    display_fields: ["list.*.name"]
+                  - { label: "ID Sportigo pour ce studio", name: "id", widget: "string" }
               - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
               - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
 
@@ -230,16 +262,6 @@ collections:
               - { label: "Infos", name: "meta", widget: "list", required: false, field: { label: "Info", name: "text", widget: "string" } }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
-              - label: "Offres Sportigo vendues dans CE studio (paiement)"
-                name: "offers"
-                widget: "list"
-                required: false
-                summary: "{{fields.label}}"
-                hint: "Ajoute autant d'offres que tu veux (y compris des offres spéciales). Pour chaque offre : recopie l'ID de l'onglet Tarifs (colonne « ID offre Sportigo ») dans « ID de l'offre (Tarifs) », puis mets l'ID Sportigo propre à CE studio dans « ID Sportigo pour ce studio ». Pour Paris 17, les deux IDs sont identiques."
-                fields:
-                  - { label: "Nom (pour t'y retrouver)", name: "label", widget: "string", required: false }
-                  - { label: "ID de l'offre (Tarifs)", name: "ref", widget: "string" }
-                  - { label: "ID Sportigo pour ce studio", name: "id", widget: "string" }
 
   # ---------------- FAQ ----------------
   - name: "faq"
