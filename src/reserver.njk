@@ -13,14 +13,14 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
 
 <section class="reveal" style="padding-bottom: clamp(40px, 5vw, 64px);">
   <div class="studio-pick" id="studioPick">
-    {% for s in reservation.studios %}
-    <button type="button" class="studio-pick__card{% if not s.open %} is-soon{% endif %}" data-studio="{{ s.key }}" data-planning="{{ s.planning }}" data-open="{{ s.open }}" data-name="{{ s.name }}">
-      <span class="studio-pick__status">{% if s.open %}Ouvert{% else %}Bientôt{% endif %}</span>
+    {% for s in studios.list %}{% if s.visible != false %}
+    <button type="button" class="studio-pick__card{% if s.etat != 'open' %} is-soon{% endif %}" data-key="{{ s.key }}" data-planning="{{ s.planning }}" data-etat="{{ s.etat }}" data-name="{{ s.name }}">
+      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% elif s.etat == 'waitlist' %}Liste d'attente{% else %}Bientôt{% endif %}</span>
       <span class="studio-pick__name">{{ s.name }}</span>
-      <span class="studio-pick__adr">{{ s.adr }}</span>
-      <span class="studio-pick__meta">{{ s.meta }}</span>
+      <span class="studio-pick__adr">{{ s.adr | safe }}</span>
+      <span class="studio-pick__meta">{{ s.meta | join(" · ") }}</span>
     </button>
-    {% endfor %}
+    {% endif %}{% endfor %}
   </div>
   <p class="studio-pick__hint" id="pickHint">Sélectionne ton studio ci-dessus pour afficher le planning et les tarifs.</p>
 </section>
@@ -40,7 +40,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Abonnements<br>& séances</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Choisis la formule qui te correspond.</p>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;" id="reserverTarifsSub">Choisis la formule qui te correspond.</p>
     </div>
   </div>
 
@@ -51,7 +51,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -62,7 +62,7 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -71,10 +71,10 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
 <!-- Message studio à venir -->
 <section class="section--dark reveal" id="reserverSoon" style="display:none;">
   <div class="section-head" style="text-align:center;">
-    <h2 class="h-lg" style="color: var(--ecru);">Ouverture <span style="color:var(--vanille)">septembre 2026</span></h2>
+    <h2 class="h-lg" style="color: var(--ecru);" id="soonTitle">Ouverture <span style="color:var(--vanille)">bientôt</span></h2>
     <p style="margin: 18px auto 0; max-width: 40ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Ce studio ouvre bientôt&nbsp;! En attendant, tu peux réserver au studio Paris 17e, ou rejoindre la liste d'attente pour être prévenu dès l'ouverture.</p>
     <div style="margin-top:28px;">
-      <button type="button" class="btn btn--ecru" data-waitlist data-studio="Paris 6e">Rejoindre la liste d'attente <span class="btn__toggle"></span></button>
+      <button type="button" class="btn btn--ecru" id="soonWaitBtn" data-waitlist data-studio="">Rejoindre la liste d'attente <span class="btn__toggle"></span></button>
     </div>
   </div>
 </section>
@@ -101,20 +101,29 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
   var tarifs = document.getElementById('reserverTarifs');
   var soon = document.getElementById('reserverSoon');
   var planningTitle = document.getElementById('planningTitle');
+  var tarifsSub = document.getElementById('reserverTarifsSub');
   var container = document.getElementById('sportigo-appointment-container');
-
+  var soonTitle = document.getElementById('soonTitle');
+  var soonWaitBtn = document.getElementById('soonWaitBtn');
   var hint = document.getElementById('pickHint');
+
   function isValidPlanning(p){ return p && /^[0-9]+$/.test(p); }
+
   function selectStudio(btn){
     if (hint) hint.style.display = 'none';
     pick.querySelectorAll('.studio-pick__card').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
     var planning = btn.getAttribute('data-planning');
     var name = btn.getAttribute('data-name');
-    if (isValidPlanning(planning)){
+    var key = btn.getAttribute('data-key');
+    var etat = btn.getAttribute('data-etat');
+    if (etat === 'open' && isValidPlanning(planning)){
+      // Studio de référence choisi : les paiements de cette page passeront par ce studio.
+      document.body.setAttribute('data-studio-ref', key);
       soon.style.display = 'none';
       panel.style.display = '';
       tarifs.style.display = '';
       planningTitle.textContent = 'Planning · ' + name;
+      if (tarifsSub) tarifsSub.textContent = 'Ton studio de référence : ' + name + '. Choisis ta formule.';
       container.innerHTML = '<p style="padding:40px;text-align:center;opacity:.7;color:var(--ecru)">Chargement du planning…</p>';
       loadScript(function(){
         container.innerHTML = '<div id="sportigo-appointment-full-container"></div>';
@@ -128,11 +137,13 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
         }
       });
     } else {
+      document.body.removeAttribute('data-studio-ref');
       panel.style.display = 'none';
       tarifs.style.display = 'none';
       soon.style.display = '';
+      if (soonTitle) soonTitle.innerHTML = 'Ouverture <span style="color:var(--vanille)">' + (name || 'bientôt') + '</span>';
+      if (soonWaitBtn) soonWaitBtn.setAttribute('data-studio', name || '');
     }
-    panel.scrollIntoView ? null : null;
   }
 
   pick.addEventListener('click', function(e){
@@ -140,7 +151,5 @@ description: Choisis ton studio Studio On, consulte le planning et abonne-toi.
     if (!btn) return;
     selectStudio(btn);
   });
-  // Aucun studio sélectionné au départ : le planning et les tarifs
-  // n'apparaissent qu'après le choix d'un studio.
 })();
 </script>

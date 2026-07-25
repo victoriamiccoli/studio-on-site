@@ -59,7 +59,11 @@
     {% for col in site.footer.columns %}
     <div class="foot-col">
       <h5>{{ col.title }}</h5>
-      {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
+      {% if col.title == "Nos studios" %}
+        {% for s in studios.list %}{% if s.visible != false %}<a href="{% if s.etat == 'open' and s.ctaHref %}{{ s.ctaHref }}{% else %}/#studios{% endif %}">{{ s.chip }}</a>{% endif %}{% endfor %}
+      {% else %}
+        {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
+      {% endif %}
     </div>
     {% endfor %}
   </div>
@@ -104,13 +108,19 @@
   if (burger){ burger.addEventListener('click', toggleMenu); navOverlay.addEventListener('click', closeMenu); navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu)); }
 </script>
 
-<!-- Fenêtre de paiement Sportigo -->
-<div class="pay-modal" id="payModal" aria-hidden="true" role="dialog" aria-modal="true">
+<!-- Parcours d'achat Sportigo (studio → récapitulatif → paiement) -->
+<div class="pay-modal pay-modal--flow" id="payModal" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pay-modal__backdrop" data-pay-close></div>
   <div class="pay-modal__panel">
     <div class="pay-modal__head">
+      <button class="pay-modal__back" id="payBack" type="button" aria-label="Retour" hidden><span aria-hidden="true">←</span> Retour</button>
       <span class="pay-modal__title" id="payModalTitle">Réserver</span>
       <button class="pay-modal__close" type="button" data-pay-close aria-label="Fermer">×</button>
+    </div>
+    <div class="pay-flow__steps" id="payStepper" aria-hidden="true">
+      <span class="pay-flow__step" data-step="studio"><i>1</i> Studio</span>
+      <span class="pay-flow__step" data-step="recap"><i>2</i> Récapitulatif</span>
+      <span class="pay-flow__step" data-step="pay"><i>3</i> Paiement</span>
     </div>
     <div class="pay-modal__body" id="payModalBody"></div>
   </div>
@@ -119,11 +129,32 @@
 (function(){
   var ACCOUNT = "{{ site.sportigoAccount }}";
   var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
+  var STUDIOS = ({{ studios.list | dump | safe }}).filter(function(s){ return s.visible !== false; });
+  // Correspondance ID d'offre par défaut -> clé de l'offre (pour retrouver l'ID propre à chaque studio)
+  var OFFER_KEY_BY_ID = { "36291":"soft", "33687":"full", "33689":"carte", "33690":"decouverte", "32589":"pack10" };
+
   var scriptState = 0; // 0=non chargé, 1=chargement, 2=prêt
   var scriptCbs = [];
   var modal = document.getElementById('payModal');
   var body = document.getElementById('payModalBody');
   var title = document.getElementById('payModalTitle');
+  var backBtn = document.getElementById('payBack');
+  var stepper = document.getElementById('payStepper');
+  var ctx = null;
+
+  function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function studioByKey(k){ for (var i=0;i<STUDIOS.length;i++){ if (STUDIOS[i].key===k) return STUDIOS[i]; } return null; }
+  function resolveOfferId(s, key, fallback){
+    if (key && s && s.offers && s.offers[key]) return s.offers[key];
+    return fallback;
+  }
+  function buyableStudios(key, fallback){
+    return STUDIOS.filter(function(s){
+      if (s.etat !== 'open') return false;
+      if (key) return !!(s.offers && s.offers[key]); // offre connue : chaque studio doit avoir son propre ID
+      return !!fallback;                             // offre non mappée : ID par défaut pour tous
+    });
+  }
 
   function loadScript(cb){
     if (scriptState === 2) { cb(); return; }
@@ -138,23 +169,71 @@
   }
 
   function openModal(){ modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); }
-  function closeModal(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); body.innerHTML=''; }
+  function closeModal(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); body.innerHTML=''; ctx=null; }
 
-  function openOffer(offerId, label){
-    title.textContent = label || 'Réserver';
-    openModal();
-    if (!offerId){
-      body.innerHTML = '<div class="pay-modal__msg">Ce moyen de paiement sera actif très bientôt.</div>';
+  function updateStepper(current){
+    if (!stepper) return;
+    var chips = stepper.querySelectorAll('.pay-flow__step');
+    for (var i=0;i<chips.length;i++){
+      var st = chips[i].getAttribute('data-step');
+      chips[i].style.display = (st==='studio' && ctx && !ctx.hasStudioStep) ? 'none' : '';
+      chips[i].classList.toggle('is-active', st===current);
+    }
+  }
+
+  function renderStudioStep(){
+    ctx.step='studio'; updateStepper('studio');
+    title.textContent = 'Choisis ton studio de référence';
+    backBtn.hidden = true;
+    var list = buyableStudios(ctx.offerKey, ctx.offerId);
+    if (!list.length){
+      body.innerHTML = '<div class="pay-modal__msg">Aucun studio n\'est ouvert à la vente pour le moment. Écris-nous, on t\'accompagne&nbsp;!</div>';
       return;
     }
-    body.innerHTML = '<div class="pay-modal__msg">Chargement du paiement…</div>';
+    var html = '<p class="pay-flow__lead">Pour <strong>'+esc(ctx.title)+'</strong>, sélectionne le studio où tu viendras t\'entraîner.</p><div class="pay-flow__studios">';
+    list.forEach(function(s){
+      html += '<button type="button" class="pay-flow__studio" data-pick-studio="'+esc(s.key)+'">'
+        + '<span class="pay-flow__studio-badge">Ouvert</span>'
+        + '<span class="pay-flow__studio-name">'+esc(s.name)+'</span>'
+        + '<span class="pay-flow__studio-adr">'+(s.adr||'')+'</span>'
+        + '<span class="pay-flow__studio-go">Choisir <span aria-hidden="true">→</span></span>'
+        + '</button>';
+    });
+    html += '</div>';
+    body.innerHTML = html;
+  }
+
+  function renderRecapStep(){
+    ctx.step='recap'; updateStepper('recap');
+    title.textContent = 'Récapitulatif';
+    backBtn.hidden = !ctx.hasStudioStep;
+    var s = studioByKey(ctx.studioKey);
+    body.innerHTML =
+      '<div class="pay-flow__recap">'
+      + '<div class="pay-flow__recap-row"><span class="pay-flow__recap-k">Offre</span><span class="pay-flow__recap-v">'+esc(ctx.title)+'</span></div>'
+      + (ctx.price ? '<div class="pay-flow__recap-row"><span class="pay-flow__recap-k">Tarif</span><span class="pay-flow__recap-v">'+esc(ctx.price)+'€ '+esc(ctx.per||'')+'</span></div>' : '')
+      + '<div class="pay-flow__recap-row"><span class="pay-flow__recap-k">Studio de référence</span><span class="pay-flow__recap-v">'+esc(s?s.name:'')+'</span></div>'
+      + (s && s.adr ? '<div class="pay-flow__recap-adr">'+s.adr+'</div>' : '')
+      + '</div>'
+      + '<button type="button" class="btn btn--noir pay-flow__continue" id="payGo">Continuer vers le paiement <span>→</span></button>'
+      + (ctx.hasStudioStep ? '<button type="button" class="pay-flow__change" data-flow-back>Changer de studio</button>' : '');
+  }
+
+  function renderPayStep(){
+    ctx.step='pay'; updateStepper('pay');
+    title.textContent = ctx.title || 'Paiement';
+    backBtn.hidden = false;
+    var s = studioByKey(ctx.studioKey);
+    var offerId = resolveOfferId(s, ctx.offerKey, ctx.offerId);
+    var head = '<p class="pay-flow__paystudio">Studio de référence : <strong>'+esc(s?s.name:'')+'</strong></p>';
+    if (!offerId){ body.innerHTML = head + '<div class="pay-modal__msg">Ce moyen de paiement sera actif très bientôt.</div>'; return; }
+    body.innerHTML = head + '<div class="pay-modal__msg">Chargement du paiement…</div>';
     loadScript(function(){
-      body.innerHTML = '<div id="sportigo-buy-container"></div>';
+      body.innerHTML = head + '<div id="sportigo-buy-container"></div>';
       try {
         window.initComponent("BuyFromList", "sportigo-buy-container", ACCOUNT, {
           theme: { googleFont: { name: "Inter" } },
-          inline: true,
-          hideFilters: true,
+          inline: true, hideFilters: true,
           initOfferPayment: { cancelable: false },
           onlyOffers: [ parseInt(offerId, 10) ]
         });
@@ -164,13 +243,39 @@
     });
   }
 
+  function goBack(){
+    if (!ctx) return;
+    if (ctx.step === 'pay'){ renderRecapStep(); }
+    else if (ctx.step === 'recap' && ctx.hasStudioStep){ renderStudioStep(); }
+  }
+
+  function startPurchase(opts){
+    ctx = { offerId: opts.offerId, offerKey: OFFER_KEY_BY_ID[opts.offerId] || null, title: opts.title || 'Réserver', price: opts.price||'', per: opts.per||'', studioKey: null, hasStudioStep: false, step: 'studio' };
+    openModal();
+    var ref = document.body.getAttribute('data-studio-ref'); // studio déjà choisi sur la page Réserver
+    if (ref && studioByKey(ref)){ ctx.studioKey = ref; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    var list = buyableStudios(ctx.offerKey, ctx.offerId);
+    if (list.length === 0){ ctx.hasStudioStep = false; renderStudioStep(); return; } // affiche le message "aucun studio ouvert"
+    if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    ctx.hasStudioStep = true; renderStudioStep();
+  }
+
+  body.addEventListener('click', function(e){
+    var pickBtn = e.target.closest('[data-pick-studio]');
+    if (pickBtn){ ctx.studioKey = pickBtn.getAttribute('data-pick-studio'); renderRecapStep(); return; }
+    if (e.target.closest('#payGo')){ renderPayStep(); return; }
+    if (e.target.closest('[data-flow-back]')){ renderStudioStep(); return; }
+  });
+  if (backBtn) backBtn.addEventListener('click', goBack);
+
   document.addEventListener('click', function(e){
     var btn = e.target.closest('.plan__cta[data-offer]');
     if (btn){
       e.preventDefault();
       var card = btn.closest('.plan');
-      var name = card ? (card.querySelector('.plan__name') || {}).textContent : '';
-      openOffer(btn.getAttribute('data-offer'), (name || 'Réserver').trim());
+      var t = btn.getAttribute('data-title');
+      if (!t) { t = card ? (card.querySelector('.plan__name') || {}).textContent : ''; }
+      startPurchase({ offerId: btn.getAttribute('data-offer'), title: (t || 'Réserver').trim(), price: btn.getAttribute('data-price'), per: btn.getAttribute('data-per') });
       return;
     }
     if (e.target.closest('[data-pay-close]')) { closeModal(); }

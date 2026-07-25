@@ -21,7 +21,7 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
       <ul class="plan__list">
         {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
       </ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -35,7 +35,7 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
       <ul class="plan__list">
         {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
       </ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -49,7 +49,6 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
     </div>
   </div>
   <div class="cta-band__actions" style="align-items:center; flex-direction:row; justify-content:center; gap:12px; flex-wrap:wrap;">
-    <a href="/faq/" class="btn btn--noir">Lire la FAQ <span>→</span></a>
-    <a href="/contact/" class="btn" style="border:1px solid var(--line);">Nous écrire <span>→</span></a>
+    <a href="/contact/" class="btn btn--noir">Nous écrire <span>→</span></a>
   </div>
 </section>

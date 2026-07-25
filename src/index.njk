@@ -36,7 +36,7 @@ permalink: /
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -48,7 +48,7 @@ permalink: /
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
       <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>
@@ -193,7 +193,7 @@ permalink: /
     <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>
   </h2>
   <div class="cta-band__side">
-    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ home.ctaText | safe }}</p>
+    {% if home.ctaText %}<p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ home.ctaText | safe }}</p>{% endif %}
     <div class="cta-band__actions">
       <a href="{{ site.reserverUrl }}" class="btn btn--ecru">Réserver ma première séance <span class="btn__toggle"></span></a>
     </div>

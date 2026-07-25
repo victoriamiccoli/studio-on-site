@@ -96,7 +96,7 @@ collections:
           - { label: "Studios — sous-titre", name: "studiosSubtitle", widget: "string" }
           - { label: "FAQ — titre", name: "faqTitle", widget: "string" }
           - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string" }
-          - { label: "Bloc final — texte", name: "ctaText", widget: "string" }
+          - { label: "Bloc final — texte", name: "ctaText", widget: "string", required: false }
           - { label: "App - logo/icône (image carrée, idéal 512x512)", name: "appIcon", widget: "image", required: false }
           - { label: "App - accroche (kicker)", name: "appKicker", widget: "string", required: false }
           - { label: "App - titre", name: "appTitle", widget: "string", required: false }
@@ -138,6 +138,7 @@ collections:
               - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
               - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
               - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
+              - { label: "Titre sur la fenêtre de paiement (si vide, reprend le nom)", name: "payTitle", widget: "string", required: false }
               - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
               - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
           - label: "Séances & packs"
@@ -152,6 +153,7 @@ collections:
               - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
               - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
               - { label: "ID offre Sportigo", name: "offerId", widget: "string" }
+              - { label: "Titre sur la fenêtre de paiement (si vide, reprend le nom)", name: "payTitle", widget: "string", required: false }
               - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
               - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
 
@@ -227,6 +229,19 @@ collections:
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Infos", name: "meta", widget: "list", required: false, field: { label: "Info", name: "text", widget: "string" } }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
+              - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
+              - label: "IDs des offres Sportigo pour CE studio (paiement)"
+                name: "offers"
+                widget: "object"
+                required: false
+                collapsed: true
+                hint: "Chaque studio a ses propres offres Sportigo. Renseigne les IDs ici pour que le paiement soit rattaché à ce studio. Laisse vide tant que le studio n'est pas ouvert."
+                fields:
+                  - { label: "ID offre — Abonnement Soft Hours", name: "soft", widget: "string", required: false }
+                  - { label: "ID offre — Abonnement illimité (Full)", name: "full", widget: "string", required: false }
+                  - { label: "ID offre — Séance à la carte", name: "carte", widget: "string", required: false }
+                  - { label: "ID offre — Pack Découverte", name: "decouverte", widget: "string", required: false }
+                  - { label: "ID offre — Pack 10 séances", name: "pack10", widget: "string", required: false }
 
   # ---------------- FAQ ----------------
   - name: "faq"
@@ -243,23 +258,3 @@ collections:
             fields:
               - { label: "Question", name: "q", widget: "string" }
               - { label: "Réponse", name: "a", widget: "text" }
-
-  # ---------------- RÉSERVATION ----------------
-  - name: "reservation"
-    label: "Réservation (studios)"
-    files:
-      - name: "reservation"
-        label: "Studios réservables"
-        file: "src/_data/reservation.json"
-        fields:
-          - label: "Studios"
-            name: "studios"
-            widget: "list"
-            summary: "{{fields.name}}"
-            fields:
-              - { label: "Clé (identifiant)", name: "key", widget: "string" }
-              - { label: "Nom", name: "name", widget: "string" }
-              - { label: "Adresse", name: "adr", widget: "string" }
-              - { label: "Infos", name: "meta", widget: "string" }
-              - { label: "ID planning Sportigo (vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
-              - { label: "Ouvert", name: "open", widget: "boolean", default: false }
