@@ -33,8 +33,14 @@
       "ctaLabel": "S'abonner",
       "price": "89",
       "name": "Abonnement illimité",
+      "payments": [
+        {
+          "studio": "paris17",
+          "id": "33687"
+        }
+      ],
       "feature": true,
-      "offerId": "33687",
+      "offerId": "",
       "popular": false,
       "features": [
         "1 séance / jour",
