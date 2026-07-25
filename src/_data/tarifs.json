@@ -1,79 +1,89 @@
 {
   "abonnements": [
     {
-      "name": "Abonnement illimité",
-      "badge": "Soft Hours",
-      "price": "60",
-      "per": "/ mois",
       "sub": "Illimité en heures creuses",
+      "badge": "Soft Hours",
+      "ctaLabel": "S'abonner",
+      "price": "60",
+      "name": "Abonnement illimité",
+      "payments": [
+        {
+          "studio": "paris17",
+          "id": "36291"
+        },
+        {
+          "studio": "paris6",
+          "id": "36291"
+        }
+      ],
+      "feature": true,
+      "offerId": "",
+      "popular": true,
       "features": [
         "Semaine : 6h-8h · 9h-12h30 · 14h-17h30 · 21h-22h30",
         "Week-end : 6h-10h · 15h-22h30",
         "1 séance / jour",
         "Engagement 6 mois puis résiliable avec préavis d'un mois"
       ],
-      "ctaLabel": "S'abonner",
-      "offerId": "36291",
-      "feature": true,
-      "popular": true
+      "per": "/ mois"
     },
     {
-      "name": "Abonnement illimité",
-      "badge": "Full On",
-      "price": "89",
-      "per": "/ mois",
       "sub": "Illimité 7j/7 de 6h à 22h30",
+      "badge": "Full On",
+      "ctaLabel": "S'abonner",
+      "price": "89",
+      "name": "Abonnement illimité",
+      "feature": true,
+      "offerId": "33687",
+      "popular": false,
       "features": [
         "1 séance / jour",
         "Engagement 6 mois puis résiliable avec préavis d'un mois"
       ],
-      "ctaLabel": "S'abonner",
-      "offerId": "33687",
-      "feature": true,
-      "popular": false
+      "per": "/ mois"
     }
   ],
   "seances": [
     {
-      "name": "Séance à la carte",
       "badge": "",
+      "ctaLabel": "Acheter",
       "price": "20",
-      "per": "/ une séance",
+      "name": "Séance à la carte",
+      "feature": false,
+      "offerId": "33689",
+      "popular": false,
       "features": [
         "Idéal pour tester",
         "Valable 6 mois"
       ],
-      "ctaLabel": "Acheter",
-      "offerId": "33689",
-      "feature": false,
-      "popular": false
+      "per": "/ une séance"
     },
     {
-      "name": "Pack Découverte",
       "badge": "",
+      "ctaLabel": "Acheter",
       "price": "40",
-      "per": "/ 3 séances",
+      "name": "Pack Découverte",
+      "feature": false,
+      "offerId": "33690",
+      "popular": false,
       "features": [
         "Valable au premier achat",
         "Valable 6 mois"
       ],
-      "ctaLabel": "Acheter",
-      "offerId": "33690",
-      "feature": false,
-      "popular": false
+      "per": "/ 3 séances"
     },
     {
-      "name": "Pack 10 séances",
       "badge": "Ultra flexible",
+      "ctaLabel": "Acheter",
       "price": "150",
-      "per": "/ 10 séances",
+      "name": "Pack 10 séances",
+      "feature": false,
+      "offerId": "32589",
+      "popular": false,
       "features": [
         "Valable 6 mois"
       ],
-      "ctaLabel": "Acheter",
-      "offerId": "32589",
-      "feature": false,
-      "popular": false
+      "per": "/ 10 séances"
     }
   ]
 }
