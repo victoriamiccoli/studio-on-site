@@ -67,7 +67,7 @@
       "badge": "New",
       "meta": "55 min · Sveva",
       "tall": true,
-      "wide": true,
+      "wide": false,
       "play": true,
       "dark": true,
       "title": "Booty on.",
@@ -106,6 +106,16 @@
         "Par Mood",
         "Par Coach"
       ]
+    },
+    {
+      "dark": true,
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "hideOnHome": false,
+      "title": "Arms ON",
+      "image": "/assets/img/focus-bras.png",
+      "meta": "35' - CEDRIC"
     }
   ]
 }
