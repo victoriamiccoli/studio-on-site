@@ -404,7 +404,7 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Infos (durée · coach)", name: "meta", widget: "string" }
+              - { label: "Infos (durée · coach)", name: "meta", widget: "string", required: false }
               - { label: "Badge", name: "badge", widget: "string", required: false }
               - { label: "Photo", name: "image", widget: "image", required: false }
               - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
