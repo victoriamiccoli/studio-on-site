@@ -106,7 +106,7 @@
       "title": "L'EXPÉRIENCE ON.",
       "type": "cards",
       "id": "exp-on",
-      "onHome": true
+      "onHome": false
     },
     {
       "id": "concept-etapes",
