@@ -9,7 +9,7 @@
     {
       "badge": "Débutant",
       "meta": "45 min · Rebecca",
-      "tall": false,
+      "tall": true,
       "wide": false,
       "play": false,
       "dark": false,
@@ -37,8 +37,8 @@
     {
       "badge": "Avancé",
       "meta": "Force · 45 min · Kévin",
-      "tall": true,
-      "wide": false,
+      "tall": false,
+      "wide": true,
       "play": false,
       "dark": true,
       "title": "Abs on.",
