@@ -59,31 +59,6 @@ permalink: /
 {% endif %}
 {% endset %}
 
-{% set sec_concept %}
-{% if not home.hideConcept %}
-<section id="concept" class="section--dark reveal" style="padding-bottom: clamp(40px, 5vw, 72px);">
-  {% if not home.hideConceptTitle %}
-  <div class="section-meta section-head">
-    <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
-      <p class="section-head__p" style="color: var(--ecru)">{{ home.conceptSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.conceptSubtitleYellow %}{% if home.conceptSubtitleBreak %}<br>{% else %} {% endif %}{% if home.conceptSubtitleBox %}<span class="hl-box">{{ home.conceptSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% else %}<em>{{ home.conceptSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</em>{% endif %}{% endif %}</p>
-    </div>
-  </div>
-  {% endif %}
-
-  <div class="principes" style="border-top: none;">
-    {% for s in home.steps %}
-    <article class="principe">
-      <div class="principe__top"><span class="step-num">{{ s.num }}</span><span class="step-label">{{ s.label }}</span></div>
-      <h3 class="principe__h">{{ s.title }}</h3>
-      <p class="principe__p">{{ s.text }}</p>
-    </article>
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
-{% endset %}
-
 {% set sec_seances %}
 {% if not home.hideSeances %}
 <section id="seances" class="section--dark reveal" style="padding-top: 0;">
@@ -244,8 +219,8 @@ permalink: /
 {% endif %}
 {% endset %}
 
-{% set SECTIONS = { "tarifs": sec_tarifs, "concept": sec_concept, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "blocs": sec_blocs, "cta": sec_cta } %}
-{% set defaultOrder = ["tarifs", "concept", "seances", "coachs", "app", "studios", "faq", "blocs", "cta"] %}
+{% set SECTIONS = { "tarifs": sec_tarifs, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "blocs": sec_blocs, "cta": sec_cta } %}
+{% set defaultOrder = ["tarifs", "seances", "coachs", "app", "studios", "faq", "blocs", "cta"] %}
 {% set order = home.sectionOrder if (home.sectionOrder and home.sectionOrder.length) else defaultOrder %}
 {% for key in order %}{{ SECTIONS[key] | safe }}{% endfor %}
 {% for key in defaultOrder %}{% if not (key in order) %}{{ SECTIONS[key] | safe }}{% endif %}{% endfor %}

@@ -103,7 +103,6 @@ collections:
               widget: "select"
               options:
                 - { label: "Tarifs", value: "tarifs" }
-                - { label: "Concept", value: "concept" }
                 - { label: "Séances", value: "seances" }
                 - { label: "Coachs", value: "coachs" }
                 - { label: "Télécharge l'app", value: "app" }
@@ -123,12 +122,6 @@ collections:
           - { label: "Tarifs — sous-titre (jaune)", name: "tarifsSubtitleYellow", widget: "string", required: false }
           - { label: "↳ Partie jaune en encadré (fond jaune)", name: "tarifsSubtitleBox", widget: "boolean", default: false, required: false }
           - { label: "↳ Mettre la partie jaune à la ligne", name: "tarifsSubtitleBreak", widget: "boolean", default: false, required: false }
-          - { label: "Masquer la partie Concept", name: "hideConcept", widget: "boolean", default: false, required: false }
-          - { label: "Masquer le titre de la partie Concept", name: "hideConceptTitle", widget: "boolean", default: false, required: false }
-          - { label: "Concept — sous-titre", name: "conceptSubtitle", widget: "string", required: false }
-          - { label: "Concept — sous-titre (partie jaune)", name: "conceptSubtitleYellow", widget: "string", required: false }
-          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "conceptSubtitleBox", widget: "boolean", default: false, required: false }
-          - { label: "↳ Mettre la partie jaune à la ligne", name: "conceptSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Séances", name: "hideSeances", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie Séances", name: "hideSeancesTitle", widget: "boolean", default: false, required: false }
           - { label: "Séances — titre", name: "seancesTitle", widget: "string", required: false }
@@ -189,14 +182,6 @@ collections:
             field: { label: "Texte", name: "text", widget: "string" }
           - { label: "App - lien App Store", name: "appStoreUrl", widget: "string", required: false }
           - { label: "App - lien Google Play", name: "googlePlayUrl", widget: "string", required: false }
-          - label: "Concept — 3 étapes"
-            name: "steps"
-            widget: "list"
-            fields:
-              - { label: "Numéro", name: "num", widget: "string" }
-              - { label: "Étiquette", name: "label", widget: "string" }
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Texte", name: "text", widget: "text" }
 
   # ---------------- TITRES DES PAGES ----------------
   - name: "pages"
@@ -461,7 +446,7 @@ collections:
           - label: "Séances"
             name: "list"
             widget: "list"
-            summary: "{{fields.title}}"
+            summary: "{{fields.nom}}"
             fields:
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Infos (durée · coach)", name: "meta", widget: "string", required: false }
@@ -541,14 +526,15 @@ collections:
             name: "home"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: &blktypes
               - label: "Cartes (bento)"
                 name: "cards"
                 widget: "object"
-                summary: "Cartes · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
@@ -570,9 +556,10 @@ collections:
               - label: "Interrupteur (Off / On)"
                 name: "switch"
                 widget: "object"
-                summary: "Interrupteur · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Sur-titre (ex. Le mode)", name: "kick", widget: "string", required: false }
@@ -603,9 +590,10 @@ collections:
               - label: "Étapes numérotées"
                 name: "steps"
                 widget: "object"
-                summary: "Étapes · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
@@ -614,7 +602,7 @@ collections:
                   - label: "Étapes"
                     name: "steps"
                     widget: "list"
-                    summary: "{{fields.title}}"
+                    summary: "{{fields.nom}}"
                     fields:
                       - { label: "Numéro (ex. 01)", name: "num", widget: "string", required: false }
                       - { label: "Étiquette (ex. Réserve)", name: "label", widget: "string", required: false }
@@ -623,9 +611,10 @@ collections:
               - label: "Bande d'appel à l'action (CTA)"
                 name: "cta"
                 widget: "object"
-                summary: "CTA · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
@@ -636,9 +625,10 @@ collections:
               - label: "Titre + texte"
                 name: "richtext"
                 widget: "object"
-                summary: "Texte · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
@@ -648,9 +638,10 @@ collections:
               - label: "Image"
                 name: "image"
                 widget: "object"
-                summary: "Image · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
@@ -660,9 +651,10 @@ collections:
               - label: "Bouton"
                 name: "button"
                 widget: "object"
-                summary: "Bouton · {{fields.id}}"
+                summary: "{{fields.nom}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Libellé", name: "label", widget: "string", required: false }
@@ -673,47 +665,47 @@ collections:
             name: "concept"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — Tarifs"
             name: "tarifs"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — Séances"
             name: "seances"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — Coachs"
             name: "coachs"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — Studios"
             name: "studios"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — Franchises"
             name: "franchises"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — FAQ"
             name: "faq"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
           - label: "Blocs — Contact"
             name: "contact"
             widget: "list"
             required: false
-            summary: "{{fields.id}}"
+            summary: "{{fields.nom}}"
             types: *blktypes
