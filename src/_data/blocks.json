@@ -57,7 +57,7 @@
       "onTitle": "<br>Studio ON.",
       "type": "switch",
       "id": "interrupteur",
-      "onHome": false
+      "onHome": true
     },
     {
       "cards": [
