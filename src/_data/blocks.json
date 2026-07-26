@@ -32,7 +32,7 @@
       ],
       "offTitle": "Les studios<br>classiques",
       "wordOn": "On.",
-      "hidden": false,
+      "hidden": true,
       "onNote": "Le studio s'adapte à toi.",
       "onRows": [
         {
@@ -111,7 +111,7 @@
       "title": "L'EXPÉRIENCE ON.",
       "type": "cards",
       "id": "exp-on",
-      "onHome": false
+      "onHome": true
     },
     {
       "pages": [
