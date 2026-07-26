@@ -26,7 +26,7 @@ description: Plus de 100 séances de Pilates Reformer, à ton rythme.
 
   <div class="gallery" id="seanceGallery">
     {% for s in seances.list %}
-    <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %} data-cats="{{ s.cats | join(',') }}">
+    <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %} data-cats="{{ (s.cats or []) | join(',') }}">
       {% if not s.image %}<span class="ph-label">{{ s.title }}</span>{% endif %}
       {% if s.badge %}<span class="gal-badge">{{ s.badge }}</span>{% endif %}
       {% if s.play %}<div class="gal-play" aria-hidden="true"></div>{% endif %}
