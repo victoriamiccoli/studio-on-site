@@ -53,6 +53,8 @@
     "Vos séances préférées en 3 clics",
     "Des nouvelles vidéos en continu"
   ],
+  "tarifsTitleBreak": true,
+  "seancesTitleBreak": true,
   "appIcon": "",
   "seancesTitleYellow": "À ton rythme.",
   "tarifsTitleYellow": "En illimité.",
