@@ -83,6 +83,7 @@ collections:
           - { label: "Titre principal — ligne 3", name: "heroLine3", widget: "string", required: false }
           - { label: "Accroche (blanc)", name: "heroKickerWhite", widget: "string", required: false }
           - { label: "Accroche (jaune)", name: "heroKickerYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "heroKickerBreak", widget: "boolean", default: false, required: false }
           - label: "Points clés (sous l'accroche)"
             name: "heroBullets"
             widget: "list"
@@ -93,36 +94,47 @@ collections:
           - { label: "Masquer le titre de la partie Tarifs", name: "hideTarifsTitle", widget: "boolean", default: false, required: false }
           - { label: "Tarifs — titre", name: "tarifsTitle", widget: "string", required: false }
           - { label: "Tarifs — titre (partie jaune)", name: "tarifsTitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "tarifsTitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Tarifs — sous-titre (blanc)", name: "tarifsSubtitleWhite", widget: "string", required: false }
           - { label: "Tarifs — sous-titre (jaune)", name: "tarifsSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "tarifsSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Concept", name: "hideConcept", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie Concept", name: "hideConceptTitle", widget: "boolean", default: false, required: false }
           - { label: "Concept — sous-titre", name: "conceptSubtitle", widget: "string", required: false }
           - { label: "Concept — sous-titre (partie jaune)", name: "conceptSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "conceptSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Séances", name: "hideSeances", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie Séances", name: "hideSeancesTitle", widget: "boolean", default: false, required: false }
           - { label: "Séances — titre", name: "seancesTitle", widget: "string", required: false }
           - { label: "Séances — titre (partie jaune)", name: "seancesTitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "seancesTitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Séances — sous-titre", name: "seancesSubtitle", widget: "string", required: false }
           - { label: "Séances — sous-titre (partie jaune)", name: "seancesSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "seancesSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Coachs", name: "hideCoachs", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie Coachs", name: "hideCoachsTitle", widget: "boolean", default: false, required: false }
           - { label: "Coachs — titre", name: "coachsTitle", widget: "string", required: false }
           - { label: "Coachs — titre (partie jaune)", name: "coachsTitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "coachsTitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Coachs — sous-titre", name: "coachsSubtitle", widget: "string", required: false }
           - { label: "Coachs — sous-titre (partie jaune)", name: "coachsSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "coachsSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Studios", name: "hideStudios", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie Studios", name: "hideStudiosTitle", widget: "boolean", default: false, required: false }
           - { label: "Studios — titre", name: "studiosTitle", widget: "string", required: false }
           - { label: "Studios — titre (partie jaune)", name: "studiosTitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "studiosTitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Studios — sous-titre", name: "studiosSubtitle", widget: "string", required: false }
           - { label: "Studios — sous-titre (partie jaune)", name: "studiosSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "studiosSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie FAQ", name: "hideFaq", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie FAQ", name: "hideFaqTitle", widget: "boolean", default: false, required: false }
           - { label: "FAQ — titre", name: "faqTitle", widget: "string", required: false }
           - { label: "FAQ — titre (partie jaune)", name: "faqTitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "faqTitleBreak", widget: "boolean", default: false, required: false }
           - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string", required: false }
           - { label: "FAQ — sous-titre (partie jaune)", name: "faqSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "faqSubtitleBreak", widget: "boolean", default: false, required: false }
           - { label: "Masquer le bloc final (Switch your body)", name: "hideCta", widget: "boolean", default: false, required: false }
           - { label: "Bloc final — texte", name: "ctaText", widget: "string", required: false }
           - { label: "Masquer la partie Télécharge l'app", name: "hideApp", widget: "boolean", default: false, required: false }
