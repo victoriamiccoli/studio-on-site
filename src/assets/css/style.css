@@ -574,3 +574,8 @@ strong { font-weight: 600; }
 .blk-image__img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; border-radius: 16px; }
 .blk-image__cap { margin: 16px auto 0; font-size: 13px; opacity: .6; max-width: 60ch; }
 .blk--button { padding: clamp(50px, 7vw, 90px) var(--pad); text-align: center; }
+
+/* Titres de page : partie jaune + option une seule ligne (comme l'accueil) */
+.page-hero__h .hl-box { background: var(--vanille); color: var(--noir); }
+.page-hero__h--oneline { max-width: none !important; }
+@media (min-width: 700px) { .page-hero__h--oneline { white-space: nowrap; } }

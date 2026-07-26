@@ -218,6 +218,13 @@ collections:
               - { label: "Label (petit texte au-dessus)", name: "kicker", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
               - { label: "Titre", name: "title", widget: "string", required: false, hint: "Laisse vide pour garder le titre par défaut. Tu peux utiliser <br> et <em>…</em>" }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
               - { label: "Masquer le bloc « Une question sur les tarifs ? » (en bas de page)", name: "hideContact", widget: "boolean", default: false, required: false }
           - label: "Page Contact"
             name: "contact"
@@ -231,6 +238,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
           - label: "Page Franchises"
             name: "franchises"
             widget: "object"
@@ -243,6 +257,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
           - label: "Page FAQ"
             name: "faq"
             widget: "object"
@@ -255,6 +276,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
           - label: "Page Concept"
             name: "concept"
             widget: "object"
@@ -267,6 +295,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre (vide = titre par défaut avec le logo ON)", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
           - label: "Page Séances"
             name: "seances"
             widget: "object"
@@ -279,6 +314,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
           - label: "Page Coachs"
             name: "coachs"
             widget: "object"
@@ -291,6 +333,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
           - label: "Page Studios"
             name: "studios"
             widget: "object"
@@ -303,6 +352,13 @@ collections:
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre", name: "title", widget: "string", required: false }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
 
   # ---------------- TARIFS ----------------
   - name: "tarifs"
@@ -573,6 +629,7 @@ collections:
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
+                  - { label: "Afficher « ON » avec le logo animé (style Switch your body)", name: "logoOn", widget: "boolean", default: false, required: false }
                   - { label: "Texte", name: "text", widget: "text", required: false }
                   - { label: "Libellé du bouton", name: "btnLabel", widget: "string", required: false }
                   - { label: "Lien du bouton (ex. /tarifs/)", name: "btnHref", widget: "string", required: false }
