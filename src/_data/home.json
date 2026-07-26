@@ -12,26 +12,7 @@
   "showMarquee": false,
   "heroLine3": "Mieux adapté.",
   "seancesTitle": "Plus de 100 séances.",
-  "steps": [
-    {
-      "num": "01",
-      "label": "Réserve",
-      "title": "Ton pass nominatif.",
-      "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà."
-    },
-    {
-      "num": "02",
-      "label": "Viens",
-      "title": "Pousse la porte.",
-      "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer."
-    },
-    {
-      "num": "03",
-      "label": "Bouge",
-      "title": "Lance ta séance.",
-      "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
-    }
-  ],
+  "steps": [],
   "tarifsTitle": "Le Pilates Reformer.",
   "sectionOrder": [
     "tarifs",
