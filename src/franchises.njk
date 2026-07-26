@@ -100,3 +100,5 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
     }
   });
 </script>
+
+{% if blocks and blocks.franchises %}{% for block in blocks.franchises %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

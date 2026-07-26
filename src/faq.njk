@@ -33,3 +33,5 @@ description: Les vraies questions sur Studio On et le Pilates Reformer.
     </div>
   </div>
 </section>
+
+{% if blocks and blocks.faq %}{% for block in blocks.faq %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

@@ -1,67 +1,43 @@
 {
-  "list": [
+  "home": [],
+  "concept": [
     {
-      "offNote": "Tu t'adaptes au studio.",
-      "pages": [
-        "concept"
-      ],
-      "wordOff": "Off",
-      "kick": "Le mode",
-      "hint": "Fais glisser pour basculer",
-      "offRows": [
-        {
-          "label": "Horaires",
-          "value": "Très peu de créneaux."
-        },
-        {
-          "label": "Réservation",
-          "value": "Des semaines à l'avance."
-        },
-        {
-          "label": "Annulation",
-          "value": "Obligation 12h avant."
-        },
-        {
-          "label": "La séance",
-          "value": "Au rythme du groupe."
-        },
-        {
-          "label": "Le prix",
-          "value": "30 à 40€ la séance."
-        }
-      ],
-      "offTitle": "Les studios<br>classiques",
-      "wordOn": "On.",
-      "hidden": true,
-      "onNote": "Le studio s'adapte à toi.",
-      "onRows": [
-        {
-          "label": "Horaires",
-          "value": "Ouvert de 6h à 22h30, 7j/7."
-        },
-        {
-          "label": "Réservation",
-          "value": "Jusqu'à 5 minutes avant."
-        },
-        {
-          "label": "Annulation",
-          "value": "Jusqu'à 1h avant."
-        },
-        {
-          "label": "La séance",
-          "value": "100+ vidéos, ton coach, ton rythme."
-        },
-        {
-          "label": "Le prix",
-          "value": "À partir de 60€/mois illimité."
-        }
-      ],
-      "onTitle": "<br>Studio ON.",
-      "type": "switch",
       "id": "interrupteur",
-      "onHome": false
+      "type": "switch",
+      "hidden": true,
+      "onHome": false,
+      "kick": "Le mode",
+      "wordOff": "Off",
+      "wordOn": "On.",
+      "hint": "Fais glisser pour basculer",
+      "offTitle": "Les studios<br>classiques",
+      "offRows": [
+        { "label": "Horaires", "value": "Très peu de créneaux." },
+        { "label": "Réservation", "value": "Des semaines à l'avance." },
+        { "label": "Annulation", "value": "Obligation 12h avant." },
+        { "label": "La séance", "value": "Au rythme du groupe." },
+        { "label": "Le prix", "value": "30 à 40€ la séance." }
+      ],
+      "offNote": "Tu t'adaptes au studio.",
+      "onTitle": "<br>Studio ON.",
+      "onRows": [
+        { "label": "Horaires", "value": "Ouvert de 6h à 22h30, 7j/7." },
+        { "label": "Réservation", "value": "Jusqu'à 5 minutes avant." },
+        { "label": "Annulation", "value": "Jusqu'à 1h avant." },
+        { "label": "La séance", "value": "100+ vidéos, ton coach, ton rythme." },
+        { "label": "Le prix", "value": "À partir de 60€/mois illimité." }
+      ],
+      "onNote": "Le studio s'adapte à toi."
     },
     {
+      "id": "exp-on",
+      "type": "cards",
+      "hidden": false,
+      "onHome": true,
+      "title": "L'EXPÉRIENCE ON.",
+      "titleYellow": "",
+      "subtitle": "Le Pilates Reformer",
+      "subtitleYellow": "pensé pour vous.",
       "cards": [
         {
           "hero": true,
@@ -100,50 +76,28 @@
           "h": "Pensé pour toi.",
           "p": "Douche, serviette, produits de beauté, fontaine à eau, vestiaires et casiers t'attendent. Prévois juste des chaussettes antidérapantes et un cadenas."
         }
-      ],
-      "pages": [
-        "concept"
-      ],
-      "hidden": false,
-      "titleYellow": "",
-      "subtitleYellow": "pensé pour vous.",
-      "subtitle": "Le Pilates Reformer",
-      "title": "L'EXPÉRIENCE ON.",
-      "type": "cards",
-      "id": "exp-on",
-      "onHome": true
+      ]
     },
     {
-      "pages": [
-        "concept"
-      ],
-      "steps": [
-        {
-          "num": "01",
-          "label": "Réserve",
-          "title": "Ton pass nominatif.",
-          "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà."
-        },
-        {
-          "num": "02",
-          "label": "Viens",
-          "title": "Pousse la porte.",
-          "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer."
-        },
-        {
-          "num": "03",
-          "label": "Bouge",
-          "title": "Lance ta séance.",
-          "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
-        }
-      ],
+      "id": "concept-etapes",
+      "type": "steps",
       "hidden": true,
+      "onHome": false,
+      "title": "",
       "titleYellow": "",
       "subtitle": "",
-      "title": "",
-      "type": "steps",
-      "id": "concept-etapes",
-      "onHome": false
+      "steps": [
+        { "num": "01", "label": "Réserve", "title": "Ton pass nominatif.", "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà." },
+        { "num": "02", "label": "Viens", "title": "Pousse la porte.", "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer." },
+        { "num": "03", "label": "Bouge", "title": "Lance ta séance.", "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme." }
+      ]
     }
-  ]
+  ],
+  "tarifs": [],
+  "seances": [],
+  "coachs": [],
+  "studios": [],
+  "franchises": [],
+  "faq": [],
+  "contact": []
 }

@@ -77,3 +77,5 @@ description: Plus de 100 séances de Pilates Reformer, à ton rythme.
   });
 })();
 </script>
+
+{% if blocks and blocks.seances %}{% for block in blocks.seances %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

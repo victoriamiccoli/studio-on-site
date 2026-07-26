@@ -66,3 +66,5 @@ description: Une question ? Écris-nous, on répond très vite.
       .catch(function(){ csubmit.disabled=false; csubmit.innerHTML='Réessayer <span>→</span>'; });
   });
 </script>
+
+{% if blocks and blocks.contact %}{% for block in blocks.contact %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

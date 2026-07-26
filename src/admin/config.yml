@@ -27,6 +27,8 @@ collections:
           - { label: "Liste d'attente — texte d'intro (vide = aucun)", name: "waitlistIntro", widget: "string", required: false, hint: "Laisse vide pour ne rien afficher au-dessus du formulaire" }
           - { label: "Liste d'attente — titre de confirmation", name: "waitlistSuccessTitle", widget: "string", required: false, hint: "Défaut : Merci !" }
           - { label: "Liste d'attente — message de confirmation", name: "waitlistSuccessText", widget: "string", required: false, hint: "Défaut : Tu es sur la liste d'attente 🖤" }
+          - { label: "Banderole avant le pied de page — texte", name: "preFooterText", widget: "string", required: false, hint: "Défaut : Switch your body ON" }
+          - { label: "Banderole avant le pied de page — pages où l'afficher", name: "preFooterPages", widget: "select", multiple: true, required: false, hint: "Coche les pages où la banderole doit apparaître, juste avant le pied de page", options: [{ label: "Accueil", value: "/" }, { label: "Concept", value: "/concept/" }, { label: "Séances", value: "/seances/" }, { label: "Coachs", value: "/coachs/" }, { label: "Tarifs", value: "/tarifs/" }, { label: "Studios", value: "/studios/" }, { label: "Franchises", value: "/franchises/" }, { label: "FAQ", value: "/faq/" }, { label: "Contact", value: "/contact/" }] }
           - label: "Menu de navigation"
             name: "nav"
             widget: "list"
@@ -216,6 +218,7 @@ collections:
               - { label: "Label (petit texte au-dessus)", name: "kicker", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
               - { label: "Titre", name: "title", widget: "string", required: false, hint: "Laisse vide pour garder le titre par défaut. Tu peux utiliser <br> et <em>…</em>" }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
+              - { label: "Masquer le bloc « Une question sur les tarifs ? » (en bas de page)", name: "hideContact", widget: "boolean", default: false, required: false }
           - label: "Page Contact"
             name: "contact"
             widget: "object"
@@ -470,28 +473,28 @@ collections:
               - { label: "Question", name: "q", widget: "string" }
               - { label: "Réponse", name: "a", widget: "text" }
 
-  # ---------------- BLOCS (briques réutilisables) ----------------
+  # ---------------- BLOCS (briques par page) ----------------
   - name: "blocs"
-    label: "Blocs (briques réutilisables)"
+    label: "Blocs (briques par page)"
     files:
       - name: "blocs"
         label: "Mes briques"
         file: "src/_data/blocks.json"
         fields:
-          - label: "Briques"
-            name: "list"
+          - label: "Blocs — Accueil"
+            name: "home"
             widget: "list"
+            required: false
             summary: "{{fields.id}}"
-            types:
+            types: &blktypes
               - label: "Cartes (bento)"
                 name: "cards"
                 widget: "object"
                 summary: "Cartes · {{fields.id}}"
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
                   - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false }
@@ -513,14 +516,14 @@ collections:
                 widget: "object"
                 summary: "Interrupteur · {{fields.id}}"
                 fields:
-                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Sur-titre (ex. Le mode)", name: "kick", widget: "string", required: false }
                   - { label: "Mot Off", name: "wordOff", widget: "string", required: false }
                   - { label: "Mot On", name: "wordOn", widget: "string", required: false }
                   - { label: "Indice (ex. Fais glisser pour basculer)", name: "hint", widget: "string", required: false }
+                  - { label: "Démarrer sur OFF (par défaut, démarre sur ON)", name: "startOff", widget: "boolean", default: false, required: false }
                   - { label: "Titre côté OFF (le <br> passe à la ligne)", name: "offTitle", widget: "string", required: false }
                   - label: "Lignes côté OFF"
                     name: "offRows"
@@ -546,10 +549,9 @@ collections:
                 widget: "object"
                 summary: "Étapes · {{fields.id}}"
                 fields:
-                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
                   - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
@@ -567,10 +569,9 @@ collections:
                 widget: "object"
                 summary: "CTA · {{fields.id}}"
                 fields:
-                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
                   - { label: "Texte", name: "text", widget: "text", required: false }
                   - { label: "Libellé du bouton", name: "btnLabel", widget: "string", required: false }
@@ -580,10 +581,9 @@ collections:
                 widget: "object"
                 summary: "Texte · {{fields.id}}"
                 fields:
-                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
                   - { label: "Texte", name: "text", widget: "markdown", required: false }
@@ -593,10 +593,9 @@ collections:
                 widget: "object"
                 summary: "Image · {{fields.id}}"
                 fields:
-                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
                   - { label: "Texte alternatif", name: "alt", widget: "string", required: false }
                   - { label: "Légende", name: "caption", widget: "string", required: false }
@@ -606,11 +605,58 @@ collections:
                 widget: "object"
                 summary: "Bouton · {{fields.id}}"
                 fields:
-                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
-                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Libellé", name: "label", widget: "string", required: false }
                   - { label: "Lien", name: "href", widget: "string", required: false }
                   - { label: "Ouvrir dans un nouvel onglet", name: "newTab", widget: "boolean", default: false, required: false }
                   - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+          - label: "Blocs — Concept"
+            name: "concept"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — Tarifs"
+            name: "tarifs"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — Séances"
+            name: "seances"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — Coachs"
+            name: "coachs"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — Studios"
+            name: "studios"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — Franchises"
+            name: "franchises"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — FAQ"
+            name: "faq"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes
+          - label: "Blocs — Contact"
+            name: "contact"
+            widget: "list"
+            required: false
+            summary: "{{fields.id}}"
+            types: *blktypes

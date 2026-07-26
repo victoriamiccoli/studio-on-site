@@ -33,3 +33,5 @@ description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
     </article>
   </div>
 </section>
+
+{% if blocks and blocks.coachs %}{% for block in blocks.coachs %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

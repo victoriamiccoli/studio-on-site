@@ -25,11 +25,12 @@
 </section>
 
 {% elif b.type == "switch" %}
-<section class="switch-sec reveal blk blk--switch"{% if b.id %} id="blk-{{ b.id }}"{% endif %} data-state="off">
+{% set startState = "off" if b.startOff else "on" %}
+<section class="switch-sec reveal blk blk--switch"{% if b.id %} id="blk-{{ b.id }}"{% endif %} data-state="{{ startState }}">
   <div class="switch-sec__inner">
     <div class="switch-sec__left">
       {% if b.kick %}<span class="switch-sec__kick">{{ b.kick }}</span>{% endif %}
-      <button type="button" class="giant-toggle" aria-pressed="false">
+      <button type="button" class="giant-toggle" aria-pressed="{{ 'true' if startState == 'on' else 'false' }}">
         <span class="giant-toggle__track"><span class="giant-toggle__knob"></span></span>
         <span class="giant-toggle__word giant-toggle__word--off">{{ b.wordOff or "Off" }}</span>
         <span class="giant-toggle__word giant-toggle__word--on">{{ b.wordOn or "On." }}</span>
@@ -37,12 +38,12 @@
       {% if b.hint %}<span class="switch-sec__hint">{{ b.hint }}</span>{% endif %}
     </div>
     <div class="switch-panes">
-      <div class="switch-pane" data-pane="off">
+      <div class="switch-pane" data-pane="off"{% if startState != "off" %} hidden{% endif %}>
         {% if b.offTitle %}<h2 class="switch-pane__h">{{ b.offTitle | safe }}</h2>{% endif %}
         {% if b.offRows and b.offRows.length %}<ul class="switch-pane__list">{% for r in b.offRows %}<li><b>{{ r.label }}</b><span>{{ r.value }}</span></li>{% endfor %}</ul>{% endif %}
         {% if b.offNote %}<p class="switch-pane__note">{{ b.offNote }}</p>{% endif %}
       </div>
-      <div class="switch-pane" data-pane="on" hidden>
+      <div class="switch-pane" data-pane="on"{% if startState != "on" %} hidden{% endif %}>
         {% if b.onTitle %}<h2 class="switch-pane__h">{{ b.onTitle | safe }}</h2>{% endif %}
         {% if b.onRows and b.onRows.length %}<ul class="switch-pane__list">{% for r in b.onRows %}<li><b>{{ r.label }}</b><span>{{ r.value }}</span></li>{% endfor %}</ul>{% endif %}
         {% if b.onNote %}<p class="switch-pane__note">{{ b.onNote }}</p>{% endif %}

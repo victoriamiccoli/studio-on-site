@@ -50,6 +50,14 @@
 
 {{ content | safe }}
 
+{% if site.preFooterPages and (page.url in site.preFooterPages) %}
+<div class="marquee marquee--prefooter" aria-hidden="true">
+  <div class="marquee__track">
+    {% for i in [1, 2, 3, 4] %}<span>{{ site.preFooterText or "Switch your body ON" }} <span class="marquee__dot"></span> </span>{% endfor %}
+  </div>
+</div>
+{% endif %}
+
 <footer>
   <div class="foot-grid">
     <div class="foot-col">

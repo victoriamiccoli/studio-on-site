@@ -101,3 +101,5 @@ description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
     renderCity(CITIES[0].key);
   }
 </script>
+
+{% if blocks and blocks.studios %}{% for block in blocks.studios %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
