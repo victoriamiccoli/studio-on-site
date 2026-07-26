@@ -21,6 +21,20 @@
       ]
     },
     {
+      "badge": "",
+      "meta": "55 min · Wassila",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": false,
+      "title": "Pulse on.",
+      "image": "/assets/img/legs-studio-on.jpg",
+      "cats": [
+        "Par Mood",
+        "Par Coach"
+      ]
+    },
+    {
       "badge": "Avancé",
       "meta": "Force · 45 min · Kévin",
       "tall": true,
@@ -73,20 +87,6 @@
       "image": "/assets/img/stretch-studio-on.jpg",
       "cats": [
         "Par Focus",
-        "Par Mood",
-        "Par Coach"
-      ]
-    },
-    {
-      "badge": "",
-      "meta": "55 min · Wassila",
-      "tall": false,
-      "wide": false,
-      "play": false,
-      "dark": false,
-      "title": "Pulse on.",
-      "image": "/assets/img/legs-studio-on.jpg",
-      "cats": [
         "Par Mood",
         "Par Coach"
       ]
