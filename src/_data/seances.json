@@ -21,16 +21,16 @@
       ]
     },
     {
-      "badge": "",
-      "meta": "55 min · Wassila",
-      "tall": false,
+      "badge": "New",
+      "meta": "55 min · Sveva",
+      "tall": true,
       "wide": false,
-      "play": false,
+      "play": true,
       "dark": false,
-      "title": "Pulse on.",
-      "image": "/assets/img/legs-studio-on.jpg",
+      "title": "Booty on.",
+      "image": "/assets/img/focus-booty.png",
       "cats": [
-        "Par Mood",
+        "Par Focus",
         "Par Coach"
       ]
     },
@@ -49,16 +49,16 @@
       ]
     },
     {
-      "badge": "New",
-      "meta": "55 min · Sveva",
-      "tall": true,
+      "badge": "",
+      "meta": "55 min · Wassila",
+      "tall": false,
       "wide": false,
-      "play": true,
+      "play": false,
       "dark": false,
-      "title": "Booty on.",
-      "image": "/assets/img/focus-booty.png",
+      "title": "Pulse on.",
+      "image": "/assets/img/legs-studio-on.jpg",
       "cats": [
-        "Par Focus",
+        "Par Mood",
         "Par Coach"
       ]
     },
