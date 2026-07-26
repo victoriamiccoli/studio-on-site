@@ -7,6 +7,20 @@
   ],
   "list": [
     {
+      "badge": "Débutant",
+      "meta": "45 min · Rebecca",
+      "tall": false,
+      "wide": false,
+      "play": false,
+      "dark": false,
+      "title": "Start on.",
+      "image": "/assets/img/focus-casque-studio-on.png",
+      "cats": [
+        "Par Niveau",
+        "Par Coach"
+      ]
+    },
+    {
       "badge": "Avancé",
       "meta": "Force · 45 min · Kévin",
       "tall": true,
@@ -17,6 +31,20 @@
       "image": "/assets/img/abs-on.jpg",
       "cats": [
         "Par Niveau",
+        "Par Coach"
+      ]
+    },
+    {
+      "badge": "New",
+      "meta": "55 min · Sveva",
+      "tall": true,
+      "wide": false,
+      "play": true,
+      "dark": false,
+      "title": "Booty on.",
+      "image": "/assets/img/focus-booty.png",
+      "cats": [
+        "Par Focus",
         "Par Coach"
       ]
     },
@@ -35,20 +63,6 @@
       ]
     },
     {
-      "badge": "Débutant",
-      "meta": "45 min · Rebecca",
-      "tall": false,
-      "wide": false,
-      "play": false,
-      "dark": false,
-      "title": "Start on.",
-      "image": "/assets/img/focus-casque-studio-on.png",
-      "cats": [
-        "Par Niveau",
-        "Par Coach"
-      ]
-    },
-    {
       "badge": "",
       "meta": "45 min · Chloé",
       "tall": false,
@@ -60,20 +74,6 @@
       "cats": [
         "Par Focus",
         "Par Mood",
-        "Par Coach"
-      ]
-    },
-    {
-      "badge": "New",
-      "meta": "55 min · Sveva",
-      "tall": true,
-      "wide": false,
-      "play": true,
-      "dark": false,
-      "title": "Booty on.",
-      "image": "/assets/img/focus-booty.png",
-      "cats": [
-        "Par Focus",
         "Par Coach"
       ]
     },
