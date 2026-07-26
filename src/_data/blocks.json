@@ -1,90 +1,6 @@
 {
   "list": [
     {
-      "pages": [
-        "concept"
-      ],
-      "steps": [
-        {
-          "num": "01",
-          "label": "Réserve",
-          "title": "Ton pass nominatif.",
-          "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà."
-        },
-        {
-          "num": "02",
-          "label": "Viens",
-          "title": "Pousse la porte.",
-          "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer."
-        },
-        {
-          "num": "03",
-          "label": "Bouge",
-          "title": "Lance ta séance.",
-          "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
-        }
-      ],
-      "hidden": true,
-      "titleYellow": "",
-      "subtitle": "",
-      "title": "",
-      "type": "steps",
-      "id": "concept-etapes",
-      "onHome": false
-    },
-    {
-      "cards": [
-        {
-          "hero": true,
-          "kick": "L'écran",
-          "fig": "1:1",
-          "h": "Toi et ton écran",
-          "p": "Un écran face à chaque Reformer. Tu choisis coach, durée, intensité et zone du corps, puis tu suis le flow. Chaque exercice est démontré, avec le réglage des ressorts affiché à l'image. Tu mets en pause, tu reprends, tu recommences : c'est ta séance.",
-          "specs": [
-            "Réglage des ressorts affiché à l'écran",
-            "Pause et reprise à tout moment",
-            "Chaque exercice démontré en vidéo",
-            "Des séances toutes les 30 minutes"
-          ]
-        },
-        {
-          "kick": "Le catalogue",
-          "fig": "100+",
-          "h": "Vidéos disponibles.",
-          "p": "Filtrées par niveau, focus, flow ou coach. De nouvelles séances arrivent toute l'année."
-        },
-        {
-          "kick": "Le format",
-          "fig": "45&prime;",
-          "h": "La séance type.",
-          "p": "De 40 à 55 minutes, hyper flexible. Échauffement, flow, retour au calme : rien à improviser."
-        },
-        {
-          "kick": "Le son",
-          "fig": "1",
-          "h": "Casque sans fil par Reformer.",
-          "p": "Fourni et désinfecté. La voix du coach, rien d'autre : tu pratiques dans ta bulle. Tu préfères les tiens ? Viens avec tes propres écouteurs."
-        },
-        {
-          "kick": "Le confort",
-          "fig": "100%",
-          "h": "Pensé pour toi.",
-          "p": "Douche, serviette, produits de beauté, fontaine à eau, vestiaires et casiers t'attendent. Prévois juste des chaussettes antidérapantes et un cadenas."
-        }
-      ],
-      "pages": [
-        "concept"
-      ],
-      "hidden": false,
-      "titleYellow": "",
-      "subtitleYellow": "pensé pour vous.",
-      "subtitle": "Le Pilates Reformer",
-      "title": "",
-      "type": "cards",
-      "id": "exp-on",
-      "onHome": false
-    },
-    {
       "offNote": "Tu t'adaptes au studio.",
       "pages": [
         "concept"
@@ -143,6 +59,90 @@
       "onTitle": "<br>Studio ON.",
       "type": "switch",
       "id": "interrupteur",
+      "onHome": false
+    },
+    {
+      "cards": [
+        {
+          "hero": true,
+          "kick": "L'écran",
+          "fig": "1:1",
+          "h": "Toi et ton écran",
+          "p": "Un écran face à chaque Reformer. Tu choisis coach, durée, intensité et zone du corps, puis tu suis le flow. Chaque exercice est démontré, avec le réglage des ressorts affiché à l'image. Tu mets en pause, tu reprends, tu recommences : c'est ta séance.",
+          "specs": [
+            "Réglage des ressorts affiché à l'écran",
+            "Pause et reprise à tout moment",
+            "Chaque exercice démontré en vidéo",
+            "Des séances toutes les 30 minutes"
+          ]
+        },
+        {
+          "kick": "Le catalogue",
+          "fig": "100+",
+          "h": "Vidéos disponibles.",
+          "p": "Filtrées par niveau, focus, flow ou coach. De nouvelles séances arrivent toute l'année."
+        },
+        {
+          "kick": "Le format",
+          "fig": "45&prime;",
+          "h": "La séance type.",
+          "p": "De 40 à 55 minutes, hyper flexible. Échauffement, flow, retour au calme : rien à improviser."
+        },
+        {
+          "kick": "Le son",
+          "fig": "1",
+          "h": "Casque sans fil par Reformer.",
+          "p": "Fourni et désinfecté. La voix du coach, rien d'autre : tu pratiques dans ta bulle. Tu préfères les tiens ? Viens avec tes propres écouteurs."
+        },
+        {
+          "kick": "Le confort",
+          "fig": "100%",
+          "h": "Pensé pour toi.",
+          "p": "Douche, serviette, produits de beauté, fontaine à eau, vestiaires et casiers t'attendent. Prévois juste des chaussettes antidérapantes et un cadenas."
+        }
+      ],
+      "pages": [
+        "concept"
+      ],
+      "hidden": false,
+      "titleYellow": "",
+      "subtitleYellow": "pensé pour vous.",
+      "subtitle": "Le Pilates Reformer",
+      "title": "",
+      "type": "cards",
+      "id": "exp-on",
+      "onHome": false
+    },
+    {
+      "pages": [
+        "concept"
+      ],
+      "steps": [
+        {
+          "num": "01",
+          "label": "Réserve",
+          "title": "Ton pass nominatif.",
+          "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà."
+        },
+        {
+          "num": "02",
+          "label": "Viens",
+          "title": "Pousse la porte.",
+          "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer."
+        },
+        {
+          "num": "03",
+          "label": "Bouge",
+          "title": "Lance ta séance.",
+          "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
+        }
+      ],
+      "hidden": true,
+      "titleYellow": "",
+      "subtitle": "",
+      "title": "",
+      "type": "steps",
+      "id": "concept-etapes",
       "onHome": false
     }
   ]
