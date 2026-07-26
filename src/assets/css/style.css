@@ -169,6 +169,12 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 .section-head__p { margin: 24px auto 0; font-family: var(--f-display); font-weight: 600; font-size: clamp(16px, 2vw, 22px); letter-spacing: -0.02em; }
 .section-head__p em { color: var(--vanille); font-style: normal; }
 .section-head__h em { color: var(--vanille); font-style: normal; }
+/* Aérer le bloc Tarifs (banderole -> titre, et sous-titre -> vignettes) */
+#tarifs { padding-top: clamp(120px, 13vw, 200px); }
+@media (max-width: 640px) {
+  #tarifs { padding-top: 108px; }
+  #tarifs .section-head { padding-bottom: 76px; }
+}
 .hl-box { display: inline-block; background: var(--vanille); color: var(--noir); border-radius: 0.24em; padding: 0.06em 0.16em; line-height: 1; font-style: normal; vertical-align: baseline; }
 .section-head__h--oneline { max-width: none !important; }
 @media (min-width: 700px) { .section-head__h--oneline { white-space: nowrap; } }
