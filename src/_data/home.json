@@ -33,6 +33,16 @@
     }
   ],
   "tarifsTitle": "Le Pilates Reformer.",
+  "sectionOrder": [
+    "tarifs",
+    "app",
+    "concept",
+    "seances",
+    "coachs",
+    "studios",
+    "faq",
+    "cta"
+  ],
   "seancesSubtitle": "Le Pilates Reformer. Pour tous les objectifs.",
   "faqSubtitle": "Si ta question n'y est pas, écris-nous, on y répond très vite !",
   "appText": "",
