@@ -20,7 +20,7 @@ permalink: /
 
 {% if not home.hideMarquee %}{% include "marquee.njk" %}{% endif %}
 
-<!-- TARIFS -->
+{% set sec_tarifs %}
 {% if not home.hideTarifs %}
 <section id="tarifs" class="section--dark reveal">
   {% if not home.hideTarifsTitle %}
@@ -57,8 +57,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- CONCEPT -->
+{% set sec_concept %}
 {% if not home.hideConcept %}
 <section id="concept" class="section--dark reveal" style="padding-bottom: clamp(40px, 5vw, 72px);">
   {% if not home.hideConceptTitle %}
@@ -81,8 +82,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- SEANCES -->
+{% set sec_seances %}
 {% if not home.hideSeances %}
 <section id="seances" class="section--dark reveal" style="padding-top: 0;">
   {% if not home.hideSeancesTitle %}
@@ -109,8 +111,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- COACHS -->
+{% set sec_coachs %}
 {% if not home.hideCoachs %}
 <section id="coachs" class="section--dark reveal">
   {% if not home.hideCoachsTitle %}
@@ -139,8 +142,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- TELECHARGE L'APP -->
+{% set sec_app %}
 {% if not home.hideApp %}
 <section id="app" class="section--dark reveal app-dl">
   {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
@@ -160,8 +164,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- STUDIOS -->
+{% set sec_studios %}
 {% if not home.hideStudios %}
 <section id="studios" class="reveal">
   {% if not home.hideStudiosTitle %}
@@ -189,8 +194,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- FAQ -->
+{% set sec_faq %}
 {% if not home.hideFaq %}
 <section id="faq" class="reveal">
   {% if not home.hideFaqTitle %}
@@ -211,8 +217,9 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
 
-<!-- CTA FRANCHISE -->
+{% set sec_cta %}
 {% if not home.hideCta %}
 <section class="cta-band reveal" id="cta">
   <h2 class="cta-band__h" style="line-height: .92;">
@@ -227,6 +234,13 @@ permalink: /
   </div>
 </section>
 {% endif %}
+{% endset %}
+
+{% set SECTIONS = { "tarifs": sec_tarifs, "concept": sec_concept, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "cta": sec_cta } %}
+{% set defaultOrder = ["tarifs", "concept", "seances", "coachs", "app", "studios", "faq", "cta"] %}
+{% set order = home.sectionOrder if (home.sectionOrder and home.sectionOrder.length) else defaultOrder %}
+{% for key in order %}{{ SECTIONS[key] | safe }}{% endfor %}
+{% for key in defaultOrder %}{% if not (key in order) %}{{ SECTIONS[key] | safe }}{% endif %}{% endfor %}
 
 <script>
   const CITIES = ({{ studios.list | dump | safe }}).filter(c => c.visible !== false);

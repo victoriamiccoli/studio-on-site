@@ -90,6 +90,24 @@ collections:
             widget: "list"
             summary: "{{fields.text}}"
             field: { label: "Texte", name: "text", widget: "string" }
+          - label: "Ordre des parties (glisse pour réordonner)"
+            name: "sectionOrder"
+            widget: "list"
+            required: false
+            hint: "Glisse les lignes pour changer l'ordre des parties de la page d'accueil. Si vide, l'ordre par défaut s'applique. Une partie oubliée est ajoutée automatiquement à la fin."
+            field:
+              label: "Partie"
+              name: "section"
+              widget: "select"
+              options:
+                - { label: "Tarifs", value: "tarifs" }
+                - { label: "Concept", value: "concept" }
+                - { label: "Séances", value: "seances" }
+                - { label: "Coachs", value: "coachs" }
+                - { label: "Télécharge l'app", value: "app" }
+                - { label: "Studios", value: "studios" }
+                - { label: "FAQ", value: "faq" }
+                - { label: "Bloc final (Switch your body)", value: "cta" }
           - { label: "Masquer la banderole défilante", name: "hideMarquee", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Tarifs", name: "hideTarifs", widget: "boolean", default: false, required: false }
           - { label: "Masquer le titre de la partie Tarifs", name: "hideTarifsTitle", widget: "boolean", default: false, required: false }
