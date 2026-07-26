@@ -26,7 +26,7 @@ permalink: /
   {% if not home.hideTarifsTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | safe }}{% if home.tarifsTitleYellow %}{% if home.tarifsTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.tarifsTitleYellow | safe }}</em>{% endif %}</h2>
+      <h2 class="h-xl section-head__h{% if home.tarifsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | safe }}{% if home.tarifsTitleYellow %}{% if home.tarifsTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.tarifsTitleYellow | safe }}</em>{% endif %}</h2>
       <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitleWhite }}{% if home.tarifsSubtitleYellow %}{% if home.tarifsSubtitleBreak %}<br>{% else %} {% endif %}<em>{{ home.tarifsSubtitleYellow }}</em>{% endif %}</p>
     </div>
   </div>
@@ -88,7 +88,7 @@ permalink: /
   {% if not home.hideSeancesTitle %}
   <div class="section-meta section-head" style="padding-top: 40px;">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | safe }}{% if home.seancesTitleYellow %}{% if home.seancesTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.seancesTitleYellow | safe }}</em>{% endif %}</h2>
+      <h2 class="h-xl section-head__h{% if home.seancesTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | safe }}{% if home.seancesTitleYellow %}{% if home.seancesTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.seancesTitleYellow | safe }}</em>{% endif %}</h2>
       <p class="section-head__p" style="color: var(--ecru)">{{ home.seancesSubtitle | safe }}{% if home.seancesSubtitleYellow %}{% if home.seancesSubtitleBreak %}<br>{% else %} {% endif %}<em>{{ home.seancesSubtitleYellow | safe }}</em>{% endif %}</p>
       <div class="filter-pills">
         {% for f in seances.filters %}<span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>{% endfor %}
@@ -116,7 +116,7 @@ permalink: /
   {% if not home.hideCoachsTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | safe }}{% if home.coachsTitleYellow %}{% if home.coachsTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.coachsTitleYellow | safe }}</em>{% endif %}</h2>
+      <h2 class="h-xl section-head__h{% if home.coachsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | safe }}{% if home.coachsTitleYellow %}{% if home.coachsTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.coachsTitleYellow | safe }}</em>{% endif %}</h2>
       <p class="section-head__p" style="color: var(--ecru); opacity: .8">{{ home.coachsSubtitle | safe }}{% if home.coachsSubtitleYellow %}{% if home.coachsSubtitleBreak %}<br>{% else %} {% endif %}<em>{{ home.coachsSubtitleYellow | safe }}</em>{% endif %}</p>
     </div>
   </div>
@@ -167,7 +167,7 @@ permalink: /
   {% if not home.hideStudiosTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 18ch;">{{ home.studiosTitle | safe }}{% if home.studiosTitleYellow %}{% if home.studiosTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.studiosTitleYellow | safe }}</em>{% endif %}</h2>
+      <h2 class="h-xl section-head__h{% if home.studiosTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 18ch;">{{ home.studiosTitle | safe }}{% if home.studiosTitleYellow %}{% if home.studiosTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.studiosTitleYellow | safe }}</em>{% endif %}</h2>
       <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.studiosSubtitle | safe }}{% if home.studiosSubtitleYellow %}{% if home.studiosSubtitleBreak %}<br>{% else %} {% endif %}<em>{{ home.studiosSubtitleYellow | safe }}</em>{% endif %}</p>
     </div>
   </div>
@@ -196,7 +196,7 @@ permalink: /
   {% if not home.hideFaqTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch;">{{ home.faqTitle | safe }}{% if home.faqTitleYellow %}{% if home.faqTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.faqTitleYellow | safe }}</em>{% endif %}</h2>
+      <h2 class="h-xl section-head__h{% if home.faqTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch;">{{ home.faqTitle | safe }}{% if home.faqTitleYellow %}{% if home.faqTitleBreak %}<br>{% else %} {% endif %}<em>{{ home.faqTitleYellow | safe }}</em>{% endif %}</h2>
       <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.faqSubtitle | safe }}{% if home.faqSubtitleYellow %}{% if home.faqSubtitleBreak %}<br>{% else %} {% endif %}<em>{{ home.faqSubtitleYellow | safe }}</em>{% endif %}</p>
     </div>
   </div>

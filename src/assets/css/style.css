@@ -169,6 +169,8 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 .section-head__p { margin: 24px auto 0; font-family: var(--f-display); font-weight: 600; font-size: clamp(16px, 2vw, 22px); letter-spacing: -0.02em; }
 .section-head__p em { color: var(--vanille); font-style: normal; }
 .section-head__h em { color: var(--vanille); font-style: normal; }
+.section-head__h--oneline { max-width: none !important; }
+@media (min-width: 700px) { .section-head__h--oneline { white-space: nowrap; } }
 
 /* Aperçus accueil condensé (ajout) */
 .overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
