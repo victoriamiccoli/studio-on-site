@@ -106,17 +106,6 @@
         "Par Mood",
         "Par Coach"
       ]
-    },
-    {
-      "hideOnHome": false,
-      "badge": "FOCUS",
-      "meta": "30' - CEDRIC",
-      "tall": true,
-      "wide": true,
-      "play": false,
-      "dark": false,
-      "title": "ARMS ON",
-      "image": "/assets/img/focus-bras.png"
     }
   ]
 }
