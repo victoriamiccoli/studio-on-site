@@ -11,7 +11,7 @@ permalink: /
       <em style="color:#FFFFFF">{{ home.heroLine2 }}</em><br>
       {{ home.heroLine3 }}
     </h1>
-    <p class="intro-statement__lede-kicker">{{ home.heroKickerWhite | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.heroKickerYellow %}{% if home.heroKickerBreak %}<br>{% else %} {% endif %}{% if home.heroKickerBox %}<span class="hl-box">{{ home.heroKickerYellow }}</span>{% else %}<em>{{ home.heroKickerYellow }}</em>{% endif %}{% endif %}</p>
+    <p class="intro-statement__lede-kicker">{{ home.heroKickerWhite | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.heroKickerYellow %}{% if home.heroKickerBreak %}<br>{% else %} {% endif %}{% if home.heroKickerBox %}<span class="hl-box">{{ home.heroKickerYellow }}</span>{% else %}<em>{{ home.heroKickerYellow }}</em>{% endif %}{% endif %}</p>
   </div>
   <ul class="intro-statement__list">
     {% for b in home.heroBullets %}<li>{{ b }}</li>{% endfor %}
@@ -26,8 +26,8 @@ permalink: /
   {% if not home.hideTarifsTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h{% if home.tarifsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.tarifsTitleYellow %}{% if home.tarifsTitleBreak %}<br>{% else %} {% endif %}{% if home.tarifsTitleBox %}<span class="hl-box">{{ home.tarifsTitleYellow | safe }}</span>{% else %}<em>{{ home.tarifsTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
-      <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitleWhite | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.tarifsSubtitleYellow %}{% if home.tarifsSubtitleBreak %}<br>{% else %} {% endif %}{% if home.tarifsSubtitleBox %}<span class="hl-box">{{ home.tarifsSubtitleYellow }}</span>{% else %}<em>{{ home.tarifsSubtitleYellow }}</em>{% endif %}{% endif %}</p>
+      <h2 class="h-xl section-head__h{% if home.tarifsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.tarifsTitleYellow %}{% if home.tarifsTitleBreak %}<br>{% else %} {% endif %}{% if home.tarifsTitleBox %}<span class="hl-box">{{ home.tarifsTitleYellow | safe }}</span>{% else %}<em>{{ home.tarifsTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitleWhite | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.tarifsSubtitleYellow %}{% if home.tarifsSubtitleBreak %}<br>{% else %} {% endif %}{% if home.tarifsSubtitleBox %}<span class="hl-box">{{ home.tarifsSubtitleYellow }}</span>{% else %}<em>{{ home.tarifsSubtitleYellow }}</em>{% endif %}{% endif %}</p>
     </div>
   </div>
   {% endif %}
@@ -65,7 +65,7 @@ permalink: /
   <div class="section-meta section-head">
     <div>
       <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
-      <p class="section-head__p" style="color: var(--ecru)">{{ home.conceptSubtitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.conceptSubtitleYellow %}{% if home.conceptSubtitleBreak %}<br>{% else %} {% endif %}{% if home.conceptSubtitleBox %}<span class="hl-box">{{ home.conceptSubtitleYellow | safe }}</span>{% else %}<em>{{ home.conceptSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.conceptSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.conceptSubtitleYellow %}{% if home.conceptSubtitleBreak %}<br>{% else %} {% endif %}{% if home.conceptSubtitleBox %}<span class="hl-box">{{ home.conceptSubtitleYellow | safe }}</span>{% else %}<em>{{ home.conceptSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
     </div>
   </div>
   {% endif %}
@@ -88,8 +88,8 @@ permalink: /
   {% if not home.hideSeancesTitle %}
   <div class="section-meta section-head" style="padding-top: 40px;">
     <div>
-      <h2 class="h-xl section-head__h{% if home.seancesTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.seancesTitleYellow %}{% if home.seancesTitleBreak %}<br>{% else %} {% endif %}{% if home.seancesTitleBox %}<span class="hl-box">{{ home.seancesTitleYellow | safe }}</span>{% else %}<em>{{ home.seancesTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
-      <p class="section-head__p" style="color: var(--ecru)">{{ home.seancesSubtitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.seancesSubtitleYellow %}{% if home.seancesSubtitleBreak %}<br>{% else %} {% endif %}{% if home.seancesSubtitleBox %}<span class="hl-box">{{ home.seancesSubtitleYellow | safe }}</span>{% else %}<em>{{ home.seancesSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
+      <h2 class="h-xl section-head__h{% if home.seancesTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.seancesTitleYellow %}{% if home.seancesTitleBreak %}<br>{% else %} {% endif %}{% if home.seancesTitleBox %}<span class="hl-box">{{ home.seancesTitleYellow | safe }}</span>{% else %}<em>{{ home.seancesTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.seancesSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.seancesSubtitleYellow %}{% if home.seancesSubtitleBreak %}<br>{% else %} {% endif %}{% if home.seancesSubtitleBox %}<span class="hl-box">{{ home.seancesSubtitleYellow | safe }}</span>{% else %}<em>{{ home.seancesSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
       <div class="filter-pills">
         {% for f in seances.filters %}<span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>{% endfor %}
       </div>
@@ -116,8 +116,8 @@ permalink: /
   {% if not home.hideCoachsTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h{% if home.coachsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.coachsTitleYellow %}{% if home.coachsTitleBreak %}<br>{% else %} {% endif %}{% if home.coachsTitleBox %}<span class="hl-box">{{ home.coachsTitleYellow | safe }}</span>{% else %}<em>{{ home.coachsTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
-      <p class="section-head__p" style="color: var(--ecru); opacity: .8">{{ home.coachsSubtitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.coachsSubtitleYellow %}{% if home.coachsSubtitleBreak %}<br>{% else %} {% endif %}{% if home.coachsSubtitleBox %}<span class="hl-box">{{ home.coachsSubtitleYellow | safe }}</span>{% else %}<em>{{ home.coachsSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
+      <h2 class="h-xl section-head__h{% if home.coachsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.coachsTitleYellow %}{% if home.coachsTitleBreak %}<br>{% else %} {% endif %}{% if home.coachsTitleBox %}<span class="hl-box">{{ home.coachsTitleYellow | safe }}</span>{% else %}<em>{{ home.coachsTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity: .8">{{ home.coachsSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.coachsSubtitleYellow %}{% if home.coachsSubtitleBreak %}<br>{% else %} {% endif %}{% if home.coachsSubtitleBox %}<span class="hl-box">{{ home.coachsSubtitleYellow | safe }}</span>{% else %}<em>{{ home.coachsSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
     </div>
   </div>
   {% endif %}
@@ -167,8 +167,8 @@ permalink: /
   {% if not home.hideStudiosTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h{% if home.studiosTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 18ch;">{{ home.studiosTitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.studiosTitleYellow %}{% if home.studiosTitleBreak %}<br>{% else %} {% endif %}{% if home.studiosTitleBox %}<span class="hl-box">{{ home.studiosTitleYellow | safe }}</span>{% else %}<em>{{ home.studiosTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.studiosSubtitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.studiosSubtitleYellow %}{% if home.studiosSubtitleBreak %}<br>{% else %} {% endif %}{% if home.studiosSubtitleBox %}<span class="hl-box">{{ home.studiosSubtitleYellow | safe }}</span>{% else %}<em>{{ home.studiosSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
+      <h2 class="h-xl section-head__h{% if home.studiosTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 18ch;">{{ home.studiosTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.studiosTitleYellow %}{% if home.studiosTitleBreak %}<br>{% else %} {% endif %}{% if home.studiosTitleBox %}<span class="hl-box">{{ home.studiosTitleYellow | safe }}</span>{% else %}<em>{{ home.studiosTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.studiosSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.studiosSubtitleYellow %}{% if home.studiosSubtitleBreak %}<br>{% else %} {% endif %}{% if home.studiosSubtitleBox %}<span class="hl-box">{{ home.studiosSubtitleYellow | safe }}</span>{% else %}<em>{{ home.studiosSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
     </div>
   </div>
   {% endif %}
@@ -196,8 +196,8 @@ permalink: /
   {% if not home.hideFaqTitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h{% if home.faqTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch;">{{ home.faqTitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.faqTitleYellow %}{% if home.faqTitleBreak %}<br>{% else %} {% endif %}{% if home.faqTitleBox %}<span class="hl-box">{{ home.faqTitleYellow | safe }}</span>{% else %}<em>{{ home.faqTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.faqSubtitle | replace(r/\[\[(.+?)\]\]/g, '<span class="hl-box">$1</span>') | safe }}{% if home.faqSubtitleYellow %}{% if home.faqSubtitleBreak %}<br>{% else %} {% endif %}{% if home.faqSubtitleBox %}<span class="hl-box">{{ home.faqSubtitleYellow | safe }}</span>{% else %}<em>{{ home.faqSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
+      <h2 class="h-xl section-head__h{% if home.faqTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch;">{{ home.faqTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.faqTitleYellow %}{% if home.faqTitleBreak %}<br>{% else %} {% endif %}{% if home.faqTitleBox %}<span class="hl-box">{{ home.faqTitleYellow | safe }}</span>{% else %}<em>{{ home.faqTitleYellow | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.faqSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if home.faqSubtitleYellow %}{% if home.faqSubtitleBreak %}<br>{% else %} {% endif %}{% if home.faqSubtitleBox %}<span class="hl-box">{{ home.faqSubtitleYellow | safe }}</span>{% else %}<em>{{ home.faqSubtitleYellow | safe }}</em>{% endif %}{% endif %}</p>
     </div>
   </div>
   {% endif %}
