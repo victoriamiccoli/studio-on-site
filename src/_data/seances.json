@@ -37,7 +37,7 @@
     {
       "badge": "Avancé",
       "meta": "Force · 45 min · Kévin",
-      "tall": false,
+      "tall": true,
       "wide": true,
       "play": false,
       "dark": true,
