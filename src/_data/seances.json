@@ -40,7 +40,7 @@
       "tall": false,
       "wide": false,
       "play": false,
-      "dark": true,
+      "dark": false,
       "title": "Start on.",
       "image": "/assets/img/focus-casque-studio-on.png",
       "cats": [
