@@ -24,6 +24,9 @@ collections:
           - { label: "Téléphone", name: "contactPhone", widget: "string" }
           - { label: "Email des candidatures franchise", name: "franchiseEmail", widget: "string" }
           - { label: "Texte du bouton « liste d'attente »", name: "waitlistCta", widget: "string", required: false, hint: "Défaut : Rejoins la liste d'attente" }
+          - { label: "Liste d'attente — texte d'intro (vide = aucun)", name: "waitlistIntro", widget: "string", required: false, hint: "Laisse vide pour ne rien afficher au-dessus du formulaire" }
+          - { label: "Liste d'attente — titre de confirmation", name: "waitlistSuccessTitle", widget: "string", required: false, hint: "Défaut : Merci !" }
+          - { label: "Liste d'attente — message de confirmation", name: "waitlistSuccessText", widget: "string", required: false, hint: "Défaut : Tu es sur la liste d'attente 🖤" }
           - label: "Menu de navigation"
             name: "nav"
             widget: "list"
