@@ -1,6 +1,6 @@
 {
   "hideMarquee": false,
-  "tarifsSubtitleWhite": "Le Pilates Reformer.",
+  "tarifsSubtitleWhite": "Tarifs accessibles",
   "conceptSubtitle": "3 étapes. Pas plus.",
   "heroKickerYellow": "Pensé pour vous.",
   "faqTitle": "Des question ? Nos réponses.",
@@ -9,7 +9,7 @@
   "heroLine2": "Plus accessible.",
   "showMarquee": false,
   "heroLine3": "Mieux adapté.",
-  "seancesTitle": "Plus de 100 séances. À ton rythme.",
+  "seancesTitle": "Plus de 100 séances.",
   "steps": [
     {
       "num": "01",
@@ -30,7 +30,7 @@
       "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
     }
   ],
-  "tarifsTitle": "Tarifs accessibles",
+  "tarifsTitle": "Le Pilates Reformer.",
   "seancesSubtitle": "Le Pilates Reformer. Pour tous les objectifs.",
   "faqSubtitle": "Si ta question n'y est pas, écris-nous, on y répond très vite !",
   "appText": "",
@@ -43,6 +43,7 @@
     "Génère ton QR code d'accès au studio"
   ],
   "coachsSubtitle": "Tes coachs préférés. Disponibles à chaque séance.",
+  "coachsTitleYellow": "7 ADN.",
   "appKicker": "",
   "studiosSubtitle": "Plusieurs adresses. Une seule expérience.",
   "appTitle": "Télécharge l'app",
@@ -53,11 +54,13 @@
     "Des nouvelles vidéos en continu"
   ],
   "appIcon": "",
+  "seancesTitleYellow": "À ton rythme.",
+  "tarifsTitleYellow": "En illimité.",
   "hideCoachs": false,
   "studiosTitle": "Paris, et bientôt ailleurs…",
   "heroKickerWhite": "Le Pilates Reformer.",
   "hideCoachsTitle": false,
-  "tarifsSubtitleYellow": "En illimité.",
+  "tarifsSubtitleYellow": ".",
   "ctaText": "",
-  "coachsTitle": "Sept coachs. Sept ADN."
+  "coachsTitle": "7 coachs."
 }
