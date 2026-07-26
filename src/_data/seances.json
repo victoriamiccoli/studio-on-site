@@ -71,7 +71,7 @@
       "play": true,
       "dark": true,
       "title": "Booty on.",
-      "image": "/assets/img/booty-on-studio-on.jpg",
+      "image": "/assets/img/focus-booty.png",
       "cats": [
         "Par Focus",
         "Par Coach"
@@ -106,6 +106,17 @@
         "Par Mood",
         "Par Coach"
       ]
+    },
+    {
+      "hideOnHome": false,
+      "badge": "FOCUS",
+      "meta": "30' - CEDRIC",
+      "tall": true,
+      "wide": true,
+      "play": false,
+      "dark": false,
+      "title": "ARMS ON",
+      "image": "/assets/img/focus-bras.png"
     }
   ]
 }
