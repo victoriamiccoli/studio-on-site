@@ -26,7 +26,7 @@
       "tall": false,
       "wide": false,
       "play": false,
-      "dark": false,
+      "dark": true,
       "title": "Mobility on.",
       "image": "/assets/img/focus-mobility-studio-on.png",
       "cats": [
@@ -69,7 +69,7 @@
       "tall": true,
       "wide": false,
       "play": true,
-      "dark": true,
+      "dark": false,
       "title": "Booty on.",
       "image": "/assets/img/focus-booty.png",
       "cats": [
