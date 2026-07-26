@@ -173,8 +173,8 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 #tarifs { padding-top: clamp(120px, 13vw, 200px); }
 #tarifs .section-head { padding-bottom: clamp(64px, 7vw, 104px); }
 @media (max-width: 640px) {
-  #tarifs { padding-top: 140px; }
-  #tarifs .section-head { padding-bottom: 96px; }
+  #tarifs { padding-top: 172px; }
+  #tarifs .section-head { padding-bottom: 128px; }
 }
 .hl-box { display: inline-block; background: var(--vanille); color: var(--noir); border-radius: 0.24em; padding: 0.06em 0.16em; line-height: 1; font-style: normal; vertical-align: baseline; }
 .section-head__h--oneline { max-width: none !important; }
