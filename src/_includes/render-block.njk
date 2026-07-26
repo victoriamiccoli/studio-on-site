@@ -1,0 +1,100 @@
+{#- Moteur de briques réutilisables. Attend une variable `block` dans le contexte. -#}
+{%- set b = block -%}
+{% if b.type == "cards" %}
+<section class="section--dark reveal blk blk--cards"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle or b.subtitleYellow %}
+  <div class="blk-cards__head">
+    {% if b.title %}<h2 class="blk-cards__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <span class="blk-cards__hl">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</h2>{% endif %}
+    {% if b.subtitle or b.subtitleYellow %}<p class="blk-cards__sub">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.subtitleYellow %} <span class="blk-cards__sub-hl">{{ b.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</p>{% endif %}
+  </div>
+  {% endif %}
+  <div class="kit">
+    {% for c in b.cards %}
+    <article class="kit-cell{% if c.hero %} kit-cell--hero{% endif %}">
+      <div class="kit-cell__top">
+        {% if c.kick %}<span class="kit-cell__kick">{{ c.kick }}</span>{% endif %}
+        {% if c.fig %}<span class="kit-cell__fig">{{ c.fig | safe }}</span>{% endif %}
+        {% if c.sub %}<span class="kit-cell__sub">{{ c.sub }}</span>{% endif %}
+      </div>
+      {% if c.hero %}<div class="kit-cell__top">{% if c.h %}<h3 class="kit-cell__h">{{ c.h }}</h3>{% endif %}{% if c.p %}<p class="kit-cell__p">{{ c.p | safe }}</p>{% endif %}</div>
+      {% else %}{% if c.h %}<h3 class="kit-cell__h">{{ c.h }}</h3>{% endif %}{% if c.p %}<p class="kit-cell__p">{{ c.p | safe }}</p>{% endif %}{% endif %}
+      {% if c.specs and c.specs.length %}<ul class="kit-cell__specs">{% for sp in c.specs %}<li>{{ sp }}</li>{% endfor %}</ul>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% elif b.type == "switch" %}
+<section class="switch-sec reveal blk blk--switch"{% if b.id %} id="blk-{{ b.id }}"{% endif %} data-state="off">
+  <div class="switch-sec__inner">
+    <div class="switch-sec__left">
+      {% if b.kick %}<span class="switch-sec__kick">{{ b.kick }}</span>{% endif %}
+      <button type="button" class="giant-toggle" aria-pressed="false">
+        <span class="giant-toggle__track"><span class="giant-toggle__knob"></span></span>
+        <span class="giant-toggle__word giant-toggle__word--off">{{ b.wordOff or "Off" }}</span>
+        <span class="giant-toggle__word giant-toggle__word--on">{{ b.wordOn or "On." }}</span>
+      </button>
+      {% if b.hint %}<span class="switch-sec__hint">{{ b.hint }}</span>{% endif %}
+    </div>
+    <div class="switch-panes">
+      <div class="switch-pane" data-pane="off">
+        {% if b.offTitle %}<h2 class="switch-pane__h">{{ b.offTitle | safe }}</h2>{% endif %}
+        {% if b.offRows and b.offRows.length %}<ul class="switch-pane__list">{% for r in b.offRows %}<li><b>{{ r.label }}</b><span>{{ r.value }}</span></li>{% endfor %}</ul>{% endif %}
+        {% if b.offNote %}<p class="switch-pane__note">{{ b.offNote }}</p>{% endif %}
+      </div>
+      <div class="switch-pane" data-pane="on" hidden>
+        {% if b.onTitle %}<h2 class="switch-pane__h">{{ b.onTitle | safe }}</h2>{% endif %}
+        {% if b.onRows and b.onRows.length %}<ul class="switch-pane__list">{% for r in b.onRows %}<li><b>{{ r.label }}</b><span>{{ r.value }}</span></li>{% endfor %}</ul>{% endif %}
+        {% if b.onNote %}<p class="switch-pane__note">{{ b.onNote }}</p>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% elif b.type == "steps" %}
+<section class="section--dark reveal blk blk--steps"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle %}
+  <div class="section-meta section-head"><div>
+    {% if b.title %}<h2 class="h-xl section-head__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</em>{% endif %}</h2>{% endif %}
+    {% if b.subtitle %}<p class="section-head__p" style="color: var(--ecru)">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</p>{% endif %}
+  </div></div>
+  {% endif %}
+  <div class="principes" style="border-top: none;">
+    {% for s in b.steps %}
+    <article class="principe">
+      <div class="principe__top">{% if s.num %}<span class="step-num">{{ s.num }}</span>{% endif %}{% if s.label %}<span class="step-label">{{ s.label }}</span>{% endif %}</div>
+      {% if s.title %}<h3 class="principe__h">{{ s.title }}</h3>{% endif %}
+      {% if s.text %}<p class="principe__p">{{ s.text | safe }}</p>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% elif b.type == "cta" %}
+<section class="cta-band reveal blk blk--cta"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title %}<h2 class="cta-band__h">{{ b.title | safe }}</h2>{% endif %}
+  <div class="cta-band__side">
+    {% if b.text %}<p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ b.text | safe }}</p>{% endif %}
+    {% if b.btnLabel %}<div class="cta-band__actions"><a href="{{ b.btnHref or '#' }}" class="btn btn--ecru">{{ b.btnLabel }} <span class="btn__toggle"></span></a></div>{% endif %}
+  </div>
+</section>
+
+{% elif b.type == "richtext" %}
+<section class="reveal blk blk--rich{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  <div class="blk-rich__wrap">
+    {% if b.title %}<h2 class="h-xl blk-rich__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</em>{% endif %}</h2>{% endif %}
+    {% if b.text %}<div class="blk-rich__body">{{ b.text | safe }}</div>{% endif %}
+  </div>
+</section>
+
+{% elif b.type == "image" %}
+<section class="reveal blk blk--image{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.image %}<img class="blk-image__img" src="{{ b.image }}" alt="{{ b.alt or '' }}" loading="lazy">{% endif %}
+  {% if b.caption %}<p class="blk-image__cap">{{ b.caption }}</p>{% endif %}
+</section>
+
+{% elif b.type == "button" %}
+<section class="reveal blk blk--button{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.label %}<a href="{{ b.href or '#' }}" class="btn btn--vanille"{% if b.newTab %} target="_blank" rel="noopener"{% endif %}>{{ b.label }} <span>→</span></a>{% endif %}
+</section>
+{% endif %}

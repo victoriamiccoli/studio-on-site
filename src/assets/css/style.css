@@ -503,3 +503,74 @@ strong { font-weight: 600; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .marquee__track { animation: none; }
 }
+
+/* ============================================================
+   BRIQUES RÉUTILISABLES (moteur de blocs)
+   ============================================================ */
+
+/* --- Brique CARDS (bento) --- */
+.blk--cards { padding-top: clamp(80px, 10vw, 140px); padding-bottom: clamp(80px, 10vw, 140px); }
+.blk-cards__head { text-align: center; padding-bottom: clamp(40px, 6vw, 56px); }
+.blk-cards__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(40px, 9vw, 82px); line-height: .95; letter-spacing: -0.04em; text-transform: uppercase; margin: 0 auto; max-width: 16ch; }
+.blk-cards__hl { color: var(--vanille); }
+.blk-cards__sub { margin: 22px auto 0; font-family: var(--f-display); font-weight: 600; font-size: clamp(17px, 2vw, 22px); letter-spacing: -0.02em; color: var(--ecru); max-width: 40ch; }
+.blk-cards__sub-hl { color: var(--vanille); }
+.kit { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 14px; max-width: 100%; }
+.kit-cell { background: #1E1E1E; border-radius: 14px; padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.kit-cell--hero { grid-row: span 2; justify-content: flex-start; gap: 20px; border: 1.5px solid var(--vanille); padding: 30px 28px; }
+.kit-cell__top { display: flex; flex-direction: column; gap: 10px; }
+.kit-cell__kick { font: 500 10px var(--f-body); letter-spacing: .2em; text-transform: uppercase; color: var(--vanille); }
+.kit-cell__fig { font-family: var(--f-display); font-weight: 600; font-size: clamp(44px, 5vw, 68px); line-height: .88; letter-spacing: -0.04em; color: var(--vanille); }
+.kit-cell--hero .kit-cell__fig { font-size: clamp(56px, 7vw, 96px); }
+.kit-cell__sub { font: 500 10px var(--f-body); letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-top: -2px; }
+.kit-cell__h { font-family: var(--f-display); font-weight: 600; font-size: 20px; line-height: 1; letter-spacing: -0.025em; text-transform: uppercase; margin: 0; }
+.kit-cell--hero .kit-cell__h { font-size: clamp(24px, 2.4vw, 32px); }
+.kit-cell__p { font: 400 13px/1.55 var(--f-body); opacity: .7; margin: 0; max-width: 36ch; }
+.kit-cell--hero .kit-cell__p { font-size: 14px; }
+.kit-cell__specs { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; padding-top: 18px; border-top: 1px solid var(--line-d); font: 500 12px/1.4 var(--f-body); letter-spacing: .04em; text-transform: uppercase; list-style: none; padding-left: 0; margin-bottom: 0; }
+.kit-cell__specs li { display: flex; align-items: center; gap: 11px; opacity: .8; }
+.kit-cell__specs li::before { content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--vanille); }
+@media (max-width: 900px) { .kit { grid-template-columns: 1fr; } .kit-cell--hero { grid-row: auto; } }
+
+/* --- Brique SWITCH (interrupteur Off/On) --- */
+.switch-sec { background: #1E1E1E; color: #FFFFFF; padding: clamp(80px, 10vw, 140px) var(--pad); transition: background .55s cubic-bezier(.4,0,.2,1), color .55s cubic-bezier(.4,0,.2,1); overflow: hidden; }
+.switch-sec[data-state="on"] { background: var(--vanille); color: var(--noir); }
+.switch-sec__inner { display: grid; grid-template-columns: minmax(280px, .8fr) 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; max-width: 1180px; margin: 0 auto; }
+.switch-sec__left { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }
+.switch-sec__kick { font: 500 11px var(--f-body); letter-spacing: .2em; text-transform: uppercase; opacity: .6; }
+.switch-sec__hint { font: 500 11px var(--f-body); letter-spacing: .16em; text-transform: uppercase; opacity: .65; }
+.giant-toggle { appearance: none; -webkit-appearance: none; border: 0; background: none; padding: 0; cursor: grab; display: flex; align-items: center; gap: 20px; color: inherit; font-family: var(--f-display); touch-action: none; }
+.giant-toggle.is-dragging { cursor: grabbing; }
+.giant-toggle.is-dragging .giant-toggle__knob { transition: none; }
+.giant-toggle__track { position: relative; width: 148px; height: 74px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1.5px solid rgba(255,255,255,.28); flex-shrink: 0; transition: background .45s ease, border-color .45s ease; }
+.switch-sec[data-state="on"] .giant-toggle__track { background: var(--noir); border-color: var(--noir); }
+.giant-toggle__knob { position: absolute; top: 6px; left: 6px; width: 58px; height: 58px; border-radius: 50%; background: #FFFFFF; transition: transform .45s cubic-bezier(.34,1.4,.5,1), background .45s ease; }
+.switch-sec[data-state="on"] .giant-toggle__knob { transform: translateX(72px); background: var(--vanille); }
+.giant-toggle__word { font-weight: 600; font-size: clamp(48px, 6vw, 84px); line-height: .82; letter-spacing: -0.05em; text-transform: uppercase; transition: opacity .4s ease; }
+.giant-toggle__word--on { display: none; }
+.switch-sec[data-state="on"] .giant-toggle__word--off { display: none; }
+.switch-sec[data-state="on"] .giant-toggle__word--on { display: block; }
+.switch-panes { position: relative; display: grid; }
+.switch-pane { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 22px; transition: opacity .45s ease, transform .45s ease; }
+.switch-pane[hidden] { display: flex; visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(8px); }
+.switch-pane__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(30px, 4vw, 52px); line-height: .96; letter-spacing: -0.035em; text-transform: uppercase; margin: 0; }
+.switch-pane__list { display: flex; flex-direction: column; gap: 0; list-style: none; padding: 0; margin: 0; }
+.switch-pane__list li { display: grid; grid-template-columns: 128px 1fr; gap: 8px 26px; align-items: baseline; padding: 16px 0; border-top: 1px solid currentColor; }
+.switch-pane__list li:last-child { border-bottom: 1px solid currentColor; }
+.switch-pane__list b { font: 500 10px var(--f-body); letter-spacing: .16em; text-transform: uppercase; opacity: .6; }
+.switch-pane__list span { font-family: var(--f-display); font-weight: 600; font-size: clamp(19px, 2vw, 26px); line-height: 1.12; letter-spacing: -0.025em; }
+.switch-pane__note { font-family: var(--f-display); font-weight: 500; font-size: clamp(16px, 1.5vw, 20px); line-height: 1.3; letter-spacing: -0.015em; opacity: .7; margin: 0; max-width: 34ch; }
+@media (max-width: 900px) { .switch-sec__inner { grid-template-columns: 1fr; gap: 44px; } }
+@media (max-width: 620px) { .switch-pane__list li { grid-template-columns: 1fr; } }
+
+/* --- Briques génériques (richtext / image / bouton) --- */
+.blk--rich { padding: clamp(70px, 9vw, 120px) var(--pad); }
+.blk-rich__wrap { max-width: 760px; margin: 0 auto; }
+.blk-rich__h { font-size: clamp(34px, 6vw, 64px); margin: 0 0 22px; }
+.blk-rich__h em { color: var(--vanille); font-style: normal; }
+.blk-rich__body { font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; opacity: .82; }
+.blk-rich__body p { margin: 0 0 1em; }
+.blk--image { padding: clamp(40px, 6vw, 80px) var(--pad); text-align: center; }
+.blk-image__img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; border-radius: 16px; }
+.blk-image__cap { margin: 16px auto 0; font-size: 13px; opacity: .6; max-width: 60ch; }
+.blk--button { padding: clamp(50px, 7vw, 90px) var(--pad); text-align: center; }

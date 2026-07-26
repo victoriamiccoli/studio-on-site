@@ -370,5 +370,62 @@
   });
 })();
 </script>
+
+<!-- Briques : interrupteur Off/On (multi-instances) -->
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.switch-sec').forEach(function(sec){
+    var toggle = sec.querySelector('.giant-toggle');
+    if (!toggle) return;
+    var panes = sec.querySelectorAll('.switch-pane');
+    var track = toggle.querySelector('.giant-toggle__track');
+    var knob = toggle.querySelector('.giant-toggle__knob');
+    var TRAVEL = 72;
+    var dragging = false, moved = false, pointerDriven = false, auto = null;
+    function setState(state){
+      sec.dataset.state = state;
+      toggle.setAttribute('aria-pressed', state === 'on' ? 'true' : 'false');
+      panes.forEach(function(p){ p.hidden = p.dataset.pane !== state; });
+    }
+    function stopAuto(){ clearInterval(auto); auto = null; }
+    toggle.addEventListener('pointerdown', function(ev){
+      dragging = true; moved = false; pointerDriven = true; stopAuto();
+      toggle.classList.add('is-dragging');
+      try { toggle.setPointerCapture(ev.pointerId); } catch(e){}
+    });
+    toggle.addEventListener('pointermove', function(ev){
+      if (!dragging || !track) return;
+      var r = track.getBoundingClientRect();
+      var x = Math.max(0, Math.min(TRAVEL, ev.clientX - r.left - 35));
+      if (Math.abs(x - (sec.dataset.state === 'on' ? TRAVEL : 0)) > 4) moved = true;
+      if (knob) knob.style.transform = 'translateX(' + x + 'px)';
+      setState(x > TRAVEL / 2 ? 'on' : 'off');
+    });
+    function endDrag(){ if (!dragging) return; dragging = false; toggle.classList.remove('is-dragging'); if (knob) knob.style.transform = ''; }
+    toggle.addEventListener('pointerup', endDrag);
+    toggle.addEventListener('pointercancel', endDrag);
+    toggle.addEventListener('click', function(){
+      stopAuto();
+      var wasDrag = pointerDriven && moved; pointerDriven = false;
+      if (wasDrag) return;
+      setState(sec.dataset.state === 'on' ? 'off' : 'on');
+    });
+    toggle.addEventListener('keydown', function(ev){
+      if (ev.key === 'ArrowRight'){ stopAuto(); setState('on'); }
+      if (ev.key === 'ArrowLeft'){ stopAuto(); setState('off'); }
+    });
+    if (!reduce){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ if (!auto) auto = setInterval(function(){ setState(sec.dataset.state === 'on' ? 'off' : 'on'); }, 4200); }
+          else { stopAuto(); }
+        });
+      }, { threshold: 0.3 });
+      io.observe(sec);
+    }
+  });
+})();
+</script>
 </body>
 </html>

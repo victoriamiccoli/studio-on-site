@@ -13,36 +13,7 @@ description: Le Reformer en mode On. 3 étapes, pas plus.
 </section>
 {% endif %}
 
-<section class="section--dark reveal" style="padding-bottom: clamp(40px, 5vw, 72px);">
-  <div class="principes" style="border-top: none;">
-    <article class="principe">
-      <div class="principe__top">
-        <span class="step-num">01</span>
-        <span class="step-label">Réserve</span>
-      </div>
-      <h3 class="principe__h">Ton pass nominatif.</h3>
-      <p class="principe__p">Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà.</p>
-    </article>
-    <article class="principe">
-      <div class="principe__top">
-        <span class="step-num">02</span>
-        <span class="step-label">Viens</span>
-      </div>
-      <h3 class="principe__h">Pousse la porte.</h3>
-      <p class="principe__p">Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer.</p>
-    </article>
-    <article class="principe">
-      <div class="principe__top">
-        <span class="step-num">03</span>
-        <span class="step-label">Bouge</span>
-      </div>
-      <h3 class="principe__h">Lance ta séance.</h3>
-      <p class="principe__p">Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme.</p>
-    </article>
-  </div>
-</section>
-
-{% include "marquee.njk" %}
+{% if blocks and blocks.list %}{% for block in blocks.list %}{% if not block.hidden and ("concept" in (block.pages or [])) %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
 
 <section class="cta-band reveal">
   <h2 class="cta-band__h">Prêt<br>à tester&nbsp;?</h2>

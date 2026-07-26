@@ -1,0 +1,81 @@
+{
+  "list": [
+    {
+      "id": "exp-on",
+      "type": "cards",
+      "hidden": false,
+      "onHome": false,
+      "pages": ["concept"],
+      "title": "L'expérience<br>ON",
+      "titleYellow": "",
+      "subtitle": "Le Pilates Reformer",
+      "subtitleYellow": "pensé pour toi.",
+      "cards": [
+        {
+          "hero": true,
+          "kick": "L'écran",
+          "fig": "1:1",
+          "h": "Toi et ton écran",
+          "p": "Un écran face à chaque Reformer. Tu choisis coach, durée, intensité et zone du corps, puis tu suis le flow. Chaque exercice est démontré, avec le réglage des ressorts affiché à l'image. Tu mets en pause, tu reprends, tu recommences : c'est ta séance.",
+          "specs": [
+            "Réglage des ressorts affiché à l'écran",
+            "Pause et reprise à tout moment",
+            "Chaque exercice démontré en vidéo",
+            "Aucun cours à heure fixe"
+          ]
+        },
+        {
+          "kick": "Le catalogue",
+          "fig": "100+",
+          "h": "Vidéos disponibles.",
+          "p": "Filtrées par niveau, focus, flow ou coach. De nouvelles séances arrivent toute l'année."
+        },
+        {
+          "kick": "Le format",
+          "fig": "45&prime;",
+          "h": "La séance type.",
+          "p": "De 40 à 55 minutes, hyper flexible. Échauffement, flow, retour au calme : rien à improviser."
+        },
+        {
+          "kick": "Le son",
+          "fig": "1",
+          "h": "Casque sans fil par Reformer.",
+          "p": "Fourni et désinfecté. La voix du coach, rien d'autre : tu pratiques dans ta bulle. Tu préfères les tiens ? Viens avec tes propres écouteurs."
+        },
+        {
+          "kick": "Le confort",
+          "fig": "100%",
+          "h": "Pensé pour toi.",
+          "p": "Douche, serviette, produits de beauté, fontaine à eau, vestiaires et casiers t'attendent. Prévois juste des chaussettes antidérapantes et un cadenas."
+        }
+      ]
+    },
+    {
+      "id": "interrupteur",
+      "type": "switch",
+      "hidden": false,
+      "onHome": false,
+      "pages": ["concept"],
+      "kick": "Le mode",
+      "wordOff": "Off",
+      "wordOn": "On.",
+      "hint": "Fais glisser pour basculer",
+      "offTitle": "Le studio<br>classique",
+      "offRows": [
+        { "label": "Horaires", "value": "Un créneau imposé, deux les bons jours." },
+        { "label": "Réservation", "value": "Des semaines à l'avance, liste d'attente." },
+        { "label": "La séance", "value": "Celle du planning, au rythme du groupe." },
+        { "label": "Le prix", "value": "30 à 40 € la séance." }
+      ],
+      "offNote": "Tu t'adaptes au studio.",
+      "onTitle": "Le studio<br>en mode ON.",
+      "onRows": [
+        { "label": "Horaires", "value": "Ouvert de 6h à 22h30, 7j/7." },
+        { "label": "Réservation", "value": "Jusqu'à 5 minutes avant." },
+        { "label": "La séance", "value": "100+ vidéos, ton coach, ton rythme." },
+        { "label": "Le prix", "value": "À partir de 15 € la séance." }
+      ],
+      "onNote": "Le studio s'adapte à toi."
+    }
+  ]
+}

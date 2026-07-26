@@ -107,6 +107,7 @@ collections:
                 - { label: "Télécharge l'app", value: "app" }
                 - { label: "Studios", value: "studios" }
                 - { label: "FAQ", value: "faq" }
+                - { label: "Mes briques (sections perso)", value: "blocs" }
                 - { label: "Bloc final (Switch your body)", value: "cta" }
           - { label: "Masquer la banderole défilante", name: "hideMarquee", widget: "boolean", default: false, required: false }
           - { label: "Masquer la partie Tarifs", name: "hideTarifs", widget: "boolean", default: false, required: false }
@@ -405,6 +406,7 @@ collections:
             fields:
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Infos (durée · coach)", name: "meta", widget: "string", required: false }
+              - { label: "Catégories (pour les filtres)", name: "cats", widget: "relation", collection: "seances", file: "seances", value_field: "filters.*", search_fields: ["filters.*"], display_fields: ["filters.*"], multiple: true, required: false }
               - { label: "Badge", name: "badge", widget: "string", required: false }
               - { label: "Photo", name: "image", widget: "image", required: false }
               - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
@@ -467,3 +469,148 @@ collections:
             fields:
               - { label: "Question", name: "q", widget: "string" }
               - { label: "Réponse", name: "a", widget: "text" }
+
+  # ---------------- BLOCS (briques réutilisables) ----------------
+  - name: "blocs"
+    label: "Blocs (briques réutilisables)"
+    files:
+      - name: "blocs"
+        label: "Mes briques"
+        file: "src/_data/blocks.json"
+        fields:
+          - label: "Briques"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.id}}"
+            types:
+              - label: "Cartes (bento)"
+                name: "cards"
+                widget: "object"
+                summary: "Cartes · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false }
+                  - { label: "Sous-titre (partie jaune)", name: "subtitleYellow", widget: "string", required: false }
+                  - label: "Cartes"
+                    name: "cards"
+                    widget: "list"
+                    summary: "{{fields.h}}"
+                    fields:
+                      - { label: "Grande carte (héro, mise en avant)", name: "hero", widget: "boolean", default: false, required: false }
+                      - { label: "Sur-titre", name: "kick", widget: "string", required: false }
+                      - { label: "Chiffre (ex. 100+, 45', 1:1)", name: "fig", widget: "string", required: false }
+                      - { label: "Petit texte sous le chiffre", name: "sub", widget: "string", required: false }
+                      - { label: "Titre de la carte", name: "h", widget: "string", required: false }
+                      - { label: "Texte", name: "p", widget: "text", required: false }
+                      - { label: "Points (liste à puces, optionnel)", name: "specs", widget: "list", required: false, field: { label: "Point", name: "point", widget: "string" } }
+              - label: "Interrupteur (Off / On)"
+                name: "switch"
+                widget: "object"
+                summary: "Interrupteur · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Sur-titre (ex. Le mode)", name: "kick", widget: "string", required: false }
+                  - { label: "Mot Off", name: "wordOff", widget: "string", required: false }
+                  - { label: "Mot On", name: "wordOn", widget: "string", required: false }
+                  - { label: "Indice (ex. Fais glisser pour basculer)", name: "hint", widget: "string", required: false }
+                  - { label: "Titre côté OFF (le <br> passe à la ligne)", name: "offTitle", widget: "string", required: false }
+                  - label: "Lignes côté OFF"
+                    name: "offRows"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: "Intitulé", name: "label", widget: "string", required: false }
+                      - { label: "Valeur", name: "value", widget: "string", required: false }
+                  - { label: "Note côté OFF", name: "offNote", widget: "string", required: false }
+                  - { label: "Titre côté ON (le <br> passe à la ligne)", name: "onTitle", widget: "string", required: false }
+                  - label: "Lignes côté ON"
+                    name: "onRows"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: "Intitulé", name: "label", widget: "string", required: false }
+                      - { label: "Valeur", name: "value", widget: "string", required: false }
+                  - { label: "Note côté ON", name: "onNote", widget: "string", required: false }
+              - label: "Étapes numérotées"
+                name: "steps"
+                widget: "object"
+                summary: "Étapes · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+                  - label: "Étapes"
+                    name: "steps"
+                    widget: "list"
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: "Numéro (ex. 01)", name: "num", widget: "string", required: false }
+                      - { label: "Étiquette (ex. Réserve)", name: "label", widget: "string", required: false }
+                      - { label: "Titre", name: "title", widget: "string", required: false }
+                      - { label: "Texte", name: "text", widget: "text", required: false }
+              - label: "Bande d'appel à l'action (CTA)"
+                name: "cta"
+                widget: "object"
+                summary: "CTA · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
+                  - { label: "Texte", name: "text", widget: "text", required: false }
+                  - { label: "Libellé du bouton", name: "btnLabel", widget: "string", required: false }
+                  - { label: "Lien du bouton (ex. /tarifs/)", name: "btnHref", widget: "string", required: false }
+              - label: "Titre + texte"
+                name: "richtext"
+                widget: "object"
+                summary: "Texte · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Texte", name: "text", widget: "markdown", required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                summary: "Image · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+                  - { label: "Texte alternatif", name: "alt", widget: "string", required: false }
+                  - { label: "Légende", name: "caption", widget: "string", required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Bouton"
+                name: "button"
+                widget: "object"
+                summary: "Bouton · {{fields.id}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Afficher sur les pages", name: "pages", widget: "select", multiple: true, required: false, options: [{ label: "Concept", value: "concept" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Studios", value: "studios" }, { label: "Franchises", value: "franchises" }, { label: "FAQ", value: "faq" }, { label: "Tarifs", value: "tarifs" }, { label: "Contact", value: "contact" }] }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer partout", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Libellé", name: "label", widget: "string", required: false }
+                  - { label: "Lien", name: "href", widget: "string", required: false }
+                  - { label: "Ouvrir dans un nouvel onglet", name: "newTab", widget: "boolean", default: false, required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }

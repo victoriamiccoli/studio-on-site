@@ -236,8 +236,12 @@ permalink: /
 {% endif %}
 {% endset %}
 
-{% set SECTIONS = { "tarifs": sec_tarifs, "concept": sec_concept, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "cta": sec_cta } %}
-{% set defaultOrder = ["tarifs", "concept", "seances", "coachs", "app", "studios", "faq", "cta"] %}
+{% set sec_blocs %}
+{% if blocks and blocks.list %}{% for block in blocks.list %}{% if not block.hidden and block.onHome %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
+{% endset %}
+
+{% set SECTIONS = { "tarifs": sec_tarifs, "concept": sec_concept, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "blocs": sec_blocs, "cta": sec_cta } %}
+{% set defaultOrder = ["tarifs", "concept", "seances", "coachs", "app", "studios", "faq", "blocs", "cta"] %}
 {% set order = home.sectionOrder if (home.sectionOrder and home.sectionOrder.length) else defaultOrder %}
 {% for key in order %}{{ SECTIONS[key] | safe }}{% endfor %}
 {% for key in defaultOrder %}{% if not (key in order) %}{{ SECTIONS[key] | safe }}{% endif %}{% endfor %}
