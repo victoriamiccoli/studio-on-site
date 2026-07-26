@@ -1,6 +1,7 @@
 {
   "hideMarquee": false,
   "tarifsSubtitleWhite": "Tarifs accessibles",
+  "coachsTitleBreak": true,
   "conceptSubtitle": "3 étapes. Pas plus.",
   "heroKickerYellow": "Pensé pour vous.",
   "faqTitle": "Des question ? Nos réponses.",
@@ -43,7 +44,7 @@
     "Génère ton QR code d'accès au studio"
   ],
   "coachsSubtitle": "Tes coachs préférés. Disponibles à chaque séance.",
-  "coachsTitleYellow": "7 ADN.",
+  "coachsTitleYellow": "Sept ADN.",
   "appKicker": "",
   "studiosSubtitle": "Plusieurs adresses. Une seule expérience.",
   "appTitle": "Télécharge l'app",
@@ -64,5 +65,5 @@
   "hideCoachsTitle": false,
   "tarifsSubtitleYellow": ".",
   "ctaText": "",
-  "coachsTitle": "7 coachs."
+  "coachsTitle": "Sept coachs."
 }
