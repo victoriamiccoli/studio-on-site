@@ -176,6 +176,11 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
   #tarifs { padding-top: 172px; }
   #tarifs .section-head { padding-bottom: 128px; }
 }
+/* Aérer la section Séances (au-dessus du titre et sous les badges) */
+#seances .section-head { padding-top: clamp(70px, 8vw, 120px) !important; padding-bottom: clamp(64px, 7vw, 104px); }
+@media (max-width: 640px) {
+  #seances .section-head { padding-top: 132px !important; padding-bottom: 128px; }
+}
 .hl-box { display: inline-block; background: var(--vanille); color: var(--noir); border-radius: 0.24em; padding: 0.06em 0.16em; line-height: 1; font-style: normal; vertical-align: baseline; }
 .section-head__h--oneline { max-width: none !important; }
 @media (min-width: 700px) { .section-head__h--oneline { white-space: nowrap; } }
