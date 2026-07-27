@@ -233,6 +233,35 @@
   ],
   "seances": [
     {
+      "type": "stats",
+      "hidden": false,
+      "onHome": false,
+      "homePos": "bottom",
+      "dark": true,
+      "items": [
+        {
+          "fig": "40-55'",
+          "kick": "Durées au choix",
+          "p": "Des express ou plus longues en fonction de ton emploi du temps et de tes envies."
+        },
+        {
+          "fig": "3",
+          "kick": "Niveaux",
+          "p": "De Débutant à Avancé. Tu progresses à ton rythme."
+        },
+        {
+          "fig": "7",
+          "kick": "Coachs, 7 playlists",
+          "p": "Trouve ton coach préféré !"
+        },
+        {
+          "fig": "∞",
+          "kick": "Nouveautés",
+          "p": "De nouvelles séances toute l'année. Et c'est vous qui décidez !"
+        }
+      ]
+    },
+    {
       "type": "cta",
       "id": "cta-seances",
       "nom": "Switch your body",
