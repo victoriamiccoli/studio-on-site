@@ -25,7 +25,8 @@
   },
   "tarifs": {
     "title": "Le Pilates Reformer.",
-    "titleYellow": "En illimité.",
-    "titleBreak": true
+    "titleYellow": "En [[illimité.]]",
+    "titleBreak": true,
+    "subtitle": "Tarifs accessibles."
   }
 }
