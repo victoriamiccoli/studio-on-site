@@ -9,6 +9,7 @@
   "seances": {
     "subtitle": "Filtre par niveau, focus, mood ou coach.",
     "title": "Plus de 100 séances.",
-    "titleYellow": "à ton rythme."
+    "titleYellow": "à ton rythme.",
+    "titleBreak": true
   }
 }
