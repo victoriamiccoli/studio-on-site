@@ -227,7 +227,8 @@
       ],
       "type": "formule",
       "id": "trouve-ta-formule",
-      "ctaHref": "/tarifs/"
+      "ctaHref": "/tarifs/",
+      "onHome": true
     }
   ],
   "seances": [
