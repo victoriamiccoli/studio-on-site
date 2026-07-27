@@ -641,6 +641,14 @@ strong { font-weight: 600; }
 .studio-contact__label { font: 500 11px var(--f-body); letter-spacing: .16em; text-transform: uppercase; opacity: .55; }
 .studio-contact__val { font-family: var(--f-body); font-weight: 500; font-size: 15px; letter-spacing: 0; color: inherit; }
 
+/* Fond personnalisé d'une partie de l'accueil (noir / blanc / crème) */
+.secbg--noir > section { background: var(--noir) !important; color: var(--ecru) !important; }
+.secbg--blanc > section { background: #FFFFFF !important; color: var(--noir) !important; }
+.secbg--creme > section { background: var(--ecru-2) !important; color: var(--noir) !important; }
+.secbg--noir .section-head__h, .secbg--noir .section-head__p { color: var(--ecru) !important; }
+.secbg--blanc .section-head__h, .secbg--blanc .section-head__p,
+.secbg--creme .section-head__h, .secbg--creme .section-head__p { color: var(--noir) !important; }
+
 /* Titres de page : partie jaune + option une seule ligne (comme l'accueil) */
 .page-hero__h .hl-box { background: var(--vanille); color: var(--noir); }
 .page-hero__h--oneline { max-width: none !important; }

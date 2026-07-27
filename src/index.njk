@@ -213,7 +213,7 @@ permalink: /
 
 {% set SEC = { "tarifs": sec_tarifs, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "cta": sec_cta } %}
 {% if blocks and blocks.home and blocks.home.length %}
-{% for block in blocks.home %}{% if not block.hidden %}{% if block.type == "section" %}{{ SEC[block.section] | safe }}{% else %}{% include "render-block.njk" %}{% endif %}{% endif %}{% endfor %}
+{% for block in blocks.home %}{% if not block.hidden %}{% if block.type == "section" %}{% if block.bg and block.bg != "auto" %}<div class="secbg secbg--{{ block.bg }}">{{ SEC[block.section] | safe }}</div>{% else %}{{ SEC[block.section] | safe }}{% endif %}{% else %}{% include "render-block.njk" %}{% endif %}{% endif %}{% endfor %}
 {% else %}
 {{ sec_tarifs | safe }}{{ sec_seances | safe }}{{ sec_coachs | safe }}{{ sec_app | safe }}{{ sec_studios | safe }}{{ sec_faq | safe }}{{ sec_cta | safe }}
 {% endif %}

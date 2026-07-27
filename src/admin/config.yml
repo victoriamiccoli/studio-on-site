@@ -522,6 +522,7 @@ collections:
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Quelle section afficher", name: "section", widget: "select", required: false, options: [{ label: "Tarifs", value: "tarifs" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Télécharge l'app", value: "app" }, { label: "Studios", value: "studios" }, { label: "FAQ", value: "faq" }, { label: "Bloc final (Switch your body)", value: "cta" }] }
+                  - { label: "Fond de la partie", name: "bg", widget: "select", required: false, default: "auto", options: [{ label: "Automatique (par défaut)", value: "auto" }, { label: "Fond noir", value: "noir" }, { label: "Fond blanc", value: "blanc" }, { label: "Fond crème", value: "creme" }] }
               - label: "Cartes (bento)"
                 name: "cards"
                 widget: "object"
