@@ -90,7 +90,12 @@
 
 {% elif b.type == "image" %}
 <section class="reveal blk blk--image{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
-  {% if b.image %}<img class="blk-image__img" src="{{ b.image }}" alt="{{ b.alt or '' }}" loading="lazy">{% endif %}
+  {% if b.image %}<div class="blk-image__wrap{% if b.rounded %} is-rounded{% endif %}">
+    <img class="blk-image__img" src="{{ b.image }}" alt="{{ b.alt or '' }}" loading="lazy"{% if b.blur %} style="filter: blur({{ b.blurAmount or 8 }}px); transform: scale(1.05);"{% endif %}>
+    {% if b.darken %}<span class="blk-image__dark"></span>{% endif %}
+    {% if b.hatch %}<span class="blk-image__hatch"></span>{% endif %}
+    {% if b.overlayText %}<span class="blk-image__overlay">{{ b.overlayText | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}
+  </div>{% endif %}
   {% if b.caption %}<p class="blk-image__cap">{{ b.caption }}</p>{% endif %}
 </section>
 
@@ -105,5 +110,37 @@
     {% if b.title or b.logoOn %}<h2 class="h-xl section-head__h{% if b.titleOneLine %} section-head__h--oneline{% endif %}">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.logoOn %} <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>{% endif %}{% if b.titleYellow %}{% if b.titleBreak %}<br>{% else %} {% endif %}{% if b.titleBox %}<span class="hl-box">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% else %}<em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</em>{% endif %}{% endif %}</h2>{% endif %}
     {% if b.subtitle %}<p class="section-head__p"{% if b.dark %} style="color: var(--ecru)"{% endif %}>{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</p>{% endif %}
   </div></div>
+</section>
+
+{% elif b.type == "formule" %}
+<section class="lvl reveal blk blk--formule"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle or b.subtitleYellow %}
+  <div class="lvl__head">
+    {% if b.title %}<h2 class="h-xl lvl__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <span class="lvl__h-hl">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</h2>{% endif %}
+    {% if b.subtitle or b.subtitleYellow %}<p class="lvl__lead">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.subtitleYellow %} <span class="lvl__lead-hl">{{ b.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</p>{% endif %}
+  </div>
+  {% endif %}
+  <div class="lvl__stage">
+    <div class="lvl__card">
+      <div class="lvl__card-l">
+        <span class="lvl__kick" data-lvl="kick"></span>
+        <h3 class="lvl__title" data-lvl="fit"></h3>
+        <p class="lvl__p" data-lvl="note"></p>
+        <a class="lvl__cta" data-lvl="cta" href="{{ b.ctaHref or '/tarifs/' }}">{{ b.ctaLabel or "Voir cette formule" }} <i></i></a>
+      </div>
+      <div class="lvl__price">
+        <span class="lvl__price-fig" data-lvl="price"></span>
+        <span class="lvl__price-unit" data-lvl="unit"></span>
+        <span class="lvl__price-eq" data-lvl="month"></span>
+      </div>
+    </div>
+    <div class="lvl__slider">
+      <input type="range" class="lvl__range" min="0" max="{{ (b.paliers.length - 1) if b.paliers else 0 }}" step="1" value="0" style="--p:0" aria-label="Nombre de séances par mois">
+      <div class="lvl__ticks">
+        {% for pal in b.paliers %}<button type="button" data-i="{{ loop.index0 }}"{% if loop.first %} class="is-on"{% endif %}>{{ pal.tick }}</button>{% endfor %}
+      </div>
+    </div>
+  </div>
+  <script type="application/json" class="lvl-data">{{ b.paliers | dump | safe }}</script>
 </section>
 {% endif %}

@@ -436,5 +436,37 @@
   });
 })();
 </script>
+
+<!-- Briques : « Trouve ta formule » (curseur, multi-instances) -->
+<script>
+(function(){
+  document.querySelectorAll('.lvl').forEach(function(sec){
+    var range = sec.querySelector('.lvl__range');
+    var dataEl = sec.querySelector('.lvl-data');
+    if (!range || !dataEl) return;
+    var plans;
+    try { plans = JSON.parse(dataEl.textContent); } catch(e){ return; }
+    if (!plans || !plans.length) return;
+    var ticks = sec.querySelector('.lvl__ticks');
+    function set(k){ return sec.querySelector('[data-lvl="' + k + '"]'); }
+    function render(i){
+      var p = plans[i]; if (!p) return;
+      range.style.setProperty('--p', plans.length > 1 ? (i / (plans.length - 1)) * 100 : 0);
+      var map = { kick: 'kick', fit: 'fit', note: 'note', price: 'price', unit: 'unit', month: 'month' };
+      Object.keys(map).forEach(function(k){ var el = set(k); if (el) el.textContent = p[map[k]] || ''; });
+      var cta = set('cta'); if (cta && p.href) cta.setAttribute('href', p.href);
+      if (ticks) ticks.querySelectorAll('button').forEach(function(b){ b.classList.toggle('is-on', +b.dataset.i === i); });
+    }
+    range.min = 0; range.max = plans.length - 1;
+    range.addEventListener('input', function(){ render(+range.value); });
+    if (ticks) ticks.addEventListener('click', function(ev){
+      var b = ev.target.closest('button'); if (!b) return;
+      range.value = b.dataset.i; render(+b.dataset.i);
+    });
+    var start = Math.min(2, plans.length - 1);
+    range.value = start; render(start);
+  });
+})();
+</script>
 </body>
 </html>

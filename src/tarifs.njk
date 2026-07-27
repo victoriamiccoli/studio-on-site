@@ -43,6 +43,8 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
   </div>
 </section>
 
+{% if blocks and blocks.tarifs %}{% for block in blocks.tarifs %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
+
 {% if not pages.tarifs.hideContact %}
 <section class="reveal">
   <div class="section-meta section-head">
@@ -56,5 +58,3 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
   </div>
 </section>
 {% endif %}
-
-{% if blocks and blocks.tarifs %}{% for block in blocks.tarifs %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
