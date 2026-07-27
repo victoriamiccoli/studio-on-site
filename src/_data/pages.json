@@ -20,6 +20,7 @@
   "coachs": {
     "subtitle": "Tes coachs préférés. Disponibles à chaque séance.",
     "title": "Sept coachs.",
-    "titleYellow": "Sept ADN."
+    "titleYellow": "Sept ADN.",
+    "titleBreak": true
   }
 }
