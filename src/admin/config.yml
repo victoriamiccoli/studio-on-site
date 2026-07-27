@@ -706,20 +706,27 @@ collections:
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
-                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false, default: "Trouve<br>ta formule" }
                   - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
-                  - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false }
+                  - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false, default: "Est-ce que tu as un emploi du temps flexible ?" }
                   - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
-                  - { label: "Libellé du bouton", name: "ctaLabel", widget: "string", required: false }
-                  - { label: "Lien du bouton (ex. /tarifs/)", name: "ctaHref", widget: "string", required: false }
+                  - { label: "Libellé du bouton", name: "ctaLabel", widget: "string", required: false, default: "Voir cette formule" }
+                  - { label: "Lien du bouton (ex. /tarifs/)", name: "ctaHref", widget: "string", required: false, default: "/tarifs/" }
                   - { label: "Petite phrase au-dessus du curseur (discrète)", name: "sliderHint", widget: "string", required: false, default: "Déplace le curseur pour trouver ta formule.", hint: "Laisse vide pour ne rien afficher." }
-                  - { label: "Afficher la question Oui / Non (emploi du temps flexible)", name: "showFlex", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher la question Oui / Non (emploi du temps flexible)", name: "showFlex", widget: "boolean", default: true, required: false }
                   - { label: "Libellé badge « Oui »", name: "ouiLabel", widget: "string", required: false, hint: "Défaut : Oui" }
                   - { label: "Libellé badge « Non »", name: "nonLabel", widget: "string", required: false, hint: "Défaut : Non" }
                   - label: "Paliers (du moins au plus de séances)"
                     name: "paliers"
                     widget: "list"
                     summary: "{{fields.tick}} · {{fields.fit}}"
+                    default:
+                      - { tick: "1", kick: "1 séance par mois", fit: "Séance à la carte", price: "20 €", unit: "/ séance", month: "20 € ce mois-ci", note: "Zéro engagement. Tu viens quand tu veux, tu paies ce que tu prends.", href: "/tarifs/" }
+                      - { tick: "2", kick: "2 séances par mois", fit: "Séance à la carte", price: "40 €", unit: "/ 2 séances", month: "20 € la séance", note: "Deux séances dans le mois : le paiement à l'unité reste le plus souple.", href: "/tarifs/" }
+                      - { tick: "4", kick: "4 séances par mois", fit: "Pack 10 séances", price: "150 €", unit: "/ 10 séances", month: "15 € la séance", note: "Un carnet valable 6 mois. Flexible, sans engagement, à ton rythme.", href: "/tarifs/" }
+                      - { tick: "6", kick: "6 séances par mois", fit: "Abo illimité · Soft Hours", price: "60 €", unit: "/ mois", month: "10 € la séance", note: "Illimité en heures creuses. À partir de 3 séances par semaine, c'est déjà gagnant.", href: "/tarifs/" }
+                      - { tick: "10", kick: "10 séances par mois", fit: "Abo illimité · Full ON", price: "89 €", unit: "/ mois", month: "8,90 € la séance", note: "Vraiment illimité, 7j/7 de 6h à 22h30. Le meilleur ratio dès 10 séances.", href: "/tarifs/" }
+                      - { tick: "16+", kick: "16 séances par mois", fit: "Abo illimité · Full ON", price: "89 €", unit: "/ mois", month: "5,56 € la séance", note: "À ce rythme, chaque séance te revient à moins d'un café. C'est fait pour toi.", href: "/tarifs/" }
                     fields:
                       - { label: "Repère sur le curseur (ex. 4)", name: "tick", widget: "string", required: false }
                       - { label: "Sur-titre (ex. 4 séances par mois)", name: "kick", widget: "string", required: false }

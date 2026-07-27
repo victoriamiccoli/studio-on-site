@@ -34,12 +34,12 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
         <input type="tel" id="tel" name="telephone" required autocomplete="tel">
       </div>
       <div class="field">
-        <label for="ville">Ville / zone souhaitée</label>
-        <input type="text" id="ville" name="ville">
+        <label for="ville">Ville / zone souhaitée *</label>
+        <input type="text" id="ville" name="ville" required>
       </div>
       <div class="field">
-        <label for="apport">Apport disponible</label>
-        <select id="apport" name="apport">
+        <label for="apport">Apport disponible *</label>
+        <select id="apport" name="apport" required>
           <option value="">Sélectionner</option>
           <option>Moins de 50 000 €</option>
           <option>50 000 € - 100 000 €</option>
@@ -48,12 +48,22 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
         </select>
       </div>
       <div class="field">
-        <label for="profil">Profil</label>
-        <select id="profil" name="profil">
+        <label for="profil">Profil *</label>
+        <select id="profil" name="profil" required>
           <option value="">Sélectionner</option>
           <option>Investisseur</option>
           <option>Entrepreneur / exploitant</option>
           <option>Les deux</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="horizon">À quel horizon souhaites-tu ouvrir ton studio ? *</label>
+        <select id="horizon" name="horizon" required>
+          <option value="">Sélectionner</option>
+          <option>Moins de 3 mois</option>
+          <option>3 à 6 mois</option>
+          <option>6 à 12 mois</option>
+          <option>Plus de 12 mois</option>
         </select>
       </div>
       <div class="field full">
