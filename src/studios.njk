@@ -65,9 +65,9 @@ description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
   function mapsHref(c){ return c.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((c.adr||'').replace(/<br\s*\/?>/gi,' '))); }
   function contactHtml(c){
     let h = '';
-    if (!c.hideEmail && c.email) h += `<a class="studio-card__contact" href="mailto:${c.email}">${c.email}</a>`;
-    if (!c.hidePhone && c.phone) h += `<a class="studio-card__contact" href="tel:${(c.phone||'').replace(/\s/g,'')}">${c.phone}</a>`;
-    return h;
+    if (!c.hidePhone && c.phone) h += `<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:${(c.phone||'').replace(/\s/g,'')}">${c.phone}</a></div>`;
+    if (!c.hideEmail && c.email) h += `<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:${c.email}">${c.email}</a></div>`;
+    return h ? `<div class="studio-contact">${h}</div>` : '';
   }
   function renderCity(key) {
     const c = byKey[key];
