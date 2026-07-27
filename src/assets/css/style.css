@@ -155,6 +155,7 @@ img { display: block; max-width: 100%; }
 .page-hero__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(36px, 6vw, 64px); line-height: .96; letter-spacing: -0.035em; text-transform: uppercase; margin: 0; }
 .page-hero__h em { color: var(--vanille); font-style: normal; }
 .page-hero__p { margin: 22px auto 0; font-family: var(--f-display); font-weight: 500; font-size: clamp(16px, 2vw, 21px); letter-spacing: -0.015em; opacity: .85; max-width: 44ch; }
+.page-hero__p em { color: var(--vanille); font-style: normal; }
 /* La page réserver garde l'alignement à gauche (bloc contact) */
 .page-hero--reserve { text-align: left; }
 .page-hero--reserve .page-hero__p { margin-left: 0; margin-right: 0; }

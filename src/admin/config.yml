@@ -269,6 +269,7 @@ collections:
               - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
               - { label: "Label", name: "kicker", widget: "string", required: false }
               - { label: "Titre (vide = titre par défaut avec le logo ON)", name: "title", widget: "string", required: false }
+              - { label: "Ajouter le logo ON à la fin du titre", name: "titleLogoOn", widget: "boolean", default: false, required: false, hint: "Écris le titre SANS le « ON » à la fin (ex. « L'expérience ») : le logo ajoutera le « ON ». " }
               - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
               - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
               - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
