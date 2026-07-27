@@ -43,7 +43,7 @@
       "adr": "Restez en mode ON.",
       "visible": true,
       "status": "Bientôt",
-      "image": "",
+      "image": "/assets/img/ecran-studio-on-kiosk.png",
       "ctaHref": "#",
       "key": "soon"
     }
