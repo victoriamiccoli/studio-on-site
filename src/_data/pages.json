@@ -22,7 +22,8 @@
     "subtitle": "Tes coachs préférés. Disponibles à chaque séance.",
     "title": "Sept coachs.",
     "titleYellow": "Sept ADN.",
-    "titleBreak": true
+    "titleBreak": true,
+    "hideGallery": true
   },
   "tarifs": {
     "title": "Le Pilates Reformer.",
