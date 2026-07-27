@@ -276,6 +276,65 @@
   "faq": [],
   "coachs": [
     {
+      "coaches": [
+        {
+          "name": "Chloé",
+          "mood": "Solaire",
+          "tag": "Débutant · Dynamique",
+          "p": "Dynamique et solaire. Ses séances débutants donnent envie de revenir, sans jamais te faire sentir à côté."
+        },
+        {
+          "name": "Sveva",
+          "mood": "Classique",
+          "tag": "Pilates traditionnel · Profondeur",
+          "p": "Le Pilates traditionnel, celui qui travaille en profondeur. Plus classique, plus lent, et redoutablement efficace."
+        },
+        {
+          "name": "Cédric",
+          "mood": "Pédagogue",
+          "tag": "Full body · Débutant à avancé",
+          "p": "Méthodique et très pédagogue. Des full body du débutant à l'avancé, avec des mouvements qu'on ne trouve nulle part ailleurs."
+        },
+        {
+          "name": "Kévin",
+          "mood": "Fitness",
+          "tag": "Full body · Focus abdos",
+          "p": "Des full body bien intenses, avec de gros focus abdos. L'énergie la plus fitness du catalogue."
+        },
+        {
+          "name": "Louise",
+          "mood": "Avancé",
+          "tag": "Focus abs · Niveau avancé",
+          "p": "Ses focus abs sont une référence. Niveau avancé, rythme tenu : tu sais pourquoi tu es venu."
+        },
+        {
+          "name": "Wassi",
+          "mood": "Spicy",
+          "tag": "Spicy · Niveau avancé",
+          "p": "Punchy et spicy. Avec Wassi, ça pulse, ça tremble, ça brûle… tu vas souffrir. Et tu vas en redemander."
+        },
+        {
+          "name": "Rebecca",
+          "mood": "Booty",
+          "tag": "Booty · Pulse",
+          "p": "Le booty, c'est sa spécialité. Longues séries, pulses interminables… tes fessiers vont s'en souvenir."
+        }
+      ],
+      "hidden": false,
+      "subtitleYellow": "tes envies.",
+      "note": {
+        "kick": "En continu",
+        "h": "De nouvelles séances toute l'année.",
+        "p": "Encore plein de pépites à venir ! Nouveaux coachs, nouveaux formats : c'est vous qui décidez de ce que vous voulez voir arriver sur vos écrans."
+      },
+      "homePos": "bottom",
+      "dark": true,
+      "subtitle": "Choisis selon ton humeur, ton objectif,",
+      "title": "Sept coachs.<br>Sept ADN.",
+      "type": "crew",
+      "onHome": false
+    },
+    {
       "type": "cta",
       "id": "cta-coachs",
       "nom": "Switch your body",
