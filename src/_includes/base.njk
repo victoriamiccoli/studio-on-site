@@ -302,7 +302,7 @@
   if (backBtn) backBtn.addEventListener('click', goBack);
 
   document.addEventListener('click', function(e){
-    var btn = e.target.closest('.plan__cta[data-offer], .plan__cta[data-payments]');
+    var btn = e.target.closest('.plan__cta[data-offer], .plan__cta[data-payments], .lvl__cta[data-offer], .lvl__cta[data-payments]');
     if (btn){
       e.preventDefault();
       var card = btn.closest('.plan');
@@ -457,7 +457,16 @@
       range.style.setProperty('--p', plans.length > 1 ? (i / (plans.length - 1)) * 100 : 0);
       if (set('kick')) set('kick').textContent = p.kick || '';
       ['fit', 'note', 'price', 'unit', 'month'].forEach(function(k){ var el = set(k); if (el) el.textContent = val(p, k); });
-      var cta = set('cta'); var href = val(p, 'href'); if (cta && href) cta.setAttribute('href', href);
+      var cta = set('cta');
+      if (cta) {
+        var offer = val(p, 'offerId');
+        if (offer) { cta.setAttribute('data-offer', offer); } else { cta.removeAttribute('data-offer'); }
+        var pay = val(p, 'payments'); if (pay) { cta.setAttribute('data-payments', pay); } else { cta.removeAttribute('data-payments'); }
+        cta.setAttribute('data-title', val(p, 'fit') || '');
+        cta.setAttribute('data-price', (val(p, 'price') || '').replace(/[^0-9.,]/g, ''));
+        cta.setAttribute('data-per', val(p, 'unit') || '');
+        cta.setAttribute('data-href', val(p, 'href') || '');
+      }
       if (ticks) ticks.querySelectorAll('button').forEach(function(b){ b.classList.toggle('is-on', +b.dataset.i === i); });
     }
     range.min = 0; range.max = plans.length - 1;
@@ -467,6 +476,8 @@
       range.value = b.dataset.i; render(+b.dataset.i);
     });
     flexBtns.forEach(function(btn){ btn.addEventListener('click', function(){ flex = btn.dataset.flex; flexBtns.forEach(function(x){ x.classList.toggle('is-on', x === btn); }); render(cur); }); });
+    var ctaEl = set('cta');
+    if (ctaEl) ctaEl.addEventListener('click', function(){ if (!ctaEl.hasAttribute('data-offer')) { var h = ctaEl.getAttribute('data-href'); if (h) window.location.href = h; } });
     range.value = cur; render(cur);
   });
 })();

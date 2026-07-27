@@ -714,6 +714,8 @@ collections:
                       - { label: "Équivalence si « Non »", name: "monthNon", widget: "string", required: false }
                       - { label: "Texte si « Non »", name: "noteNon", widget: "text", required: false }
                       - { label: "Lien si « Non »", name: "hrefNon", widget: "string", required: false }
+                      - { label: "ID offre Sportigo (paiement au clic sur le bouton)", name: "offerId", widget: "string", required: false, hint: "Si rempli, le bouton ouvre le paiement de cette offre au lieu d'un simple lien." }
+                      - { label: "ID offre Sportigo si « Non »", name: "offerIdNon", widget: "string", required: false }
           - label: "Blocs — Concept"
             name: "concept"
             widget: "list"
