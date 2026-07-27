@@ -148,11 +148,15 @@ img { display: block; max-width: 100%; }
 }
 
 /* Hero des pages intérieures (ajout multi-pages) */
-.page-hero { background: var(--noir); color: var(--ecru); padding: clamp(130px, 16vw, 190px) var(--pad) clamp(56px, 7vw, 88px); }
+.page-hero { background: var(--noir); color: var(--ecru); padding: clamp(120px, 15vw, 170px) var(--pad) clamp(48px, 6vw, 72px); text-align: center; }
 .page-hero__kicker { font: 500 12px var(--f-body); letter-spacing: .18em; text-transform: uppercase; opacity: .7; margin-bottom: 22px; display: inline-block; }
-.page-hero__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(48px, 9vw, 96px); line-height: .92; letter-spacing: -0.04em; text-transform: uppercase; margin: 0; }
+.page-hero__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(36px, 6vw, 64px); line-height: .96; letter-spacing: -0.035em; text-transform: uppercase; margin: 0; }
 .page-hero__h em { color: var(--vanille); font-style: normal; }
-.page-hero__p { margin-top: 22px; font-family: var(--f-display); font-weight: 500; font-size: clamp(16px, 2vw, 22px); letter-spacing: -0.015em; opacity: .85; max-width: 44ch; }
+.page-hero__p { margin: 22px auto 0; font-family: var(--f-display); font-weight: 500; font-size: clamp(16px, 2vw, 21px); letter-spacing: -0.015em; opacity: .85; max-width: 44ch; }
+/* La page réserver garde l'alignement à gauche (bloc contact) */
+.page-hero--reserve { text-align: left; }
+.page-hero--reserve .page-hero__p { margin-left: 0; margin-right: 0; }
+.page-hero--reserve .page-hero__contact { justify-content: flex-start; }
 
 /* Banderole défilante */
 .marquee { overflow: hidden; background: var(--noir); color: var(--ecru); padding: 20px 0; font-family: var(--f-display); font-weight: 500; text-transform: uppercase; font-size: clamp(22px, 2.4vw, 32px); letter-spacing: -0.01em; white-space: nowrap; }
@@ -214,6 +218,15 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 .step-label { font: 500 12px var(--f-body); letter-spacing: .22em; text-transform: uppercase; opacity: .9; }
 .principe__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: .95; letter-spacing: -0.035em; text-transform: uppercase; margin: 0; }
 .principe__p { font-size: 14px; line-height: 1.55; opacity: .75; max-width: 32ch; margin: 0; }
+
+/* Séances : 3 colonnes d'intro (Première fois / Confirmé / Objectifs) */
+.sea__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 1120px; margin: 0 auto clamp(40px, 5vw, 62px); }
+@media (max-width: 860px) { .sea__cols { grid-template-columns: 1fr; } }
+.sea-col { display: flex; flex-direction: column; gap: 10px; padding: 24px clamp(20px, 2.6vw, 38px) 6px; border-top: 1px solid var(--line-d); text-align: left; }
+@media (max-width: 860px) { .sea-col { padding: 22px 0 4px; } }
+.sea-col__kick { font: 500 10px var(--f-body); letter-spacing: .2em; text-transform: uppercase; color: var(--vanille); }
+.sea-col__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(19px, 2vw, 25px); line-height: 1.08; letter-spacing: -0.028em; text-transform: uppercase; margin: 0; color: var(--ecru); }
+.sea-col__p { font: 400 13.5px/1.6 var(--f-body); opacity: .68; margin: 0; max-width: 32ch; color: var(--ecru); }
 
 /* Galerie séances */
 .filter-pills { display: flex; gap: 8px; margin-top: 28px; flex-wrap: nowrap; justify-content: center; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }

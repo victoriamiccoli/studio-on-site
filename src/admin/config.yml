@@ -432,6 +432,17 @@ collections:
         file: "src/_data/seances.json"
         fields:
           - { label: "Filtres", name: "filters", widget: "list", field: { label: "Filtre", name: "text", widget: "string" } }
+          - { label: "Masquer l'introduction (3 colonnes)", name: "hideIntro", widget: "boolean", default: false, required: false }
+          - label: "Introduction (3 colonnes)"
+            name: "intro"
+            widget: "list"
+            required: false
+            summary: "{{fields.h}}"
+            hint: "Laisse vide pour garder le texte par défaut. Ajoute des colonnes pour personnaliser."
+            fields:
+              - { label: "Surtitre (petit texte jaune)", name: "kick", widget: "string", required: false }
+              - { label: "Titre", name: "h", widget: "string", required: false }
+              - { label: "Texte", name: "p", widget: "text", required: false }
           - label: "Séances"
             name: "list"
             widget: "list"

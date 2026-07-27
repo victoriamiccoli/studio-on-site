@@ -13,16 +13,31 @@ description: Plus de 100 séances de Pilates Reformer, à ton rythme.
 </section>
 {% endif %}
 
-<section class="section--dark reveal">
-  <div class="section-meta section-head" style="padding-top: 0;">
-    <div>
-      <div class="filter-pills" id="seanceFilters">
-        {% for f in seances.filters %}
-          <button type="button" class="filter-pill" data-cat="{{ f }}">{{ f }}</button>
-        {% endfor %}
-      </div>
+{% set DEFAULT_INTRO = [
+  { "kick": "Première fois", "h": "On a la séance parfaite.", "p": "Des séances pensées pour les premières fois : installation, prise en main du Reformer, respiration, posture. La séance qui te donnera envie de revenir&nbsp;!" },
+  { "kick": "Niveau confirmé", "h": "De quoi te faire transpirer.", "p": "Des séances intenses, des pulses, le cardio ON FIRE, des séries longues, du gainage profond… Des séances comme tu les aimes&nbsp;!" },
+  { "kick": "Tous les objectifs", "h": "Ton corps, ton programme.", "p": "Tonifier, gagner en mobilité, soulager le dos, se renforcer ou juste souffler : tu filtres et tu trouves ta séance du jour." }
+] %}
+{% set introCols = seances.intro if (seances.intro and seances.intro.length) else DEFAULT_INTRO %}
+
+<section class="section--dark reveal" style="padding-top: clamp(32px, 4vw, 48px);">
+  <div class="section-meta section-head" style="padding-top: 0; padding-bottom: clamp(30px, 4vw, 48px);">
+    <div class="filter-pills">
+      {% for f in seances.filters %}<span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>{% endfor %}
     </div>
   </div>
+
+  {% if not seances.hideIntro %}
+  <div class="sea__cols">
+    {% for col in introCols %}
+    <article class="sea-col">
+      {% if col.kick %}<span class="sea-col__kick">{{ col.kick }}</span>{% endif %}
+      {% if col.h %}<h3 class="sea-col__h">{{ col.h | safe }}</h3>{% endif %}
+      {% if col.p %}<p class="sea-col__p">{{ col.p | safe }}</p>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
 
   <div class="gallery" id="seanceGallery">
     {% for s in seances.list %}
@@ -39,34 +54,5 @@ description: Plus de 100 séances de Pilates Reformer, à ton rythme.
   </div>
 </section>
 
-
-<script>
-(function(){
-  var filters = document.getElementById('seanceFilters');
-  var gallery = document.getElementById('seanceGallery');
-  if (!filters || !gallery) return;
-  var cells = Array.prototype.slice.call(gallery.querySelectorAll('.gal-cell'));
-  var active = null;
-  filters.addEventListener('click', function(e){
-    var btn = e.target.closest('.filter-pill');
-    if (!btn) return;
-    var cat = btn.getAttribute('data-cat');
-    // Re-cliquer le filtre actif => on désactive (toutes les images reviennent)
-    if (active === cat) {
-      active = null;
-      btn.classList.remove('filter-pill--active');
-    } else {
-      active = cat;
-      filters.querySelectorAll('.filter-pill').forEach(function(b){ b.classList.remove('filter-pill--active'); });
-      btn.classList.add('filter-pill--active');
-    }
-    cells.forEach(function(cell){
-      if (!active) { cell.style.display = ''; return; }
-      var cats = (cell.getAttribute('data-cats') || '').split(',');
-      cell.style.display = cats.indexOf(active) !== -1 ? '' : 'none';
-    });
-  });
-})();
-</script>
 
 {% if blocks and blocks.seances %}{% for block in blocks.seances %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
