@@ -303,7 +303,7 @@
         },
         {
           "name": "Louise",
-          "mood": "Avancé",
+          "mood": "Athlétique",
           "tag": "Focus abs · Niveau avancé",
           "p": "Ses focus abs sont une référence. Niveau avancé, rythme tenu : tu sais pourquoi tu es venu."
         },
@@ -329,8 +329,8 @@
       },
       "homePos": "bottom",
       "dark": true,
-      "subtitle": "Choisis selon ton humeur, ton objectif,",
-      "title": "Sept coachs.<br>Sept ADN.",
+      "subtitle": "",
+      "title": "",
       "type": "crew",
       "onHome": false
     },
