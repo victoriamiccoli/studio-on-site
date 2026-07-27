@@ -175,4 +175,34 @@
     {% if b.text %}<span>{{ b.text | safe }}</span>{% endif %}
   </div>
 </section>
+
+{% elif b.type == "crew" %}
+<section class="reveal blk blk--crew{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle or b.subtitleYellow %}
+  <div class="section-meta section-head" style="padding-top:0; padding-bottom: clamp(30px,4vw,56px);">
+    {% if b.title %}<h2 class="h-xl section-head__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</h2>{% endif %}
+    {% if b.subtitle or b.subtitleYellow %}<p class="section-head__p"{% if b.dark %} style="color: var(--ecru)"{% endif %}>{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.subtitleYellow %} <span style="color: var(--vanille)">{{ b.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</p>{% endif %}
+  </div>
+  {% endif %}
+  <div class="crew">
+    {% for c in b.coaches %}
+    <article class="crew-card">
+      <span class="crew-card__initial" aria-hidden="true">{{ c.initial or c.name | truncate(1, true, "") }}</span>
+      <div class="crew-card__top">{% if c.mood %}<span class="crew-card__mood">{{ c.mood }}</span>{% endif %}</div>
+      <div class="crew-card__body">
+        {% if c.name %}<h3 class="crew-card__name">{{ c.name }}</h3>{% endif %}
+        {% if c.tag %}<span class="crew-card__tag">{{ c.tag }}</span>{% endif %}
+        {% if c.p %}<p class="crew-card__p">{{ c.p | safe }}</p>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+    {% if b.note and (b.note.h or b.note.p) %}
+    <article class="crew-card crew-card--note">
+      {% if b.note.kick %}<span class="crew-card__kick">{{ b.note.kick }}</span>{% endif %}
+      {% if b.note.h %}<h3>{{ b.note.h | safe }}</h3>{% endif %}
+      {% if b.note.p %}<p>{{ b.note.p | safe }}</p>{% endif %}
+    </article>
+    {% endif %}
+  </div>
+</section>
 {% endif %}

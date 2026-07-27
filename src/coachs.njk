@@ -13,6 +13,7 @@ description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
 </section>
 {% endif %}
 
+{% if not pages.coachs.hideGallery %}
 <section class="section--dark reveal">
   <div class="coachs">
     {% for c in coachs.list %}
@@ -34,5 +35,6 @@ description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
     </article>
   </div>
 </section>
+{% endif %}
 
 {% if blocks and blocks.coachs %}{% for block in blocks.coachs %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

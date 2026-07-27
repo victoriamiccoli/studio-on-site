@@ -11,21 +11,13 @@ eleventyComputed:
 
 <section class="page-hero page-hero--reserve">
   <a href="/reserver/" class="reserve-back"><span aria-hidden="true">←</span> Choisir un autre studio</a>
-  <h1 class="page-hero__h reserve-title">{{ studio.name }}</h1>
-  {% if not studio.hideAddress and studio.adr %}<p class="page-hero__p"><a class="studio-card__adr-link" href="{{ studio.mapsUrl or ('https://www.google.com/maps/search/?api=1&query=' ~ (studio.adr | replace('<br>',' ') | urlencode)) }}" target="_blank" rel="noopener">{{ studio.adr | safe }}</a></p>{% endif %}
-  {% if (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
-  <div class="studio-contact">
-    {% if not studio.hidePhone and studio.phone %}<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:{{ studio.phone | replace(' ','') }}">{{ studio.phone }}</a></div>{% endif %}
-    {% if not studio.hideEmail and studio.email %}<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:{{ studio.email }}">{{ studio.email }}</a></div>{% endif %}
-  </div>
-  {% endif %}
 </section>
 
 {% if studio.etat == 'open' and studio.planning %}
 <section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
   <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
     <div>
-      <h2 class="h-lg section-head__h" style="color: var(--ecru); max-width: 20ch;">Planning</h2>
+      <h2 class="h-lg section-head__h" style="color: var(--ecru); max-width: 20ch;">{{ studio.name }}</h2>
       <p class="section-head__p" style="color: var(--ecru); opacity:.8;">Choisis ton créneau ci-dessous.</p>
     </div>
   </div>
@@ -38,6 +30,19 @@ eleventyComputed:
     <h2 class="h-lg" style="color: var(--ecru); margin-top:10px;">Ouverture <span style="color:var(--vanille)">{{ studio.status or 'bientôt' }}</span></h2>
     <p style="margin: 16px auto 0; max-width: 46ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio.</p>
   </div>
+</section>
+{% endif %}
+
+{% if (not studio.hideAddress and studio.adr) or (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
+<section class="reveal section--dark reserve-info">
+  <h2 class="reserve-info__name">{{ studio.name }}</h2>
+  {% if not studio.hideAddress and studio.adr %}<p class="reserve-info__adr"><a class="studio-card__adr-link" href="{{ studio.mapsUrl or ('https://www.google.com/maps/search/?api=1&query=' ~ (studio.adr | replace('<br>',' ') | urlencode)) }}" target="_blank" rel="noopener">{{ studio.adr | safe }}</a></p>{% endif %}
+  {% if (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
+  <div class="studio-contact">
+    {% if not studio.hidePhone and studio.phone %}<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:{{ studio.phone | replace(' ','') }}">{{ studio.phone }}</a></div>{% endif %}
+    {% if not studio.hideEmail and studio.email %}<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:{{ studio.email }}">{{ studio.email }}</a></div>{% endif %}
+  </div>
+  {% endif %}
 </section>
 {% endif %}
 
