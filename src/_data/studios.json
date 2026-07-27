@@ -26,7 +26,7 @@
       "name": "Paris 6e",
       "chip": "Paris 6",
       "adr": "Adresse dévoilée bientôt<br>Paris 6e",
-      "visible": true,
+      "visible": false,
       "status": "Ouverture septembre 2026",
       "image": "/assets/img/img_2045-1-.jpg",
       "ctaHref": "#",
