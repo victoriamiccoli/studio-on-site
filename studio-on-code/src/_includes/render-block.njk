@@ -73,7 +73,7 @@
 
 {% elif b.type == "cta" %}
 <section class="cta-band reveal blk blk--cta"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
-  {% if b.title %}<h2 class="cta-band__h">{{ b.title | safe }}{% if b.logoOn %} <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>{% endif %}</h2>{% endif %}
+  {% if b.title %}<h2 class="cta-band__h">{{ b.title | onlogo | safe }}{% if b.logoOn %} <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>{% endif %}</h2>{% endif %}
   <div class="cta-band__side">
     {% if b.text %}<p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ b.text | safe }}</p>{% endif %}
     {% if b.btnLabel %}<div class="cta-band__actions"><a href="{{ b.btnHref or '#' }}" class="btn btn--ecru">{{ b.btnLabel }} <span class="btn__toggle"></span></a></div>{% endif %}
