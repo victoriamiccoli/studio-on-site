@@ -16,8 +16,8 @@ description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
 <section class="section--dark reveal">
   <div class="coachs">
     {% for c in coachs.list %}
-    <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
-      {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
+    <article class="coach{% if c.dark %} coach--dark{% endif %}">
+      {% if c.image %}<span class="coach__media{% if c.imgBlur %} is-blur{% endif %}" style="background-image:url('{{ c.image }}'){% if c.imgBlur %}; --imgblur:{{ c.imgBlurAmount or 8 }}px{% endif %}"></span>{% if c.imgDark or c.imgHatch %}<span class="coach__fx{% if c.imgDark %} is-dark{% endif %}{% if c.imgHatch %} is-hatch{% endif %}"></span>{% endif %}{% else %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
       <div class="coach__body">
         <div class="coach__h">{{ c.name }}</div>
         <div class="coach__tag">{{ c.tag }}</div>

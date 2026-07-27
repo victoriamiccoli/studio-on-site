@@ -88,6 +88,10 @@ description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
       imgEl.style.backgroundImage = '';
       imgEl.classList.add('is-placeholder');
     }
+    imgEl.classList.toggle('is-blur', !!c.imgBlur);
+    imgEl.classList.toggle('is-dark', !!c.imgDark);
+    imgEl.classList.toggle('is-hatch', !!c.imgHatch);
+    if (c.imgBlur) imgEl.style.setProperty('--imgblur', (c.imgBlurAmount || 8) + 'px');
   }
 
   if (chipsEl && CITIES.length) {

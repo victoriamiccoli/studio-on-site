@@ -102,8 +102,8 @@ permalink: /
 
   <div class="coachs">
     {% for c in coachs.list %}
-    <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
-      {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
+    <article class="coach{% if c.dark %} coach--dark{% endif %}">
+      {% if c.image %}<span class="coach__media{% if c.imgBlur %} is-blur{% endif %}" style="background-image:url('{{ c.image }}'){% if c.imgBlur %}; --imgblur:{{ c.imgBlurAmount or 8 }}px{% endif %}"></span>{% if c.imgDark or c.imgHatch %}<span class="coach__fx{% if c.imgDark %} is-dark{% endif %}{% if c.imgHatch %} is-hatch{% endif %}"></span>{% endif %}{% else %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
       <div class="coach__body"><div class="coach__h">{{ c.name }}</div><div class="coach__tag">{{ c.tag }}</div>{% if c.insta %}<a class="coach__insta" href="{{ c.insta }}" target="_blank" rel="noopener">{{ c.instaLabel or "Instagram" }}</a>{% endif %}</div>
     </article>
     {% endfor %}
@@ -258,6 +258,10 @@ permalink: /
     ctaEl.innerHTML = ctaHtml(c);
     if(c.image){ imgEl.style.backgroundImage = `url('${c.image}')`; imgEl.classList.remove('is-placeholder'); }
     else { imgEl.style.backgroundImage=''; imgEl.classList.add('is-placeholder'); }
+    imgEl.classList.toggle('is-blur', !!c.imgBlur);
+    imgEl.classList.toggle('is-dark', !!c.imgDark);
+    imgEl.classList.toggle('is-hatch', !!c.imgHatch);
+    if(c.imgBlur) imgEl.style.setProperty('--imgblur', (c.imgBlurAmount||8)+'px');
   }
   if(chipsEl && CITIES.length){
     chipsEl.addEventListener('click', e => {

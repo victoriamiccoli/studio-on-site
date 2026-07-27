@@ -645,6 +645,17 @@ strong { font-weight: 600; }
 .studio-contact__label { font: 500 11px var(--f-body); letter-spacing: .16em; text-transform: uppercase; opacity: .55; }
 .studio-contact__val { font-family: var(--f-body); font-weight: 500; font-size: 15px; letter-spacing: 0; color: inherit; }
 
+/* Photos studios & coachs : flou / assombrir / hachures */
+.coach__media { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+.coach__media.is-blur { filter: blur(var(--imgblur, 8px)); transform: scale(1.08); }
+.coach__fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.coach__fx.is-dark { background-color: rgba(12,12,12,.45); }
+.coach__fx.is-hatch { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.10) 0 2px, transparent 2px 8px); }
+.coach__body, .coach__ph { position: relative; z-index: 2; }
+.studio-card__img.is-blur { filter: blur(var(--imgblur, 8px)); }
+.studio-card__img.is-dark::after { content: ""; position: absolute; inset: 0; background: rgba(12,12,12,.45); }
+.studio-card__img.is-hatch::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(255,255,255,.10) 0 2px, transparent 2px 8px); }
+
 /* Fond personnalisé d'une partie de l'accueil (noir / blanc / crème) */
 .secbg--noir > section { background: var(--noir) !important; color: var(--ecru) !important; }
 .secbg--blanc > section { background: #FFFFFF !important; color: var(--noir) !important; }

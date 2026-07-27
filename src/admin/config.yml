@@ -415,6 +415,10 @@ collections:
               - { label: "Nom", name: "name", widget: "string" }
               - { label: "Spécialité", name: "tag", widget: "string" }
               - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Flouter la photo", name: "imgBlur", widget: "boolean", default: false, required: false }
+              - { label: "Intensité du flou (px, ex. 8)", name: "imgBlurAmount", widget: "number", required: false, value_type: "int" }
+              - { label: "Assombrir la photo", name: "imgDark", widget: "boolean", default: false, required: false }
+              - { label: "Hachures sur la photo", name: "imgHatch", widget: "boolean", default: false, required: false }
               - { label: "Instagram (lien, optionnel)", name: "insta", widget: "string", required: false, hint: "Ex. https://instagram.com/le.compte" }
               - { label: "Instagram (texte affiché)", name: "instaLabel", widget: "string", required: false, hint: "Ex. @le.compte — défaut : Instagram" }
               - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
@@ -479,6 +483,10 @@ collections:
               - { label: "Téléphone du studio", name: "phone", widget: "string", required: false }
               - { label: "Infos complémentaires (optionnel — s'affiche seulement si rempli, ex. accès, particularités)", name: "info", widget: "string", required: false }
               - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Flouter la photo", name: "imgBlur", widget: "boolean", default: false, required: false }
+              - { label: "Intensité du flou (px, ex. 8)", name: "imgBlurAmount", widget: "number", required: false, value_type: "int" }
+              - { label: "Assombrir la photo", name: "imgDark", widget: "boolean", default: false, required: false }
+              - { label: "Hachures sur la photo", name: "imgHatch", widget: "boolean", default: false, required: false }
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }

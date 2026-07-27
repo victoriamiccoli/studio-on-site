@@ -2,6 +2,16 @@
   "contact": [],
   "concept": [
     {
+      "type": "heading",
+      "id": "concept-titre",
+      "nom": "Titre : Le Reformer en mode ON",
+      "hidden": false,
+      "title": "Le Reformer.<br>En mode",
+      "logoOn": true,
+      "subtitle": "3 étapes. Pas plus. Un studio autonome, ouvert de 6h à 22h30.",
+      "dark": true
+    },
+    {
       "cards": [
         {
           "hero": true,
@@ -24,7 +34,7 @@
         },
         {
           "kick": "Le format",
-          "fig": "45&prime;",
+          "fig": "45′",
           "h": "La séance type.",
           "p": "De 40 à 55 minutes, hyper flexible. Échauffement, flow, retour au calme : rien à improviser."
         },
@@ -146,9 +156,9 @@
       "ctaLabel": "Voir cette formule",
       "hidden": false,
       "titleYellow": "",
-      "subtitleYellow": "On calcule le reste.",
+      "subtitleYellow": "",
       "nom": "Trouve ta formule",
-      "subtitle": "Combien de fois tu viens par mois ?",
+      "subtitle": "Est-ce que tu as un emploi du temps flexible ?",
       "title": "Trouve<br>ta formule",
       "paliers": [
         {
@@ -214,13 +224,38 @@
       ],
       "type": "formule",
       "id": "trouve-ta-formule",
-      "ctaHref": "/tarifs/"
+      "ctaHref": "/tarifs/",
+      "showFlex": true,
+      "ouiLabel": "Oui",
+      "nonLabel": "Non"
     }
   ],
-  "seances": [],
+  "seances": [
+    {
+      "type": "cta",
+      "id": "cta-seances",
+      "nom": "Switch your body",
+      "hidden": false,
+      "title": "Switch<br>your body",
+      "btnLabel": "S'abonner",
+      "btnHref": "/tarifs/",
+      "logoOn": true
+    }
+  ],
   "franchises": [],
   "faq": [],
-  "coachs": [],
+  "coachs": [
+    {
+      "type": "cta",
+      "id": "cta-coachs",
+      "nom": "Switch your body",
+      "hidden": false,
+      "title": "Switch<br>your body",
+      "btnLabel": "S'abonner",
+      "btnHref": "/tarifs/",
+      "logoOn": true
+    }
+  ],
   "studios": [],
   "home": [
     {
