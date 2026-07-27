@@ -3,9 +3,10 @@
     "subtitle": "Dis-nous qui tu es, on revient vers toi très vite."
   },
   "concept": {
-    "title": "L'EXPÉRIENCE ON",
+    "title": "L'EXPÉRIENCE ",
     "subtitle": "Le Pilates Reformer, pensé pour vous.",
-    "subtitleYellow": ""
+    "subtitleYellow": "",
+    "titleLogoOn": true
   },
   "seances": {
     "subtitle": "Filtre par niveau, focus, mood ou coach.",
