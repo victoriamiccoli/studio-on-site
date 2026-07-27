@@ -2,16 +2,6 @@
   "contact": [],
   "concept": [
     {
-      "type": "heading",
-      "id": "concept-titre",
-      "nom": "Titre : Le Reformer en mode ON",
-      "hidden": false,
-      "title": "Le Reformer.<br>En mode",
-      "logoOn": true,
-      "subtitle": "3 étapes. Pas plus. Un studio autonome, ouvert de 6h à 22h30.",
-      "dark": true
-    },
-    {
       "cards": [
         {
           "hero": true,
@@ -60,6 +50,16 @@
       "type": "cards",
       "id": "exp-on",
       "onHome": false
+    },
+    {
+      "type": "heading",
+      "id": "concept-titre",
+      "nom": "Titre : Le Reformer en mode ON",
+      "hidden": false,
+      "title": "Le Reformer.<br>En mode",
+      "logoOn": true,
+      "subtitle": "3 étapes. Pas plus. Un studio autonome, ouvert de 6h à 22h30.",
+      "dark": true
     },
     {
       "offNote": "Tu t'adaptes au studio.",
@@ -154,10 +154,13 @@
   "tarifs": [
     {
       "ctaLabel": "Voir cette formule",
+      "nonLabel": "Non",
       "hidden": false,
       "titleYellow": "",
       "subtitleYellow": "",
       "nom": "Trouve ta formule",
+      "ouiLabel": "Oui",
+      "showFlex": true,
       "subtitle": "Est-ce que tu as un emploi du temps flexible ?",
       "title": "Trouve<br>ta formule",
       "paliers": [
@@ -224,10 +227,7 @@
       ],
       "type": "formule",
       "id": "trouve-ta-formule",
-      "ctaHref": "/tarifs/",
-      "showFlex": true,
-      "ouiLabel": "Oui",
-      "nonLabel": "Non"
+      "ctaHref": "/tarifs/"
     }
   ],
   "seances": [
