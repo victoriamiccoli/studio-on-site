@@ -712,6 +712,7 @@ collections:
                   - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
                   - { label: "Libellé du bouton", name: "ctaLabel", widget: "string", required: false }
                   - { label: "Lien du bouton (ex. /tarifs/)", name: "ctaHref", widget: "string", required: false }
+                  - { label: "Petite phrase au-dessus du curseur (discrète)", name: "sliderHint", widget: "string", required: false, default: "Déplace le curseur pour trouver ta formule.", hint: "Laisse vide pour ne rien afficher." }
                   - { label: "Afficher la question Oui / Non (emploi du temps flexible)", name: "showFlex", widget: "boolean", default: false, required: false }
                   - { label: "Libellé badge « Oui »", name: "ouiLabel", widget: "string", required: false, hint: "Défaut : Oui" }
                   - { label: "Libellé badge « Non »", name: "nonLabel", widget: "string", required: false, hint: "Défaut : Non" }
@@ -736,6 +737,31 @@ collections:
                       - { label: "Lien si « Non »", name: "hrefNon", widget: "string", required: false }
                       - { label: "ID offre Sportigo (paiement au clic sur le bouton)", name: "offerId", widget: "string", required: false, hint: "Si rempli, le bouton ouvre le paiement de cette offre au lieu d'un simple lien." }
                       - { label: "ID offre Sportigo si « Non »", name: "offerIdNon", widget: "string", required: false }
+              - label: "Chiffres clés (durées, niveaux, coachs…)"
+                name: "stats"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: true, required: false }
+                  - { label: "Titre (optionnel)", name: "title", widget: "string", required: false }
+                  - { label: "Sous-titre (optionnel)", name: "subtitle", widget: "string", required: false }
+                  - label: "Chiffres"
+                    name: "items"
+                    widget: "list"
+                    summary: "{{fields.fig}} · {{fields.kick}}"
+                    default:
+                      - { fig: "40-55'", kick: "Durées au choix", p: "Des express ou plus longues en fonction de ton emploi du temps et de tes envies." }
+                      - { fig: "3", kick: "Niveaux", p: "De Débutant à Avancé. Tu progresses à ton rythme." }
+                      - { fig: "7", kick: "Coachs, 7 playlists", p: "Trouve ton coach préféré !" }
+                      - { fig: "∞", kick: "Nouveautés", p: "De nouvelles séances toute l'année. Et c'est vous qui décidez !" }
+                    fields:
+                      - { label: "Chiffre (ex. 40-55', 3, 7, ∞)", name: "fig", widget: "string", required: false }
+                      - { label: "Libellé (petit, en majuscules)", name: "kick", widget: "string", required: false }
+                      - { label: "Texte", name: "p", widget: "text", required: false }
           - label: "Blocs — Concept"
             name: "concept"
             widget: "list"

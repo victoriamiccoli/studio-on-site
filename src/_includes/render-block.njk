@@ -139,6 +139,7 @@
       </div>
     </div>
     <div class="lvl__slider">
+      {% if b.sliderHint != "" %}<p class="lvl__hint">{{ b.sliderHint or "Déplace le curseur pour trouver ta formule." }}</p>{% endif %}
       <input type="range" class="lvl__range" min="0" max="{{ (b.paliers.length - 1) if b.paliers else 0 }}" step="1" value="0" style="--p:0" aria-label="Nombre de séances par mois">
       <div class="lvl__ticks">
         {% for pal in b.paliers %}<button type="button" data-i="{{ loop.index0 }}"{% if loop.first %} class="is-on"{% endif %}>{{ pal.tick }}</button>{% endfor %}
@@ -146,5 +147,24 @@
     </div>
   </div>
   <script type="application/json" class="lvl-data">{{ b.paliers | dump | safe }}</script>
+</section>
+
+{% elif b.type == "stats" %}
+<section class="reveal blk blk--stats{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle %}
+  <div class="section-meta section-head" style="padding-top:0; padding-bottom: clamp(30px,4vw,48px);">
+    {% if b.title %}<h2 class="h-xl section-head__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</em>{% endif %}</h2>{% endif %}
+    {% if b.subtitle %}<p class="section-head__p"{% if b.dark %} style="color: var(--ecru)"{% endif %}>{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</p>{% endif %}
+  </div>
+  {% endif %}
+  <div class="stats-row">
+    {% for it in b.items %}
+    <div class="stats-cell">
+      {% if it.fig %}<span class="stats-cell__fig">{{ it.fig | safe }}</span>{% endif %}
+      {% if it.kick %}<span class="stats-cell__kick">{{ it.kick }}</span>{% endif %}
+      {% if it.p %}<p class="stats-cell__p">{{ it.p | safe }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
 </section>
 {% endif %}
