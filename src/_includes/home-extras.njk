@@ -1,0 +1,3 @@
+{#- Rend les briques d'autres pages cochées « Afficher aussi sur l'accueil », pour un emplacement donné.
+    Attend une variable `anchor` dans le contexte (ex. "top", "after-seances", "bottom"). -#}
+{% if blocks %}{% for pageKey, pageBlocks in blocks %}{% if pageKey != "home" and pageBlocks %}{% for xb in pageBlocks %}{% if xb.onHome and not xb.hidden and xb.type != "section" and (xb.homePos or "bottom") == anchor %}{% set block = xb %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}

@@ -179,6 +179,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -199,6 +200,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -218,6 +220,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -237,6 +240,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -256,6 +260,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -275,6 +280,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -294,6 +300,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -313,6 +320,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
+              - { label: "Masquer toute la page (en construction — page inaccessible)", name: "masquee", widget: "boolean", default: false, required: false }
               - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
               - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
               - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
@@ -549,7 +557,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
@@ -574,7 +583,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Sur-titre (ex. Le mode)", name: "kick", widget: "string", required: false }
                   - { label: "Mot Off", name: "wordOff", widget: "string", required: false }
@@ -608,7 +618,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
@@ -629,7 +640,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
                   - { label: "Afficher « ON » avec le logo animé (style Switch your body)", name: "logoOn", widget: "boolean", default: false, required: false }
@@ -643,7 +655,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
@@ -656,7 +669,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
                   - { label: "Texte alternatif", name: "alt", widget: "string", required: false }
@@ -675,7 +689,8 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Libellé", name: "label", widget: "string", required: false }
                   - { label: "Lien", name: "href", widget: "string", required: false }
@@ -705,7 +720,8 @@ collections:
                   - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false, default: "Trouve<br>ta formule" }
                   - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
                   - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false, default: "Est-ce que tu as un emploi du temps flexible ?" }
@@ -752,7 +768,8 @@ collections:
                   - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
-                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
                   - { label: "Fond sombre", name: "dark", widget: "boolean", default: true, required: false }
                   - { label: "Titre (optionnel)", name: "title", widget: "string", required: false }
                   - { label: "Sous-titre (optionnel)", name: "subtitle", widget: "string", required: false }

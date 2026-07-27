@@ -212,14 +212,18 @@ permalink: /
 {% endset %}
 
 {% set SEC = { "tarifs": sec_tarifs, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "cta": sec_cta } %}
+
+{# Briques d'autres pages placées « tout en haut » de l'accueil #}
+{% set anchor = "top" %}{% include "home-extras.njk" %}
+
 {% if blocks and blocks.home and blocks.home.length %}
-{% for block in blocks.home %}{% if not block.hidden %}{% if block.type == "section" %}{% if block.bg and block.bg != "auto" %}<div class="secbg secbg--{{ block.bg }}">{{ SEC[block.section] | safe }}</div>{% else %}{{ SEC[block.section] | safe }}{% endif %}{% else %}{% include "render-block.njk" %}{% endif %}{% endif %}{% endfor %}
+{% for block in blocks.home %}{% if not block.hidden %}{% if block.type == "section" %}{% if block.bg and block.bg != "auto" %}<div class="secbg secbg--{{ block.bg }}">{{ SEC[block.section] | safe }}</div>{% else %}{{ SEC[block.section] | safe }}{% endif %}{% set anchor = "after-" + block.section %}{% include "home-extras.njk" %}{% else %}{% include "render-block.njk" %}{% endif %}{% endif %}{% endfor %}
 {% else %}
 {{ sec_tarifs | safe }}{{ sec_seances | safe }}{{ sec_coachs | safe }}{{ sec_app | safe }}{{ sec_studios | safe }}{{ sec_faq | safe }}{{ sec_cta | safe }}
 {% endif %}
 
-{# Briques d'autres pages cochées « Afficher aussi sur l'accueil » : rendues en bas de l'accueil #}
-{% if blocks %}{% for pageKey, pageBlocks in blocks %}{% if pageKey != "home" and pageBlocks %}{% for block in pageBlocks %}{% if block.onHome and not block.hidden and block.type != "section" %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}
+{# Briques d'autres pages placées « tout en bas » de l'accueil (valeur par défaut) #}
+{% set anchor = "bottom" %}{% include "home-extras.njk" %}
 
 <script>
   const CITIES = ({{ studios.list | dump | safe }}).filter(c => c.visible !== false);

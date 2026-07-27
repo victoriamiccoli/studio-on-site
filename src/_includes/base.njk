@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} - Pilates Reformer en libre accès{% endif %}</title>
 <meta name="description" content="{{ description or site.tagline }}">
+{% if pages[page.fileSlug] and pages[page.fileSlug].masquee %}<meta name="robots" content="noindex">{% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -26,9 +27,9 @@
 <nav class="nav" id="nav">
   <a href="/" class="logo nav__logo">{{ logoMarkup | safe }}</a>
   <div class="nav__links">
-    {% for item in site.nav %}
+    {% for item in site.nav %}{% set navkey = item.url | replace('/', '') %}{% if not (pages[navkey] and pages[navkey].masquee) %}
       <a href="{{ item.url }}"{% if page.url == item.url %} class="is-current"{% endif %}>{{ item.label }}</a>
-    {% endfor %}
+    {% endif %}{% endfor %}
   </div>
   <div class="nav__actions">
     <a href="/telecharger-app/" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
@@ -40,15 +41,24 @@
 <div class="nav__drawer-wrap">
   <div class="nav__overlay" id="navOverlay"></div>
   <aside class="nav__mobile" id="navMobile">
-    {% for item in site.nav %}
+    {% for item in site.nav %}{% set navkey = item.url | replace('/', '') %}{% if not (pages[navkey] and pages[navkey].masquee) %}
       <a href="{{ item.url }}">{{ item.label }}</a>
-    {% endfor %}
+    {% endif %}{% endfor %}
     <a href="/telecharger-app/" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
     <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
   </aside>
 </div>
 
+{% set _pk = page.fileSlug %}
+{% if pages[_pk] and pages[_pk].masquee %}
+<section class="page-hero" style="min-height:62vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+  <h1 class="page-hero__h">Bientôt disponible</h1>
+  <p class="page-hero__p">Cette page est en cours de construction. Reviens très vite&nbsp;!</p>
+  <p style="margin-top:26px;"><a href="/" class="btn btn--vanille">Retour à l'accueil <span>→</span></a></p>
+</section>
+{% else %}
 {{ content | safe }}
+{% endif %}
 
 {% if site.preFooterPages and (page.url in site.preFooterPages) %}
 <div class="marquee marquee--prefooter" aria-hidden="true">
