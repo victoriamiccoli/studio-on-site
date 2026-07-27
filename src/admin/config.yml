@@ -194,7 +194,9 @@ collections:
               - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
               - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
               - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
-              - { label: "Masquer le bloc « Une question sur les tarifs ? » (en bas de page)", name: "hideContact", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le bloc « Une question ? » (en bas de page)", name: "hideContact", widget: "boolean", default: false, required: false }
+              - { label: "Bloc « Une question ? » — titre", name: "contactTitle", widget: "string", required: false, default: "Une question ?", hint: "Laisse vide pour le texte par défaut. <br> pour aller à la ligne." }
+              - { label: "Bloc « Une question ? » — texte", name: "contactText", widget: "string", required: false, default: "Écris-nous, on te répond très vite." }
           - label: "Page Contact"
             name: "contact"
             widget: "object"

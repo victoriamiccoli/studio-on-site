@@ -49,8 +49,8 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
 <section class="reveal">
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h">Une question<br>sur les tarifs&nbsp;?</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Tout est expliqué, sans frais cachés.</p>
+      <h2 class="h-xl section-head__h">{% if pages.tarifs.contactTitle %}{{ pages.tarifs.contactTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% else %}Une question&nbsp;?{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;">{{ pages.tarifs.contactText or "Écris-nous, on te répond très vite." }}</p>
     </div>
   </div>
   <div class="cta-band__actions" style="align-items:center; flex-direction:row; justify-content:center; gap:12px; flex-wrap:wrap;">
