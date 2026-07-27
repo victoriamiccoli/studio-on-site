@@ -233,6 +233,13 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 @media (max-width: 900px) { .stats-row { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .stats-row { grid-template-columns: 1fr; } .stats-cell { padding: 26px 0 0; } }
 
+/* Brique « accroche » (grande phrase + texte de soutien) */
+.blk--claim { padding-top: clamp(40px, 5vw, 70px); padding-bottom: clamp(48px, 6vw, 90px); }
+.sea__claim { max-width: 1120px; margin: 0 auto; padding-top: clamp(30px, 3.6vw, 46px); border-top: 1px solid var(--line-d); display: flex; align-items: baseline; justify-content: space-between; gap: 20px 44px; flex-wrap: wrap; }
+.sea__claim p { font-family: var(--f-display); font-weight: 600; font-size: clamp(22px, 2.8vw, 38px); line-height: 1.06; letter-spacing: -0.035em; text-transform: uppercase; margin: 0; max-width: 24ch; }
+.sea__claim em { color: var(--vanille); font-style: normal; }
+.sea__claim span { font: 400 13.5px/1.6 var(--f-body); opacity: .62; max-width: 32ch; }
+
 /* Petite phrase discrète au-dessus du curseur de la formule */
 .lvl__hint { font: 400 12.5px var(--f-body); letter-spacing: .01em; color: inherit; opacity: .5; text-align: center; margin: 0 0 16px; }
 

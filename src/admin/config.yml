@@ -786,6 +786,20 @@ collections:
                       - { label: "Chiffre (ex. 40-55', 3, 7, ∞)", name: "fig", widget: "string", required: false }
                       - { label: "Libellé (petit, en majuscules)", name: "kick", widget: "string", required: false }
                       - { label: "Texte", name: "p", widget: "text", required: false }
+              - label: "Accroche (grande phrase + texte)"
+                name: "claim"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Où sur l'accueil ? (si affichée sur l'accueil)", name: "homePos", widget: "select", required: false, default: "bottom", options: [{ label: "Tout en haut", value: "top" }, { label: "Après la section Tarifs", value: "after-tarifs" }, { label: "Après la section Séances", value: "after-seances" }, { label: "Après la section Coachs", value: "after-coachs" }, { label: "Après la section Télécharge l'app", value: "after-app" }, { label: "Après la section Studios", value: "after-studios" }, { label: "Après la section FAQ", value: "after-faq" }, { label: "Après le bloc final (Switch your body)", value: "after-cta" }, { label: "Tout en bas", value: "bottom" }] }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: true, required: false }
+                  - { label: "Phrase (blanc)", name: "title", widget: "string", required: false, default: "Aucune séance imposée." }
+                  - { label: "Phrase — partie jaune", name: "titleYellow", widget: "string", required: false, default: "Jamais." }
+                  - { label: "Texte de soutien (à droite)", name: "text", widget: "text", required: false, default: "Pas de planning à suivre, pas de niveau assigné, pas de coach attribué. Tu ouvres le catalogue, tu prends celle qui te ressemble aujourd'hui." }
           - label: "Blocs — Concept"
             name: "concept"
             widget: "list"

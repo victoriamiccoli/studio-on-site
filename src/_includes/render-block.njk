@@ -167,4 +167,12 @@
     {% endfor %}
   </div>
 </section>
+
+{% elif b.type == "claim" %}
+<section class="reveal blk blk--claim{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  <div class="sea__claim">
+    {% if b.title or b.titleYellow %}<p>{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</em>{% endif %}</p>{% endif %}
+    {% if b.text %}<span>{{ b.text | safe }}</span>{% endif %}
+  </div>
+</section>
 {% endif %}
