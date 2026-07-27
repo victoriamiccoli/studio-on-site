@@ -21,6 +21,7 @@ description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
       <div class="coach__body">
         <div class="coach__h">{{ c.name }}</div>
         <div class="coach__tag">{{ c.tag }}</div>
+        {% if c.insta %}<a class="coach__insta" href="{{ c.insta }}" target="_blank" rel="noopener">{{ c.instaLabel or "Instagram" }}</a>{% endif %}
       </div>
     </article>
     {% endfor %}

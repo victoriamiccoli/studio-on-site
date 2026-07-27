@@ -576,11 +576,15 @@ strong { font-weight: 600; }
 .blk-image__cap { margin: 16px auto 0; font-size: 13px; opacity: .6; max-width: 60ch; }
 .blk--button { padding: clamp(50px, 7vw, 90px) var(--pad); text-align: center; }
 
+/* Lien Instagram des coachs (Inter gras) */
+.coach__insta { display: inline-block; margin-top: 8px; font-family: var(--f-body); font-weight: 700; font-size: 13px; letter-spacing: 0; color: var(--vanille); text-decoration: none; }
+.coach__insta:hover { text-decoration: underline; }
+
 /* Contact studio : format libellé (Téléphone / E-mail) */
 .studio-contact { display: flex; flex-wrap: wrap; gap: 24px 56px; border-top: 1px solid rgba(140,140,140,.35); padding-top: 18px; margin-top: 18px; }
 .studio-contact__item { display: flex; flex-direction: column; gap: 6px; }
 .studio-contact__label { font: 500 11px var(--f-body); letter-spacing: .16em; text-transform: uppercase; opacity: .55; }
-.studio-contact__val { font-family: var(--f-display); font-weight: 600; font-size: clamp(17px, 2vw, 22px); letter-spacing: -0.02em; color: inherit; }
+.studio-contact__val { font-family: var(--f-body); font-weight: 500; font-size: 15px; letter-spacing: 0; color: inherit; }
 
 /* Titres de page : partie jaune + option une seule ligne (comme l'accueil) */
 .page-hero__h .hl-box { background: var(--vanille); color: var(--noir); }

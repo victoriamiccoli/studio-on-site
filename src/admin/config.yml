@@ -432,6 +432,8 @@ collections:
               - { label: "Nom", name: "name", widget: "string" }
               - { label: "Spécialité", name: "tag", widget: "string" }
               - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Instagram (lien, optionnel)", name: "insta", widget: "string", required: false, hint: "Ex. https://instagram.com/le.compte" }
+              - { label: "Instagram (texte affiché)", name: "instaLabel", widget: "string", required: false, hint: "Ex. @le.compte — défaut : Instagram" }
               - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
 
   # ---------------- SÉANCES ----------------

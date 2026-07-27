@@ -104,7 +104,7 @@ permalink: /
     {% for c in coachs.list %}
     <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
       {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
-      <div class="coach__body"><div class="coach__h">{{ c.name }}</div><div class="coach__tag">{{ c.tag }}</div></div>
+      <div class="coach__body"><div class="coach__h">{{ c.name }}</div><div class="coach__tag">{{ c.tag }}</div>{% if c.insta %}<a class="coach__insta" href="{{ c.insta }}" target="_blank" rel="noopener">{{ c.instaLabel or "Instagram" }}</a>{% endif %}</div>
     </article>
     {% endfor %}
     <article class="coach coach--dark" style="justify-content: flex-start; padding: 24px;">
