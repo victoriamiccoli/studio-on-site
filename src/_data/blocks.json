@@ -236,7 +236,7 @@
       "id": "cta-seances",
       "nom": "Switch your body",
       "hidden": false,
-      "title": "Switch<br>your body",
+      "title": "Switch<br>your&nbsp;body",
       "btnLabel": "S'abonner",
       "btnHref": "/tarifs/",
       "logoOn": true
@@ -250,7 +250,7 @@
       "id": "cta-coachs",
       "nom": "Switch your body",
       "hidden": false,
-      "title": "Switch<br>your body",
+      "title": "Switch<br>your&nbsp;body",
       "btnLabel": "S'abonner",
       "btnHref": "/tarifs/",
       "logoOn": true
