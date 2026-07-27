@@ -448,13 +448,16 @@
     try { plans = JSON.parse(dataEl.textContent); } catch(e){ return; }
     if (!plans || !plans.length) return;
     var ticks = sec.querySelector('.lvl__ticks');
+    var flexBtns = sec.querySelectorAll('.lvl__flex-btn');
+    var flex = 'oui', cur = Math.min(2, plans.length - 1);
     function set(k){ return sec.querySelector('[data-lvl="' + k + '"]'); }
+    function val(p, k){ return (flex === 'non' && p[k + 'Non']) ? p[k + 'Non'] : (p[k] || ''); }
     function render(i){
-      var p = plans[i]; if (!p) return;
+      cur = i; var p = plans[i]; if (!p) return;
       range.style.setProperty('--p', plans.length > 1 ? (i / (plans.length - 1)) * 100 : 0);
-      var map = { kick: 'kick', fit: 'fit', note: 'note', price: 'price', unit: 'unit', month: 'month' };
-      Object.keys(map).forEach(function(k){ var el = set(k); if (el) el.textContent = p[map[k]] || ''; });
-      var cta = set('cta'); if (cta && p.href) cta.setAttribute('href', p.href);
+      if (set('kick')) set('kick').textContent = p.kick || '';
+      ['fit', 'note', 'price', 'unit', 'month'].forEach(function(k){ var el = set(k); if (el) el.textContent = val(p, k); });
+      var cta = set('cta'); var href = val(p, 'href'); if (cta && href) cta.setAttribute('href', href);
       if (ticks) ticks.querySelectorAll('button').forEach(function(b){ b.classList.toggle('is-on', +b.dataset.i === i); });
     }
     range.min = 0; range.max = plans.length - 1;
@@ -463,8 +466,8 @@
       var b = ev.target.closest('button'); if (!b) return;
       range.value = b.dataset.i; render(+b.dataset.i);
     });
-    var start = Math.min(2, plans.length - 1);
-    range.value = start; render(start);
+    flexBtns.forEach(function(btn){ btn.addEventListener('click', function(){ flex = btn.dataset.flex; flexBtns.forEach(function(x){ x.classList.toggle('is-on', x === btn); }); render(cur); }); });
+    range.value = cur; render(cur);
   });
 })();
 </script>

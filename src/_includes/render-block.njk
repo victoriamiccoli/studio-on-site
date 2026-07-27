@@ -114,10 +114,14 @@
 
 {% elif b.type == "formule" %}
 <section class="lvl reveal blk blk--formule"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
-  {% if b.title or b.subtitle or b.subtitleYellow %}
+  {% if b.title or b.subtitle or b.subtitleYellow or b.showFlex %}
   <div class="lvl__head">
     {% if b.title %}<h2 class="h-xl lvl__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.titleYellow %} <span class="lvl__h-hl">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</h2>{% endif %}
     {% if b.subtitle or b.subtitleYellow %}<p class="lvl__lead">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}{% if b.subtitleYellow %} <span class="lvl__lead-hl">{{ b.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | safe }}</span>{% endif %}</p>{% endif %}
+    {% if b.showFlex %}<div class="lvl__flex">
+      <button type="button" class="lvl__flex-btn is-on" data-flex="oui">{{ b.ouiLabel or "Oui" }}</button>
+      <button type="button" class="lvl__flex-btn" data-flex="non">{{ b.nonLabel or "Non" }}</button>
+    </div>{% endif %}
   </div>
   {% endif %}
   <div class="lvl__stage">

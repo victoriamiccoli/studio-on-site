@@ -692,6 +692,9 @@ collections:
                   - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
                   - { label: "Libellé du bouton", name: "ctaLabel", widget: "string", required: false }
                   - { label: "Lien du bouton (ex. /tarifs/)", name: "ctaHref", widget: "string", required: false }
+                  - { label: "Afficher la question Oui / Non (emploi du temps flexible)", name: "showFlex", widget: "boolean", default: false, required: false }
+                  - { label: "Libellé badge « Oui »", name: "ouiLabel", widget: "string", required: false, hint: "Défaut : Oui" }
+                  - { label: "Libellé badge « Non »", name: "nonLabel", widget: "string", required: false, hint: "Défaut : Non" }
                   - label: "Paliers (du moins au plus de séances)"
                     name: "paliers"
                     widget: "list"
@@ -705,6 +708,12 @@ collections:
                       - { label: "Équivalence (ex. 15 € la séance)", name: "month", widget: "string", required: false }
                       - { label: "Texte", name: "note", widget: "text", required: false }
                       - { label: "Lien (ex. /tarifs/)", name: "href", widget: "string", required: false }
+                      - { label: "Formule si réponse « Non » (ex. Abo Full ON) — laisse vide si identique", name: "fitNon", widget: "string", required: false }
+                      - { label: "Prix si « Non »", name: "priceNon", widget: "string", required: false }
+                      - { label: "Unité si « Non »", name: "unitNon", widget: "string", required: false }
+                      - { label: "Équivalence si « Non »", name: "monthNon", widget: "string", required: false }
+                      - { label: "Texte si « Non »", name: "noteNon", widget: "text", required: false }
+                      - { label: "Lien si « Non »", name: "hrefNon", widget: "string", required: false }
           - label: "Blocs — Concept"
             name: "concept"
             widget: "list"
