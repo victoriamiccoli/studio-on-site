@@ -584,6 +584,8 @@ strong { font-weight: 600; }
 .blk-image__img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; border-radius: 16px; }
 .blk-image__cap { margin: 16px auto 0; font-size: 13px; opacity: .6; max-width: 60ch; }
 .blk--button { padding: clamp(50px, 7vw, 90px) var(--pad); text-align: center; }
+.blk--heading { padding: clamp(60px, 9vw, 120px) var(--pad) clamp(20px, 3vw, 40px); }
+.blk--heading .section-head { padding-bottom: 0; }
 
 /* Lien Instagram des coachs (Inter gras) */
 .coach__insta { display: inline-block; margin-top: 8px; font-family: var(--f-body); font-weight: 700; font-size: 13px; letter-spacing: 0; color: var(--vanille); text-decoration: none; }

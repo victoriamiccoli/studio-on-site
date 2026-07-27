@@ -6,6 +6,7 @@
     { "type": "section", "id": "sec-app", "nom": "Télécharge l'app", "hidden": false, "section": "app" },
     { "type": "section", "id": "sec-studios", "nom": "Studios", "hidden": false, "section": "studios" },
     { "type": "section", "id": "sec-faq", "nom": "FAQ", "hidden": false, "section": "faq" },
+    { "type": "heading", "id": "concept-heading", "nom": "Titre : Le Reformer en mode ON", "hidden": false, "title": "Le Reformer.<br>En mode", "logoOn": true, "dark": true },
     {
       "type": "switch",
       "id": "interrupteur-home",

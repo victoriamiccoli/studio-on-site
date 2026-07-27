@@ -655,6 +655,22 @@ collections:
                   - { label: "Lien", name: "href", widget: "string", required: false }
                   - { label: "Ouvrir dans un nouvel onglet", name: "newTab", widget: "boolean", default: false, required: false }
                   - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Titre de partie"
+                name: "heading"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Afficher « ON » avec le logo animé", name: "logoOn", widget: "boolean", default: false, required: false }
+                  - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+                  - { label: "↳ Encadré jaune", name: "titleBox", widget: "boolean", default: false, required: false }
+                  - { label: "↳ Partie jaune à la ligne", name: "titleBreak", widget: "boolean", default: false, required: false }
+                  - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+                  - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
           - label: "Blocs — Concept"
             name: "concept"
             widget: "list"
