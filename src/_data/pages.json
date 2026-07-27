@@ -22,5 +22,10 @@
     "title": "Sept coachs.",
     "titleYellow": "Sept ADN.",
     "titleBreak": true
+  },
+  "tarifs": {
+    "title": "Le Pilates Reformer.",
+    "titleYellow": "En illimité.",
+    "titleBreak": true
   }
 }
