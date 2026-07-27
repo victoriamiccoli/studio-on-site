@@ -329,8 +329,7 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .studio-card__name { font: 600 clamp(28px, 3.4vw, 40px)/0.95 var(--f-display); letter-spacing: -0.025em; text-transform: uppercase; margin: 0; }
 .studio-card__name sup { font-size: 0.5em; }
 .studio-card__adr { font-size: 14px; line-height: 1.55; color: #4a4a4a; max-width: 32ch; }
-.studio-card__meta { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--line); font: 500 12px var(--f-body); letter-spacing: .1em; text-transform: uppercase; }
-.studio-card__meta span { opacity: .8; }
+.studio-card__meta { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
 .studio-card__cta { margin-top: 12px; }
 .studio-card__cta .btn { background: var(--noir); color: var(--ecru); padding: 12px 22px; border-radius: 999px; font: 500 12px var(--f-body); letter-spacing: .14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; transition: background .2s; }
 .studio-card__cta .btn:hover { background: #2a2a2a; }
