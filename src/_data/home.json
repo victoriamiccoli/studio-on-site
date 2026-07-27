@@ -29,6 +29,7 @@
   "faqSubtitle": "Si ta question n'y est pas, écris-nous, on y répond très vite !",
   "appText": "",
   "appStoreUrl": "https://track.sportigo-club.com/CL0/https:%2F%2Fapps.apple.com%2Ffr%2Fapp%2Fstudio-on-france%2Fid6771557547/1/0113019f664bb91c-0bc3a321-d9ad-4d14-b908-0c706c22cae3-000000/oeobKtstD6U6BRbal-2hnQOn0EpGYuUZaDgMQDq6d5A=258",
+  "studiosTitleYellow": "bientôt ailleurs…",
   "appBullets": [
     "Génère ton QR code d'accès au studio",
     "Réservation en 3 clics",
@@ -56,7 +57,7 @@
   "seancesTitleYellow": "À ton rythme.",
   "tarifsTitleYellow": "En [[illimité.]]",
   "hideCoachs": true,
-  "studiosTitle": "Paris, et bientôt ailleurs…",
+  "studiosTitle": "Paris, et ",
   "heroKickerWhite": "Le Pilates Reformer.",
   "hideCoachsTitle": false,
   "tarifsSubtitleYellow": "",
