@@ -5,5 +5,10 @@
   "concept": {
     "title": "L'EXPÉRIENCE ON",
     "subtitle": "Un studio autonome, ouvert de 6h à 22h30."
+  },
+  "seances": {
+    "subtitle": "Filtre par niveau, focus, mood ou coach.",
+    "title": "Plus de 100 séances.",
+    "titleYellow": "à ton rythme."
   }
 }
