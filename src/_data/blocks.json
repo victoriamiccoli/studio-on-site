@@ -1,82 +1,66 @@
 {
-  "home": [
-    { "type": "section", "id": "sec-tarifs", "nom": "Tarifs", "hidden": false, "section": "tarifs" },
-    { "type": "section", "id": "sec-seances", "nom": "Séances", "hidden": false, "section": "seances" },
-    { "type": "section", "id": "sec-coachs", "nom": "Coachs", "hidden": false, "section": "coachs" },
-    { "type": "section", "id": "sec-app", "nom": "Télécharge l'app", "hidden": false, "section": "app" },
-    { "type": "section", "id": "sec-studios", "nom": "Studios", "hidden": false, "section": "studios" },
-    { "type": "section", "id": "sec-faq", "nom": "FAQ", "hidden": false, "section": "faq" },
-    { "type": "heading", "id": "concept-heading", "nom": "Titre : Le Reformer en mode ON", "hidden": false, "title": "Le Reformer.<br>En mode", "logoOn": true, "dark": true },
-    {
-      "type": "switch",
-      "id": "interrupteur-home",
-      "nom": "Interrupteur",
-      "hidden": false,
-      "kick": "Le mode",
-      "wordOff": "Off",
-      "wordOn": "On.",
-      "hint": "Fais glisser pour basculer",
-      "offTitle": "Les studios classiques",
-      "offRows": [
-        { "label": "Horaires", "value": "Très peu de créneaux." },
-        { "label": "Réservation", "value": "Des semaines à l'avance." },
-        { "label": "Annulation", "value": "Obligation 12h avant." },
-        { "label": "La séance", "value": "Au rythme du groupe." },
-        { "label": "Le prix", "value": "30 à 40€ la séance." }
-      ],
-      "offNote": "Tu t'adaptes au studio.",
-      "onTitle": "<br>Studio ON.",
-      "onRows": [
-        { "label": "Horaires", "value": "Ouvert de 6h à 22h30, 7j/7." },
-        { "label": "Réservation", "value": "Jusqu'à 5 minutes avant." },
-        { "label": "Annulation", "value": "Jusqu'à 1h avant." },
-        { "label": "La séance", "value": "100+ vidéos, ton coach, ton rythme." },
-        { "label": "Le prix", "value": "À partir de 60€/mois illimité." }
-      ],
-      "onNote": "Le studio s'adapte à toi."
-    },
-    { "type": "section", "id": "sec-cta", "nom": "Switch your body", "hidden": false, "section": "cta" }
-  ],
+  "contact": [],
   "concept": [
     {
+      "offNote": "Tu t'adaptes au studio.",
+      "wordOff": "Off",
+      "kick": "Le mode",
+      "hint": "Fais glisser pour basculer",
+      "offRows": [
+        {
+          "label": "Horaires",
+          "value": "Très peu de créneaux."
+        },
+        {
+          "label": "Réservation",
+          "value": "Des semaines à l'avance."
+        },
+        {
+          "label": "Annulation",
+          "value": "Obligation 12h avant."
+        },
+        {
+          "label": "La séance",
+          "value": "Au rythme du groupe."
+        },
+        {
+          "label": "Le prix",
+          "value": "30 à 40€ la séance."
+        }
+      ],
+      "offTitle": "Les studios classiques",
+      "wordOn": "On.",
+      "hidden": false,
+      "nom": "Interrupteur",
+      "onNote": "Le studio s'adapte à toi.",
+      "onRows": [
+        {
+          "label": "Horaires",
+          "value": "Ouvert de 6h à 22h30, 7j/7."
+        },
+        {
+          "label": "Réservation",
+          "value": "Jusqu'à 5 minutes avant."
+        },
+        {
+          "label": "Annulation",
+          "value": "Jusqu'à 1h avant."
+        },
+        {
+          "label": "La séance",
+          "value": "100+ vidéos, ton coach, ton rythme."
+        },
+        {
+          "label": "Le prix",
+          "value": "À partir de 60€/mois illimité."
+        }
+      ],
+      "onTitle": "<br>Studio ON.",
       "type": "switch",
       "id": "interrupteur",
-      "nom": "Interrupteur",
-      "hidden": false,
-      "onHome": false,
-      "kick": "Le mode",
-      "wordOff": "Off",
-      "wordOn": "On.",
-      "hint": "Fais glisser pour basculer",
-      "offTitle": "Les studios classiques",
-      "offRows": [
-        { "label": "Horaires", "value": "Très peu de créneaux." },
-        { "label": "Réservation", "value": "Des semaines à l'avance." },
-        { "label": "Annulation", "value": "Obligation 12h avant." },
-        { "label": "La séance", "value": "Au rythme du groupe." },
-        { "label": "Le prix", "value": "30 à 40€ la séance." }
-      ],
-      "offNote": "Tu t'adaptes au studio.",
-      "onTitle": "<br>Studio ON.",
-      "onRows": [
-        { "label": "Horaires", "value": "Ouvert de 6h à 22h30, 7j/7." },
-        { "label": "Réservation", "value": "Jusqu'à 5 minutes avant." },
-        { "label": "Annulation", "value": "Jusqu'à 1h avant." },
-        { "label": "La séance", "value": "100+ vidéos, ton coach, ton rythme." },
-        { "label": "Le prix", "value": "À partir de 60€/mois illimité." }
-      ],
-      "onNote": "Le studio s'adapte à toi."
+      "onHome": false
     },
     {
-      "type": "cards",
-      "id": "exp-on",
-      "nom": "L'expérience ON",
-      "hidden": false,
-      "onHome": false,
-      "title": "L'EXPÉRIENCE ON.",
-      "titleYellow": "",
-      "subtitle": "Le Pilates Reformer",
-      "subtitleYellow": "pensé pour vous.",
       "cards": [
         {
           "hero": true,
@@ -91,54 +75,269 @@
             "Des séances toutes les 30 minutes"
           ]
         },
-        { "kick": "Le catalogue", "fig": "100+", "h": "Vidéos disponibles.", "p": "Filtrées par niveau, focus, flow ou coach. De nouvelles séances arrivent toute l'année." },
-        { "kick": "Le format", "fig": "45&prime;", "h": "La séance type.", "p": "De 40 à 55 minutes, hyper flexible. Échauffement, flow, retour au calme : rien à improviser." },
-        { "kick": "Le son", "fig": "1", "h": "Casque sans fil par Reformer.", "p": "Fourni et désinfecté. La voix du coach, rien d'autre : tu pratiques dans ta bulle. Tu préfères les tiens ? Viens avec tes propres écouteurs." },
-        { "kick": "Le confort", "fig": "100%", "h": "Pensé pour toi.", "p": "Douche, serviette, produits de beauté, fontaine à eau, vestiaires et casiers t'attendent. Prévois juste des chaussettes antidérapantes et un cadenas." }
-      ]
+        {
+          "kick": "Le catalogue",
+          "fig": "100+",
+          "h": "Vidéos disponibles.",
+          "p": "Filtrées par niveau, focus, flow ou coach. De nouvelles séances arrivent toute l'année."
+        },
+        {
+          "kick": "Le format",
+          "fig": "45&prime;",
+          "h": "La séance type.",
+          "p": "De 40 à 55 minutes, hyper flexible. Échauffement, flow, retour au calme : rien à improviser."
+        },
+        {
+          "kick": "Le son",
+          "fig": "1",
+          "h": "Casque sans fil par Reformer.",
+          "p": "Fourni et désinfecté. La voix du coach, rien d'autre : tu pratiques dans ta bulle. Tu préfères les tiens ? Viens avec tes propres écouteurs."
+        },
+        {
+          "kick": "Le confort",
+          "fig": "100%",
+          "h": "Pensé pour toi.",
+          "p": "Douche, serviette, produits de beauté, fontaine à eau, vestiaires et casiers t'attendent. Prévois juste des chaussettes antidérapantes et un cadenas."
+        }
+      ],
+      "hidden": false,
+      "titleYellow": "",
+      "subtitleYellow": "pensé pour vous.",
+      "nom": "L'expérience ON",
+      "subtitle": "Le Pilates Reformer",
+      "title": "L'EXPÉRIENCE ON.",
+      "type": "cards",
+      "id": "exp-on",
+      "onHome": false
     },
     {
+      "steps": [
+        {
+          "num": "01",
+          "label": "Réserve",
+          "title": "Ton pass nominatif.",
+          "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà."
+        },
+        {
+          "num": "02",
+          "label": "Viens",
+          "title": "Pousse la porte.",
+          "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer."
+        },
+        {
+          "num": "03",
+          "label": "Bouge",
+          "title": "Lance ta séance.",
+          "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme."
+        }
+      ],
+      "hidden": true,
+      "titleYellow": "",
+      "nom": "Les 3 étapes",
+      "subtitle": "",
+      "title": "",
       "type": "steps",
       "id": "concept-etapes",
-      "nom": "Les 3 étapes",
-      "hidden": true,
-      "onHome": false,
-      "title": "",
-      "titleYellow": "",
-      "subtitle": "",
-      "steps": [
-        { "num": "01", "label": "Réserve", "title": "Ton pass nominatif.", "text": "Tu reçois ton pass à l'inscription. Si tu es abonné, tu l'as déjà." },
-        { "num": "02", "label": "Viens", "title": "Pousse la porte.", "text": "Tu utilises ton pass nominatif. Tu déposes tes affaires aux vestiaires et tu t'installes sur ton numéro de Reformer." },
-        { "num": "03", "label": "Bouge", "title": "Lance ta séance.", "text": "Tu choisis ta séance sur tablette : coach, durée, intensité, focus du corps et tu suis les flows, à ton rythme." }
-      ]
+      "onHome": false
     }
   ],
   "tarifs": [
     {
+      "ctaLabel": "Voir cette formule",
+      "hidden": false,
+      "titleYellow": "",
+      "subtitleYellow": "On calcule le reste.",
+      "nom": "Trouve ta formule",
+      "subtitle": "Combien de fois tu viens par mois ?",
+      "title": "Trouve<br>ta formule",
+      "paliers": [
+        {
+          "tick": "1",
+          "kick": "1 séance par mois",
+          "fit": "Séance à la carte",
+          "price": "20 €",
+          "unit": "/ séance",
+          "month": "20 € ce mois-ci",
+          "note": "Zéro engagement. Tu viens quand tu veux, tu paies ce que tu prends.",
+          "href": "/tarifs/"
+        },
+        {
+          "tick": "2",
+          "kick": "2 séances par mois",
+          "fit": "Séance à la carte",
+          "price": "40 €",
+          "unit": "/ 2 séances",
+          "month": "20 € la séance",
+          "note": "Deux séances dans le mois : le paiement à l'unité reste le plus souple. Premier essai ? Le Pack Découverte t'en offre 3 pour le même prix.",
+          "href": "/tarifs/"
+        },
+        {
+          "tick": "4",
+          "kick": "4 séances par mois",
+          "fit": "Pack 10 séances",
+          "price": "150 €",
+          "unit": "/ 10 séances",
+          "month": "15 € la séance",
+          "note": "Un carnet valable 6 mois. Flexible, sans engagement, à ton rythme.",
+          "href": "/tarifs/"
+        },
+        {
+          "tick": "6",
+          "kick": "6 séances par mois",
+          "fit": "Abo illimité · Soft Hours",
+          "price": "60 €",
+          "unit": "/ mois",
+          "month": "10 € la séance",
+          "note": "Illimité en heures creuses. À partir de 3 séances par semaine, c'est déjà gagnant.",
+          "href": "/tarifs/"
+        },
+        {
+          "tick": "10",
+          "kick": "10 séances par mois",
+          "fit": "Abo illimité · Full ON",
+          "price": "89 €",
+          "unit": "/ mois",
+          "month": "8,90 € la séance",
+          "note": "Vraiment illimité, 7j/7 de 6h à 22h30. Le meilleur ratio dès 10 séances.",
+          "href": "/tarifs/"
+        },
+        {
+          "tick": "16+",
+          "kick": "16 séances par mois",
+          "fit": "Abo illimité · Full ON",
+          "price": "89 €",
+          "unit": "/ mois",
+          "month": "5,56 € la séance",
+          "note": "À ce rythme, chaque séance te revient à moins d'un café. C'est fait pour toi.",
+          "href": "/tarifs/"
+        }
+      ],
       "type": "formule",
       "id": "trouve-ta-formule",
-      "nom": "Trouve ta formule",
-      "hidden": false,
-      "title": "Trouve<br>ta formule",
-      "titleYellow": "",
-      "subtitle": "Combien de fois tu viens par mois ?",
-      "subtitleYellow": "On calcule le reste.",
-      "ctaLabel": "Voir cette formule",
-      "ctaHref": "/tarifs/",
-      "paliers": [
-        { "tick": "1", "kick": "1 séance par mois", "fit": "Séance à la carte", "price": "20 €", "unit": "/ séance", "month": "20 € ce mois-ci", "note": "Zéro engagement. Tu viens quand tu veux, tu paies ce que tu prends.", "href": "/tarifs/" },
-        { "tick": "2", "kick": "2 séances par mois", "fit": "Séance à la carte", "price": "40 €", "unit": "/ 2 séances", "month": "20 € la séance", "note": "Deux séances dans le mois : le paiement à l'unité reste le plus souple. Premier essai ? Le Pack Découverte t'en offre 3 pour le même prix.", "href": "/tarifs/" },
-        { "tick": "4", "kick": "4 séances par mois", "fit": "Pack 10 séances", "price": "150 €", "unit": "/ 10 séances", "month": "15 € la séance", "note": "Un carnet valable 6 mois. Flexible, sans engagement, à ton rythme.", "href": "/tarifs/" },
-        { "tick": "6", "kick": "6 séances par mois", "fit": "Abo illimité · Soft Hours", "price": "60 €", "unit": "/ mois", "month": "10 € la séance", "note": "Illimité en heures creuses. À partir de 3 séances par semaine, c'est déjà gagnant.", "href": "/tarifs/" },
-        { "tick": "10", "kick": "10 séances par mois", "fit": "Abo illimité · Full ON", "price": "89 €", "unit": "/ mois", "month": "8,90 € la séance", "note": "Vraiment illimité, 7j/7 de 6h à 22h30. Le meilleur ratio dès 10 séances.", "href": "/tarifs/" },
-        { "tick": "16+", "kick": "16 séances par mois", "fit": "Abo illimité · Full ON", "price": "89 €", "unit": "/ mois", "month": "5,56 € la séance", "note": "À ce rythme, chaque séance te revient à moins d'un café. C'est fait pour toi.", "href": "/tarifs/" }
-      ]
+      "ctaHref": "/tarifs/"
     }
   ],
   "seances": [],
-  "coachs": [],
-  "studios": [],
   "franchises": [],
   "faq": [],
-  "contact": []
+  "coachs": [],
+  "studios": [],
+  "home": [
+    {
+      "type": "section",
+      "id": "sec-tarifs",
+      "nom": "Tarifs",
+      "hidden": false,
+      "section": "tarifs"
+    },
+    {
+      "type": "section",
+      "id": "sec-app",
+      "nom": "Télécharge l'app",
+      "hidden": false,
+      "section": "app"
+    },
+    {
+      "type": "heading",
+      "id": "concept-heading",
+      "nom": "Titre : Le Reformer en mode ON",
+      "hidden": false,
+      "title": "Le Reformer.<br>En mode",
+      "logoOn": true,
+      "dark": true
+    },
+    {
+      "offNote": "Tu t'adaptes au studio.",
+      "wordOff": "Off",
+      "kick": "Le mode",
+      "hint": "Fais glisser pour basculer",
+      "offRows": [
+        {
+          "label": "Horaires",
+          "value": "Très peu de créneaux."
+        },
+        {
+          "label": "Réservation",
+          "value": "Des semaines à l'avance."
+        },
+        {
+          "label": "Annulation",
+          "value": "Obligation 12h avant."
+        },
+        {
+          "label": "La séance",
+          "value": "Au rythme du groupe."
+        },
+        {
+          "label": "Le prix",
+          "value": "30 à 40€ la séance."
+        }
+      ],
+      "offTitle": "Les studios classiques",
+      "wordOn": "On.",
+      "hidden": false,
+      "nom": "Interrupteur",
+      "onNote": "Le studio s'adapte à toi.",
+      "onRows": [
+        {
+          "label": "Horaires",
+          "value": "Ouvert de 6h à 22h30, 7j/7."
+        },
+        {
+          "label": "Réservation",
+          "value": "Jusqu'à 5 minutes avant."
+        },
+        {
+          "label": "Annulation",
+          "value": "Jusqu'à 1h avant."
+        },
+        {
+          "label": "La séance",
+          "value": "100+ vidéos, ton coach, ton rythme."
+        },
+        {
+          "label": "Le prix",
+          "value": "À partir de 60€/mois illimité."
+        }
+      ],
+      "onTitle": "<br>Studio ON.",
+      "type": "switch",
+      "id": "interrupteur-home"
+    },
+    {
+      "type": "section",
+      "id": "sec-seances",
+      "nom": "Séances",
+      "hidden": false,
+      "section": "seances"
+    },
+    {
+      "type": "section",
+      "id": "sec-coachs",
+      "nom": "Coachs",
+      "hidden": false,
+      "section": "coachs"
+    },
+    {
+      "type": "section",
+      "id": "sec-studios",
+      "nom": "Studios",
+      "hidden": false,
+      "section": "studios"
+    },
+    {
+      "type": "section",
+      "id": "sec-faq",
+      "nom": "FAQ",
+      "hidden": false,
+      "section": "faq"
+    },
+    {
+      "type": "section",
+      "id": "sec-cta",
+      "nom": "Switch your body",
+      "hidden": false,
+      "section": "cta"
+    }
+  ]
 }
