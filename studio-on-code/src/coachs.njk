@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: Coachs
+permalink: /coachs/
+description: Sept coachs, sept ADN. Choisis selon ton humeur et tes objectifs.
+---
+
+{% if not pages.coachs.hideHero %}
+<section class="page-hero">
+  {% if not pages.coachs.hideKicker %}<span class="page-hero__kicker">{{ pages.coachs.kicker or "Les coachs" }}</span>{% endif %}
+  {% if not pages.coachs.hideTitle %}<h1 class="page-hero__h{% if pages.coachs.titleOneLine %} page-hero__h--oneline{% endif %}">{% if pages.coachs.title %}{{ pages.coachs.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.coachs.titleYellow %}{% if pages.coachs.titleBreak %}<br>{% else %} {% endif %}{% if pages.coachs.titleBox %}<span class="hl-box">{{ pages.coachs.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.coachs.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Sept coachs.<br><em>Sept ADN.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.coachs.hideSubtitle %}<p class="page-hero__p">{% if pages.coachs.subtitle %}{{ pages.coachs.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.coachs.subtitleYellow %}{% if pages.coachs.subtitleBreak %}<br>{% else %} {% endif %}{% if pages.coachs.subtitleBox %}<span class="hl-box">{{ pages.coachs.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.coachs.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Choisis selon ton humeur, ton objectif, tes envies.{% endif %}</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="section--dark reveal">
+  <div class="coachs">
+    {% for c in coachs.list %}
+    <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
+      {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
+      <div class="coach__body">
+        <div class="coach__h">{{ c.name }}</div>
+        <div class="coach__tag">{{ c.tag }}</div>
+        {% if c.insta %}<a class="coach__insta" href="{{ c.insta }}" target="_blank" rel="noopener">{{ c.instaLabel or "Instagram" }}</a>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+    <article class="coach coach--dark" style="justify-content: flex-start; padding: 24px;">
+      <div class="coach__body" style="padding: 0;">
+        <div class="coach__tag" style="color: var(--vanille); opacity: 1; margin-bottom: 14px;">En continu</div>
+        <div style="font-family: var(--f-display); font-weight: 600; font-size: clamp(22px, 2.2vw, 28px); line-height: 1; letter-spacing: -0.025em; text-transform: uppercase;">De nouvelles séances, tout au long de l'année.</div>
+        <div style="font-family: var(--f-display); font-weight: 500; font-size: 14px; line-height: 1.3; letter-spacing: -0.01em; margin-top: 14px;">À vous de voter pour celles que vous voulez voir prochainement sur vos écrans.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+{% if blocks and blocks.coachs %}{% for block in blocks.coachs %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

@@ -1,0 +1,271 @@
+---
+layout: base.njk
+title: Accueil
+permalink: /
+---
+
+<section class="intro-statement reveal" id="top" aria-label="Manifeste">
+  <div class="intro-statement__screen">
+    <h1 class="intro-statement__h" style="font-size: clamp(30px, 8vw, 75px)">
+      {{ home.heroLine1 }}<br>
+      <em style="color:#FFFFFF">{{ home.heroLine2 }}</em><br>
+      {{ home.heroLine3 }}
+    </h1>
+    <p class="intro-statement__lede-kicker">{{ home.heroKickerWhite | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.heroKickerYellow %}{% if home.heroKickerBreak %}<br>{% else %} {% endif %}{% if home.heroKickerBox %}<span class="hl-box">{{ home.heroKickerYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.heroKickerYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</p>
+  </div>
+  <ul class="intro-statement__list">
+    {% for b in home.heroBullets %}<li>{{ b }}</li>{% endfor %}
+  </ul>
+</section>
+
+{% if not home.hideMarquee %}{% include "marquee.njk" %}{% endif %}
+
+{% set sec_tarifs %}
+{% if not home.hideTarifs %}
+<section id="tarifs" class="section--dark reveal">
+  {% if not home.hideTarifsTitle %}
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h{% if home.tarifsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.tarifsTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.tarifsTitleYellow %}{% if home.tarifsTitleBreak %}<br>{% else %} {% endif %}{% if home.tarifsTitleBox %}<span class="hl-box">{{ home.tarifsTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.tarifsTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.tarifsSubtitleWhite | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.tarifsSubtitleYellow %}{% if home.tarifsSubtitleBreak %}<br>{% else %} {% endif %}{% if home.tarifsSubtitleBox %}<span class="hl-box">{{ home.tarifsSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.tarifsSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for p in tarifs.abonnements %}
+    <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for p in tarifs.seances %}
+    <article class="plan{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">{% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set sec_seances %}
+{% if not home.hideSeances %}
+<section id="seances" class="section--dark reveal" style="padding-top: 0;">
+  {% if not home.hideSeancesTitle %}
+  <div class="section-meta section-head" style="padding-top: 40px;">
+    <div>
+      <h2 class="h-xl section-head__h{% if home.seancesTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 16ch; font-size: clamp(32px, 8vw, 65px)">{{ home.seancesTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.seancesTitleYellow %}{% if home.seancesTitleBreak %}<br>{% else %} {% endif %}{% if home.seancesTitleBox %}<span class="hl-box">{{ home.seancesTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.seancesTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--ecru)">{{ home.seancesSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.seancesSubtitleYellow %}{% if home.seancesSubtitleBreak %}<br>{% else %} {% endif %}{% if home.seancesSubtitleBox %}<span class="hl-box">{{ home.seancesSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.seancesSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</p>
+      <div class="filter-pills">
+        {% for f in seances.filters %}<span class="filter-pill{% if loop.first %} filter-pill--active{% endif %}">{{ f }}</span>{% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="gallery">
+    {% for s in seances.list %}{% if not s.hideOnHome %}
+    <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %}>
+      {% if not s.image %}<span class="ph-label">{{ s.title }}</span>{% endif %}
+      {% if s.badge %}<span class="gal-badge">{{ s.badge }}</span>{% endif %}
+      {% if s.play %}<div class="gal-play" aria-hidden="true"></div>{% endif %}
+      <div class="gal-switch"><span class="gal-switch__text">{{ s.title }}</span><span class="gal-switch__meta">{{ s.meta }}</span></div>
+    </div>
+    {% endif %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set sec_coachs %}
+{% if not home.hideCoachs %}
+<section id="coachs" class="section--dark reveal">
+  {% if not home.hideCoachsTitle %}
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h{% if home.coachsTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{{ home.coachsTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.coachsTitleYellow %}{% if home.coachsTitleBreak %}<br>{% else %} {% endif %}{% if home.coachsTitleBox %}<span class="hl-box">{{ home.coachsTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.coachsTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity: .8">{{ home.coachsSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.coachsSubtitleYellow %}{% if home.coachsSubtitleBreak %}<br>{% else %} {% endif %}{% if home.coachsSubtitleBox %}<span class="hl-box">{{ home.coachsSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.coachsSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="coachs">
+    {% for c in coachs.list %}
+    <article class="coach{% if c.dark %} coach--dark{% endif %}"{% if c.image %} style="background-image:url('{{ c.image }}')"{% endif %}>
+      {% if not c.image %}<span class="coach__ph">{{ c.name }}</span>{% endif %}
+      <div class="coach__body"><div class="coach__h">{{ c.name }}</div><div class="coach__tag">{{ c.tag }}</div>{% if c.insta %}<a class="coach__insta" href="{{ c.insta }}" target="_blank" rel="noopener">{{ c.instaLabel or "Instagram" }}</a>{% endif %}</div>
+    </article>
+    {% endfor %}
+    <article class="coach coach--dark" style="justify-content: flex-start; padding: 24px;">
+      <div class="coach__body" style="padding: 0;">
+        <div class="coach__tag" style="color: var(--vanille); opacity: 1; margin-bottom: 14px;">En continu</div>
+        <div style="font-family: var(--f-display); font-weight: 600; font-size: clamp(22px, 2.2vw, 28px); line-height: 1; letter-spacing: -0.025em; text-transform: uppercase;">De nouvelles séances, tout au long de l'année.</div>
+        <div style="font-family: var(--f-display); font-weight: 500; font-size: 14px; line-height: 1.3; letter-spacing: -0.01em; margin-top: 14px;">À vous de voter pour celles que vous voulez voir prochainement sur vos écrans.</div>
+      </div>
+    </article>
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set sec_app %}
+{% if not home.hideApp %}
+<section id="app" class="section--dark reveal app-dl">
+  {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
+  {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
+  {% if not home.hideAppTitle %}<h2 class="app-dl__h">{{ home.appTitle }}</h2>{% endif %}
+  {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}
+  <ul class="app-dl__list">
+    {% for b in home.appBullets %}<li>{{ b }}</li>{% endfor %}
+  </ul>
+  <div class="app-dl__stores">
+    <a href="{{ home.appStoreUrl or '#' }}" class="store-btn"{% if home.appStoreUrl and home.appStoreUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
+      <span>Télécharger sur</span><strong>App Store</strong>
+    </a>
+    <a href="{{ home.googlePlayUrl or '#' }}" class="store-btn"{% if home.googlePlayUrl and home.googlePlayUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
+      <span>Télécharger sur</span><strong>Google Play</strong>
+    </a>
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set sec_studios %}
+{% if not home.hideStudios %}
+<section id="studios" class="reveal">
+  {% if not home.hideStudiosTitle %}
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h{% if home.studiosTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 18ch;">{{ home.studiosTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.studiosTitleYellow %}{% if home.studiosTitleBreak %}<br>{% else %} {% endif %}{% if home.studiosTitleBox %}<span class="hl-box">{{ home.studiosTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.studiosTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.studiosSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.studiosSubtitleYellow %}{% if home.studiosSubtitleBreak %}<br>{% else %} {% endif %}{% if home.studiosSubtitleBox %}<span class="hl-box">{{ home.studiosSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.studiosSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="city-chips" id="cityChips" role="tablist">
+    {% for s in studios.list %}{% if s.visible != false %}<button class="city-chip{% if loop.first %} is-active{% endif %}" data-city="{{ s.key }}" role="tab">{{ s.chip }}</button>{% endif %}{% endfor %}
+  </div>
+
+  <div class="studio-card" id="studioCard">
+    <div class="studio-card__img" id="studioImg"></div>
+    <div class="studio-card__body">
+      <div class="studio-card__status" id="studioStatus"></div>
+      <h3 class="studio-card__name" id="studioName"></h3>
+      <div class="studio-card__adr" id="studioAdr"></div>
+      <div class="studio-card__meta" id="studioMeta"></div>
+      <div class="studio-card__cta" id="studioCta"></div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set sec_faq %}
+{% if not home.hideFaq %}
+<section id="faq" class="reveal">
+  {% if not home.hideFaqTitle %}
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h{% if home.faqTitleOneLine %} section-head__h--oneline{% endif %}" style="max-width: 14ch;">{{ home.faqTitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.faqTitleYellow %}{% if home.faqTitleBreak %}<br>{% else %} {% endif %}{% if home.faqTitleBox %}<span class="hl-box">{{ home.faqTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.faqTitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity: .65;">{{ home.faqSubtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if home.faqSubtitleYellow %}{% if home.faqSubtitleBreak %}<br>{% else %} {% endif %}{% if home.faqSubtitleBox %}<span class="hl-box">{{ home.faqSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ home.faqSubtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</p>
+    </div>
+  </div>
+  {% endif %}
+  <div class="faq">
+    {% for item in faq.list %}
+    <details{% if loop.first %} open{% endif %}>
+      <summary>{{ item.q | safe }}</summary>
+      <div class="faq__body">{{ item.a | safe }}</div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set sec_cta %}
+{% if not home.hideCta %}
+<section class="cta-band reveal" id="cta">
+  <h2 class="cta-band__h" style="line-height: .92;">
+    Switch<br>your&nbsp;body<br>
+    <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>
+  </h2>
+  <div class="cta-band__side">
+    {% if home.ctaText %}<p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ home.ctaText | safe }}</p>{% endif %}
+    <div class="cta-band__actions">
+      <a href="{{ site.reserverUrl }}" class="btn btn--ecru">Réserver ma première séance <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endset %}
+
+{% set SEC = { "tarifs": sec_tarifs, "seances": sec_seances, "coachs": sec_coachs, "app": sec_app, "studios": sec_studios, "faq": sec_faq, "cta": sec_cta } %}
+{% if blocks and blocks.home and blocks.home.length %}
+{% for block in blocks.home %}{% if not block.hidden %}{% if block.type == "section" %}{% if block.bg and block.bg != "auto" %}<div class="secbg secbg--{{ block.bg }}">{{ SEC[block.section] | safe }}</div>{% else %}{{ SEC[block.section] | safe }}{% endif %}{% else %}{% include "render-block.njk" %}{% endif %}{% endif %}{% endfor %}
+{% else %}
+{{ sec_tarifs | safe }}{{ sec_seances | safe }}{{ sec_coachs | safe }}{{ sec_app | safe }}{{ sec_studios | safe }}{{ sec_faq | safe }}{{ sec_cta | safe }}
+{% endif %}
+
+<script>
+  const CITIES = ({{ studios.list | dump | safe }}).filter(c => c.visible !== false);
+  const byKey = {}; CITIES.forEach(c => byKey[c.key] = c);
+  const chipsEl = document.getElementById('cityChips');
+  const cardEl = document.getElementById('studioCard');
+  const imgEl = document.getElementById('studioImg');
+  const statusEl = document.getElementById('studioStatus');
+  const nameEl = document.getElementById('studioName');
+  const adrEl = document.getElementById('studioAdr');
+  const metaEl = document.getElementById('studioMeta');
+  const ctaEl = document.getElementById('studioCta');
+  const TOGGLE = `<span style="display:inline-flex; width:22px; height:12px; border-radius:999px; background:var(--vanille); position:relative;"><span style="position:absolute; right:2px; top:2px; width:8px; height:8px; border-radius:50%; background:var(--noir);"></span></span>`;
+  function statusOf(c){ if(c.etat) return c.etat; if(c.waitlist) return 'waitlist'; if(c.isSoon) return 'soon'; return 'open'; }
+  function ctaHtml(c){
+    const st = statusOf(c);
+    if (st === 'waitlist') return `<button type="button" class="btn" data-waitlist data-studio="${c.name}">Rejoindre la liste d'attente ${TOGGLE}</button>`;
+    if (st === 'earlybird') return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Coming soon · early birds ${TOGGLE}</a>`;
+    if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Coming soon</span>`;
+    return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Réserver une séance ${TOGGLE}</a>`;
+  }
+  function mapsHref(c){ return c.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((c.adr||'').replace(/<br\s*\/?>/gi,' '))); }
+  function contactHtml(c){
+    let h = '';
+    if (!c.hidePhone && c.phone) h += `<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:${(c.phone||'').replace(/\s/g,'')}">${c.phone}</a></div>`;
+    if (!c.hideEmail && c.email) h += `<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:${c.email}">${c.email}</a></div>`;
+    return h ? `<div class="studio-contact">${h}</div>` : '';
+  }
+  function renderCity(key){
+    const c = byKey[key]; if(!c) return;
+    nameEl.innerHTML = c.name;
+    adrEl.innerHTML = (!c.hideAddress && c.adr) ? `<a class="studio-card__adr-link" href="${mapsHref(c)}" target="_blank" rel="noopener">${c.adr}</a>` : '';
+    statusEl.textContent = c.status || '';
+    statusEl.classList.toggle('is-soon', statusOf(c) === 'soon');
+    let extra = '';
+    if (c.info) extra += `<div class="studio-card__info">${c.info}</div>`;
+    extra += contactHtml(c);
+    metaEl.innerHTML = extra;
+    ctaEl.innerHTML = ctaHtml(c);
+    if(c.image){ imgEl.style.backgroundImage = `url('${c.image}')`; imgEl.classList.remove('is-placeholder'); }
+    else { imgEl.style.backgroundImage=''; imgEl.classList.add('is-placeholder'); }
+  }
+  if(chipsEl && CITIES.length){
+    chipsEl.addEventListener('click', e => {
+      const btn = e.target.closest('.city-chip'); if(!btn) return;
+      chipsEl.querySelectorAll('.city-chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active'); cardEl.classList.add('is-fading');
+      setTimeout(() => { renderCity(btn.dataset.city); cardEl.classList.remove('is-fading'); }, 150);
+    });
+    renderCity(CITIES[0].key);
+  }
+</script>

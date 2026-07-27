@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: Réserver
+permalink: /reserver/
+description: Choisis ton studio Studio On et accède à son planning et ses offres.
+---
+
+<section class="page-hero page-hero--reserve">
+  <h1 class="page-hero__h reserve-title">Choisis ton studio</h1>
+</section>
+
+<section class="reveal" style="padding-top: clamp(28px, 5vw, 64px); padding-bottom: clamp(48px, 7vw, 90px);">
+  <div class="studio-pick studio-pick--links">
+    {% for s in studios.list %}{% if s.visible != false %}
+    {% if s.etat == 'open' or s.etat == 'earlybird' %}
+    <a class="studio-pick__card" href="/reserver/{{ s.key }}/">
+      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% else %}Coming soon{% endif %}</span>
+      <span class="studio-pick__name">{{ s.name }}</span>
+      {% if not s.hideAddress and s.adr %}<span class="studio-pick__adr">{{ s.adr | safe }}</span>{% endif %}
+      {% if s.info %}<span class="studio-pick__info">{{ s.info }}</span>{% endif %}
+      <span class="studio-pick__go">{% if s.etat == 'open' %}Voir le planning{% else %}Early birds{% endif %} <span aria-hidden="true">→</span></span>
+    </a>
+    {% elif s.etat == 'waitlist' %}
+    <button type="button" class="studio-pick__card studio-pick__card--btn" data-waitlist data-studio="{{ s.name }}">
+      <span class="studio-pick__status">Coming soon</span>
+      <span class="studio-pick__name">{{ s.name }}</span>
+      {% if not s.hideAddress and s.adr %}<span class="studio-pick__adr">{{ s.adr | safe }}</span>{% endif %}
+      {% if s.info %}<span class="studio-pick__info">{{ s.info }}</span>{% endif %}
+      <span class="studio-pick__go">{{ site.waitlistCta or "Rejoins la liste d’attente" }} <span aria-hidden="true">→</span></span>
+    </button>
+    {% else %}
+    <div class="studio-pick__card is-soon">
+      <span class="studio-pick__status">Coming soon</span>
+      <span class="studio-pick__name">{{ s.name }}</span>
+      {% if not s.hideAddress and s.adr %}<span class="studio-pick__adr">{{ s.adr | safe }}</span>{% endif %}
+      {% if s.info %}<span class="studio-pick__info">{{ s.info }}</span>{% endif %}
+    </div>
+    {% endif %}
+    {% endif %}{% endfor %}
+  </div>
+</section>

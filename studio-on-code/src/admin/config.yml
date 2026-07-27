@@ -1,0 +1,766 @@
+backend:
+  name: github
+  repo: victoriamiccoli/studio-on-site
+  branch: main
+
+media_folder: "src/assets/img"
+public_folder: "/assets/img"
+
+locale: "fr"
+
+collections:
+  # ---------------- RÉGLAGES DU SITE ----------------
+  - name: "reglages"
+    label: "Réglages du site"
+    files:
+      - name: "site"
+        label: "Général (menu, banderole, contact, pied de page)"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Nom du site", name: "name", widget: "string" }
+          - { label: "Slogan", name: "tagline", widget: "string" }
+          - { label: "Logo", name: "logoImage", widget: "image", required: false }
+          - { label: "Email de contact", name: "contactEmail", widget: "string" }
+          - { label: "Téléphone", name: "contactPhone", widget: "string" }
+          - { label: "Email des candidatures franchise", name: "franchiseEmail", widget: "string" }
+          - { label: "Texte du bouton « liste d'attente »", name: "waitlistCta", widget: "string", required: false, hint: "Défaut : Rejoins la liste d'attente" }
+          - { label: "Liste d'attente — texte d'intro (vide = aucun)", name: "waitlistIntro", widget: "string", required: false, hint: "Laisse vide pour ne rien afficher au-dessus du formulaire" }
+          - { label: "Liste d'attente — titre de confirmation", name: "waitlistSuccessTitle", widget: "string", required: false, hint: "Défaut : Merci !" }
+          - { label: "Liste d'attente — message de confirmation", name: "waitlistSuccessText", widget: "string", required: false, hint: "Défaut : Tu es sur la liste d'attente 🖤" }
+          - { label: "Banderole avant le pied de page — texte", name: "preFooterText", widget: "string", required: false, hint: "Défaut : Switch your body ON" }
+          - { label: "Banderole avant le pied de page — pages où l'afficher", name: "preFooterPages", widget: "select", multiple: true, required: false, hint: "Coche les pages où la banderole doit apparaître, juste avant le pied de page", options: [{ label: "Accueil", value: "/" }, { label: "Concept", value: "/concept/" }, { label: "Séances", value: "/seances/" }, { label: "Coachs", value: "/coachs/" }, { label: "Tarifs", value: "/tarifs/" }, { label: "Studios", value: "/studios/" }, { label: "Franchises", value: "/franchises/" }, { label: "FAQ", value: "/faq/" }, { label: "Contact", value: "/contact/" }] }
+          - label: "Menu de navigation"
+            name: "nav"
+            widget: "list"
+            fields:
+              - { label: "Libellé", name: "label", widget: "string" }
+              - { label: "Lien", name: "url", widget: "string" }
+          - label: "Banderole défilante"
+            name: "marquee"
+            widget: "list"
+            summary: "{{fields.text}}"
+            field: { label: "Texte", name: "text", widget: "string" }
+          - label: "Pied de page"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Colonnes"
+                name: "columns"
+                widget: "list"
+                fields:
+                  - { label: "Titre", name: "title", widget: "string" }
+                  - label: "Liens"
+                    name: "links"
+                    widget: "list"
+                    fields:
+                      - { label: "Libellé", name: "label", widget: "string" }
+                      - { label: "Lien", name: "url", widget: "string" }
+              - label: "Liens légaux"
+                name: "legalLinks"
+                widget: "list"
+                fields:
+                  - { label: "Libellé", name: "label", widget: "string" }
+                  - { label: "Lien", name: "url", widget: "string" }
+              - { label: "Mention copyright", name: "legal", widget: "string" }
+              - { label: "Ville", name: "city", widget: "string" }
+          # Connexion des formulaires (Make) - coller la meme URL dans les 3 champs
+          - { label: "Lien formulaire Franchise (webhook Make)", name: "franchiseWebhook", widget: "string", required: false, hint: "URL du webhook Make. Reçoit les candidatures franchise." }
+          - { label: "Lien formulaire Liste d'attente (webhook Make)", name: "waitlistWebhook", widget: "string", required: false, hint: "Meme URL que ci-dessus." }
+          - { label: "Lien formulaire Contact (webhook Make)", name: "contactWebhook", widget: "string", required: false, hint: "Meme URL que ci-dessus." }
+          # Champs techniques préservés (ne pas afficher)
+          - { label: "Domaine", name: "domain", widget: "hidden" }
+          - { label: "Lien Réserver", name: "reserverUrl", widget: "hidden" }
+          - { label: "Compte Sportigo", name: "sportigoAccount", widget: "hidden" }
+
+  # ---------------- TEXTES DE L'ACCUEIL ----------------
+  - name: "accueil"
+    label: "Textes de l'accueil"
+    files:
+      - name: "home"
+        label: "Page d'accueil"
+        file: "src/_data/home.json"
+        fields:
+          - { label: "Titre principal — ligne 1", name: "heroLine1", widget: "string", required: false }
+          - { label: "Titre principal — ligne 2 (en jaune)", name: "heroLine2", widget: "string", required: false }
+          - { label: "Titre principal — ligne 3", name: "heroLine3", widget: "string", required: false }
+          - { label: "Accroche (blanc)", name: "heroKickerWhite", widget: "string", required: false }
+          - { label: "Accroche (jaune)", name: "heroKickerYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "heroKickerBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "heroKickerBreak", widget: "boolean", default: false, required: false }
+          - label: "Points clés (sous l'accroche)"
+            name: "heroBullets"
+            widget: "list"
+            summary: "{{fields.text}}"
+            field: { label: "Texte", name: "text", widget: "string" }
+          # L'ordre de l'accueil se gère désormais dans « Blocs (briques par page) → Blocs — Accueil »
+          - { label: "Masquer la banderole défilante", name: "hideMarquee", widget: "boolean", default: false, required: false }
+          - { label: "Masquer la partie Tarifs", name: "hideTarifs", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le titre de la partie Tarifs", name: "hideTarifsTitle", widget: "boolean", default: false, required: false }
+          - { label: "Tarifs — titre", name: "tarifsTitle", widget: "string", required: false }
+          - { label: "Titre sur une seule ligne (ne pas revenir à la ligne)", name: "tarifsTitleOneLine", widget: "boolean", default: false, required: false }
+          - { label: "Tarifs — titre (partie jaune)", name: "tarifsTitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "tarifsTitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "tarifsTitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Tarifs — sous-titre (blanc)", name: "tarifsSubtitleWhite", widget: "string", required: false }
+          - { label: "Tarifs — sous-titre (jaune)", name: "tarifsSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "tarifsSubtitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "tarifsSubtitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Masquer la partie Séances", name: "hideSeances", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le titre de la partie Séances", name: "hideSeancesTitle", widget: "boolean", default: false, required: false }
+          - { label: "Séances — titre", name: "seancesTitle", widget: "string", required: false }
+          - { label: "Titre sur une seule ligne (ne pas revenir à la ligne)", name: "seancesTitleOneLine", widget: "boolean", default: false, required: false }
+          - { label: "Séances — titre (partie jaune)", name: "seancesTitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "seancesTitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "seancesTitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Séances — sous-titre", name: "seancesSubtitle", widget: "string", required: false }
+          - { label: "Séances — sous-titre (partie jaune)", name: "seancesSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "seancesSubtitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "seancesSubtitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Masquer la partie Coachs", name: "hideCoachs", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le titre de la partie Coachs", name: "hideCoachsTitle", widget: "boolean", default: false, required: false }
+          - { label: "Coachs — titre", name: "coachsTitle", widget: "string", required: false }
+          - { label: "Titre sur une seule ligne (ne pas revenir à la ligne)", name: "coachsTitleOneLine", widget: "boolean", default: false, required: false }
+          - { label: "Coachs — titre (partie jaune)", name: "coachsTitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "coachsTitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "coachsTitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Coachs — sous-titre", name: "coachsSubtitle", widget: "string", required: false }
+          - { label: "Coachs — sous-titre (partie jaune)", name: "coachsSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "coachsSubtitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "coachsSubtitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Masquer la partie Studios", name: "hideStudios", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le titre de la partie Studios", name: "hideStudiosTitle", widget: "boolean", default: false, required: false }
+          - { label: "Studios — titre", name: "studiosTitle", widget: "string", required: false }
+          - { label: "Titre sur une seule ligne (ne pas revenir à la ligne)", name: "studiosTitleOneLine", widget: "boolean", default: false, required: false }
+          - { label: "Studios — titre (partie jaune)", name: "studiosTitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "studiosTitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "studiosTitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Studios — sous-titre", name: "studiosSubtitle", widget: "string", required: false }
+          - { label: "Studios — sous-titre (partie jaune)", name: "studiosSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "studiosSubtitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "studiosSubtitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Masquer la partie FAQ", name: "hideFaq", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le titre de la partie FAQ", name: "hideFaqTitle", widget: "boolean", default: false, required: false }
+          - { label: "FAQ — titre", name: "faqTitle", widget: "string", required: false }
+          - { label: "Titre sur une seule ligne (ne pas revenir à la ligne)", name: "faqTitleOneLine", widget: "boolean", default: false, required: false }
+          - { label: "FAQ — titre (partie jaune)", name: "faqTitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "faqTitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "faqTitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "FAQ — sous-titre", name: "faqSubtitle", widget: "string", required: false }
+          - { label: "FAQ — sous-titre (partie jaune)", name: "faqSubtitleYellow", widget: "string", required: false }
+          - { label: "↳ Partie jaune en encadré (fond jaune)", name: "faqSubtitleBox", widget: "boolean", default: false, required: false }
+          - { label: "↳ Mettre la partie jaune à la ligne", name: "faqSubtitleBreak", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le bloc final (Switch your body)", name: "hideCta", widget: "boolean", default: false, required: false }
+          - { label: "Bloc final — texte", name: "ctaText", widget: "string", required: false }
+          - { label: "Masquer la partie Télécharge l'app", name: "hideApp", widget: "boolean", default: false, required: false }
+          - { label: "Masquer le titre de la partie App", name: "hideAppTitle", widget: "boolean", default: false, required: false }
+          - { label: "App - logo/icône (image carrée, idéal 512x512)", name: "appIcon", widget: "image", required: false }
+          - { label: "App - accroche (kicker)", name: "appKicker", widget: "string", required: false }
+          - { label: "App - titre", name: "appTitle", widget: "string", required: false }
+          - { label: "App - texte", name: "appText", widget: "text", required: false }
+          - label: "App - points clés"
+            name: "appBullets"
+            widget: "list"
+            required: false
+            summary: "{{fields.text}}"
+            field: { label: "Texte", name: "text", widget: "string" }
+          - { label: "App - lien App Store", name: "appStoreUrl", widget: "string", required: false }
+          - { label: "App - lien Google Play", name: "googlePlayUrl", widget: "string", required: false }
+
+  # ---------------- TITRES DES PAGES ----------------
+  - name: "pages"
+    label: "Titres des pages"
+    files:
+      - name: "pages"
+        label: "En-têtes des pages (titres, sous-titres, affichage)"
+        file: "src/_data/pages.json"
+        fields:
+          - label: "Page Tarifs"
+            name: "tarifs"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label (petit texte au-dessus)", name: "kicker", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
+              - { label: "Titre", name: "title", widget: "string", required: false, hint: "Laisse vide pour garder le titre par défaut. Tu peux utiliser <br> et <em>…</em>" }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false, hint: "Laisse vide pour garder le texte par défaut" }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le bloc « Une question sur les tarifs ? » (en bas de page)", name: "hideContact", widget: "boolean", default: false, required: false }
+          - label: "Page Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+          - label: "Page Franchises"
+            name: "franchises"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+          - label: "Page FAQ"
+            name: "faq"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+          - label: "Page Concept"
+            name: "concept"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre (vide = titre par défaut avec le logo ON)", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+          - label: "Page Séances"
+            name: "seances"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+          - label: "Page Coachs"
+            name: "coachs"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+          - label: "Page Studios"
+            name: "studios"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Masquer l'en-tête complet", name: "hideHero", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le label", name: "hideKicker", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le titre", name: "hideTitle", widget: "boolean", default: false, required: false }
+              - { label: "Masquer le sous-titre", name: "hideSubtitle", widget: "boolean", default: false, required: false }
+              - { label: "Label", name: "kicker", widget: "string", required: false }
+              - { label: "Titre", name: "title", widget: "string", required: false }
+              - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+              - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (titre)", name: "titleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (titre)", name: "titleBreak", widget: "boolean", default: false, required: false }
+              - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+              - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+              - { label: "↳ Encadré jaune (sous-titre)", name: "subtitleBox", widget: "boolean", default: false, required: false }
+              - { label: "↳ Partie jaune à la ligne (sous-titre)", name: "subtitleBreak", widget: "boolean", default: false, required: false }
+
+  # ---------------- TARIFS ----------------
+  - name: "tarifs"
+    label: "Tarifs"
+    files:
+      - name: "tarifs"
+        label: "Offres & paiements"
+        file: "src/_data/tarifs.json"
+        fields:
+          - label: "Abonnements"
+            name: "abonnements"
+            widget: "list"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "string", required: false }
+              - { label: "Prix", name: "price", widget: "string" }
+              - { label: "Unité (ex. / mois)", name: "per", widget: "string" }
+              - { label: "Sous-titre", name: "sub", widget: "string", required: false }
+              - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
+              - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
+              - { label: "ID Sportigo par défaut (utilisé si aucun paiement par studio n'est renseigné ci-dessous)", name: "offerId", widget: "string", required: false }
+              - { label: "Titre sur la fenêtre de paiement (si vide, reprend le nom)", name: "payTitle", widget: "string", required: false }
+              - label: "Paiement par studio"
+                name: "payments"
+                widget: "list"
+                required: false
+                summary: "{{fields.studio}} — {{fields.id}}"
+                hint: "Pour chaque studio qui vend cette offre : choisis le studio et mets son ID Sportigo. La liste des studios se met à jour automatiquement quand tu en ajoutes un. Au clic sur Acheter/S'abonner, le client choisit son studio et le bon paiement se charge."
+                fields:
+                  - label: "Studio"
+                    name: "studio"
+                    widget: "relation"
+                    collection: "studios"
+                    file: "studios"
+                    search_fields: ["list.*.name"]
+                    value_field: "list.*.key"
+                    display_fields: ["list.*.name"]
+                  - { label: "ID Sportigo pour ce studio", name: "id", widget: "string" }
+              - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
+              - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
+          - label: "Séances & packs"
+            name: "seances"
+            widget: "list"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "string", required: false }
+              - { label: "Prix", name: "price", widget: "string" }
+              - { label: "Unité", name: "per", widget: "string" }
+              - { label: "Sous-titre", name: "sub", widget: "string", required: false }
+              - { label: "Caractéristiques", name: "features", widget: "list", field: { label: "Ligne", name: "text", widget: "string" } }
+              - { label: "Texte du bouton", name: "ctaLabel", widget: "string" }
+              - { label: "ID Sportigo par défaut (utilisé si aucun paiement par studio n'est renseigné ci-dessous)", name: "offerId", widget: "string", required: false }
+              - { label: "Titre sur la fenêtre de paiement (si vide, reprend le nom)", name: "payTitle", widget: "string", required: false }
+              - label: "Paiement par studio"
+                name: "payments"
+                widget: "list"
+                required: false
+                summary: "{{fields.studio}} — {{fields.id}}"
+                hint: "Pour chaque studio qui vend cette offre : choisis le studio et mets son ID Sportigo. La liste des studios se met à jour automatiquement quand tu en ajoutes un. Au clic sur Acheter/S'abonner, le client choisit son studio et le bon paiement se charge."
+                fields:
+                  - label: "Studio"
+                    name: "studio"
+                    widget: "relation"
+                    collection: "studios"
+                    file: "studios"
+                    search_fields: ["list.*.name"]
+                    value_field: "list.*.key"
+                    display_fields: ["list.*.name"]
+                  - { label: "ID Sportigo pour ce studio", name: "id", widget: "string" }
+              - { label: "Mettre en avant (encadré)", name: "feature", widget: "boolean", default: false }
+              - { label: "Le plus populaire (étiquette)", name: "popular", widget: "boolean", default: false, required: false }
+
+  # ---------------- COACHS ----------------
+  - name: "coachs"
+    label: "Coachs"
+    files:
+      - name: "coachs"
+        label: "Liste des coachs"
+        file: "src/_data/coachs.json"
+        fields:
+          - label: "Coachs"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Spécialité", name: "tag", widget: "string" }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Instagram (lien, optionnel)", name: "insta", widget: "string", required: false, hint: "Ex. https://instagram.com/le.compte" }
+              - { label: "Instagram (texte affiché)", name: "instaLabel", widget: "string", required: false, hint: "Ex. @le.compte — défaut : Instagram" }
+              - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
+
+  # ---------------- SÉANCES ----------------
+  - name: "seances"
+    label: "Séances (galerie)"
+    files:
+      - name: "seances"
+        label: "Galerie des séances"
+        file: "src/_data/seances.json"
+        fields:
+          - { label: "Filtres", name: "filters", widget: "list", field: { label: "Filtre", name: "text", widget: "string" } }
+          - label: "Séances"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.nom}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Infos (durée · coach)", name: "meta", widget: "string", required: false }
+              - { label: "Catégories (pour les filtres)", name: "cats", widget: "relation", collection: "seances", file: "seances", value_field: "filters.*", search_fields: ["filters.*"], display_fields: ["filters.*"], multiple: true, required: false }
+              - { label: "Badge", name: "badge", widget: "string", required: false }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Fond sombre", name: "dark", widget: "boolean", default: false }
+              - { label: "Grande hauteur", name: "tall", widget: "boolean", default: false }
+              - { label: "Grande largeur", name: "wide", widget: "boolean", default: false }
+              - { label: "Bouton lecture", name: "play", widget: "boolean", default: false }
+              - { label: "Masquer sur l'accueil", name: "hideOnHome", widget: "boolean", default: false, required: false }
+
+  # ---------------- STUDIOS (page vitrine) ----------------
+  - name: "studios"
+    label: "Studios (page vitrine)"
+    files:
+      - name: "studios"
+        label: "Villes affichées"
+        file: "src/_data/studios.json"
+        fields:
+          - label: "Studios"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.chip}}"
+            fields:
+              - { label: "Afficher sur le site", name: "visible", widget: "boolean", default: true }
+              - label: "État"
+                name: "etat"
+                widget: "select"
+                default: "soon"
+                options:
+                  - { label: "Ouvert (bouton Réserver)", value: "open" }
+                  - { label: "Coming soon — Early birds (prévente avant ouverture)", value: "earlybird" }
+                  - { label: "Liste d'attente (bouton Rejoindre la liste)", value: "waitlist" }
+                  - { label: "Coming soon (aucun bouton)", value: "soon" }
+              - { label: "Onglet (nom court affiché)", name: "chip", widget: "string" }
+              - { label: "Clé (identifiant technique, sans espace)", name: "key", widget: "string" }
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Masquer l'adresse", name: "hideAddress", widget: "boolean", default: false, required: false }
+              - { label: "Adresse (cliquable, ouvre Google Maps)", name: "adr", widget: "string", required: false }
+              - { label: "Lien Google Maps (optionnel — vide = généré automatiquement depuis l'adresse)", name: "mapsUrl", widget: "string", required: false }
+              - { label: "Masquer l'email", name: "hideEmail", widget: "boolean", default: false, required: false }
+              - { label: "Email du studio", name: "email", widget: "string", required: false }
+              - { label: "Masquer le téléphone", name: "hidePhone", widget: "boolean", default: false, required: false }
+              - { label: "Téléphone du studio", name: "phone", widget: "string", required: false }
+              - { label: "Infos complémentaires (optionnel — s'affiche seulement si rempli, ex. accès, particularités)", name: "info", widget: "string", required: false }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
+              - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
+              - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
+
+  # ---------------- FAQ ----------------
+  - name: "faq"
+    label: "FAQ"
+    files:
+      - name: "faq"
+        label: "Questions / réponses"
+        file: "src/_data/faq.json"
+        fields:
+          - label: "Questions"
+            name: "list"
+            widget: "list"
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: "q", widget: "string" }
+              - { label: "Réponse", name: "a", widget: "text" }
+
+  # ---------------- BLOCS (briques par page) ----------------
+  - name: "blocs"
+    label: "Blocs (briques par page)"
+    files:
+      - name: "blocs"
+        label: "Mes briques"
+        file: "src/_data/blocks.json"
+        fields:
+          - label: "Blocs — Accueil"
+            name: "home"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: &blktypes
+              - label: "Section du site (Tarifs, Séances, etc.)"
+                name: "section"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Quelle section afficher", name: "section", widget: "select", required: false, options: [{ label: "Tarifs", value: "tarifs" }, { label: "Séances", value: "seances" }, { label: "Coachs", value: "coachs" }, { label: "Télécharge l'app", value: "app" }, { label: "Studios", value: "studios" }, { label: "FAQ", value: "faq" }, { label: "Bloc final (Switch your body)", value: "cta" }] }
+                  - { label: "Fond de la partie", name: "bg", widget: "select", required: false, default: "auto", options: [{ label: "Automatique (par défaut)", value: "auto" }, { label: "Fond noir", value: "noir" }, { label: "Fond blanc", value: "blanc" }, { label: "Fond crème", value: "creme" }] }
+              - label: "Cartes (bento)"
+                name: "cards"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false }
+                  - { label: "Sous-titre (partie jaune)", name: "subtitleYellow", widget: "string", required: false }
+                  - label: "Cartes"
+                    name: "cards"
+                    widget: "list"
+                    summary: "{{fields.h}}"
+                    fields:
+                      - { label: "Grande carte (héro, mise en avant)", name: "hero", widget: "boolean", default: false, required: false }
+                      - { label: "Sur-titre", name: "kick", widget: "string", required: false }
+                      - { label: "Chiffre (ex. 100+, 45', 1:1)", name: "fig", widget: "string", required: false }
+                      - { label: "Petit texte sous le chiffre", name: "sub", widget: "string", required: false }
+                      - { label: "Titre de la carte", name: "h", widget: "string", required: false }
+                      - { label: "Texte", name: "p", widget: "text", required: false }
+                      - { label: "Points (liste à puces, optionnel)", name: "specs", widget: "list", required: false, field: { label: "Point", name: "point", widget: "string" } }
+              - label: "Interrupteur (Off / On)"
+                name: "switch"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Sur-titre (ex. Le mode)", name: "kick", widget: "string", required: false }
+                  - { label: "Mot Off", name: "wordOff", widget: "string", required: false }
+                  - { label: "Mot On", name: "wordOn", widget: "string", required: false }
+                  - { label: "Indice (ex. Fais glisser pour basculer)", name: "hint", widget: "string", required: false }
+                  - { label: "Démarrer sur OFF (par défaut, démarre sur ON)", name: "startOff", widget: "boolean", default: false, required: false }
+                  - { label: "Titre côté OFF (le <br> passe à la ligne)", name: "offTitle", widget: "string", required: false }
+                  - label: "Lignes côté OFF"
+                    name: "offRows"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: "Intitulé", name: "label", widget: "string", required: false }
+                      - { label: "Valeur", name: "value", widget: "string", required: false }
+                  - { label: "Note côté OFF", name: "offNote", widget: "string", required: false }
+                  - { label: "Titre côté ON (le <br> passe à la ligne)", name: "onTitle", widget: "string", required: false }
+                  - label: "Lignes côté ON"
+                    name: "onRows"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: "Intitulé", name: "label", widget: "string", required: false }
+                      - { label: "Valeur", name: "value", widget: "string", required: false }
+                  - { label: "Note côté ON", name: "onNote", widget: "string", required: false }
+              - label: "Étapes numérotées"
+                name: "steps"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+                  - label: "Étapes"
+                    name: "steps"
+                    widget: "list"
+                    summary: "{{fields.nom}}"
+                    fields:
+                      - { label: "Numéro (ex. 01)", name: "num", widget: "string", required: false }
+                      - { label: "Étiquette (ex. Réserve)", name: "label", widget: "string", required: false }
+                      - { label: "Titre", name: "title", widget: "string", required: false }
+                      - { label: "Texte", name: "text", widget: "text", required: false }
+              - label: "Bande d'appel à l'action (CTA)"
+                name: "cta"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
+                  - { label: "Afficher « ON » avec le logo animé (style Switch your body)", name: "logoOn", widget: "boolean", default: false, required: false }
+                  - { label: "Texte", name: "text", widget: "text", required: false }
+                  - { label: "Libellé du bouton", name: "btnLabel", widget: "string", required: false }
+                  - { label: "Lien du bouton (ex. /tarifs/)", name: "btnHref", widget: "string", required: false }
+              - label: "Titre + texte"
+                name: "richtext"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Texte", name: "text", widget: "markdown", required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+                  - { label: "Texte alternatif", name: "alt", widget: "string", required: false }
+                  - { label: "Flouter l'image", name: "blur", widget: "boolean", default: false, required: false }
+                  - { label: "Intensité du flou (px, ex. 8)", name: "blurAmount", widget: "number", required: false, value_type: "int", hint: "Plus le chiffre est grand, plus c'est flou. 6 à 12 = léger à moyen." }
+                  - { label: "Coins arrondis", name: "rounded", widget: "boolean", default: false, required: false }
+                  - { label: "Assombrir l'image", name: "darken", widget: "boolean", default: false, required: false }
+                  - { label: "Hachures par-dessus", name: "hatch", widget: "boolean", default: false, required: false }
+                  - { label: "Texte par-dessus l'image (ex. COMING SOON)", name: "overlayText", widget: "string", required: false }
+                  - { label: "Légende", name: "caption", widget: "string", required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Bouton"
+                name: "button"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Libellé", name: "label", widget: "string", required: false }
+                  - { label: "Lien", name: "href", widget: "string", required: false }
+                  - { label: "Ouvrir dans un nouvel onglet", name: "newTab", widget: "boolean", default: false, required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Titre de partie"
+                name: "heading"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Afficher « ON » avec le logo animé", name: "logoOn", widget: "boolean", default: false, required: false }
+                  - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+                  - { label: "↳ Encadré jaune", name: "titleBox", widget: "boolean", default: false, required: false }
+                  - { label: "↳ Partie jaune à la ligne", name: "titleBreak", widget: "boolean", default: false, required: false }
+                  - { label: "Titre sur une seule ligne", name: "titleOneLine", widget: "boolean", default: false, required: false }
+                  - { label: "Sous-titre", name: "subtitle", widget: "string", required: false }
+                  - { label: "Fond sombre", name: "dark", widget: "boolean", default: false, required: false }
+              - label: "Trouve ta formule (curseur)"
+                name: "formule"
+                widget: "object"
+                summary: "{{fields.nom}}"
+                fields:
+                  - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
+                  - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
+                  - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
+                  - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
+                  - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false }
+                  - { label: "Sous-titre — partie jaune", name: "subtitleYellow", widget: "string", required: false }
+                  - { label: "Libellé du bouton", name: "ctaLabel", widget: "string", required: false }
+                  - { label: "Lien du bouton (ex. /tarifs/)", name: "ctaHref", widget: "string", required: false }
+                  - { label: "Afficher la question Oui / Non (emploi du temps flexible)", name: "showFlex", widget: "boolean", default: false, required: false }
+                  - { label: "Libellé badge « Oui »", name: "ouiLabel", widget: "string", required: false, hint: "Défaut : Oui" }
+                  - { label: "Libellé badge « Non »", name: "nonLabel", widget: "string", required: false, hint: "Défaut : Non" }
+                  - label: "Paliers (du moins au plus de séances)"
+                    name: "paliers"
+                    widget: "list"
+                    summary: "{{fields.tick}} · {{fields.fit}}"
+                    fields:
+                      - { label: "Repère sur le curseur (ex. 4)", name: "tick", widget: "string", required: false }
+                      - { label: "Sur-titre (ex. 4 séances par mois)", name: "kick", widget: "string", required: false }
+                      - { label: "Formule (titre, ex. Pack 10 séances)", name: "fit", widget: "string", required: false }
+                      - { label: "Prix (ex. 150 €)", name: "price", widget: "string", required: false }
+                      - { label: "Unité (ex. / 10 séances)", name: "unit", widget: "string", required: false }
+                      - { label: "Équivalence (ex. 15 € la séance)", name: "month", widget: "string", required: false }
+                      - { label: "Texte", name: "note", widget: "text", required: false }
+                      - { label: "Lien (ex. /tarifs/)", name: "href", widget: "string", required: false }
+                      - { label: "Formule si réponse « Non » (ex. Abo Full ON) — laisse vide si identique", name: "fitNon", widget: "string", required: false }
+                      - { label: "Prix si « Non »", name: "priceNon", widget: "string", required: false }
+                      - { label: "Unité si « Non »", name: "unitNon", widget: "string", required: false }
+                      - { label: "Équivalence si « Non »", name: "monthNon", widget: "string", required: false }
+                      - { label: "Texte si « Non »", name: "noteNon", widget: "text", required: false }
+                      - { label: "Lien si « Non »", name: "hrefNon", widget: "string", required: false }
+                      - { label: "ID offre Sportigo (paiement au clic sur le bouton)", name: "offerId", widget: "string", required: false, hint: "Si rempli, le bouton ouvre le paiement de cette offre au lieu d'un simple lien." }
+                      - { label: "ID offre Sportigo si « Non »", name: "offerIdNon", widget: "string", required: false }
+          - label: "Blocs — Concept"
+            name: "concept"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — Tarifs"
+            name: "tarifs"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — Séances"
+            name: "seances"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — Coachs"
+            name: "coachs"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — Studios"
+            name: "studios"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — Franchises"
+            name: "franchises"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — FAQ"
+            name: "faq"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes
+          - label: "Blocs — Contact"
+            name: "contact"
+            widget: "list"
+            required: false
+            summary: "{{fields.nom}}"
+            types: *blktypes

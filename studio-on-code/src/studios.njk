@@ -1,0 +1,106 @@
+---
+layout: base.njk
+title: Studios
+permalink: /studios/
+description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
+---
+
+{% if not pages.studios.hideHero %}
+<section class="page-hero">
+  {% if not pages.studios.hideKicker %}<span class="page-hero__kicker">{{ pages.studios.kicker or "Les studios" }}</span>{% endif %}
+  {% if not pages.studios.hideTitle %}<h1 class="page-hero__h{% if pages.studios.titleOneLine %} page-hero__h--oneline{% endif %}">{% if pages.studios.title %}{{ pages.studios.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.studios.titleYellow %}{% if pages.studios.titleBreak %}<br>{% else %} {% endif %}{% if pages.studios.titleBox %}<span class="hl-box">{{ pages.studios.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.studios.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Paris, et<br>bientôt <em>ailleurs…</em>{% endif %}</h1>{% endif %}
+  {% if not pages.studios.hideSubtitle %}<p class="page-hero__p">{% if pages.studios.subtitle %}{{ pages.studios.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.studios.subtitleYellow %}{% if pages.studios.subtitleBreak %}<br>{% else %} {% endif %}{% if pages.studios.subtitleBox %}<span class="hl-box">{{ pages.studios.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.studios.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Pousse la porte, le studio est à toi. Du lever au coucher du soleil.{% endif %}</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="reveal">
+  <div class="city-chips" id="cityChips" role="tablist">
+    {% for s in studios.list %}{% if s.visible != false %}
+    <button class="city-chip{% if loop.first %} is-active{% endif %}" data-city="{{ s.key }}" role="tab">{{ s.chip }}</button>
+    {% endif %}{% endfor %}
+  </div>
+
+  <div class="studio-card" id="studioCard">
+    <div class="studio-card__img" id="studioImg"></div>
+    <div class="studio-card__body">
+      <div class="studio-card__status" id="studioStatus"></div>
+      <h3 class="studio-card__name" id="studioName"></h3>
+      <div class="studio-card__adr" id="studioAdr"></div>
+      <div class="studio-card__meta" id="studioMeta"></div>
+      <div class="studio-card__cta" id="studioCta"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const CITIES = ({{ studios.list | dump | safe }}).filter(c => c.visible !== false);
+  const byKey = {};
+  CITIES.forEach(c => byKey[c.key] = c);
+
+  const chipsEl = document.getElementById('cityChips');
+  const cardEl = document.getElementById('studioCard');
+  const imgEl = document.getElementById('studioImg');
+  const statusEl = document.getElementById('studioStatus');
+  const nameEl = document.getElementById('studioName');
+  const adrEl = document.getElementById('studioAdr');
+  const metaEl = document.getElementById('studioMeta');
+  const ctaEl = document.getElementById('studioCta');
+
+  const TOGGLE = `<span style="display:inline-flex; width:22px; height:12px; border-radius:999px; background:var(--vanille); position:relative;"><span style="position:absolute; right:2px; top:2px; width:8px; height:8px; border-radius:50%; background:var(--noir);"></span></span>`;
+
+  function statusOf(c){
+    if (c.etat) return c.etat;
+    if (c.waitlist) return 'waitlist';
+    if (c.isSoon) return 'soon';
+    return 'open';
+  }
+  function ctaHtml(c){
+    const st = statusOf(c);
+    if (st === 'waitlist') return `<button type="button" class="btn" data-waitlist data-studio="${c.name}">Rejoindre la liste d'attente ${TOGGLE}</button>`;
+    if (st === 'earlybird') return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Coming soon · early birds ${TOGGLE}</a>`;
+    if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Coming soon</span>`;
+    return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Réserver une séance ${TOGGLE}</a>`;
+  }
+
+  function mapsHref(c){ return c.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((c.adr||'').replace(/<br\s*\/?>/gi,' '))); }
+  function contactHtml(c){
+    let h = '';
+    if (!c.hidePhone && c.phone) h += `<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:${(c.phone||'').replace(/\s/g,'')}">${c.phone}</a></div>`;
+    if (!c.hideEmail && c.email) h += `<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:${c.email}">${c.email}</a></div>`;
+    return h ? `<div class="studio-contact">${h}</div>` : '';
+  }
+  function renderCity(key) {
+    const c = byKey[key];
+    if (!c) return;
+    nameEl.innerHTML = c.name;
+    adrEl.innerHTML = (!c.hideAddress && c.adr) ? `<a class="studio-card__adr-link" href="${mapsHref(c)}" target="_blank" rel="noopener">${c.adr}</a>` : '';
+    statusEl.textContent = c.status || '';
+    statusEl.classList.toggle('is-soon', statusOf(c) === 'soon');
+    let extra = '';
+    if (c.info) extra += `<div class="studio-card__info">${c.info}</div>`;
+    extra += contactHtml(c);
+    metaEl.innerHTML = extra;
+    ctaEl.innerHTML = ctaHtml(c);
+    if (c.image) {
+      imgEl.style.backgroundImage = `url('${c.image}')`;
+      imgEl.classList.remove('is-placeholder');
+    } else {
+      imgEl.style.backgroundImage = '';
+      imgEl.classList.add('is-placeholder');
+    }
+  }
+
+  if (chipsEl && CITIES.length) {
+    chipsEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.city-chip');
+      if (!btn) return;
+      chipsEl.querySelectorAll('.city-chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      cardEl.classList.add('is-fading');
+      setTimeout(() => { renderCity(btn.dataset.city); cardEl.classList.remove('is-fading'); }, 150);
+    });
+    renderCity(CITIES[0].key);
+  }
+</script>
+
+{% if blocks and blocks.studios %}{% for block in blocks.studios %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

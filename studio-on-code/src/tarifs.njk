@@ -1,0 +1,60 @@
+---
+layout: base.njk
+title: Tarifs
+permalink: /tarifs/
+description: Le Pilates Reformer en illimité. Tarifs accessibles.
+---
+
+{% if not pages.tarifs.hideHero %}
+<section class="page-hero">
+  {% if not pages.tarifs.hideKicker %}<span class="page-hero__kicker">{{ pages.tarifs.kicker or "Les tarifs" }}</span>{% endif %}
+  {% if not pages.tarifs.hideTitle %}<h1 class="page-hero__h{% if pages.tarifs.titleOneLine %} page-hero__h--oneline{% endif %}">{% if pages.tarifs.title %}{{ pages.tarifs.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.tarifs.titleYellow %}{% if pages.tarifs.titleBreak %}<br>{% else %} {% endif %}{% if pages.tarifs.titleBox %}<span class="hl-box">{{ pages.tarifs.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.tarifs.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Tarifs<br><em>accessibles.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.tarifs.hideSubtitle %}<p class="page-hero__p">{% if pages.tarifs.subtitle %}{{ pages.tarifs.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.tarifs.subtitleYellow %}{% if pages.tarifs.subtitleBreak %}<br>{% else %} {% endif %}{% if pages.tarifs.subtitleBox %}<span class="hl-box">{{ pages.tarifs.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.tarifs.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Le Pilates Reformer. En illimité.{% endif %}</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="section--dark reveal" style="padding-top: clamp(40px, 6vw, 80px);">
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for p in tarifs.abonnements %}
+    <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">
+        {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
+      </ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for p in tarifs.seances %}
+    <article class="plan{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
+      <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
+      {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      <ul class="plan__list">
+        {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
+      </ul>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% if blocks and blocks.tarifs %}{% for block in blocks.tarifs %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
+
+{% if not pages.tarifs.hideContact %}
+<section class="reveal">
+  <div class="section-meta section-head">
+    <div>
+      <h2 class="h-xl section-head__h">Une question<br>sur les tarifs&nbsp;?</h2>
+      <p class="section-head__p" style="color: var(--noir); opacity:.65;">Tout est expliqué, sans frais cachés.</p>
+    </div>
+  </div>
+  <div class="cta-band__actions" style="align-items:center; flex-direction:row; justify-content:center; gap:12px; flex-wrap:wrap;">
+    <a href="/contact/" class="btn btn--noir">Nous écrire <span>→</span></a>
+  </div>
+</section>
+{% endif %}

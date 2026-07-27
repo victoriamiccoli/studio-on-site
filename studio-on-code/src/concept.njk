@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Concept
+permalink: /concept/
+description: Le Reformer en mode On. 3 étapes, pas plus.
+---
+
+{% if not pages.concept.hideHero %}
+<section class="page-hero">
+  {% if not pages.concept.hideKicker %}<span class="page-hero__kicker">{{ pages.concept.kicker or "Le concept" }}</span>{% endif %}
+  {% if not pages.concept.hideTitle %}<h1 class="page-hero__h{% if pages.concept.titleOneLine %} page-hero__h--oneline{% endif %}">{% if pages.concept.title %}{{ pages.concept.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.concept.titleYellow %}{% if pages.concept.titleBreak %}<br>{% else %} {% endif %}{% if pages.concept.titleBox %}<span class="hl-box">{{ pages.concept.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.concept.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Le Reformer.<br>En mode <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>{% endif %}</h1>{% endif %}
+  {% if not pages.concept.hideSubtitle %}<p class="page-hero__p">{% if pages.concept.subtitle %}{{ pages.concept.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.concept.subtitleYellow %}{% if pages.concept.subtitleBreak %}<br>{% else %} {% endif %}{% if pages.concept.subtitleBox %}<span class="hl-box">{{ pages.concept.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.concept.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}3 étapes. Pas plus. Un studio autonome, ouvert de 6h à 22h30.{% endif %}</p>{% endif %}
+</section>
+{% endif %}
+
+{% if blocks and blocks.concept %}{% for block in blocks.concept %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}
+
+<section class="cta-band reveal">
+  <h2 class="cta-band__h" style="line-height:.92;">Switch<br>your&nbsp;body<br><span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span></h2>
+  <div class="cta-band__side">
+    <div class="cta-band__actions">
+      <a href="/tarifs/" class="btn btn--ecru">S'abonner <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>

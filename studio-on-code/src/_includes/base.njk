@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} - Pilates Reformer en libre accès{% endif %}</title>
+<meta name="description" content="{{ description or site.tagline }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+{% set logoMarkup %}
+  {% if site.logoImage %}
+    <img class="logo-img" src="{{ site.logoImage }}" alt="{{ site.name }}">
+  {% else %}
+    <span class="logo__text">Studio</span><span class="logo__pill"></span><span class="logo__text">N</span>
+  {% endif %}
+{% endset %}
+
+<nav class="nav" id="nav">
+  <a href="/" class="logo nav__logo">{{ logoMarkup | safe }}</a>
+  <div class="nav__links">
+    {% for item in site.nav %}
+      <a href="{{ item.url }}"{% if page.url == item.url %} class="is-current"{% endif %}>{{ item.label }}</a>
+    {% endfor %}
+  </div>
+  <div class="nav__actions">
+    <a href="/telecharger-app/" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
+    <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav__drawer-wrap">
+  <div class="nav__overlay" id="navOverlay"></div>
+  <aside class="nav__mobile" id="navMobile">
+    {% for item in site.nav %}
+      <a href="{{ item.url }}">{{ item.label }}</a>
+    {% endfor %}
+    <a href="/telecharger-app/" class="nav__cta nav__cta--ghost">Télécharge l'app</a>
+    <a href="{{ site.reserverUrl }}" class="nav__cta">Réserver <span class="toggle"></span></a>
+  </aside>
+</div>
+
+{{ content | safe }}
+
+{% if site.preFooterPages and (page.url in site.preFooterPages) %}
+<div class="marquee marquee--prefooter" aria-hidden="true">
+  <div class="marquee__track">
+    {% for i in [1, 2, 3, 4] %}<span>{{ site.preFooterText or "Switch your body ON" }} <span class="marquee__dot"></span> </span>{% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <a href="/" class="logo logo--light foot-logo">{{ logoMarkup | safe }}</a>
+      <p class="foot-tag">{{ site.tagline }}</p>
+    </div>
+    {% for col in site.footer.columns %}
+    <div class="foot-col">
+      <h5>{{ col.title }}</h5>
+      {% if col.title == "Nos studios" %}
+        {% for s in studios.list %}{% if s.visible != false %}<a href="/reserver/{{ s.key }}/">{{ s.chip }}</a>{% endif %}{% endfor %}
+      {% else %}
+        {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  <nav class="foot-legal">
+    {% for l in site.footer.legalLinks %}<a href="{{ l.url }}">{{ l.label }}</a>{% endfor %}
+  </nav>
+  <div class="foot-bottom">
+    <span>{{ site.footer.legal }}</span>
+    <span>{{ site.footer.city }}</span>
+  </div>
+</footer>
+
+<script>
+  // Révélation au scroll
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('in')),
+    { threshold: 0.05 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav qui s'adapte au fond sombre
+  const nav = document.getElementById('nav');
+  const darkSections = document.querySelectorAll('.section--dark, .cta-band, .marquee, .intro-statement, .page-hero');
+  const checkNav = () => {
+    const navY = nav.getBoundingClientRect().bottom;
+    let isDark = false;
+    darkSections.forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.top <= navY && r.bottom >= 0) isDark = true;
+    });
+    nav.classList.toggle('nav--dark', isDark);
+  };
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  // Menu mobile
+  const burger = document.getElementById('burger');
+  const navMobile = document.getElementById('navMobile');
+  const navOverlay = document.getElementById('navOverlay');
+  function closeMenu(){ navMobile.classList.remove('is-open'); navOverlay.classList.remove('is-open'); document.body.classList.remove('menu-open'); burger.setAttribute('aria-expanded','false'); }
+  function toggleMenu(){ const open = navMobile.classList.toggle('is-open'); navOverlay.classList.toggle('is-open', open); document.body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open ? 'true':'false'); }
+  if (burger){ burger.addEventListener('click', toggleMenu); navOverlay.addEventListener('click', closeMenu); navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu)); }
+</script>
+
+<!-- Parcours d'achat Sportigo (studio → récapitulatif → paiement) -->
+<div class="pay-modal pay-modal--flow" id="payModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="pay-modal__backdrop" data-pay-close></div>
+  <div class="pay-modal__panel">
+    <div class="pay-modal__head">
+      <button class="pay-modal__back" id="payBack" type="button" aria-label="Retour" hidden><span aria-hidden="true">←</span> Retour</button>
+      <span class="pay-modal__title" id="payModalTitle">Réserver</span>
+      <button class="pay-modal__close" type="button" data-pay-close aria-label="Fermer">×</button>
+    </div>
+    <div class="pay-flow__steps" id="payStepper" aria-hidden="true">
+      <span class="pay-flow__step" data-step="studio"><i>1</i> Studio</span>
+      <span class="pay-flow__step" data-step="recap"><i>2</i> Récapitulatif</span>
+      <span class="pay-flow__step" data-step="pay"><i>3</i> Paiement</span>
+    </div>
+    <div class="pay-modal__body" id="payModalBody"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var ACCOUNT = "{{ site.sportigoAccount }}";
+  var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
+  var STUDIOS = ({{ studios.list | dump | safe }}).filter(function(s){ return s.visible !== false; });
+
+  var scriptState = 0; // 0=non chargé, 1=chargement, 2=prêt
+  var scriptCbs = [];
+  var modal = document.getElementById('payModal');
+  var body = document.getElementById('payModalBody');
+  var title = document.getElementById('payModalTitle');
+  var backBtn = document.getElementById('payBack');
+  var stepper = document.getElementById('payStepper');
+  var ctx = null;
+
+  function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function studioByKey(k){ for (var i=0;i<STUDIOS.length;i++){ if (STUDIOS[i].key===k) return STUDIOS[i]; } return null; }
+  // Chaque offre (onglet Tarifs) porte son "Paiement par studio" : une map { cléStudio: idSportigo }.
+  // Passée au bouton via data-payments="paris17:36291;paris6:77777". ctx.fallback = ID par défaut (offre à un seul studio).
+  function parsePayments(str){
+    var map = {};
+    if (!str) return map;
+    str.split(';').forEach(function(pair){
+      var kv = pair.split(':');
+      if (kv.length === 2 && kv[0].trim() && kv[1].trim()) map[kv[0].trim()] = kv[1].trim();
+    });
+    return map;
+  }
+  function resolveOfferId(studioKey){
+    if (ctx.payments && ctx.payments[studioKey]) return ctx.payments[studioKey];
+    return ctx.fallback;
+  }
+  function buyableStudios(){
+    var keys = ctx.payments ? Object.keys(ctx.payments) : [];
+    if (keys.length){
+      // Studios rattachés à cette offre : ouverts OU en prévente early bird (attribution correcte)
+      return STUDIOS.filter(function(s){ return (s.etat === 'open' || s.etat === 'earlybird') && ctx.payments[s.key] != null; });
+    }
+    // Repli : offre sans paiement par studio -> studios OUVERTS uniquement (jamais les early birds)
+    return ctx.fallback ? STUDIOS.filter(function(s){ return s.etat === 'open'; }) : [];
+  }
+
+  function loadScript(cb){
+    if (scriptState === 2) { cb(); return; }
+    scriptCbs.push(cb);
+    if (scriptState === 1) return;
+    scriptState = 1;
+    var s = document.createElement('script');
+    s.src = SRC;
+    s.onload = function(){ scriptState = 2; scriptCbs.forEach(function(f){ f(); }); scriptCbs = []; };
+    s.onerror = function(){ scriptState = 0; body.innerHTML = '<div class="pay-modal__msg">Impossible de charger le paiement pour le moment. Réessaie dans un instant.</div>'; };
+    document.head.appendChild(s);
+  }
+
+  function openModal(){ modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); }
+  function closeModal(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); body.innerHTML=''; ctx=null; }
+
+  function updateStepper(current){
+    if (!stepper) return;
+    var chips = stepper.querySelectorAll('.pay-flow__step');
+    for (var i=0;i<chips.length;i++){
+      var st = chips[i].getAttribute('data-step');
+      chips[i].style.display = (st==='studio' && ctx && !ctx.hasStudioStep) ? 'none' : '';
+      chips[i].classList.toggle('is-active', st===current);
+    }
+  }
+
+  function renderStudioStep(){
+    ctx.step='studio'; updateStepper('studio');
+    title.textContent = 'Choisis ton studio de référence';
+    backBtn.hidden = true;
+    var list = buyableStudios();
+    if (!list.length){
+      body.innerHTML = '<div class="pay-modal__msg">Aucun studio n\'est ouvert à la vente pour le moment. Écris-nous, on t\'accompagne&nbsp;!</div>';
+      return;
+    }
+    var html = '<p class="pay-flow__lead">Pour <strong>'+esc(ctx.title)+'</strong>, sélectionne le studio où tu viendras t\'entraîner.</p><div class="pay-flow__studios">';
+    list.forEach(function(s){
+      var badge = s.etat === 'earlybird' ? 'Coming soon' : 'Ouvert';
+      html += '<button type="button" class="pay-flow__studio'+(s.etat==='earlybird'?' is-earlybird':'')+'" data-pick-studio="'+esc(s.key)+'">'
+        + '<span class="pay-flow__studio-badge">'+badge+'</span>'
+        + '<span class="pay-flow__studio-name">'+esc(s.name)+'</span>'
+        + '<span class="pay-flow__studio-adr">'+(s.adr||'')+'</span>'
+        + '<span class="pay-flow__studio-go">Choisir <span aria-hidden="true">→</span></span>'
+        + '</button>';
+    });
+    html += '</div>';
+    body.innerHTML = html;
+  }
+
+  function renderRecapStep(){
+    ctx.step='recap'; updateStepper('recap');
+    title.textContent = 'Récapitulatif';
+    backBtn.hidden = !ctx.hasStudioStep;
+    var s = studioByKey(ctx.studioKey);
+    body.innerHTML =
+      '<div class="pay-flow__recap">'
+      + '<div class="pay-flow__recap-row"><span class="pay-flow__recap-k">Offre</span><span class="pay-flow__recap-v">'+esc(ctx.title)+'</span></div>'
+      + (ctx.price ? '<div class="pay-flow__recap-row"><span class="pay-flow__recap-k">Tarif</span><span class="pay-flow__recap-v">'+esc(ctx.price)+'€ '+esc(ctx.per||'')+'</span></div>' : '')
+      + '<div class="pay-flow__recap-row"><span class="pay-flow__recap-k">Studio de référence</span><span class="pay-flow__recap-v">'+esc(s?s.name:'')+'</span></div>'
+      + (s && s.adr ? '<div class="pay-flow__recap-adr">'+s.adr+'</div>' : '')
+      + '</div>'
+      + '<button type="button" class="btn btn--noir pay-flow__continue" id="payGo">Continuer vers le paiement <span>→</span></button>'
+      + (ctx.hasStudioStep ? '<button type="button" class="pay-flow__change" data-flow-back>Changer de studio</button>' : '');
+  }
+
+  function renderPayStep(){
+    ctx.step='pay'; updateStepper('pay');
+    title.textContent = ctx.title || 'Paiement';
+    backBtn.hidden = false;
+    var s = studioByKey(ctx.studioKey);
+    var offerId = resolveOfferId(ctx.studioKey);
+    var head = '<p class="pay-flow__paystudio">Studio de référence : <strong>'+esc(s?s.name:'')+'</strong></p>';
+    if (!offerId){ body.innerHTML = head + '<div class="pay-modal__msg">Ce moyen de paiement sera actif très bientôt.</div>'; return; }
+    body.innerHTML = head + '<div class="pay-modal__msg">Chargement du paiement…</div>';
+    loadScript(function(){
+      body.innerHTML = head + '<div id="sportigo-buy-container"></div>';
+      try {
+        window.initComponent("BuyFromList", "sportigo-buy-container", ACCOUNT, {
+          theme: { googleFont: { name: "Inter" } },
+          inline: true, hideFilters: true,
+          initOfferPayment: { cancelable: false },
+          onlyOffers: [ parseInt(offerId, 10) ]
+        });
+      } catch(e){
+        body.innerHTML = '<div class="pay-modal__msg">Une erreur est survenue. Réessaie ou contacte-nous.</div>';
+      }
+    });
+  }
+
+  function goBack(){
+    if (!ctx) return;
+    if (ctx.step === 'pay'){ renderRecapStep(); }
+    else if (ctx.step === 'recap' && ctx.hasStudioStep){ renderStudioStep(); }
+  }
+
+  function renderUnavailable(){
+    updateStepper('recap');
+    title.textContent = ctx.title || 'Offre';
+    backBtn.hidden = true;
+    body.innerHTML = '<div class="pay-modal__msg">Cette offre n\'est pas encore disponible dans ce studio.</div>';
+  }
+
+  function startPurchase(opts){
+    ctx = { payments: opts.payments || {}, fallback: opts.fallback, title: opts.title || 'Réserver', price: opts.price||'', per: opts.per||'', studioKey: null, hasStudioStep: false, step: 'studio' };
+    openModal();
+    var preset = document.body.getAttribute('data-studio-ref'); // studio déjà fixé (page dédiée / page Réserver)
+    if (preset && studioByKey(preset)){
+      var ps = studioByKey(preset);
+      var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null);
+      ctx.studioKey = preset; ctx.hasStudioStep = false;
+      if (sells){ renderRecapStep(); } else { renderUnavailable(); }
+      return;
+    }
+    var list = buyableStudios();
+    if (list.length === 0){ ctx.hasStudioStep = false; renderStudioStep(); return; } // affiche le message "aucun studio ouvert"
+    if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    ctx.hasStudioStep = true; renderStudioStep();
+  }
+
+  body.addEventListener('click', function(e){
+    var pickBtn = e.target.closest('[data-pick-studio]');
+    if (pickBtn){ ctx.studioKey = pickBtn.getAttribute('data-pick-studio'); renderRecapStep(); return; }
+    if (e.target.closest('#payGo')){ renderPayStep(); return; }
+    if (e.target.closest('[data-flow-back]')){ renderStudioStep(); return; }
+  });
+  if (backBtn) backBtn.addEventListener('click', goBack);
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.plan__cta[data-offer], .plan__cta[data-payments], .lvl__cta[data-offer], .lvl__cta[data-payments]');
+    if (btn){
+      e.preventDefault();
+      var card = btn.closest('.plan');
+      var t = btn.getAttribute('data-title');
+      if (!t) { t = card ? (card.querySelector('.plan__name') || {}).textContent : ''; }
+      startPurchase({
+        payments: parsePayments(btn.getAttribute('data-payments')),
+        fallback: btn.getAttribute('data-offer'),
+        title: (t || 'Réserver').trim(),
+        price: btn.getAttribute('data-price'),
+        per: btn.getAttribute('data-per')
+      });
+      return;
+    }
+    if (e.target.closest('[data-pay-close]')) { closeModal(); }
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+})();
+</script>
+
+<!-- Fenêtre liste d'attente -->
+<div class="pay-modal" id="waitModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="pay-modal__backdrop" data-wait-close></div>
+  <div class="pay-modal__panel" style="width:min(520px,94vw)">
+    <div class="pay-modal__head">
+      <span class="pay-modal__title" id="waitTitle">Liste d'attente</span>
+      <button class="pay-modal__close" type="button" data-wait-close aria-label="Fermer">×</button>
+    </div>
+    <div class="pay-modal__body">
+      {% if site.waitlistIntro %}<p style="opacity:.75; font-size:14px; margin:0 0 18px;">{{ site.waitlistIntro }}</p>{% endif %}
+      <form id="waitForm" class="form" novalidate>
+        <input type="hidden" name="type" value="Liste d'attente">
+        <div class="field full"><label for="waitPrenom">Prénom *</label><input type="text" id="waitPrenom" name="prenom" required autocomplete="given-name"></div>
+        <div class="field full"><label for="waitNom">Nom</label><input type="text" id="waitNom" name="nom" autocomplete="family-name"></div>
+        <div class="field full"><label for="waitEmail">Email *</label><input type="email" id="waitEmail" name="email" required autocomplete="email"></div>
+        <input type="hidden" name="ville" id="waitStudio" value="">
+        <div class="form__submit"><button type="submit" class="btn btn--noir" id="waitSubmit">Rejoindre la liste <span>→</span></button></div>
+      </form>
+      <div class="form-success" id="waitSuccess"><h3 class="h-md" style="margin-bottom:8px;">{{ site.waitlistSuccessTitle or "Merci !" }}</h3><p style="opacity:.75;margin:0;">{{ site.waitlistSuccessText or "Tu es sur la liste d’attente 🖤" }}</p></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var WEBHOOK = "{{ site.waitlistWebhook }}";
+  var modal = document.getElementById('waitModal');
+  var form = document.getElementById('waitForm');
+  var success = document.getElementById('waitSuccess');
+  var studioField = document.getElementById('waitStudio');
+  var titleEl = document.getElementById('waitTitle');
+  function openWait(studio){
+    studioField.value = studio || '';
+    titleEl.textContent = studio ? ("Liste d'attente · " + studio) : "Liste d'attente";
+    form.style.display = ''; success.classList.remove('is-visible');
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open');
+  }
+  function closeWait(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-waitlist]');
+    if (t){ e.preventDefault(); openWait(t.getAttribute('data-studio')); return; }
+    if (e.target.closest('[data-wait-close]')) closeWait();
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('is-open')) closeWait(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+    var data = {}; new FormData(form).forEach(function(v,k){ data[k]=v; });
+    data.source = "Liste d'attente studio";
+    var btn = document.getElementById('waitSubmit'); btn.disabled = true; btn.textContent = 'Envoi…';
+    Promise.resolve(WEBHOOK ? fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }) : console.log('[Liste attente]', data))
+      .then(function(){ form.style.display='none'; success.classList.add('is-visible'); })
+      .catch(function(){ btn.disabled=false; btn.innerHTML='Réessayer <span>→</span>'; });
+  });
+})();
+</script>
+
+<!-- Briques : interrupteur Off/On (multi-instances) -->
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.switch-sec').forEach(function(sec){
+    var toggle = sec.querySelector('.giant-toggle');
+    if (!toggle) return;
+    var panes = sec.querySelectorAll('.switch-pane');
+    var track = toggle.querySelector('.giant-toggle__track');
+    var knob = toggle.querySelector('.giant-toggle__knob');
+    function travelPx(){ return (track && knob) ? Math.max(24, track.clientWidth - knob.clientWidth - 12) : 72; }
+    var dragging = false, moved = false, pointerDriven = false, auto = null;
+    function setState(state){
+      sec.dataset.state = state;
+      toggle.setAttribute('aria-pressed', state === 'on' ? 'true' : 'false');
+      panes.forEach(function(p){ p.hidden = p.dataset.pane !== state; });
+    }
+    function stopAuto(){ clearInterval(auto); auto = null; }
+    toggle.addEventListener('pointerdown', function(ev){
+      dragging = true; moved = false; pointerDriven = true; stopAuto();
+      toggle.classList.add('is-dragging');
+      try { toggle.setPointerCapture(ev.pointerId); } catch(e){}
+    });
+    toggle.addEventListener('pointermove', function(ev){
+      if (!dragging || !track) return;
+      var r = track.getBoundingClientRect();
+      var T = travelPx();
+      var x = Math.max(0, Math.min(T, ev.clientX - r.left - knob.clientWidth / 2));
+      if (Math.abs(x - (sec.dataset.state === 'on' ? T : 0)) > 4) moved = true;
+      if (knob) knob.style.transform = 'translateX(' + x + 'px)';
+      setState(x > T / 2 ? 'on' : 'off');
+    });
+    function endDrag(){ if (!dragging) return; dragging = false; toggle.classList.remove('is-dragging'); if (knob) knob.style.transform = ''; }
+    toggle.addEventListener('pointerup', endDrag);
+    toggle.addEventListener('pointercancel', endDrag);
+    toggle.addEventListener('click', function(){
+      stopAuto();
+      var wasDrag = pointerDriven && moved; pointerDriven = false;
+      if (wasDrag) return;
+      setState(sec.dataset.state === 'on' ? 'off' : 'on');
+    });
+    toggle.addEventListener('keydown', function(ev){
+      if (ev.key === 'ArrowRight'){ stopAuto(); setState('on'); }
+      if (ev.key === 'ArrowLeft'){ stopAuto(); setState('off'); }
+    });
+    if (!reduce){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ if (!auto) auto = setInterval(function(){ setState(sec.dataset.state === 'on' ? 'off' : 'on'); }, 4200); }
+          else { stopAuto(); }
+        });
+      }, { threshold: 0.3 });
+      io.observe(sec);
+    }
+  });
+})();
+</script>
+
+<!-- Briques : « Trouve ta formule » (curseur, multi-instances) -->
+<script>
+(function(){
+  document.querySelectorAll('.lvl').forEach(function(sec){
+    var range = sec.querySelector('.lvl__range');
+    var dataEl = sec.querySelector('.lvl-data');
+    if (!range || !dataEl) return;
+    var plans;
+    try { plans = JSON.parse(dataEl.textContent); } catch(e){ return; }
+    if (!plans || !plans.length) return;
+    var ticks = sec.querySelector('.lvl__ticks');
+    var flexBtns = sec.querySelectorAll('.lvl__flex-btn');
+    var flex = 'oui', cur = Math.min(2, plans.length - 1);
+    function set(k){ return sec.querySelector('[data-lvl="' + k + '"]'); }
+    function val(p, k){ return (flex === 'non' && p[k + 'Non']) ? p[k + 'Non'] : (p[k] || ''); }
+    function render(i){
+      cur = i; var p = plans[i]; if (!p) return;
+      range.style.setProperty('--p', plans.length > 1 ? (i / (plans.length - 1)) * 100 : 0);
+      if (set('kick')) set('kick').textContent = p.kick || '';
+      ['fit', 'note', 'price', 'unit', 'month'].forEach(function(k){ var el = set(k); if (el) el.textContent = val(p, k); });
+      var cta = set('cta');
+      if (cta) {
+        var offer = val(p, 'offerId');
+        if (offer) { cta.setAttribute('data-offer', offer); } else { cta.removeAttribute('data-offer'); }
+        var pay = val(p, 'payments'); if (pay) { cta.setAttribute('data-payments', pay); } else { cta.removeAttribute('data-payments'); }
+        cta.setAttribute('data-title', val(p, 'fit') || '');
+        cta.setAttribute('data-price', (val(p, 'price') || '').replace(/[^0-9.,]/g, ''));
+        cta.setAttribute('data-per', val(p, 'unit') || '');
+        cta.setAttribute('data-href', val(p, 'href') || '');
+      }
+      if (ticks) ticks.querySelectorAll('button').forEach(function(b){ b.classList.toggle('is-on', +b.dataset.i === i); });
+    }
+    range.min = 0; range.max = plans.length - 1;
+    range.addEventListener('input', function(){ render(+range.value); });
+    if (ticks) ticks.addEventListener('click', function(ev){
+      var b = ev.target.closest('button'); if (!b) return;
+      range.value = b.dataset.i; render(+b.dataset.i);
+    });
+    flexBtns.forEach(function(btn){ btn.addEventListener('click', function(){ flex = btn.dataset.flex; flexBtns.forEach(function(x){ x.classList.toggle('is-on', x === btn); }); render(cur); }); });
+    var ctaEl = set('cta');
+    if (ctaEl) ctaEl.addEventListener('click', function(){ if (!ctaEl.hasAttribute('data-offer')) { var h = ctaEl.getAttribute('data-href'); if (h) window.location.href = h; } });
+    range.value = cur; render(cur);
+  });
+})();
+</script>
+</body>
+</html>

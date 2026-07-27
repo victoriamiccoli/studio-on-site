@@ -1,0 +1,150 @@
+{#- Moteur de briques réutilisables. Attend une variable `block` dans le contexte. -#}
+{%- set b = block -%}
+{% if b.type == "cards" %}
+<section class="section--dark reveal blk blk--cards"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle or b.subtitleYellow %}
+  <div class="blk-cards__head">
+    {% if b.title %}<h2 class="blk-cards__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.titleYellow %} <span class="blk-cards__hl">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% endif %}</h2>{% endif %}
+    {% if b.subtitle or b.subtitleYellow %}<p class="blk-cards__sub">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.subtitleYellow %} <span class="blk-cards__sub-hl">{{ b.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% endif %}</p>{% endif %}
+  </div>
+  {% endif %}
+  <div class="kit">
+    {% for c in b.cards %}
+    <article class="kit-cell{% if c.hero %} kit-cell--hero{% endif %}">
+      <div class="kit-cell__top">
+        {% if c.kick %}<span class="kit-cell__kick">{{ c.kick }}</span>{% endif %}
+        {% if c.fig %}<span class="kit-cell__fig">{{ c.fig | safe }}</span>{% endif %}
+        {% if c.sub %}<span class="kit-cell__sub">{{ c.sub }}</span>{% endif %}
+      </div>
+      {% if c.hero %}<div class="kit-cell__top">{% if c.h %}<h3 class="kit-cell__h">{{ c.h }}</h3>{% endif %}{% if c.p %}<p class="kit-cell__p">{{ c.p | safe }}</p>{% endif %}</div>
+      {% else %}{% if c.h %}<h3 class="kit-cell__h">{{ c.h }}</h3>{% endif %}{% if c.p %}<p class="kit-cell__p">{{ c.p | safe }}</p>{% endif %}{% endif %}
+      {% if c.specs and c.specs.length %}<ul class="kit-cell__specs">{% for sp in c.specs %}<li>{{ sp }}</li>{% endfor %}</ul>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% elif b.type == "switch" %}
+{% set startState = "off" if b.startOff else "on" %}
+<section class="switch-sec reveal blk blk--switch"{% if b.id %} id="blk-{{ b.id }}"{% endif %} data-state="{{ startState }}">
+  <div class="switch-sec__inner">
+    <div class="switch-sec__left">
+      {% if b.kick %}<span class="switch-sec__kick">{{ b.kick }}</span>{% endif %}
+      <button type="button" class="giant-toggle" aria-pressed="{{ 'true' if startState == 'on' else 'false' }}">
+        <span class="giant-toggle__track"><span class="giant-toggle__knob"></span></span>
+        <span class="giant-toggle__word giant-toggle__word--off">{{ b.wordOff or "Off" }}</span>
+        <span class="giant-toggle__word giant-toggle__word--on">{{ b.wordOn or "On." }}</span>
+      </button>
+      {% if b.hint %}<span class="switch-sec__hint">{{ b.hint }}</span>{% endif %}
+    </div>
+    <div class="switch-panes">
+      <div class="switch-pane" data-pane="off"{% if startState != "off" %} hidden{% endif %}>
+        {% if b.offTitle %}<h2 class="switch-pane__h">{{ b.offTitle | safe }}</h2>{% endif %}
+        {% if b.offRows and b.offRows.length %}<ul class="switch-pane__list">{% for r in b.offRows %}<li><b>{{ r.label }}</b><span>{{ r.value }}</span></li>{% endfor %}</ul>{% endif %}
+        {% if b.offNote %}<p class="switch-pane__note">{{ b.offNote }}</p>{% endif %}
+      </div>
+      <div class="switch-pane" data-pane="on"{% if startState != "on" %} hidden{% endif %}>
+        {% if b.onTitle %}<h2 class="switch-pane__h">{{ b.onTitle | safe }}</h2>{% endif %}
+        {% if b.onRows and b.onRows.length %}<ul class="switch-pane__list">{% for r in b.onRows %}<li><b>{{ r.label }}</b><span>{{ r.value }}</span></li>{% endfor %}</ul>{% endif %}
+        {% if b.onNote %}<p class="switch-pane__note">{{ b.onNote }}</p>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% elif b.type == "steps" %}
+<section class="section--dark reveal blk blk--steps"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle %}
+  <div class="section-meta section-head"><div>
+    {% if b.title %}<h2 class="h-xl section-head__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.titleYellow %} <em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}</h2>{% endif %}
+    {% if b.subtitle %}<p class="section-head__p" style="color: var(--ecru)">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</p>{% endif %}
+  </div></div>
+  {% endif %}
+  <div class="principes" style="border-top: none;">
+    {% for s in b.steps %}
+    <article class="principe">
+      <div class="principe__top">{% if s.num %}<span class="step-num">{{ s.num }}</span>{% endif %}{% if s.label %}<span class="step-label">{{ s.label }}</span>{% endif %}</div>
+      {% if s.title %}<h3 class="principe__h">{{ s.title }}</h3>{% endif %}
+      {% if s.text %}<p class="principe__p">{{ s.text | safe }}</p>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% elif b.type == "cta" %}
+<section class="cta-band reveal blk blk--cta"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title %}<h2 class="cta-band__h">{{ b.title | safe }}{% if b.logoOn %} <span class="logo logo--inline-yellow switch-big__logo">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>{% endif %}</h2>{% endif %}
+  <div class="cta-band__side">
+    {% if b.text %}<p class="cta-band__p" style="color: var(--vanille); opacity: 1;">{{ b.text | safe }}</p>{% endif %}
+    {% if b.btnLabel %}<div class="cta-band__actions"><a href="{{ b.btnHref or '#' }}" class="btn btn--ecru">{{ b.btnLabel }} <span class="btn__toggle"></span></a></div>{% endif %}
+  </div>
+</section>
+
+{% elif b.type == "richtext" %}
+<section class="reveal blk blk--rich{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  <div class="blk-rich__wrap">
+    {% if b.title %}<h2 class="h-xl blk-rich__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.titleYellow %} <em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}</h2>{% endif %}
+    {% if b.text %}<div class="blk-rich__body">{{ b.text | safe }}</div>{% endif %}
+  </div>
+</section>
+
+{% elif b.type == "image" %}
+<section class="reveal blk blk--image{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.image %}<div class="blk-image__wrap{% if b.rounded %} is-rounded{% endif %}">
+    <img class="blk-image__img" src="{{ b.image }}" alt="{{ b.alt or '' }}" loading="lazy"{% if b.blur %} style="filter: blur({{ b.blurAmount or 8 }}px); transform: scale(1.05);"{% endif %}>
+    {% if b.darken %}<span class="blk-image__dark"></span>{% endif %}
+    {% if b.hatch %}<span class="blk-image__hatch"></span>{% endif %}
+    {% if b.overlayText %}<span class="blk-image__overlay">{{ b.overlayText | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% endif %}
+  </div>{% endif %}
+  {% if b.caption %}<p class="blk-image__cap">{{ b.caption }}</p>{% endif %}
+</section>
+
+{% elif b.type == "button" %}
+<section class="reveal blk blk--button{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.label %}<a href="{{ b.href or '#' }}" class="btn btn--vanille"{% if b.newTab %} target="_blank" rel="noopener"{% endif %}>{{ b.label }} <span>→</span></a>{% endif %}
+</section>
+
+{% elif b.type == "heading" %}
+<section class="reveal blk blk--heading{% if b.dark %} section--dark{% endif %}"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  <div class="section-meta section-head"><div>
+    {% if b.title or b.logoOn %}<h2 class="h-xl section-head__h{% if b.titleOneLine %} section-head__h--oneline{% endif %}">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.logoOn %} <span class="logo logo--inline-yellow" style="vertical-align: baseline; gap: 0.02em;">{% include "toggle.njk" %}<span class="logo__text">N.</span></span>{% endif %}{% if b.titleYellow %}{% if b.titleBreak %}<br>{% else %} {% endif %}{% if b.titleBox %}<span class="hl-box">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}</h2>{% endif %}
+    {% if b.subtitle %}<p class="section-head__p"{% if b.dark %} style="color: var(--ecru)"{% endif %}>{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</p>{% endif %}
+  </div></div>
+</section>
+
+{% elif b.type == "formule" %}
+<section class="lvl reveal blk blk--formule"{% if b.id %} id="blk-{{ b.id }}"{% endif %}>
+  {% if b.title or b.subtitle or b.subtitleYellow or b.showFlex %}
+  <div class="lvl__head">
+    {% if b.title %}<h2 class="h-xl lvl__h">{{ b.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.titleYellow %} <span class="lvl__h-hl">{{ b.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% endif %}</h2>{% endif %}
+    {% if b.subtitle or b.subtitleYellow %}<p class="lvl__lead">{{ b.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if b.subtitleYellow %} <span class="lvl__lead-hl">{{ b.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% endif %}</p>{% endif %}
+    {% if b.showFlex %}<div class="lvl__flex">
+      <button type="button" class="lvl__flex-btn is-on" data-flex="oui">{{ b.ouiLabel or "Oui" }}</button>
+      <button type="button" class="lvl__flex-btn" data-flex="non">{{ b.nonLabel or "Non" }}</button>
+    </div>{% endif %}
+  </div>
+  {% endif %}
+  <div class="lvl__stage">
+    <div class="lvl__card">
+      <div class="lvl__card-l">
+        <span class="lvl__kick" data-lvl="kick"></span>
+        <h3 class="lvl__title" data-lvl="fit"></h3>
+        <p class="lvl__p" data-lvl="note"></p>
+        <button type="button" class="lvl__cta" data-lvl="cta">{{ b.ctaLabel or "Voir cette formule" }} <i></i></button>
+      </div>
+      <div class="lvl__price">
+        <span class="lvl__price-fig" data-lvl="price"></span>
+        <span class="lvl__price-unit" data-lvl="unit"></span>
+        <span class="lvl__price-eq" data-lvl="month"></span>
+      </div>
+    </div>
+    <div class="lvl__slider">
+      <input type="range" class="lvl__range" min="0" max="{{ (b.paliers.length - 1) if b.paliers else 0 }}" step="1" value="0" style="--p:0" aria-label="Nombre de séances par mois">
+      <div class="lvl__ticks">
+        {% for pal in b.paliers %}<button type="button" data-i="{{ loop.index0 }}"{% if loop.first %} class="is-on"{% endif %}>{{ pal.tick }}</button>{% endfor %}
+      </div>
+    </div>
+  </div>
+  <script type="application/json" class="lvl-data">{{ b.paliers | dump | safe }}</script>
+</section>
+{% endif %}

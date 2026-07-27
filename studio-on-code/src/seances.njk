@@ -1,0 +1,81 @@
+---
+layout: base.njk
+title: Séances
+permalink: /seances/
+description: Plus de 100 séances de Pilates Reformer, à ton rythme.
+---
+
+{% if not pages.seances.hideHero %}
+<section class="page-hero">
+  {% if not pages.seances.hideKicker %}<span class="page-hero__kicker">{{ pages.seances.kicker or "Les séances" }}</span>{% endif %}
+  {% if not pages.seances.hideTitle %}<h1 class="page-hero__h{% if pages.seances.titleOneLine %} page-hero__h--oneline{% endif %}">{% if pages.seances.title %}{{ pages.seances.title | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.seances.titleYellow %}{% if pages.seances.titleBreak %}<br>{% else %} {% endif %}{% if pages.seances.titleBox %}<span class="hl-box">{{ pages.seances.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.seances.titleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Plus de 100 séances,<br><em>à ton rythme.</em>{% endif %}</h1>{% endif %}
+  {% if not pages.seances.hideSubtitle %}<p class="page-hero__p">{% if pages.seances.subtitle %}{{ pages.seances.subtitle | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}{% if pages.seances.subtitleYellow %}{% if pages.seances.subtitleBreak %}<br>{% else %} {% endif %}{% if pages.seances.subtitleBox %}<span class="hl-box">{{ pages.seances.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</span>{% else %}<em>{{ pages.seances.subtitleYellow | replace('[[', '<span class="hl-box">') | replace(']]', '</span>') | onlogo | safe }}</em>{% endif %}{% endif %}{% else %}Filtre par niveau, focus, mood ou coach. De nouvelles vidéos en continu.{% endif %}</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="section--dark reveal">
+  <div class="section-meta section-head" style="padding-top: 0;">
+    <div>
+      <div class="filter-pills" id="seanceFilters">
+        {% for f in seances.filters %}
+          <button type="button" class="filter-pill" data-cat="{{ f }}">{{ f }}</button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery" id="seanceGallery">
+    {% for s in seances.list %}
+    <div class="gal-cell{% if s.dark %} gal-cell--dark{% endif %}{% if s.tall %} gal-cell--tall{% endif %}{% if s.wide %} gal-cell--wide{% endif %}"{% if s.image %} style="background-image:url('{{ s.image }}')"{% endif %} data-cats="{{ (s.cats or []) | join(',') }}">
+      {% if not s.image %}<span class="ph-label">{{ s.title }}</span>{% endif %}
+      {% if s.badge %}<span class="gal-badge">{{ s.badge }}</span>{% endif %}
+      {% if s.play %}<div class="gal-play" aria-hidden="true"></div>{% endif %}
+      <div class="gal-switch">
+        <span class="gal-switch__text">{{ s.title }}</span>
+        <span class="gal-switch__meta">{{ s.meta }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-band reveal">
+  <h2 class="cta-band__h">Choisis<br>ta séance.</h2>
+  <div class="cta-band__side">
+    <p class="cta-band__p" style="color: var(--vanille); opacity: 1;">Accès illimité dès 60€/mois, ou à la carte dès 20€.</p>
+    <div class="cta-band__actions">
+      <a href="/tarifs/" class="btn btn--ecru">Voir les tarifs <span class="btn__toggle"></span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var filters = document.getElementById('seanceFilters');
+  var gallery = document.getElementById('seanceGallery');
+  if (!filters || !gallery) return;
+  var cells = Array.prototype.slice.call(gallery.querySelectorAll('.gal-cell'));
+  var active = null;
+  filters.addEventListener('click', function(e){
+    var btn = e.target.closest('.filter-pill');
+    if (!btn) return;
+    var cat = btn.getAttribute('data-cat');
+    // Re-cliquer le filtre actif => on désactive (toutes les images reviennent)
+    if (active === cat) {
+      active = null;
+      btn.classList.remove('filter-pill--active');
+    } else {
+      active = cat;
+      filters.querySelectorAll('.filter-pill').forEach(function(b){ b.classList.remove('filter-pill--active'); });
+      btn.classList.add('filter-pill--active');
+    }
+    cells.forEach(function(cell){
+      if (!active) { cell.style.display = ''; return; }
+      var cats = (cell.getAttribute('data-cats') || '').split(',');
+      cell.style.display = cats.indexOf(active) !== -1 ? '' : 'none';
+    });
+  });
+})();
+</script>
+
+{% if blocks and blocks.seances %}{% for block in blocks.seances %}{% if not block.hidden %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}

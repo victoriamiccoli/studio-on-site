@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Télécharge l'app
+permalink: /telecharger-app/
+description: Télécharge l'application Studio On. Réserve, gère ton planning et ouvre la porte du studio depuis ton téléphone.
+---
+
+<section class="section--dark reveal app-dl app-dl--page">
+  {% if home.appIcon %}<img class="app-dl__icon" src="{{ home.appIcon }}" alt="Application Studio On">{% endif %}
+  {% if home.appKicker %}<span class="app-dl__kicker">{{ home.appKicker }}</span>{% endif %}
+  <h1 class="app-dl__h">{{ home.appTitle }}</h1>
+  {% if home.appText %}<p class="app-dl__p">{{ home.appText }}</p>{% endif %}
+  <ul class="app-dl__list">
+    {% for b in home.appBullets %}<li>{{ b }}</li>{% endfor %}
+  </ul>
+  <div class="app-dl__stores">
+    <a href="{{ home.appStoreUrl or '#' }}" class="store-btn"{% if home.appStoreUrl and home.appStoreUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
+      <span>Télécharger sur</span><strong>App Store</strong>
+    </a>
+    <a href="{{ home.googlePlayUrl or '#' }}" class="store-btn"{% if home.googlePlayUrl and home.googlePlayUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
+      <span>Télécharger sur</span><strong>Google Play</strong>
+    </a>
+  </div>
+</section>
