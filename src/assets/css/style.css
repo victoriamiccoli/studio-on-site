@@ -292,7 +292,8 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .plan--light.plan--feature .plan__badge { background: var(--noir); color: #FFFFFF; }
 .plan__name { font-family: var(--f-display); font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; display: block; opacity: .85; }
 .plan__badge { display: inline-block; white-space: nowrap; vertical-align: middle; margin-left: 8px; font: 700 9px var(--f-display); letter-spacing: .12em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; background: var(--vanille); color: var(--noir); }
-.plan__badge--pop { display: block; width: fit-content; max-width: 100%; margin: 6px 0 0; }
+.plan__badge--pop { display: inline-block; width: auto; max-width: 100%; margin: 0 0 0 8px; vertical-align: middle; }
+@media (max-width: 900px) { .plan__badge--pop { display: block; width: fit-content; margin: 6px 0 0; } }
 /* Tarif "le plus populaire" : carte blanche, accents jaunes */
 .plan--pop, .plan--light.plan--pop, .plan--light.plan--feature.plan--pop { background: #FFFFFF; color: var(--noir); border: 2px solid var(--vanille); }
 .plan--pop .plan__list li::before, .plan--light.plan--feature.plan--pop .plan__list li::before { background: var(--vanille); }
