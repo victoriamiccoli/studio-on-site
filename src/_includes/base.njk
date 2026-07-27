@@ -389,7 +389,7 @@
     var panes = sec.querySelectorAll('.switch-pane');
     var track = toggle.querySelector('.giant-toggle__track');
     var knob = toggle.querySelector('.giant-toggle__knob');
-    var TRAVEL = 72;
+    function travelPx(){ return (track && knob) ? Math.max(24, track.clientWidth - knob.clientWidth - 12) : 72; }
     var dragging = false, moved = false, pointerDriven = false, auto = null;
     function setState(state){
       sec.dataset.state = state;
@@ -405,10 +405,11 @@
     toggle.addEventListener('pointermove', function(ev){
       if (!dragging || !track) return;
       var r = track.getBoundingClientRect();
-      var x = Math.max(0, Math.min(TRAVEL, ev.clientX - r.left - 35));
-      if (Math.abs(x - (sec.dataset.state === 'on' ? TRAVEL : 0)) > 4) moved = true;
+      var T = travelPx();
+      var x = Math.max(0, Math.min(T, ev.clientX - r.left - knob.clientWidth / 2));
+      if (Math.abs(x - (sec.dataset.state === 'on' ? T : 0)) > 4) moved = true;
       if (knob) knob.style.transform = 'translateX(' + x + 'px)';
-      setState(x > TRAVEL / 2 ? 'on' : 'off');
+      setState(x > T / 2 ? 'on' : 'off');
     });
     function endDrag(){ if (!dragging) return; dragging = false; toggle.classList.remove('is-dragging'); if (knob) knob.style.transform = ''; }
     toggle.addEventListener('pointerup', endDrag);
