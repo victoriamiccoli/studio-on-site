@@ -218,6 +218,9 @@ permalink: /
 {{ sec_tarifs | safe }}{{ sec_seances | safe }}{{ sec_coachs | safe }}{{ sec_app | safe }}{{ sec_studios | safe }}{{ sec_faq | safe }}{{ sec_cta | safe }}
 {% endif %}
 
+{# Briques d'autres pages cochées « Afficher aussi sur l'accueil » : rendues en bas de l'accueil #}
+{% if blocks %}{% for pageKey, pageBlocks in blocks %}{% if pageKey != "home" and pageBlocks %}{% for block in pageBlocks %}{% if block.onHome and not block.hidden and block.type != "section" %}{% include "render-block.njk" %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}
+
 <script>
   const CITIES = ({{ studios.list | dump | safe }}).filter(c => c.visible !== false);
   const byKey = {}; CITIES.forEach(c => byKey[c.key] = c);

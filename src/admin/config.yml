@@ -549,7 +549,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
@@ -574,7 +574,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Sur-titre (ex. Le mode)", name: "kick", widget: "string", required: false }
                   - { label: "Mot Off", name: "wordOff", widget: "string", required: false }
@@ -608,7 +608,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
@@ -629,7 +629,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (gros, à gauche — le <br> passe à la ligne)", name: "title", widget: "string", required: false }
                   - { label: "Afficher « ON » avec le logo animé (style Switch your body)", name: "logoOn", widget: "boolean", default: false, required: false }
@@ -643,7 +643,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre (partie jaune)", name: "titleYellow", widget: "string", required: false }
@@ -656,7 +656,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
                   - { label: "Texte alternatif", name: "alt", widget: "string", required: false }
@@ -675,7 +675,7 @@ collections:
                 fields:
                   - { label: "Identifiant (sans espace, ex. exp-on)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
-                  - { label: "Afficher aussi sur l'accueil", name: "onHome", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
                   - { label: "Libellé", name: "label", widget: "string", required: false }
                   - { label: "Lien", name: "href", widget: "string", required: false }
@@ -705,6 +705,7 @@ collections:
                   - { label: "Identifiant (sans espace)", name: "id", widget: "string", required: false }
                   - { label: "Nom de la brique (pour t'y retrouver)", name: "nom", widget: "string", required: false }
                   - { label: "Masquer cette brique", name: "hidden", widget: "boolean", default: false, required: false }
+                  - { label: "Afficher aussi sur l'accueil (en bas de page)", name: "onHome", widget: "boolean", default: false, required: false }
                   - { label: "Titre (blanc)", name: "title", widget: "string", required: false }
                   - { label: "Titre — partie jaune", name: "titleYellow", widget: "string", required: false }
                   - { label: "Sous-titre (blanc)", name: "subtitle", widget: "string", required: false }
