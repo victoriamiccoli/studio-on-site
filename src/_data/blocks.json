@@ -6,14 +6,13 @@
         {
           "hero": true,
           "kick": "L'écran",
-          "fig": "1:1",
+          "fig": "1 to 1",
           "h": "Toi et ton écran",
           "p": "Un écran face à chaque Reformer. Tu choisis coach, durée, intensité et zone du corps, puis tu suis le flow. Chaque exercice est démontré, avec le réglage des ressorts affiché à l'image. Tu mets en pause, tu reprends, tu recommences : c'est ta séance.",
           "specs": [
             "Réglage des ressorts affiché à l'écran",
             "Pause et reprise à tout moment",
-            "Chaque exercice démontré en vidéo",
-            "Des séances toutes les 30 minutes"
+            "Chaque exercice démontré en vidéo"
           ]
         },
         {
