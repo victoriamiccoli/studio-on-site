@@ -404,6 +404,14 @@ button.filter-pill { cursor: pointer; font-family: var(--f-display); }
 .legal-doc { max-width: 760px; margin: 0 auto; }
 .legal-note { font-size: 16px; line-height: 1.7; opacity: .85; }
 .legal-meta { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font: 500 12px/1.7 var(--f-body); letter-spacing: .04em; text-transform: uppercase; opacity: .55; }
+.legal-doc h2 { font-family: var(--f-display); font-weight: 600; font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.02em; text-transform: uppercase; margin: 44px 0 14px; }
+.legal-doc h2:first-child { margin-top: 0; }
+.legal-doc h3 { font-family: var(--f-display); font-weight: 600; font-size: clamp(17px, 2vw, 20px); letter-spacing: -0.01em; margin: 30px 0 10px; }
+.legal-doc h4 { font-family: var(--f-body); font-weight: 600; font-size: 15px; margin: 22px 0 8px; }
+.legal-doc p { font-size: 15px; line-height: 1.75; opacity: .85; margin: 0 0 14px; }
+.legal-doc ul { margin: 0 0 16px; padding-left: 22px; }
+.legal-doc li { font-size: 15px; line-height: 1.7; opacity: .85; margin: 0 0 6px; }
+.legal-doc strong { font-weight: 600; opacity: 1; }
 
 /* Réservation — choix du studio */
 .studio-pick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 1100px; margin: 0 auto; }
@@ -503,6 +511,7 @@ footer { background: var(--noir); color: var(--ecru); padding: 60px var(--pad) 3
 .foot-col h5 { font: 500 11px var(--f-body); letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin: 0 0 14px; }
 .foot-col a, .foot-col p { display: block; font-size: 13px; line-height: 1.8; opacity: .85; margin: 0; }
 .foot-col a:hover { opacity: 1; }
+.foot-soon { display: block; font-size: 13px; line-height: 1.8; opacity: .5; cursor: default; }
 .foot-logo { font-size: 44px; display: inline-flex; margin-bottom: 20px; }
 .foot-tag { font: 500 13px/1.5 var(--f-body); max-width: 32ch; opacity: .65; }
 .foot-legal { display: flex; flex-wrap: wrap; gap: 10px 22px; padding-top: 28px; border-top: 1px solid var(--line-d); }

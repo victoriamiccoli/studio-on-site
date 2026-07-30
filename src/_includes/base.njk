@@ -78,7 +78,7 @@
     <div class="foot-col">
       <h5>{{ col.title }}</h5>
       {% if col.title == "Nos studios" %}
-        {% for s in studios.list %}{% if s.visible != false %}<a href="/reserver/{{ s.key }}/">{{ s.chip }}</a>{% endif %}{% endfor %}
+        {% for s in studios.list %}{% if s.visible != false %}{% if s.etat == "soon" %}<span class="foot-soon">{{ s.chip }}</span>{% else %}<a href="/reserver/{{ s.key }}/">{{ s.chip }}</a>{% endif %}{% endif %}{% endfor %}
       {% else %}
         {% for link in col.links %}<a href="{{ link.url }}">{{ link.label | safe }}</a>{% endfor %}
       {% endif %}
