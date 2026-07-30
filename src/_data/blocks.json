@@ -155,7 +155,7 @@
     {
       "ctaLabel": "Voir cette formule",
       "nonLabel": "Non",
-      "hidden": false,
+      "hidden": true,
       "titleYellow": "",
       "subtitleYellow": "",
       "nom": "Trouve ta formule",
