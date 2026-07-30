@@ -59,7 +59,7 @@ description: Paris, et bientôt ailleurs. Pousse la porte, le studio est à toi.
     if (st === 'waitlist') return `<button type="button" class="btn" data-waitlist data-studio="${c.name}">Rejoindre la liste d'attente ${TOGGLE}</button>`;
     if (st === 'earlybird') return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Coming soon · early birds ${TOGGLE}</a>`;
     if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Coming soon</span>`;
-    return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Réserver une séance ${TOGGLE}</a>`;
+    return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">{{ site.reserveLabel or 'Réserver' }} ${TOGGLE}</a>`;
   }
 
   function mapsHref(c){ return c.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((c.adr||'').replace(/<br\s*\/?>/gi,' '))); }

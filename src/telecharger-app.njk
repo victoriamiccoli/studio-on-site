@@ -15,10 +15,10 @@ description: Télécharge l'application Studio On. Réserve, gère ton planning 
   </ul>
   <div class="app-dl__stores">
     <a href="{{ home.appStoreUrl or '#' }}" class="store-btn"{% if home.appStoreUrl and home.appStoreUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
-      <span>Télécharger sur</span><strong>App Store</strong>
+      <span>Télécharger sur</span><strong>{{ home.appStoreLabel or "Apple Store" }}</strong>
     </a>
     <a href="{{ home.googlePlayUrl or '#' }}" class="store-btn"{% if home.googlePlayUrl and home.googlePlayUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
-      <span>Télécharger sur</span><strong>Google Play</strong>
+      <span>Télécharger sur</span><strong>{{ home.googlePlayLabel or "Google Play" }}</strong>
     </a>
   </div>
 </section>

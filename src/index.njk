@@ -131,10 +131,10 @@ permalink: /
   </ul>
   <div class="app-dl__stores">
     <a href="{{ home.appStoreUrl or '#' }}" class="store-btn"{% if home.appStoreUrl and home.appStoreUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
-      <span>Télécharger sur</span><strong>App Store</strong>
+      <span>Télécharger sur</span><strong>{{ home.appStoreLabel or "Apple Store" }}</strong>
     </a>
     <a href="{{ home.googlePlayUrl or '#' }}" class="store-btn"{% if home.googlePlayUrl and home.googlePlayUrl != '#' %} target="_blank" rel="noopener"{% endif %}>
-      <span>Télécharger sur</span><strong>Google Play</strong>
+      <span>Télécharger sur</span><strong>{{ home.googlePlayLabel or "Google Play" }}</strong>
     </a>
   </div>
 </section>
@@ -243,7 +243,7 @@ permalink: /
     if (st === 'waitlist') return `<button type="button" class="btn" data-waitlist data-studio="${c.name}">Rejoindre la liste d'attente ${TOGGLE}</button>`;
     if (st === 'earlybird') return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Coming soon · early birds ${TOGGLE}</a>`;
     if (st === 'soon') return `<span class="btn" style="opacity:.55; cursor:default;">Coming soon</span>`;
-    return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">Réserver une séance ${TOGGLE}</a>`;
+    return `<a href="/reserver/${encodeURIComponent(c.key)}/" class="btn">{{ site.reserveLabel or 'Réserver' }} ${TOGGLE}</a>`;
   }
   function mapsHref(c){ return c.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((c.adr||'').replace(/<br\s*\/?>/gi,' '))); }
   function contactHtml(c){

@@ -193,6 +193,11 @@ section { padding: clamp(80px, 10vw, 140px) var(--pad); }
 @media (max-width: 640px) {
   #seances { padding-bottom: 34px; }
   #coachs { padding-top: 56px; }
+  /* Moins d'espace entre les badges et les images (Séances) sur mobile */
+  #seances .section-head { padding-bottom: 22px; }
+  /* Moins d'espace entre le sous-titre et les onglets villes (Studios) sur mobile */
+  #studios .section-head { padding-bottom: 20px; }
+  #studios .city-chips { margin-bottom: 24px; }
 }
 .hl-box { display: inline-block; background: var(--vanille); color: var(--noir); border-radius: 0.24em; padding: 0.06em 0.16em; line-height: 1; font-style: normal; vertical-align: baseline; }
 .section-head__h--oneline { max-width: none !important; }

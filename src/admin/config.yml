@@ -67,6 +67,7 @@ collections:
           - { label: "Lien formulaire Franchise (webhook Make)", name: "franchiseWebhook", widget: "string", required: false, hint: "URL du webhook Make. Reçoit les candidatures franchise." }
           - { label: "Lien formulaire Liste d'attente (webhook Make)", name: "waitlistWebhook", widget: "string", required: false, hint: "Meme URL que ci-dessus." }
           - { label: "Lien formulaire Contact (webhook Make)", name: "contactWebhook", widget: "string", required: false, hint: "Meme URL que ci-dessus." }
+          - { label: "Texte des boutons « Réserver » (studios)", name: "reserveLabel", widget: "string", required: false, default: "Réserver", hint: "Vide = Réserver. S'applique aux boutons de réservation des studios (accueil et page Studios)." }
           # Champs techniques préservés (ne pas afficher)
           - { label: "Domaine", name: "domain", widget: "hidden" }
           - { label: "Lien Réserver", name: "reserverUrl", widget: "hidden" }
@@ -163,8 +164,10 @@ collections:
             required: false
             summary: "{{fields.text}}"
             field: { label: "Texte", name: "text", widget: "string" }
-          - { label: "App - lien App Store", name: "appStoreUrl", widget: "string", required: false }
-          - { label: "App - lien Google Play", name: "googlePlayUrl", widget: "string", required: false }
+          - { label: "App - texte du bouton Apple", name: "appStoreLabel", widget: "string", required: false, default: "Apple Store", hint: "Vide = Apple Store" }
+          - { label: "App - lien Apple Store (colle ton lien ici)", name: "appStoreUrl", widget: "string", required: false }
+          - { label: "App - texte du bouton Google", name: "googlePlayLabel", widget: "string", required: false, default: "Google Play", hint: "Vide = Google Play" }
+          - { label: "App - lien Google Play (colle ton lien ici)", name: "googlePlayUrl", widget: "string", required: false }
 
   # ---------------- TITRES DES PAGES ----------------
   - name: "pages"
