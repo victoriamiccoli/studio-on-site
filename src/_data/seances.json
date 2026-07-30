@@ -36,7 +36,7 @@
     },
     {
       "badge": "Avancé",
-      "meta": "Force · 45 min · Kévin",
+      "meta": "45 min · Kévin",
       "tall": true,
       "wide": true,
       "play": false,
@@ -115,7 +115,7 @@
       "hideOnHome": false,
       "title": "Arms ON",
       "image": "/assets/img/arms-petit-format-pour-site-web.png",
-      "meta": "35' - CEDRIC"
+      "meta": "35 min - CEDRIC"
     }
   ]
 }
