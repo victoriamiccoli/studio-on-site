@@ -95,15 +95,7 @@
           },
           {
             "label": "Instagram",
-            "url": "#"
-          },
-          {
-            "label": "FAQ",
-            "url": "/faq/"
-          },
-          {
-            "label": "Franchises",
-            "url": "/franchises/"
+            "url": "https://www.instagram.com/studio_on_paris?igsh=bzM2Z3R6ajVrbGph&utm_source=qr"
           }
         ]
       }
@@ -130,8 +122,8 @@
         "url": "/mentions-legales/"
       }
     ],
-    "legal": "© 2026 Studio On",
-    "city": "Paris"
+    "legal": "© 2026 Studio ON",
+    "city": " "
   },
   "contactEmail": "contact@studioon.fr",
   "franchiseEmail": "contact@studioon.fr"
