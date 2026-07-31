@@ -97,7 +97,7 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
     submitBtn.textContent = 'Envoi…';
     try {
       if (webhook) {
-        await fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        await fetch(webhook, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) });
       } else {
         console.log('[Franchise] Aucun webhook configuré. Données :', data);
       }

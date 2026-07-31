@@ -61,7 +61,7 @@ description: Une question ? Écris-nous, on répond très vite.
     var data = {}; new FormData(cform).forEach(function(v,k){ data[k]=v; });
     data.source = 'Site · page Contact';
     csubmit.disabled = true; csubmit.textContent = 'Envoi…';
-    Promise.resolve(webhook ? fetch(webhook, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }) : console.log('[Contact]', data))
+    Promise.resolve(webhook ? fetch(webhook, { method:'POST', mode:'no-cors', body: new URLSearchParams(data) }) : console.log('[Contact]', data))
       .then(function(){ cform.style.display='none'; csuccess.classList.add('is-visible'); })
       .catch(function(){ csubmit.disabled=false; csubmit.innerHTML='Réessayer <span>→</span>'; });
   });

@@ -388,7 +388,7 @@
     var data = {}; new FormData(form).forEach(function(v,k){ data[k]=v; });
     data.source = "Liste d'attente studio";
     var btn = document.getElementById('waitSubmit'); btn.disabled = true; btn.textContent = 'Envoi…';
-    Promise.resolve(WEBHOOK ? fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }) : console.log('[Liste attente]', data))
+    Promise.resolve(WEBHOOK ? fetch(WEBHOOK, { method:'POST', mode:'no-cors', body: new URLSearchParams(data) }) : console.log('[Liste attente]', data))
       .then(function(){ form.style.display='none'; success.classList.add('is-visible'); })
       .catch(function(){ btn.disabled=false; btn.innerHTML='Réessayer <span>→</span>'; });
   });
