@@ -41,10 +41,10 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
         <label for="apport">Apport disponible *</label>
         <select id="apport" name="apport" required>
           <option value="">Sélectionner</option>
-          <option>Moins de 50 000 €</option>
-          <option>50 000 € - 100 000 €</option>
-          <option>100 000 € - 200 000 €</option>
-          <option>Plus de 200 000 €</option>
+          <option>Moins de 30 000 €</option>
+          <option>30 000 – 50 000 €</option>
+          <option>50 000 – 80 000 €</option>
+          <option>Plus de 80 000 €</option>
         </select>
       </div>
       <div class="field">
@@ -101,8 +101,7 @@ description: Ouvrir un studio Studio On en franchise. Déposez votre candidature
       } else {
         console.log('[Franchise] Aucun webhook configuré. Données :', data);
       }
-      form.style.display = 'none';
-      success.classList.add('is-visible');
+      window.location.href = '/franchise/merci/';
     } catch (err) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = 'Réessayer <span>→</span>';
