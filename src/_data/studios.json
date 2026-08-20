@@ -47,6 +47,22 @@
           ],
           "per": "/ mois",
           "group": "abonnement"
+        },
+        {
+          "badge": "FULL ON",
+          "ctaLabel": "S'abonner",
+          "price": "80",
+          "name": "Abonnement illimité",
+          "launchCaption": "Offre de lancement · 50 premiers inscrits",
+          "offerId": "37960",
+          "originalPrice": "89",
+          "earlyBird": true,
+          "features": [
+            "1 séance / jour",
+            "Engagement 6 mois puis résiliable avec préavis d'un mois"
+          ],
+          "per": "/ mois",
+          "group": "abonnement"
         }
       ],
       "image": "/assets/img/img_2045-1-.jpg",
