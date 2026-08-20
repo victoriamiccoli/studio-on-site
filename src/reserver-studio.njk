@@ -102,7 +102,7 @@ eleventyComputed:
 document.body.setAttribute('data-studio-ref', '{{ studio.key }}');
 {% if studio.etat == 'open' and studio.planning %}
 (function(){
-  var ACCOUNT = "{{ site.sportigoAccount }}";
+  var ACCOUNT = "{{ studio.sportigoAccount or site.sportigoAccount }}";
   var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
   var container = document.getElementById('sportigo-appointment-container');
   var st = 0, cbs = [];

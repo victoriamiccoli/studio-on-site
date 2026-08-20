@@ -269,7 +269,7 @@
     loadScript(function(){
       body.innerHTML = head + '<div id="sportigo-buy-container"></div>';
       try {
-        window.initComponent("BuyFromList", "sportigo-buy-container", ACCOUNT, {
+        window.initComponent("BuyFromList", "sportigo-buy-container", ((s && s.sportigoAccount) ? s.sportigoAccount : ACCOUNT), {
           theme: { googleFont: { name: "Inter" } },
           inline: true, hideFilters: true,
           initOfferPayment: { cancelable: false },

@@ -516,6 +516,7 @@ collections:
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
+              - { label: "Compte Sportigo du studio (si différent) — vide = compte par défaut du site", name: "sportigoAccount", widget: "string", required: false, hint: "À remplir SEULEMENT si ce studio a son propre compte Sportigo (différent du studio principal). Ex. 07f65589-a4e1-4cc6-ba42-06b74f305036. C'est le compte où sont créées les offres de CE studio." }
               - { label: "Early bird — petit texte au-dessus du titre", name: "ebKicker", widget: "string", required: false, hint: "Haut de la page studio en prévente. Défaut : Coming soon" }
               - { label: "Early bird — grand titre (partie blanche)", name: "ebTitle", widget: "string", required: false, hint: "Défaut : Ouverture. Ex. OUVERTURE" }
               - { label: "Early bird — grand titre (partie jaune)", name: "ebTitleYellow", widget: "string", required: false, hint: "Défaut : la ligne de statut. Ex. SEPTEMBRE 2026" }
