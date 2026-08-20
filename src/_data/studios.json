@@ -90,6 +90,19 @@
           ],
           "ctaLabel": "Acheter",
           "offerId": "38137"
+        },
+        {
+          "badge": "Ultra flexible",
+          "ctaLabel": "Acheter",
+          "price": "150",
+          "name": "Pack 10 séances",
+          "offerId": "49376",
+          "earlyBird": false,
+          "features": [
+            "Valable 6 mois"
+          ],
+          "per": "/ 10 séances",
+          "group": "seance"
         }
       ],
       "image": "/assets/img/img_2045-1-.jpg",
