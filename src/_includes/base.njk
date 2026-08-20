@@ -144,7 +144,7 @@
     <div class="pay-flow__steps" id="payStepper" aria-hidden="true">
       <span class="pay-flow__step" data-step="studio"><i>1</i> Studio</span>
       <span class="pay-flow__step" data-step="recap"><i>2</i> Récapitulatif</span>
-      <span class="pay-flow__step" data-step="pay"><i>3</i> Paiement</span>
+      <span class="pay-flow__step" data-step="pay"><i>2</i> Paiement</span>
     </div>
     <div class="pay-modal__body" id="payModalBody"></div>
   </div>
@@ -208,10 +208,12 @@
 
   function updateStepper(current){
     if (!stepper) return;
+    var hasStudio = ctx && ctx.hasStudioStep;
+    stepper.style.display = hasStudio ? '' : 'none';
     var chips = stepper.querySelectorAll('.pay-flow__step');
     for (var i=0;i<chips.length;i++){
       var st = chips[i].getAttribute('data-step');
-      chips[i].style.display = (st==='studio' && ctx && !ctx.hasStudioStep) ? 'none' : '';
+      chips[i].style.display = (st==='recap' || (st==='studio' && !hasStudio)) ? 'none' : '';
       chips[i].classList.toggle('is-active', st===current);
     }
   }
@@ -257,11 +259,11 @@
 
   function renderPayStep(){
     ctx.step='pay'; updateStepper('pay');
-    title.textContent = ctx.title || 'Paiement';
-    backBtn.hidden = false;
     var s = studioByKey(ctx.studioKey);
+    title.textContent = (s ? s.name + ' - ' : '') + (ctx.title || 'Paiement');
+    backBtn.hidden = !ctx.hasStudioStep;
     var offerId = resolveOfferId(ctx.studioKey);
-    var head = '<p class="pay-flow__paystudio">Studio de référence : <strong>'+esc(s?s.name:'')+'</strong></p>';
+    var head = '';
     if (!offerId){ body.innerHTML = head + '<div class="pay-modal__msg">Ce moyen de paiement sera actif très bientôt.</div>'; return; }
     body.innerHTML = head + '<div class="pay-modal__msg">Chargement du paiement…</div>';
     loadScript(function(){
@@ -281,8 +283,7 @@
 
   function goBack(){
     if (!ctx) return;
-    if (ctx.step === 'pay'){ renderRecapStep(); }
-    else if (ctx.step === 'recap' && ctx.hasStudioStep){ renderStudioStep(); }
+    if (ctx.step === 'pay'){ if (ctx.hasStudioStep) renderStudioStep(); else closeModal(); }
   }
 
   function renderUnavailable(){
@@ -300,18 +301,18 @@
       var ps = studioByKey(preset);
       var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null) || (ps.etat === 'earlybird' && !!ctx.fallback);
       ctx.studioKey = preset; ctx.hasStudioStep = false;
-      if (sells){ renderRecapStep(); } else { renderUnavailable(); }
+      if (sells){ renderPayStep(); } else { renderUnavailable(); }
       return;
     }
     var list = buyableStudios();
     if (list.length === 0){ ctx.hasStudioStep = false; renderStudioStep(); return; } // affiche le message "aucun studio ouvert"
-    if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderPayStep(); return; }
     ctx.hasStudioStep = true; renderStudioStep();
   }
 
   body.addEventListener('click', function(e){
     var pickBtn = e.target.closest('[data-pick-studio]');
-    if (pickBtn){ ctx.studioKey = pickBtn.getAttribute('data-pick-studio'); renderRecapStep(); return; }
+    if (pickBtn){ ctx.studioKey = pickBtn.getAttribute('data-pick-studio'); renderPayStep(); return; }
     if (e.target.closest('#payGo')){ renderPayStep(); return; }
     if (e.target.closest('[data-flow-back]')){ renderStudioStep(); return; }
   });
