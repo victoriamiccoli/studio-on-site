@@ -26,9 +26,9 @@ eleventyComputed:
 {% elif studio.etat == 'earlybird' %}
 <section class="section--dark reveal" style="padding-top: 0; padding-bottom: 20px;">
   <div class="section-head" style="text-align:center; padding-top: 20px;">
-    <span class="page-hero__kicker" style="color:var(--vanille)">Coming soon</span>
-    <h2 class="h-lg" style="color: var(--ecru); margin-top:10px;">Ouverture <span style="color:var(--vanille)">{{ studio.status or 'bientôt' }}</span></h2>
-    <p style="margin: 16px auto 0; max-width: 46ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio.</p>
+    <span class="page-hero__kicker" style="color:var(--vanille)">{{ studio.ebKicker or "Coming soon" }}</span>
+    <h2 class="h-lg" style="color: var(--ecru); margin-top:10px;">{% if studio.ebTitle or studio.ebTitleYellow %}{% if studio.ebTitle %}{{ studio.ebTitle }}{% endif %}{% if studio.ebTitleYellow %} <span style="color:var(--vanille)">{{ studio.ebTitleYellow }}</span>{% endif %}{% else %}Ouverture <span style="color:var(--vanille)">{{ studio.status or 'bientôt' }}</span>{% endif %}</h2>
+    <p style="margin: 16px auto 0; max-width: 46ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">{{ studio.ebSubtitle or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
   </div>
 </section>
 {% endif %}
