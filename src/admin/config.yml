@@ -520,6 +520,8 @@ collections:
               - { label: "Early bird — grand titre (partie blanche)", name: "ebTitle", widget: "string", required: false, hint: "Défaut : Ouverture. Ex. OUVERTURE" }
               - { label: "Early bird — grand titre (partie jaune)", name: "ebTitleYellow", widget: "string", required: false, hint: "Défaut : la ligne de statut. Ex. SEPTEMBRE 2026" }
               - { label: "Early bird — sous-titre", name: "ebSubtitle", widget: "text", required: false, hint: "Défaut : Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }
+              - { label: "Early bird — titre de la section des offres", name: "ebOffersTitle", widget: "string", required: false, hint: "Défaut : Offres early bird. (tu peux mettre <br> pour un retour à la ligne)" }
+              - { label: "Early bird — sous-titre de la section des offres", name: "ebOffersSubtitle", widget: "string", required: false, hint: "Défaut : Préventes early bird · [nom du studio]. Réserve ta place avant l'ouverture." }
               - label: "Offres EARLY BIRD (s'affichent seulement si l'état = « Coming soon — Early birds »)"
                 name: "earlyOffers"
                 widget: "list"
