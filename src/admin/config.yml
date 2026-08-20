@@ -494,7 +494,7 @@ collections:
                 default: "soon"
                 options:
                   - { label: "Ouvert (bouton Réserver)", value: "open" }
-                  - { label: "Coming soon — Early birds (prévente avant ouverture)", value: "earlybird" }
+                  - { label: "Coming soon — Early birds (préventes avant ouverture)", value: "earlybird" }
                   - { label: "Liste d'attente (bouton Rejoindre la liste)", value: "waitlist" }
                   - { label: "Coming soon (aucun bouton)", value: "soon" }
               - { label: "Onglet (nom court affiché)", name: "chip", widget: "string" }
@@ -516,6 +516,30 @@ collections:
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo (pour la page Réserver — vide si pas encore ouvert)", name: "planning", widget: "number", required: false, value_type: "int" }
+              - label: "Offres EARLY BIRD (s'affichent seulement si l'état = « Coming soon — Early birds »)"
+                name: "earlyOffers"
+                widget: "list"
+                required: false
+                summary: "{{fields.name}} — {{fields.price}}€"
+                label_singular: "Offre early bird"
+                hint: "Chaque carte = une offre de préventes pour CE studio. Coche « Offre early bird » pour afficher la pastille rouge + le prix barré + le % (calculé automatiquement). L'ID Sportigo décide du vrai montant débité."
+                fields:
+                  - { label: "Type", name: "group", widget: "select", default: "abonnement", options: [{ label: "Abonnement (grande carte)", value: "abonnement" }, { label: "Séance / Pack (petite carte)", value: "seance" }] }
+                  - { label: "Nom", name: "name", widget: "string" }
+                  - { label: "Badge (optionnel, ex. Soft Hours, Full On)", name: "badge", widget: "string", required: false }
+                  - { label: "Sous-titre (optionnel)", name: "sub", widget: "string", required: false }
+                  - { label: "Caractéristiques (les lignes à puces)", name: "features", widget: "list", required: false, field: { label: "Ligne", name: "text", widget: "string" } }
+                  - { label: "Prix réellement facturé (€)", name: "price", widget: "string", hint: "Ex. 69. Sans le symbole €." }
+                  - { label: "Unité (ex. / mois, / une séance)", name: "per", widget: "string", required: false }
+                  - { label: "Offre early bird ?", name: "earlyBird", widget: "boolean", default: false, required: false, hint: "Coché = pastille rouge EARLY BIRD + prix normal barré + % de réduction." }
+                  - { label: "Prix normal barré (€) — seulement si early bird", name: "originalPrice", widget: "string", required: false, hint: "Ex. 89. Le % de réduction est calculé automatiquement (arrondi)." }
+                  - { label: "Petite ligne de lancement (optionnel)", name: "launchCaption", widget: "string", required: false, hint: "Ex. Offre de lancement · 30 premiers inscrits" }
+                  - { label: "Texte du bouton (optionnel)", name: "ctaLabel", widget: "string", required: false, hint: "Défaut : S'abonner" }
+                  - { label: "ID Sportigo de CETTE offre (obligatoire pour encaisser le bon montant)", name: "offerId", widget: "string" }
+              - { label: "Encart sur la page Tarifs (renvoi vers ce studio early bird)", name: "showOnTarifs", widget: "boolean", default: false, required: false, hint: "Ajoute en bas de /tarifs/ un encart avec un bouton rouge « Accéder aux offres early bird » vers ce studio." }
+              - { label: "Encart Tarifs — titre (optionnel)", name: "tarifsTeaserTitle", widget: "string", required: false, hint: "Ex. PARIS 6 — OUVERTURE SEPTEMBRE 2026. Vide = nom du studio + ligne de statut." }
+              - { label: "Encart Tarifs — texte (optionnel)", name: "tarifsTeaserText", widget: "string", required: false }
+              - { label: "Encart Tarifs — texte du bouton (optionnel)", name: "tarifsTeaserCta", widget: "string", required: false, hint: "Défaut : Accéder aux offres early bird" }
 
   # ---------------- FAQ ----------------
   - name: "faq"

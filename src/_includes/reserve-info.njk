@@ -1,0 +1,12 @@
+{% if (not studio.hideAddress and studio.adr) or (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
+<section class="reveal section--dark reserve-info">
+  <h2 class="reserve-info__name">{{ studio.name }}</h2>
+  {% if not studio.hideAddress and studio.adr %}<p class="reserve-info__adr"><a class="studio-card__adr-link" href="{{ studio.mapsUrl or ('https://www.google.com/maps/search/?api=1&query=' ~ (studio.adr | replace('<br>',' ') | urlencode)) }}" target="_blank" rel="noopener">{{ studio.adr | safe }}</a></p>{% endif %}
+  {% if (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
+  <div class="studio-contact">
+    {% if not studio.hidePhone and studio.phone %}<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:{{ studio.phone | replace(' ','') }}">{{ studio.phone }}</a></div>{% endif %}
+    {% if not studio.hideEmail and studio.email %}<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:{{ studio.email }}">{{ studio.email }}</a></div>{% endif %}
+  </div>
+  {% endif %}
+</section>
+{% endif %}

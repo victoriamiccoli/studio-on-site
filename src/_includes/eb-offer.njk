@@ -1,0 +1,18 @@
+<article class="plan{% if o.group != 'seance' %} plan--light{% endif %}{% if o.earlyBird %} plan--eb{% endif %}{% if o.feature %} plan--feature{% endif %}">
+  <div class="plan__name">{{ o.name }}{% if o.earlyBird %} <span class="plan__badge plan__badge--eb">Early bird</span>{% elif o.badge %} <span class="plan__badge">{{ o.badge }}</span>{% endif %}</div>
+  {% if o.earlyBird and o.originalPrice %}
+  <div class="plan__price plan__price--eb">
+    <span class="plan__orig">{{ o.originalPrice }}<sup>€</sup></span>
+    <span class="plan__now">{{ o.price }}<sup>€</sup></span>
+    {% set _o = o.originalPrice | float %}{% set _p = o.price | float %}
+    {% if _o > 0 and _o > _p %}<span class="plan__pct">-{{ ((_o - _p) / _o * 100) | round | int }}%</span>{% endif %}
+    {% if o.per %}<span class="per">{{ o.per }}</span>{% endif %}
+  </div>
+  {% else %}
+  <div class="plan__price">{{ o.price }}<sup>€</sup>{% if o.per %}<span class="per">{{ o.per }}</span>{% endif %}</div>
+  {% endif %}
+  {% if o.launchCaption %}<div class="plan__launch">{{ o.launchCaption }}</div>{% endif %}
+  {% if o.sub %}<div class="plan__sub">{{ o.sub }}</div>{% endif %}
+  {% if o.features %}<ul class="plan__list">{% for f in o.features %}<li>{{ f | safe }}</li>{% endfor %}</ul>{% endif %}
+  <button type="button" class="plan__cta" data-offer="{{ o.offerId }}" data-title="{{ o.name }}" data-price="{{ o.price }}" data-per="{{ o.per }}">{{ o.ctaLabel or "S'abonner" }} <span>→</span></button>
+</article>

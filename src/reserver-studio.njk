@@ -24,7 +24,7 @@ eleventyComputed:
   <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
 </section>
 {% elif studio.etat == 'earlybird' %}
-<section class="section--dark reveal" style="padding-top: 0;">
+<section class="section--dark reveal" style="padding-top: 0; padding-bottom: 20px;">
   <div class="section-head" style="text-align:center; padding-top: 20px;">
     <span class="page-hero__kicker" style="color:var(--vanille)">Coming soon</span>
     <h2 class="h-lg" style="color: var(--ecru); margin-top:10px;">Ouverture <span style="color:var(--vanille)">{{ studio.status or 'bientôt' }}</span></h2>
@@ -33,28 +33,26 @@ eleventyComputed:
 </section>
 {% endif %}
 
-{% if (not studio.hideAddress and studio.adr) or (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
-<section class="reveal section--dark reserve-info">
-  <h2 class="reserve-info__name">{{ studio.name }}</h2>
-  {% if not studio.hideAddress and studio.adr %}<p class="reserve-info__adr"><a class="studio-card__adr-link" href="{{ studio.mapsUrl or ('https://www.google.com/maps/search/?api=1&query=' ~ (studio.adr | replace('<br>',' ') | urlencode)) }}" target="_blank" rel="noopener">{{ studio.adr | safe }}</a></p>{% endif %}
-  {% if (not studio.hideEmail and studio.email) or (not studio.hidePhone and studio.phone) %}
-  <div class="studio-contact">
-    {% if not studio.hidePhone and studio.phone %}<div class="studio-contact__item"><span class="studio-contact__label">Téléphone</span><a class="studio-contact__val" href="tel:{{ studio.phone | replace(' ','') }}">{{ studio.phone }}</a></div>{% endif %}
-    {% if not studio.hideEmail and studio.email %}<div class="studio-contact__item"><span class="studio-contact__label">E-mail</span><a class="studio-contact__val" href="mailto:{{ studio.email }}">{{ studio.email }}</a></div>{% endif %}
-  </div>
-  {% endif %}
-</section>
-{% endif %}
+{% if studio.etat != 'earlybird' %}{% include "reserve-info.njk" %}{% endif %}
 
 {% if (studio.etat == 'open' and studio.planning) or studio.etat == 'earlybird' %}
-<section class="reveal">
+<section class="reveal{% if studio.etat == 'earlybird' %} section--dark{% endif %}"{% if studio.etat == 'earlybird' %} style="padding-top: 8px;"{% endif %}>
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">{% if studio.etat == 'earlybird' %}Offres<br>early bird{% else %}Abonnements<br>& séances{% endif %}</h2>
-      <p class="section-head__p" style="color: var(--noir); opacity:.65;">{% if studio.etat == 'earlybird' %}Prévente early bird · {{ studio.name }}. Réserve ta place avant l'ouverture.{% else %}Ton studio de référence : {{ studio.name }}. Choisis ta formule.{% endif %}</p>
+      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px){% if studio.etat == 'earlybird' %}; color: var(--ecru){% endif %}">{% if studio.etat == 'earlybird' %}Offres<br>early bird{% else %}Abonnements<br>& séances{% endif %}</h2>
+      <p class="section-head__p" style="color: {% if studio.etat == 'earlybird' %}var(--ecru){% else %}var(--noir){% endif %}; opacity:.65;">{% if studio.etat == 'earlybird' %}Préventes early bird · {{ studio.name }}. Réserve ta place avant l'ouverture.{% else %}Ton studio de référence : {{ studio.name }}. Choisis ta formule.{% endif %}</p>
     </div>
   </div>
 
+  {% set useEarly = studio.etat == 'earlybird' and studio.earlyOffers and studio.earlyOffers.length %}
+  {% if useEarly %}
+  <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
+    {% for o in studio.earlyOffers %}{% if o.group != 'seance' %}{% include "eb-offer.njk" %}{% endif %}{% endfor %}
+  </div>
+  <div class="tarifs-grid" style="margin-top: 14px;">
+    {% for o in studio.earlyOffers %}{% if o.group == 'seance' %}{% include "eb-offer.njk" %}{% endif %}{% endfor %}
+  </div>
+  {% else %}
   <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
     {% for p in tarifs.abonnements %}
     <article class="plan plan--light{% if p.feature %} plan--feature{% endif %}">
@@ -77,7 +75,9 @@ eleventyComputed:
     </article>
     {% endfor %}
   </div>
+  {% endif %}
 </section>
+{% if studio.etat == 'earlybird' %}{% include "reserve-info.njk" %}{% endif %}
 {% else %}
 <section class="section--dark reveal">
   <div class="section-head" style="text-align:center;">

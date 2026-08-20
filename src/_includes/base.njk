@@ -184,11 +184,11 @@
   function buyableStudios(){
     var keys = ctx.payments ? Object.keys(ctx.payments) : [];
     if (keys.length){
-      // Studios rattachés à cette offre : ouverts OU en prévente early bird (attribution correcte)
+      // Studios rattachés à cette offre : ouverts OU en préventes early bird (attribution correcte)
       return STUDIOS.filter(function(s){ return (s.etat === 'open' || s.etat === 'earlybird') && ctx.payments[s.key] != null; });
     }
-    // Repli : offre sans paiement par studio -> studios OUVERTS uniquement (jamais les early birds)
-    return ctx.fallback ? STUDIOS.filter(function(s){ return s.etat === 'open'; }) : [];
+    // Repli : offre sans paiement par studio -> studios ouverts + early birds (les EB sont redirigés vers leur page dédiée)
+    return ctx.fallback ? STUDIOS.filter(function(s){ return (s.etat === 'open' || s.etat === 'earlybird') && s.visible !== false; }) : [];
   }
 
   function loadScript(cb){
@@ -298,20 +298,20 @@
     var preset = document.body.getAttribute('data-studio-ref'); // studio déjà fixé (page dédiée / page Réserver)
     if (preset && studioByKey(preset)){
       var ps = studioByKey(preset);
-      var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null);
+      var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null) || (ps.etat === 'earlybird' && !!ctx.fallback);
       ctx.studioKey = preset; ctx.hasStudioStep = false;
       if (sells){ renderRecapStep(); } else { renderUnavailable(); }
       return;
     }
     var list = buyableStudios();
     if (list.length === 0){ ctx.hasStudioStep = false; renderStudioStep(); return; } // affiche le message "aucun studio ouvert"
-    if (list.length === 1){ ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }
+    if (list.length === 1){ if (list[0].etat === 'earlybird'){ window.location.href = '/reserver/' + list[0].key + '/'; return; } ctx.studioKey = list[0].key; ctx.hasStudioStep = false; renderRecapStep(); return; }
     ctx.hasStudioStep = true; renderStudioStep();
   }
 
   body.addEventListener('click', function(e){
     var pickBtn = e.target.closest('[data-pick-studio]');
-    if (pickBtn){ ctx.studioKey = pickBtn.getAttribute('data-pick-studio'); renderRecapStep(); return; }
+    if (pickBtn){ var _pk = pickBtn.getAttribute('data-pick-studio'); var _ps = studioByKey(_pk); if (_ps && _ps.etat === 'earlybird'){ window.location.href = '/reserver/' + _pk + '/'; return; } ctx.studioKey = _pk; renderRecapStep(); return; }
     if (e.target.closest('#payGo')){ renderPayStep(); return; }
     if (e.target.closest('[data-flow-back]')){ renderStudioStep(); return; }
   });
