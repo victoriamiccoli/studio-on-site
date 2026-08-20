@@ -75,6 +75,19 @@
             "Valable 6 mois"
           ],
           "offerId": "38138"
+        },
+        {
+          "group": "abonnement",
+          "earlyBird": false,
+          "name": "Pack Découverte",
+          "price": "40",
+          "per": "/ 3 séances",
+          "features": [
+            "Valable au premier achat",
+            "Valable 6 mois"
+          ],
+          "ctaLabel": "Acheter",
+          "offerId": "38137"
         }
       ],
       "image": "/assets/img/img_2045-1-.jpg",
