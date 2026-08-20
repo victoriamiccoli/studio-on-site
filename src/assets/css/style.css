@@ -151,7 +151,8 @@ img { display: block; max-width: 100%; }
 
 /* Hero des pages intérieures (ajout multi-pages) */
 .page-hero { background: var(--noir); color: var(--ecru); padding: clamp(120px, 15vw, 170px) var(--pad) clamp(48px, 6vw, 72px); text-align: center; }
-.page-hero__kicker { font: 500 12px var(--f-body); letter-spacing: .18em; text-transform: uppercase; opacity: .7; margin-bottom: 22px; display: inline-block; }
+.page-hero__kicker { font: 500 clamp(9px, 3vw, 12px)/1.4 var(--f-body); letter-spacing: .18em; text-transform: uppercase; opacity: .7; margin-bottom: 22px; display: inline-block; max-width: 92vw; }
+@media (max-width: 480px) { .page-hero__kicker { letter-spacing: .10em; } }
 .page-hero__h { font-family: var(--f-display); font-weight: 600; font-size: clamp(36px, 6vw, 64px); line-height: .96; letter-spacing: -0.035em; text-transform: uppercase; margin: 0; }
 .page-hero__h em { color: var(--vanille); font-style: normal; }
 .page-hero__p { margin: 22px auto 0; font-family: var(--f-display); font-weight: 500; font-size: clamp(16px, 2vw, 21px); letter-spacing: -0.015em; opacity: .85; max-width: 44ch; }

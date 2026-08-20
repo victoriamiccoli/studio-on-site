@@ -28,7 +28,7 @@ eleventyComputed:
   <div class="section-head" style="text-align:center; padding-top: 20px;">
     <span class="page-hero__kicker" style="color:var(--vanille)">{{ studio.ebKicker or "Coming soon" }}</span>
     <h2 class="h-lg" style="color: var(--ecru); margin-top:10px;">{% if studio.ebTitle or studio.ebTitleYellow %}{% if studio.ebTitle %}{{ studio.ebTitle }}{% endif %}{% if studio.ebTitleYellow %} <span style="color:var(--vanille)">{{ studio.ebTitleYellow }}</span>{% endif %}{% else %}<span style="color:var(--vanille)">{{ studio.status or 'Ouverture bientôt' }}</span>{% endif %}</h2>
-    <p style="margin: 16px auto 0; max-width: 46ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">{{ studio.ebSubtitle or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
+    <p style="margin: 16px auto 0; max-width: 72ch; opacity:.8; color: var(--ecru); font-size:15px; line-height:1.6;">{{ studio.ebSubtitle or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
   </div>
 </section>
 {% endif %}
@@ -37,12 +37,19 @@ eleventyComputed:
 
 {% if (studio.etat == 'open' and studio.planning) or studio.etat == 'earlybird' %}
 <section class="reveal{% if studio.etat == 'earlybird' %} section--dark{% endif %}"{% if studio.etat == 'earlybird' %} style="padding-top: 8px;"{% endif %}>
+  {% if studio.etat != 'earlybird' or studio.ebOffersTitle or studio.ebOffersSubtitle %}
   <div class="section-meta section-head">
     <div>
-      <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px){% if studio.etat == 'earlybird' %}; color: var(--ecru){% endif %}">{% if studio.etat == 'earlybird' %}{% if studio.ebOffersTitle %}{{ studio.ebOffersTitle | safe }}{% else %}Offres<br>early bird{% endif %}{% else %}Abonnements<br>& séances{% endif %}</h2>
-      <p class="section-head__p" style="color: {% if studio.etat == 'earlybird' %}var(--ecru){% else %}var(--noir){% endif %}; opacity:.65;">{% if studio.etat == 'earlybird' %}{{ studio.ebOffersSubtitle or ("Préventes early bird · " ~ studio.name ~ ". Réserve ta place avant l'ouverture.") }}{% else %}Ton studio de référence : {{ studio.name }}. Choisis ta formule.{% endif %}</p>
+      {% if studio.etat == 'earlybird' %}
+        {% if studio.ebOffersTitle %}<h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px); color: var(--ecru)">{{ studio.ebOffersTitle | safe }}</h2>{% endif %}
+        {% if studio.ebOffersSubtitle %}<p class="section-head__p" style="color: var(--ecru); opacity:.65; max-width: none;">{{ studio.ebOffersSubtitle }}</p>{% endif %}
+      {% else %}
+        <h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px)">Abonnements<br>&amp; séances</h2>
+        <p class="section-head__p" style="color: var(--noir); opacity:.65;">Ton studio de référence : {{ studio.name }}. Choisis ta formule.</p>
+      {% endif %}
     </div>
   </div>
+  {% endif %}
 
   {% set useEarly = studio.etat == 'earlybird' and studio.earlyOffers and studio.earlyOffers.length %}
   {% if useEarly %}
