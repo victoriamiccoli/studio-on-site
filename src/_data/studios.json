@@ -63,6 +63,18 @@
           ],
           "per": "/ mois",
           "group": "abonnement"
+        },
+        {
+          "group": "seance",
+          "earlyBird": false,
+          "name": "Séance à la carte",
+          "price": "20",
+          "per": "/ une séance",
+          "features": [
+            "Idéal pour tester",
+            "Valable 6 mois"
+          ],
+          "offerId": "38138"
         }
       ],
       "image": "/assets/img/img_2045-1-.jpg",
