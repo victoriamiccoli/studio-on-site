@@ -31,6 +31,23 @@
       "visible": false,
       "status": "Ouverture septembre 2026",
       "ebSubtitle": "Préventes EARLY BIRD · Paris 6e. Réserve ta place avant l'ouverture",
+      "earlyOffers": [
+        {
+          "sub": "Illimité en heures creuses",
+          "badge": "Soft Hours",
+          "ctaLabel": "S'abonner",
+          "price": "60",
+          "name": "Abonnement illimité",
+          "earlyBird": false,
+          "features": [
+            "Semaine : 6h-8h · 9h-12h30 · 14h-17h30 · 21h-22h30 / Week-end : 6h-10h · 15h-22h30",
+            "1 séance / jour",
+            "Engagement 6 mois puis résiliable avec préavis d'un mois"
+          ],
+          "per": "/ mois",
+          "group": "abonnement"
+        }
+      ],
       "image": "/assets/img/img_2045-1-.jpg",
       "ctaHref": "#",
       "ebTitle": "PARIS 6 ",
