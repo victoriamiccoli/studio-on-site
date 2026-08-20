@@ -85,7 +85,11 @@
       "payments": [
         {
           "studio": "paris17",
-          "id": "33690"
+          "id": "43849"
+        },
+        {
+          "studio": "paris6",
+          "id": "49831"
         }
       ],
       "feature": false,
