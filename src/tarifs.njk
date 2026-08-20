@@ -46,8 +46,8 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
 {% for s in studios.list %}{% if s.visible and s.etat == 'earlybird' and s.showOnTarifs %}
 <section class="section--dark reveal" style="text-align:center;">
   <span class="page-hero__kicker" style="color:var(--vanille)">Coming soon</span>
-  <h2 class="h-lg" style="color:var(--ecru); margin:10px auto 0; max-width:22ch;">{% if s.tarifsTeaserTitle %}{{ s.tarifsTeaserTitle }}{% else %}Ouverture <span style="color:var(--vanille)">{{ s.status or 'bientôt' }}</span>{% endif %}</h2>
-  <p style="margin:16px auto 0; max-width:46ch; opacity:.8; color:var(--ecru); font-size:15px; line-height:1.6;">{{ s.tarifsTeaserText or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
+  <h2 class="page-hero__h">{% if s.tarifsTeaserTitle %}{{ s.tarifsTeaserTitle }}{% else %}<em>{{ s.status or 'Ouverture bientôt' }}</em>{% endif %}</h2>
+  <p class="page-hero__p" style="max-width:60ch;">{{ s.tarifsTeaserText or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
   <div style="margin-top:26px;"><a href="/reserver/{{ s.key }}/" class="btn eb-btn">{{ s.tarifsTeaserCta or "Accéder aux offres early bird" }} <span>→</span></a></div>
 </section>
 {% endif %}{% endfor %}
