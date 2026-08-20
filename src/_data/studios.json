@@ -26,7 +26,7 @@
       "name": "Paris 6e",
       "chip": "Paris 6",
       "adr": "21 rue Bréa<br>75006 Paris",
-      "visible": true,
+      "visible": false,
       "status": "Ouverture septembre 2026",
       "image": "/assets/img/img_2045-1-.jpg",
       "ctaHref": "#",
