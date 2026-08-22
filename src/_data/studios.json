@@ -30,7 +30,7 @@
       "adr": "21 rue Bréa<br>75006 Paris",
       "sportigoAccount": "07f65589-a4e1-4cc6-ba42-06b74f305036",
       "ebKicker": "Coming soon - Septembre 2026",
-      "visible": false,
+      "visible": true,
       "status": "Ouverture septembre 2026",
       "ebSubtitle": "Préventes EARLY BIRD · Paris 6. Réserve ta place avant l'ouverture",
       "earlyOffers": [
@@ -108,7 +108,7 @@
       "image": "/assets/img/img_2045-1-.jpg",
       "ctaHref": "#",
       "ebTitle": "PARIS 6 ",
-      "planning": "",
+      "planning": -1,
       "key": "paris6"
     },
     {
@@ -119,6 +119,7 @@
       "name": "Bientôt ailleurs…",
       "chip": "Bientôt ailleurs",
       "adr": "Restez en mode ON.",
+      "sportigoAccount": "91c18a21-087e-4d56-988f-eeb39836a650",
       "visible": true,
       "status": "Bientôt",
       "image": "/assets/img/ecran-studio-on-kiosk.png",
