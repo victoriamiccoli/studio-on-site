@@ -45,9 +45,9 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
 
 {% for s in studios.list %}{% if s.visible and s.etat == 'earlybird' and s.showOnTarifs %}
 <section class="section--dark reveal" style="text-align:center;">
-  <span class="page-hero__kicker" style="color:var(--vanille)">Coming soon</span>
-  <h2 class="page-hero__h">{% if s.tarifsTeaserTitle %}{{ s.tarifsTeaserTitle }}{% else %}<em>{{ s.status or 'Ouverture bientôt' }}</em>{% endif %}</h2>
-  <p class="page-hero__p" style="max-width:60ch;">{{ s.tarifsTeaserText or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
+  <span class="page-hero__kicker" style="color:var(--vanille)">{{ s.ebKicker or "Coming soon" }}</span>
+  <h2 class="page-hero__h">{% if s.ebTitle or s.ebTitleYellow %}{% if s.ebTitle %}{{ s.ebTitle }}{% endif %}{% if s.ebTitleYellow %} <em>{{ s.ebTitleYellow }}</em>{% endif %}{% else %}<em>{{ s.status or 'Ouverture bientôt' }}</em>{% endif %}</h2>
+  <p class="page-hero__p" style="max-width:60ch;">{{ s.ebSubtitle or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
   <div style="margin-top:26px;"><a href="/reserver/{{ s.key }}/" class="btn eb-btn">{{ s.tarifsTeaserCta or "Accéder aux offres early bird" }} <span>→</span></a></div>
 </section>
 {% endif %}{% endfor %}

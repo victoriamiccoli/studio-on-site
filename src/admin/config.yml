@@ -543,9 +543,7 @@ collections:
                   - { label: "Petite ligne de lancement (optionnel)", name: "launchCaption", widget: "string", required: false, hint: "Ex. Offre de lancement · 30 premiers inscrits" }
                   - { label: "Texte du bouton (optionnel)", name: "ctaLabel", widget: "string", required: false, hint: "Défaut : S'abonner" }
                   - { label: "ID Sportigo de CETTE offre (obligatoire pour encaisser le bon montant)", name: "offerId", widget: "string" }
-              - { label: "Encart sur la page Tarifs (renvoi vers ce studio early bird)", name: "showOnTarifs", widget: "boolean", default: false, required: false, hint: "Ajoute en bas de /tarifs/ un encart avec un bouton rouge « Accéder aux offres early bird » vers ce studio." }
-              - { label: "Encart Tarifs — titre (optionnel)", name: "tarifsTeaserTitle", widget: "string", required: false, hint: "Ex. PARIS 6 — OUVERTURE SEPTEMBRE 2026. Vide = nom du studio + ligne de statut." }
-              - { label: "Encart Tarifs — texte (optionnel)", name: "tarifsTeaserText", widget: "string", required: false }
+              - { label: "Encart sur la page Tarifs (renvoi vers ce studio early bird)", name: "showOnTarifs", widget: "boolean", default: false, required: false, hint: "Ajoute en bas de /tarifs/ un encart (mêmes titre + sous-titre que le haut de la page studio) avec un bouton rouge « Accéder aux offres early bird » vers ce studio." }
               - { label: "Encart Tarifs — texte du bouton (optionnel)", name: "tarifsTeaserCta", widget: "string", required: false, hint: "Défaut : Accéder aux offres early bird" }
 
   # ---------------- FAQ ----------------
