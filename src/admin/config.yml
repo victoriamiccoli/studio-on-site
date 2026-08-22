@@ -516,7 +516,7 @@ collections:
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
               - { label: "ID planning Sportigo", name: "planning", widget: "number", required: false, value_type: "int", hint: "À renseigner dès que le studio est OUVERT (c'est le planning des créneaux de la page Réserver)." }
-              - { label: "Compte Sportigo du studio (OBLIGATOIRE)", name: "sportigoAccount", widget: "string", required: true, hint: "Le compte Sportigo où sont créées les offres de CE studio. Paris 17 : 91c18a21-087e-4d56-988f-eeb39836a650 · Paris 6 : 07f65589-a4e1-4cc6-ba42-06b74f305036." }
+              - { label: "Compte Sportigo du studio", name: "sportigoAccount", widget: "string", required: false, hint: "À remplir pour un studio qui VEND (ouvert ou early bird). Le compte Sportigo où sont créées les offres de CE studio. Paris 17 : 91c18a21-087e-4d56-988f-eeb39836a650 · Paris 6 : 07f65589-a4e1-4cc6-ba42-06b74f305036." }
               - { label: "Early bird — petit texte au-dessus du titre", name: "ebKicker", widget: "string", required: false, hint: "Haut de la page studio en prévente. Défaut : Coming soon" }
               - { label: "Early bird — grand titre (partie blanche)", name: "ebTitle", widget: "string", required: false, hint: "Défaut : Ouverture. Ex. OUVERTURE" }
               - { label: "Early bird — grand titre (partie jaune)", name: "ebTitleYellow", widget: "string", required: false, hint: "Défaut : la ligne de statut. Ex. SEPTEMBRE 2026" }
