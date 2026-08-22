@@ -26,6 +26,7 @@
       ],
       "name": "Paris 6",
       "chip": "Paris 6",
+      "showOnTarifs": true,
       "ebTitleYellow": "EARLY BIRDS",
       "adr": "21 rue Bréa<br>75006 Paris",
       "sportigoAccount": "07f65589-a4e1-4cc6-ba42-06b74f305036",
