@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} - Pilates Reformer en libre accès{% endif %}</title>
 <meta name="description" content="{{ description or site.tagline }}">
-{% if pages[page.fileSlug] and pages[page.fileSlug].masquee %}<meta name="robots" content="noindex">{% endif %}
+{% if noindex or (pages[page.fileSlug] and pages[page.fileSlug].masquee) %}<meta name="robots" content="noindex">{% endif %}
 <link rel="icon" href="/assets/favicon/favicon.ico?v=3" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png?v=3">

@@ -1,0 +1,33 @@
+---
+pagination:
+  data: studios.list
+  size: 1
+  alias: studio
+layout: base.njk
+permalink: "/onboarding/{{ studio.key }}/"
+noindex: true
+eleventyComputed:
+  title: "Onboarding · {{ studio.name }}"
+---
+
+<section class="page-hero">
+  {% if studio.onbKicker %}<span class="page-hero__kicker">{{ studio.onbKicker }}</span>{% endif %}
+  <h1 class="page-hero__h">{% if studio.onbTitle or studio.onbTitleYellow %}{% if studio.onbTitle %}{{ studio.onbTitle }}{% endif %}{% if studio.onbTitleYellow %} <em>{{ studio.onbTitleYellow }}</em>{% endif %}{% else %}Bienvenue chez <em>Studio ON</em>{% endif %}</h1>
+  {% if studio.onbSubtitle %}<p class="page-hero__p" style="max-width:60ch;">{{ studio.onbSubtitle }}</p>{% endif %}
+</section>
+
+<section class="reveal section--dark" style="padding-top:0;">
+  <div class="onb-video">
+    {% set v = studio.onbVideo %}
+    {% if v %}
+      {% if "<iframe" in v or "<video" in v %}{{ v | safe }}
+      {% elif "youtube.com/watch" in v %}<iframe src="https://www.youtube.com/embed/{{ v | split('v=') | last | split('&') | first }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      {% elif "youtu.be/" in v %}<iframe src="https://www.youtube.com/embed/{{ v | split('youtu.be/') | last | split('?') | first }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      {% elif ".mp4" in v %}<video src="{{ v }}" controls playsinline></video>
+      {% else %}<iframe src="{{ v }}" title="Vidéo onboarding" allowfullscreen></iframe>
+      {% endif %}
+    {% else %}
+      <div class="onb-empty">La vidéo sera bientôt disponible.</div>
+    {% endif %}
+  </div>
+</section>

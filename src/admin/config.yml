@@ -545,6 +545,11 @@ collections:
                   - { label: "ID Sportigo de CETTE offre (obligatoire pour encaisser le bon montant)", name: "offerId", widget: "string" }
               - { label: "Encart sur la page Tarifs (renvoi vers ce studio early bird)", name: "showOnTarifs", widget: "boolean", default: false, required: false, hint: "Ajoute en bas de /tarifs/ un encart (mêmes titre + sous-titre que le haut de la page studio) avec un bouton rouge « Accéder aux offres early bird » vers ce studio." }
               - { label: "Encart Tarifs — texte du bouton (optionnel)", name: "tarifsTeaserCta", widget: "string", required: false, hint: "Défaut : Accéder aux offres early bird" }
+              - { label: "Vidéo onboarding — petit texte au-dessus du titre (optionnel)", name: "onbKicker", widget: "string", required: false, hint: "Page cachée studioon.fr/onboarding/[clé du studio]/ — ex. studioon.fr/onboarding/paris17/" }
+              - { label: "Vidéo onboarding — titre (partie blanche)", name: "onbTitle", widget: "string", required: false, hint: "Défaut : Bienvenue chez Studio ON" }
+              - { label: "Vidéo onboarding — titre (partie jaune)", name: "onbTitleYellow", widget: "string", required: false }
+              - { label: "Vidéo onboarding — sous-titre", name: "onbSubtitle", widget: "text", required: false }
+              - { label: "Vidéo onboarding — la vidéo", name: "onbVideo", widget: "text", required: false, hint: "Colle un lien YouTube, un lien .mp4, OU le code d'intégration (Partager → Intégrer) de n'importe quelle vidéo (Vimeo, Loom…). La page se génère à studioon.fr/onboarding/[clé du studio]/" }
 
   # ---------------- FAQ ----------------
   - name: "faq"
