@@ -19,7 +19,8 @@ eleventyComputed:
 <section class="reveal section--dark" style="padding-top:0;">
   <div class="onb-video">
     {% set v = studio.onbVideo %}
-    {% if v %}
+    {% if studio.onbVideoFile %}<video src="{{ studio.onbVideoFile }}" controls playsinline></video>
+    {% elif v %}
       {% if "<iframe" in v or "<video" in v %}{{ v | safe }}
       {% elif "youtube.com/watch" in v %}<iframe src="https://www.youtube.com/embed/{{ v | split('v=') | last | split('&') | first }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       {% elif "youtu.be/" in v %}<iframe src="https://www.youtube.com/embed/{{ v | split('youtu.be/') | last | split('?') | first }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
