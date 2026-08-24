@@ -22,8 +22,8 @@ eleventyComputed:
     {% if studio.onbVideoFile %}<video src="{{ studio.onbVideoFile }}" controls playsinline></video>
     {% elif v %}
       {% if "<iframe" in v or "<video" in v %}{{ v | safe }}
-      {% elif "youtube.com/watch" in v %}<iframe src="https://www.youtube.com/embed/{{ v | split('v=') | last | split('&') | first }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      {% elif "youtu.be/" in v %}<iframe src="https://www.youtube.com/embed/{{ v | split('youtu.be/') | last | split('?') | first }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      {% elif "youtube.com/watch" in v %}{% set _a = v.split("v=") | last %}{% set ytid = _a.split("&") | first %}<iframe src="https://www.youtube.com/embed/{{ ytid }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      {% elif "youtu.be/" in v %}{% set _a = v.split("youtu.be/") | last %}{% set ytid = _a.split("?") | first %}<iframe src="https://www.youtube.com/embed/{{ ytid }}" title="Vidéo onboarding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       {% elif ".mp4" in v %}<video src="{{ v }}" controls playsinline></video>
       {% else %}<iframe src="{{ v }}" title="Vidéo onboarding" allowfullscreen></iframe>
       {% endif %}
