@@ -24,7 +24,7 @@ eleventyComputed:
 </section>
 {% endif %}
 
-{% if showPlan %}
+{% if showPlan and studio.etat != 'earlybird' %}
 <section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
   <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
     <div>
@@ -87,6 +87,17 @@ eleventyComputed:
   </div>
   {% endif %}
 </section>
+{% if showPlan and studio.etat == 'earlybird' %}
+<section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
+  <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
+    <div>
+      <h2 class="h-lg section-head__h" style="color: var(--ecru); max-width: 20ch;">Réserve ta place</h2>
+      <p class="section-head__p" style="color: var(--ecru); opacity:.8;">Choisis ton créneau ci-dessous.</p>
+    </div>
+  </div>
+  <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
+</section>
+{% endif %}
 {% if studio.etat == 'earlybird' %}{% include "reserve-info.njk" %}{% endif %}
 {% else %}
 <section class="section--dark reveal">
