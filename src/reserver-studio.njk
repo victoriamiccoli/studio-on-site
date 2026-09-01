@@ -13,7 +13,18 @@ eleventyComputed:
   <a href="/reserver/" class="reserve-back"><span aria-hidden="true">←</span> Choisir un autre studio</a>
 </section>
 
-{% if studio.etat == 'open' and studio.planning %}
+{% set showPlan = studio.planning and (studio.etat == 'open' or (studio.etat == 'earlybird' and studio.showPlanning)) %}
+{% if studio.etat == 'earlybird' %}
+<section class="section--dark reveal" style="padding-top: 0; padding-bottom: clamp(24px, 4vw, 44px); text-align:center;">
+  <div style="padding-top: 8px;">
+    <span class="page-hero__kicker" style="color:var(--vanille)">{{ studio.ebKicker or "Coming soon" }}</span>
+    <h1 class="page-hero__h">{% if studio.ebTitle or studio.ebTitleYellow %}{% if studio.ebTitle %}{{ studio.ebTitle }}{% endif %}{% if studio.ebTitleYellow %} <em>{{ studio.ebTitleYellow }}</em>{% endif %}{% else %}<em>{{ studio.status or 'Ouverture bientôt' }}</em>{% endif %}</h1>
+    <p class="page-hero__p" style="max-width: 72ch;">{{ studio.ebSubtitle or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
+  </div>
+</section>
+{% endif %}
+
+{% if showPlan %}
 <section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
   <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
     <div>
@@ -22,14 +33,6 @@ eleventyComputed:
     </div>
   </div>
   <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
-</section>
-{% elif studio.etat == 'earlybird' %}
-<section class="section--dark reveal" style="padding-top: 0; padding-bottom: clamp(24px, 4vw, 44px); text-align:center;">
-  <div style="padding-top: 8px;">
-    <span class="page-hero__kicker" style="color:var(--vanille)">{{ studio.ebKicker or "Coming soon" }}</span>
-    <h1 class="page-hero__h">{% if studio.ebTitle or studio.ebTitleYellow %}{% if studio.ebTitle %}{{ studio.ebTitle }}{% endif %}{% if studio.ebTitleYellow %} <em>{{ studio.ebTitleYellow }}</em>{% endif %}{% else %}<em>{{ studio.status or 'Ouverture bientôt' }}</em>{% endif %}</h1>
-    <p class="page-hero__p" style="max-width: 72ch;">{{ studio.ebSubtitle or "Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }}</p>
-  </div>
 </section>
 {% endif %}
 
@@ -100,7 +103,7 @@ eleventyComputed:
 
 <script>
 document.body.setAttribute('data-studio-ref', '{{ studio.key }}');
-{% if studio.etat == 'open' and studio.planning %}
+{% if showPlan %}
 (function(){
   var ACCOUNT = "{{ studio.sportigoAccount or site.sportigoAccount }}";
   var SRC = "https://standalone.api.sportigo.fr/component-standalone.js";
