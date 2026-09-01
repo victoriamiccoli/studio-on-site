@@ -35,6 +35,7 @@
       "visible": true,
       "status": "Ouverture septembre 2026",
       "ebSubtitle": "Préventes EARLY BIRD · Paris 6. Réserve ta place avant l'ouverture",
+      "showPlanning": true,
       "earlyOffers": [
         {
           "sub": "Illimité en heures creuses",
