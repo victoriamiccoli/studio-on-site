@@ -12,9 +12,9 @@ description: Choisis ton studio Studio On et accède à son planning et ses offr
 <section class="reveal" style="padding-top: clamp(28px, 5vw, 64px); padding-bottom: clamp(48px, 7vw, 90px);">
   <div class="studio-pick studio-pick--links">
     {% for s in studios.list %}{% if s.visible != false %}
-    {% if s.etat == 'open' or s.etat == 'earlybird' %}
+    {% if s.etat == 'open' or s.etat == 'earlybird' or s.etat == 'earlybirdopen' %}
     <a class="studio-pick__card" href="/reserver/{{ s.key }}/">
-      <span class="studio-pick__status">{% if s.etat == 'open' %}Ouvert{% else %}Coming soon{% endif %}</span>
+      <span class="studio-pick__status">{% if s.etat == 'open' or s.etat == 'earlybirdopen' %}Ouvert{% else %}Coming soon{% endif %}</span>
       <span class="studio-pick__name">{{ s.name }}</span>
       {% if not s.hideAddress and s.adr %}<span class="studio-pick__adr">{{ s.adr | safe }}</span>{% endif %}
       {% if s.info %}<span class="studio-pick__info">{{ s.info }}</span>{% endif %}

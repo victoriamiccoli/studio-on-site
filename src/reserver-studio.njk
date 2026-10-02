@@ -13,8 +13,9 @@ eleventyComputed:
   <a href="/reserver/" class="reserve-back"><span aria-hidden="true">←</span> Choisir un autre studio</a>
 </section>
 
-{% set showPlan = studio.planning and (studio.etat == 'open' or (studio.etat == 'earlybird' and studio.showPlanning)) %}
-{% if studio.etat == 'earlybird' %}
+{% set isEB = studio.etat == 'earlybird' or studio.etat == 'earlybirdopen' %}
+{% set showPlan = studio.planning and (studio.etat == 'open' or (isEB and studio.showPlanning)) %}
+{% if isEB %}
 <section class="section--dark reveal" style="padding-top: 0; padding-bottom: clamp(24px, 4vw, 44px); text-align:center;">
   <div style="padding-top: 8px;">
     <span class="page-hero__kicker" style="color:var(--vanille)">{{ studio.ebKicker or "Coming soon" }}</span>
@@ -24,7 +25,7 @@ eleventyComputed:
 </section>
 {% endif %}
 
-{% if showPlan and studio.etat != 'earlybird' %}
+{% if showPlan and not isEB %}
 <section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
   <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
     <div>
@@ -36,14 +37,14 @@ eleventyComputed:
 </section>
 {% endif %}
 
-{% if studio.etat != 'earlybird' %}{% include "reserve-info.njk" %}{% endif %}
+{% if not isEB %}{% include "reserve-info.njk" %}{% endif %}
 
-{% if (studio.etat == 'open' and studio.planning) or studio.etat == 'earlybird' %}
-<section class="reveal{% if studio.etat == 'earlybird' %} section--dark{% endif %}"{% if studio.etat == 'earlybird' %} style="padding-top: 8px;"{% endif %}>
-  {% if studio.etat != 'earlybird' or studio.ebOffersTitle or studio.ebOffersSubtitle %}
+{% if (studio.etat == 'open' and studio.planning) or isEB %}
+<section class="reveal{% if isEB %} section--dark{% endif %}"{% if isEB %} style="padding-top: 8px;"{% endif %}>
+  {% if not isEB or studio.ebOffersTitle or studio.ebOffersSubtitle %}
   <div class="section-meta section-head">
     <div>
-      {% if studio.etat == 'earlybird' %}
+      {% if isEB %}
         {% if studio.ebOffersTitle %}<h2 class="h-xl section-head__h" style="max-width: 14ch; font-size: clamp(32px, 8vw, 65px); color: var(--ecru)">{{ studio.ebOffersTitle | safe }}</h2>{% endif %}
         {% if studio.ebOffersSubtitle %}<p class="section-head__p" style="color: var(--ecru); opacity:.65; max-width: none;">{{ studio.ebOffersSubtitle }}</p>{% endif %}
       {% else %}
@@ -54,7 +55,7 @@ eleventyComputed:
   </div>
   {% endif %}
 
-  {% set useEarly = studio.etat == 'earlybird' and studio.earlyOffers and studio.earlyOffers.length %}
+  {% set useEarly = isEB and studio.earlyOffers and studio.earlyOffers.length %}
   {% if useEarly %}
   <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
     {% for o in studio.earlyOffers %}{% if o.group != 'seance' %}{% include "eb-offer.njk" %}{% endif %}{% endfor %}
@@ -87,7 +88,7 @@ eleventyComputed:
   </div>
   {% endif %}
 </section>
-{% if showPlan and studio.etat == 'earlybird' %}
+{% if showPlan and isEB %}
 <section class="section--dark reveal" id="reserverPanel" style="padding-top: 0;">
   <div class="section-meta section-head" style="padding-top: 40px; padding-bottom: 40px;">
     <div>
@@ -98,7 +99,7 @@ eleventyComputed:
   <div class="planning-wrap"><div id="sportigo-appointment-container"></div></div>
 </section>
 {% endif %}
-{% if studio.etat == 'earlybird' %}{% include "reserve-info.njk" %}{% endif %}
+{% if isEB %}{% include "reserve-info.njk" %}{% endif %}
 {% else %}
 <section class="section--dark reveal">
   <div class="section-head" style="text-align:center;">

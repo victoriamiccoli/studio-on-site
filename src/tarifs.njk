@@ -43,7 +43,7 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
   </div>
 </section>
 
-{% for s in studios.list %}{% if s.visible and s.etat == 'earlybird' and s.showOnTarifs %}
+{% for s in studios.list %}{% if s.visible and (s.etat == 'earlybird' or s.etat == 'earlybirdopen') and s.showOnTarifs %}
 <section class="section--dark reveal" style="text-align:center;">
   <span class="page-hero__kicker" style="color:var(--vanille)">{{ s.ebKicker or "Coming soon" }}</span>
   <h2 class="page-hero__h">{% if s.ebTitle or s.ebTitleYellow %}{% if s.ebTitle %}{{ s.ebTitle }}{% endif %}{% if s.ebTitleYellow %} <em>{{ s.ebTitleYellow }}</em>{% endif %}{% else %}<em>{{ s.status or 'Ouverture bientôt' }}</em>{% endif %}</h2>

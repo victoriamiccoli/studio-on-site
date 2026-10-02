@@ -494,7 +494,8 @@ collections:
                 default: "soon"
                 options:
                   - { label: "Ouvert (bouton Réserver)", value: "open" }
-                  - { label: "Coming soon — Early birds (préventes avant ouverture)", value: "earlybird" }
+                  - { label: "Early birds — AVANT ouverture (bulle « Coming soon »)", value: "earlybird" }
+                  - { label: "Early birds — studio OUVERT (bulle « Ouvert »)", value: "earlybirdopen" }
                   - { label: "Liste d'attente (bouton Rejoindre la liste)", value: "waitlist" }
                   - { label: "Coming soon (aucun bouton)", value: "soon" }
               - { label: "Onglet (nom court affiché)", name: "chip", widget: "string" }
@@ -515,7 +516,7 @@ collections:
               - { label: "Hachures sur la photo", name: "imgHatch", widget: "boolean", default: false, required: false }
               - { label: "Ligne de statut (texte libre, optionnel)", name: "status", widget: "string", required: false }
               - { label: "Lien du bouton (si Ouvert)", name: "ctaHref", widget: "string", required: false }
-              - { label: "Afficher le planning (même en early bird)", name: "showPlanning", widget: "boolean", default: false, required: false, hint: "Coche pour afficher le planning de réservation sur la page d'un studio en EARLY BIRD (les studios « Ouvert » l'affichent déjà automatiquement). Nécessite un ID planning ci-dessous." }
+              - { label: "Afficher le planning (même en early bird)", name: "showPlanning", widget: "boolean", default: false, required: false, hint: "Coche pour afficher le planning de réservation sur la page d'un studio en EARLY BIRD (avant ouverture OU studio ouvert). Les studios « Ouvert » l'affichent déjà automatiquement. Nécessite un ID planning ci-dessous." }
               - { label: "ID planning Sportigo", name: "planning", widget: "number", required: false, value_type: "int", hint: "L'ID du planning des créneaux (page Réserver). Requis pour afficher le planning." }
               - { label: "Compte Sportigo du studio", name: "sportigoAccount", widget: "string", required: false, hint: "À remplir pour un studio qui VEND (ouvert ou early bird). Le compte Sportigo où sont créées les offres de CE studio. Paris 17 : 91c18a21-087e-4d56-988f-eeb39836a650 · Paris 6 : 07f65589-a4e1-4cc6-ba42-06b74f305036." }
               - { label: "Early bird — petit texte au-dessus du titre", name: "ebKicker", widget: "string", required: false, hint: "Haut de la page studio en prévente. Défaut : Coming soon" }
@@ -524,7 +525,7 @@ collections:
               - { label: "Early bird — sous-titre", name: "ebSubtitle", widget: "text", required: false, hint: "Défaut : Profite des offres early bird : réserve ta place à tarif préférentiel avant l'ouverture du studio." }
               - { label: "Early bird — titre de la section des offres (au-dessus des cartes)", name: "ebOffersTitle", widget: "string", required: false, hint: "VIDE = aucun titre affiché (évite la répétition avec le grand titre du haut). Remplis-le seulement si tu veux un titre. Tu peux mettre <br> pour un retour à la ligne." }
               - { label: "Early bird — sous-titre de la section des offres", name: "ebOffersSubtitle", widget: "string", required: false, hint: "VIDE = aucun sous-titre affiché. Remplis-le seulement si tu veux un sous-titre au-dessus des cartes." }
-              - label: "Offres EARLY BIRD (s'affichent seulement si l'état = « Coming soon — Early birds »)"
+              - label: "Offres EARLY BIRD (s'affichent seulement si l'état = « Early birds — avant ouverture » ou « Early birds — studio ouvert »)"
                 name: "earlyOffers"
                 widget: "list"
                 required: false

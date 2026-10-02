@@ -185,7 +185,7 @@
     var keys = ctx.payments ? Object.keys(ctx.payments) : [];
     if (keys.length){
       // Studios rattachés à cette offre : ouverts OU en préventes early bird (attribution correcte)
-      return STUDIOS.filter(function(s){ return (s.etat === 'open' || s.etat === 'earlybird') && ctx.payments[s.key] != null; });
+      return STUDIOS.filter(function(s){ return (s.etat === 'open' || s.etat === 'earlybird' || s.etat === 'earlybirdopen') && ctx.payments[s.key] != null; });
     }
     // Repli : offre sans paiement par studio -> studios OUVERTS uniquement (les early birds passent par leur page dédiée)
     return ctx.fallback ? STUDIOS.filter(function(s){ return s.etat === 'open'; }) : [];
@@ -298,7 +298,7 @@
     var preset = document.body.getAttribute('data-studio-ref'); // studio déjà fixé (page dédiée / page Réserver)
     if (preset && studioByKey(preset)){
       var ps = studioByKey(preset);
-      var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null) || (ps.etat === 'earlybird' && !!ctx.fallback);
+      var sells = (ps.etat === 'open') || (ctx.payments && ctx.payments[preset] != null) || ((ps.etat === 'earlybird' || ps.etat === 'earlybirdopen') && !!ctx.fallback);
       ctx.studioKey = preset; ctx.hasStudioStep = false;
       if (sells){ renderPayStep(); } else { renderUnavailable(); }
       return;
