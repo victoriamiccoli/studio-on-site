@@ -200,6 +200,14 @@ collections:
               - { label: "Masquer le bloc « Une question ? » (en bas de page)", name: "hideContact", widget: "boolean", default: false, required: false }
               - { label: "Bloc « Une question ? » — titre", name: "contactTitle", widget: "string", required: false, default: "Une question ?", hint: "Laisse vide pour le texte par défaut. <br> pour aller à la ligne." }
               - { label: "Bloc « Une question ? » — texte", name: "contactText", widget: "string", required: false, default: "Écris-nous, on te répond très vite." }
+              - { label: "⚡ BLACK FRIDAY — Activer l'offre", name: "bfActive", widget: "boolean", default: false, required: false, hint: "Coche pour afficher le bloc Black Friday en haut de la page + le prix barré sur le Pack 10 séances. IMPORTANT : après l'opération, DÉCOCHE ici ET remets le prix à 150€ dans Sportigo (les deux vont ensemble)." }
+              - { label: "Black Friday — pastille (petit texte rouge)", name: "bfKicker", widget: "string", required: false, hint: "Défaut : Offre Black Friday · durée limitée" }
+              - { label: "Black Friday — titre de l'offre", name: "bfTitle", widget: "string", required: false, hint: "Défaut : Pack 10 séances (avec « 10 séances » en jaune). Tu peux utiliser <em>…</em> pour mettre une partie en jaune." }
+              - { label: "Black Friday — ancien prix barré (€)", name: "bfOrig", widget: "string", required: false, hint: "Défaut : 150" }
+              - { label: "Black Friday — prix promo (€)", name: "bfPrice", widget: "string", required: false, hint: "Défaut : 120. Doit correspondre au prix que tu as mis dans Sportigo." }
+              - { label: "Black Friday — sous-titre", name: "bfSub", widget: "string", required: false, hint: "Défaut : 10 séances de Pilates Reformer · valable 6 mois · dans tous les studios." }
+              - { label: "Black Friday — texte du bouton", name: "bfCta", widget: "string", required: false, hint: "Défaut : Profiter de l'offre" }
+              - { label: "Black Friday — formule remisée (nom exact)", name: "bfPackName", widget: "string", required: false, default: "Pack 10 séances", hint: "Le nom EXACT de la formule en promo, tel qu'il apparaît dans tes tarifs. Par défaut : Pack 10 séances." }
           - label: "Page Contact"
             name: "contact"
             widget: "object"

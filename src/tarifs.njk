@@ -13,6 +13,26 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
 </section>
 {% endif %}
 
+{% if pages.tarifs.bfActive %}{% for p in tarifs.seances %}{% if p.name == (pages.tarifs.bfPackName or "Pack 10 séances") %}
+{% set bfOrig = pages.tarifs.bfOrig or p.price %}
+{% set bfPrice = pages.tarifs.bfPrice or "120" %}
+{% set bfPct = ((bfOrig | float - bfPrice | float) / (bfOrig | float) * 100) | round | int %}
+<section class="section--dark bf-band reveal">
+  <div class="bf-ghost" aria-hidden="true">Black Friday</div>
+  <div class="bf-wrap">
+    <span class="bf-kicker">{{ pages.tarifs.bfKicker or "Offre Black Friday · durée limitée" }}</span>
+    <h2 class="bf-title">{% if pages.tarifs.bfTitle %}{{ pages.tarifs.bfTitle | safe }}{% else %}Pack <em>10 séances</em>{% endif %}</h2>
+    <div class="bf-price">
+      <span class="bf-orig">{{ bfOrig }}€</span>
+      <span class="bf-now">{{ bfPrice }}<sup>€</sup></span>
+      <span class="bf-pct">−{{ bfPct }}%</span>
+    </div>
+    <p class="bf-sub">{{ pages.tarifs.bfSub or "10 séances de Pilates Reformer · valable 6 mois · dans tous les studios." }}</p>
+    <div class="bf-cta"><button type="button" class="btn bf-btn" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-offer="{{ p.offerId }}" data-title="{{ p.name }} — Black Friday" data-price="{{ bfPrice }}" data-per="{{ p.per }}">{{ pages.tarifs.bfCta or "Profiter de l'offre" }} <span>→</span></button></div>
+  </div>
+</section>
+{% endif %}{% endfor %}{% endif %}
+
 <section class="section--dark reveal" style="padding-top: clamp(40px, 6vw, 80px);">
   <div class="tarifs-grid tarifs-grid--subs" style="margin-top:0;">
     {% for p in tarifs.abonnements %}
@@ -30,14 +50,25 @@ description: Le Pilates Reformer en illimité. Tarifs accessibles.
 
   <div class="tarifs-grid" style="margin-top: 14px;">
     {% for p in tarifs.seances %}
-    <article class="plan{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
-      <div class="plan__name">{{ p.name }}{% if p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
+    {% set isBF = pages.tarifs.bfActive and p.name == (pages.tarifs.bfPackName or "Pack 10 séances") %}
+    {% if isBF %}{% set bfOrig = pages.tarifs.bfOrig or p.price %}{% set bfPrice = pages.tarifs.bfPrice or "120" %}{% set bfPct = ((bfOrig | float - bfPrice | float) / (bfOrig | float) * 100) | round | int %}{% endif %}
+    <article class="plan{% if isBF %} plan--eb{% endif %}{% if p.feature %} plan--feature{% endif %}{% if p.popular %} plan--pop{% endif %}">
+      <div class="plan__name">{{ p.name }}{% if isBF %} <span class="plan__badge plan__badge--eb">Black Friday</span>{% elif p.badge %} <span class="plan__badge">{{ p.badge }}</span>{% endif %}{% if p.popular %} <span class="plan__badge plan__badge--pop">★ Le plus populaire</span>{% endif %}</div>
+      {% if isBF %}
+      <div class="plan__price plan__price--eb">
+        <span class="plan__orig">{{ bfOrig }}<sup>€</sup></span>
+        <span class="plan__now">{{ bfPrice }}<sup>€</sup><span class="per">{{ p.per }}</span></span>
+        <span class="plan__pct">−{{ bfPct }}%</span>
+      </div>
+      <div class="plan__launch">Offre Black Friday</div>
+      {% else %}
       <div class="plan__price">{{ p.price }}<sup>€</sup><span class="per">{{ p.per }}</span></div>
       {% if p.sub %}<div class="plan__sub">{{ p.sub }}</div>{% endif %}
+      {% endif %}
       <ul class="plan__list">
         {% for f in p.features %}<li>{{ f | safe }}</li>{% endfor %}
       </ul>
-      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{{ p.payTitle or p.name }}" data-price="{{ p.price }}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
+      <button type="button" class="plan__cta" data-offer="{{ p.offerId }}" data-payments="{% for pay in p.payments %}{{ pay.studio }}:{{ pay.id }}{% if not loop.last %};{% endif %}{% endfor %}" data-title="{% if isBF %}{{ p.name }} — Black Friday{% else %}{{ p.payTitle or p.name }}{% endif %}" data-price="{% if isBF %}{{ bfPrice }}{% else %}{{ p.price }}{% endif %}" data-per="{{ p.per }}">{{ p.ctaLabel }} <span>→</span></button>
     </article>
     {% endfor %}
   </div>

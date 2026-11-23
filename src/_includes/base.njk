@@ -318,7 +318,7 @@
   if (backBtn) backBtn.addEventListener('click', goBack);
 
   document.addEventListener('click', function(e){
-    var btn = e.target.closest('.plan__cta[data-offer], .plan__cta[data-payments], .lvl__cta[data-offer], .lvl__cta[data-payments]');
+    var btn = e.target.closest('.plan__cta[data-offer], .plan__cta[data-payments], .lvl__cta[data-offer], .lvl__cta[data-payments], .bf-btn[data-offer], .bf-btn[data-payments]');
     if (btn){
       e.preventDefault();
       var card = btn.closest('.plan');
