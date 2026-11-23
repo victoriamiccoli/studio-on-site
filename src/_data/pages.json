@@ -1,4 +1,11 @@
 {
+  "tarifs": {
+    "title": "Le Pilates Reformer.",
+    "titleYellow": "En [[illimité.]]",
+    "titleBreak": true,
+    "subtitle": "Tarifs accessibles.",
+    "bfActive": true
+  },
   "franchises": {
     "subtitle": "Dis-nous qui tu es, on revient vers toi très vite."
   },
@@ -14,11 +21,6 @@
     "titleYellow": "à ton rythme.",
     "titleBreak": true
   },
-  "studios": {
-    "subtitle": "Plusieurs adresses. Une seule expérience.",
-    "title": "Paris, et bientôt ailleurs…",
-    "titleYellow": ""
-  },
   "coachs": {
     "subtitle": "Tes coachs préférés. Disponibles à chaque séance.",
     "title": "Sept coachs.",
@@ -26,10 +28,9 @@
     "titleBreak": true,
     "hideGallery": true
   },
-  "tarifs": {
-    "title": "Le Pilates Reformer.",
-    "titleYellow": "En [[illimité.]]",
-    "titleBreak": true,
-    "subtitle": "Tarifs accessibles."
+  "studios": {
+    "subtitle": "Plusieurs adresses. Une seule expérience.",
+    "title": "Paris, et bientôt ailleurs…",
+    "titleYellow": ""
   }
 }
